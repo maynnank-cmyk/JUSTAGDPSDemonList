@@ -1,12 +1,12 @@
 {
   "players": [
     {
-      "id": "skoe",
-      "name": "SKOE",
-      "avatar": "S",
-      "completedDemons": ["mihadifficult"],
+      "id": "vladgmd",
+      "name": "VladGMD",
+      "avatar": "V",
+      "completedDemons": ["fanera"],
       "progress": {
-        "mihadifficult": 100
+        "fanera": 100
       }
     }
   ]
