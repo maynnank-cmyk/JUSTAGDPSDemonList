@@ -1,11 +1,11 @@
 {
   "demons": [
     {
-      "id": "test",
-      "name": "Test",
-      "creator": "Ueban",
-      "videoUrl": "https://www.youtube.com/watch?v=cLTTnC6Xkng",
-      "image": "images/avatar.png",
+      "id": "fanera",
+      "name": "Fanera",
+      "creator": "VladGMD",
+      "videoUrl": "https://youtu.be/MI93QKreROk?si=cO_3Z_c8ha9kWiZv",
+      "image": "images/fanera.png",
       "description": "Легендарный экстрим демон"
     }
   ]
