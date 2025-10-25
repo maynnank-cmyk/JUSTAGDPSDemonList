@@ -12,7 +12,7 @@
       "id": "maskexe",
       "name": "MaskEXE",
       "avatar": "M",
-      "avatarImage": "images/syntezz.png", 
+      "avatarImage": "images/maskexe.png", 
       "role": "Создатель ГДПС",
       "roleClass": "role-admin"
     },
@@ -20,7 +20,7 @@
       "id": "rybaej",
       "name": "Рыьа ёж",
       "avatar": "Р",
-      "avatarImage": "images/maskexe.png", 
+      "avatarImage": "images/rybaesh.png", 
       "role": "Администратор ГДПС",
       "roleClass": "role-admin"
     }
