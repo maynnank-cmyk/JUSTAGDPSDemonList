@@ -6,7 +6,15 @@
       "creator": "VladGMD",
       "videoUrl": "https://youtu.be/MI93QKreROk?si=cO_3Z_c8ha9kWiZv",
       "image": "images/fanera.png",
-      "description": "Легендарный экстрим демон"
+      "description": "Уровень построенный креатором VladGMD вместе с DnKyar4ik."
+    },
+    {
+      "id": "theoryofworld",
+      "name": "Theory Of World",
+      "creator": "TechnoKnight",
+      "videoUrl": "https://youtu.be/kj4iIbknyZo?si=coa5sdq7uir-dYY0",
+      "image": "images/theoryofworld.png",
+      "description": "Лёгкий хард демон."
     }
   ]
 }
