@@ -9,7 +9,15 @@
         "fanera": 100
       }
     },
-      {
+     {
+      "id": "freedom",
+      "name": "Freedom",
+      "avatar": "F",
+      "completedDemons": ["disturb"],
+      "progress": {
+        "disturb": 100,
+      }  
+    {
       "id": "technoknight",
       "name": "TechnoKnight",
       "avatar": "T",
