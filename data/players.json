@@ -16,7 +16,7 @@
       "avatar": "F",
       "completedDemons": ["disturb"],
       "progress": {
-        "disturb": 100,
+        "disturb": 100
       }
      },   
     {
@@ -25,7 +25,7 @@
       "avatar": "A",
       "completedDemons": ["miner"],
       "progress": {
-        "miner": 100,
+        "miner": 100
       }
      },   
     {
