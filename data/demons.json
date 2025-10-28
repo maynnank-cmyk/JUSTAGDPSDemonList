@@ -31,6 +31,14 @@
       "videoUrl": "https://youtu.be/kj4iIbknyZo?si=coa5sdq7uir-dYY0",
       "image": "images/theoryofworld.png",
       "description": "Лёгкий хард демон."
+    },
+    {
+      "id": "sigareta",
+      "name": "Sigareta",
+      "creator": "VladGMD",
+      "videoUrl": "https://youtu.be/8LCYDkDXDPc?si=qbzvK1MKjYg59yat",
+      "image": "images/sigareta.png",
+      "description": "Сиквел на kowareta."
     }
   ]
 }
