@@ -16,7 +16,17 @@
       "completedDemons": ["disturb"],
       "progress": {
         "disturb": 100,
-      }  
+      }
+     },   
+    {
+      "id": "afrumka",
+      "name": "Afrumka",
+      "avatar": "A",
+      "completedDemons": ["miner"],
+      "progress": {
+        "miner": 100,
+      }
+     },   
     {
       "id": "technoknight",
       "name": "TechnoKnight",
