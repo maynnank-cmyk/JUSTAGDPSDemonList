@@ -4,9 +4,10 @@
       "id": "vladgmd",
       "name": "VladGMD",
       "avatar": "V",
-      "completedDemons": ["fanera"],
+      "completedDemons": ["fanera", "sigareta"],
       "progress": {
-        "fanera": 100
+        "fanera": 100,
+        "sigareta": 100
       }
     },
      {
