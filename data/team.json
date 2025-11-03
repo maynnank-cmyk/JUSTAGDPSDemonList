@@ -9,19 +9,19 @@
       "roleClass": "role-leader"
     },
     {
-      "id": "maskexe",
-      "name": "MaskEXE",
-      "avatar": "M",
-      "avatarImage": "images/maskexe.png", 
+      "id": "unity",
+      "name": "Unity",
+      "avatar": "U",
+      "avatarImage": "images/unity.png", 
       "role": "Создатель ГДПС",
       "roleClass": "role-admin"
     },
     {
-      "id": "rybaej",
-      "name": "Рыба ёж",
-      "avatar": "Р",
-      "avatarImage": "images/rybaesh.gif", 
-      "role": "Администратор ГДПС",
+      "id": "lodz",
+      "name": "Lodz",
+      "avatar": "L",
+      "avatarImage": "images/lodz.png", 
+      "role": "Старший модератор ГДПС",
       "roleClass": "role-admin"
     }
   ]
