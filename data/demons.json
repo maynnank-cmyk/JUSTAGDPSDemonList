@@ -1,11 +1,11 @@
 {
   "demons": [
     {
-      "id": "disturb",
-      "name": "Disturb",
-      "creator": "MaskEXE",
-      "videoUrl": "https://youtu.be/d35KbSJN50Y?si=B_qh_Y7i_YsdT4TG",
-      "image": "images/disturb.png",
+      "id": "reboot",
+      "name": "Reboot",
+      "creator": "Dydo & more",
+      "videoUrl": "https://youtu.be/MI93QKreROk",
+      "image": "images/reboot.png",
       "description": "Один из самых известных демонов"
      },
      {
@@ -25,11 +25,11 @@
       "description": "Уровень построенный креатором VladGMD вместе с DnKyar4ik."
     },
     {
-      "id": "theoryofworld",
-      "name": "Theory Of World",
-      "creator": "TechnoKnight",
-      "videoUrl": "https://youtu.be/kj4iIbknyZo?si=coa5sdq7uir-dYY0",
-      "image": "images/theoryofworld.png",
+      "id": "fenix",
+      "name": "Fenix",
+      "creator": "VladGMD",
+      "videoUrl": "https://youtu.be/o57Sl34fuos?si=Ngs5HF0-Q8yR3cFG",
+      "image": "images/fenix.png",
       "description": "Лёгкий хард демон."
     },
     {
