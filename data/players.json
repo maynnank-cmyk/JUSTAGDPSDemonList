@@ -10,15 +10,6 @@
         "sigareta": 100
       }
     },
-     {
-      "id": "freedom",
-      "name": "Freedom",
-      "avatar": "F",
-      "completedDemons": ["disturb"],
-      "progress": {
-        "disturb": 100
-      }
-     },   
     {
       "id": "afrumka",
       "name": "Afrumka",
@@ -29,12 +20,13 @@
       }
      },   
     {
-      "id": "technoknight",
-      "name": "TechnoKnight",
-      "avatar": "T",
-      "completedDemons": ["theoryofworld"],
+      "id": "korden",
+      "name": "Korden",
+      "avatar": "K",
+      "completedDemons": ["reboot", "fenix"],
       "progress": {
-        "theoryofworld": 100
+        "reboot": 100,
+        "fenix": 100
       }
     }
   ]
