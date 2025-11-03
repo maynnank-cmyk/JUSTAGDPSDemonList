@@ -6,17 +6,29 @@
     <title>Топ Игроков - DFPS</title>
     <style>
         :root {
-            --bg-primary: #1a0f0f;
-            --bg-secondary: #2a1515;
-            --bg-tertiary: #3a1a1a;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #e9ecef;
+            --text-primary: #212529;
+            --text-secondary: #6c757d;
+            --accent-red: #dc3545;
+            --accent-green: #28a745;
+            --border-color: #dee2e6;
+            --card-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            --header-red: #dc3545;
+        }
+        
+        [data-theme="dark"] {
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #2d2d2d;
+            --bg-tertiary: #3d3d3d;
             --text-primary: #ffffff;
-            --text-secondary: #ffa500;
-            --accent-orange: #ff6b00;
-            --accent-purple: #8a2be2;
-            --accent-green: #00ff00;
-            --border-color: #ff4500;
-            --halloween-orange: #ff7518;
-            --halloween-purple: #8b00ff;
+            --text-secondary: #b0b0b0;
+            --accent-red: #ff6b6b;
+            --accent-green: #34c759;
+            --border-color: #404040;
+            --card-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            --header-red: #c82333;
         }
         
         * {
@@ -30,49 +42,9 @@
             background-color: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.6;
-            background-image: 
-                radial-gradient(circle at 20% 80%, rgba(255, 107, 0, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(139, 0, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(255, 117, 24, 0.05) 0%, transparent 50%);
-            position: relative;
-            overflow-x: hidden;
+            transition: all 0.3s ease;
+            font-weight: 600;
         }
-
-        /* Halloween decorations */
-        .halloween-decoration {
-            position: fixed;
-            z-index: -1;
-            opacity: 0.1;
-            font-size: 24px;
-        }
-
-        .decoration-1 { top: 10%; left: 5%; }
-        .decoration-2 { top: 20%; right: 8%; }
-        .decoration-3 { bottom: 30%; left: 7%; }
-        .decoration-4 { bottom: 15%; right: 5%; }
-        .decoration-5 { top: 50%; left: 3%; }
-        
-        /* Animated background elements */
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
-        }
-        
-        @keyframes spooky {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.7; }
-        }
-        
-        .floating-ghost {
-            position: fixed;
-            font-size: 30px;
-            animation: float 6s ease-in-out infinite, spooky 4s ease-in-out infinite;
-            z-index: -1;
-        }
-        
-        .ghost-1 { top: 15%; left: 10%; animation-delay: 0s; }
-        .ghost-2 { top: 60%; right: 15%; animation-delay: 2s; }
-        .ghost-3 { bottom: 20%; left: 20%; animation-delay: 4s; }
         
         .container {
             max-width: 1200px;
@@ -82,235 +54,296 @@
         
         /* Header */
         header {
-            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
-            border-bottom: 3px solid var(--border-color);
-            padding: 20px 0;
+            background: var(--header-red);
+            border-bottom: 1px solid var(--header-red);
+            padding: 1rem 0 0 0;
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 4px 20px rgba(255, 107, 0, 0.3);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
         
         .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding-bottom: 1rem;
         }
         
         .logo {
-            font-size: 32px;
-            font-weight: bold;
-            color: var(--text-primary);
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white;
             text-decoration: none;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            background: linear-gradient(45deg, var(--halloween-orange), var(--halloween-purple));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            padding: 5px 15px;
-            border-radius: 10px;
-            border: 2px solid var(--border-color);
         }
         
         .logo span {
-            color: var(--accent-green);
-            text-shadow: 0 0 10px var(--accent-green);
+            color: white;
+        }
+        
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            padding: 0.5rem;
+        }
+        
+        .theme-toggle:hover {
+            transform: scale(1.1);
         }
         
         nav ul {
             display: flex;
             list-style: none;
-        }
-        
-        nav ul li {
-            margin-left: 25px;
-            position: relative;
+            gap: 0;
         }
         
         nav ul li a {
-            color: var(--text-secondary);
+            color: white;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s;
-            padding: 8px 16px;
-            border-radius: 6px;
-            border: 1px solid transparent;
+            padding: 0.5rem 1rem;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+            position: relative;
         }
         
-        nav ul li a:hover {
-            color: var(--text-primary);
-            background: rgba(255, 107, 0, 0.2);
-            border-color: var(--border-color);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(255, 107, 0, 0.3);
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -1rem;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: white;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
         }
         
-        /* Breadcrumb */
-        .breadcrumb {
-            padding: 20px 0;
-            color: var(--text-secondary);
-            font-size: 16px;
-            border-bottom: 2px solid var(--border-color);
-            background: var(--bg-secondary);
+        nav ul li a.active::after {
+            transform: scaleX(1);
         }
         
-        .breadcrumb a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-        
-        .breadcrumb a:hover {
-            color: var(--accent-green);
-            text-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+        nav ul li a:hover::after {
+            transform: scaleX(1);
         }
         
         /* Hero Section */
         .hero {
-            padding: 60px 0;
+            padding: 3rem 0;
             text-align: center;
-            border-bottom: 3px solid var(--border-color);
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(rgba(42, 21, 21, 0.9), rgba(58, 26, 26, 0.9));
-        }
-        
-        .hero::before {
-            content: "👻🎃💀";
-            position: absolute;
-            top: 10px;
-            left: 0;
-            right: 0;
-            font-size: 24px;
-            opacity: 0.1;
-            animation: spooky 3s ease-in-out infinite;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
         }
         
         .hero h1 {
-            font-size: 52px;
-            margin-bottom: 20px;
-            background: linear-gradient(45deg, var(--halloween-orange), var(--accent-green), var(--halloween-purple));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 30px rgba(255, 117, 24, 0.5);
-            animation: glow 2s ease-in-out infinite alternate;
-        }
-        
-        @keyframes glow {
-            from { text-shadow: 0 0 20px rgba(255, 117, 24, 0.5); }
-            to { text-shadow: 0 0 30px rgba(255, 117, 24, 0.8), 0 0 40px rgba(139, 0, 255, 0.6); }
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            font-weight: 800;
         }
         
         .hero p {
-            font-size: 20px;
+            font-size: 1.1rem;
             color: var(--text-secondary);
             max-width: 600px;
             margin: 0 auto;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            font-weight: 600;
+        }
+        
+        /* Search Section */
+        .search-section {
+            padding: 2rem 0;
+            background: var(--bg-primary);
+        }
+        
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent-red);
+            box-shadow: 0 0 0 2px rgba(220,53,69,0.25);
+        }
+        
+        .search-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            margin-top: 0.5rem;
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .search-result-item {
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            border-bottom: 1px solid var(--border-color);
+            transition: background-color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .search-result-item:hover {
+            background-color: var(--bg-secondary);
+        }
+        
+        .search-result-item:last-child {
+            border-bottom: none;
+        }
+        
+        .search-result-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--accent-red);
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        
+        .search-result-info {
+            flex: 1;
+        }
+        
+        .search-result-name {
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        
+        .search-result-points {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-top: 0.25rem;
+            font-weight: 600;
+        }
+        
+        .no-results {
+            padding: 1rem;
+            text-align: center;
+            color: var(--text-secondary);
+            font-weight: 600;
         }
         
         /* Players List */
         .players-list {
-            padding: 60px 0;
-            position: relative;
+            padding: 2rem 0;
         }
         
         .list-header {
-            margin-bottom: 40px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid var(--border-color);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            margin-bottom: 2rem;
+            text-align: center;
         }
         
         .list-header h2 {
-            font-size: 36px;
-            color: var(--halloween-orange);
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            font-weight: 800;
+        }
+        
+        .list-header p {
+            color: var(--text-secondary);
+            font-weight: 600;
         }
         
         .list-container {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 1rem;
         }
         
         .player-row {
-            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
-            border-radius: 15px;
-            overflow: hidden;
-            border: 2px solid var(--border-color);
-            transition: all 0.4s;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
             display: flex;
             align-items: center;
-            padding: 25px;
-            gap: 30px;
-            position: relative;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            gap: 1.5rem;
+            transition: all 0.2s;
+            cursor: pointer;
+            box-shadow: var(--card-shadow);
         }
         
         .player-row:hover {
-            transform: translateX(10px) scale(1.02);
-            box-shadow: 0 12px 30px rgba(255, 107, 0, 0.4);
-            background: linear-gradient(135deg, var(--bg-tertiary), var(--bg-secondary));
-            border-color: var(--accent-green);
-        }
-        
-        .player-row::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 107, 0, 0.1), transparent);
-            transition: left 0.6s;
-        }
-        
-        .player-row:hover::before {
-            left: 100%;
+            border-color: var(--accent-red);
+            box-shadow: 0 4px 12px rgba(220,53,69,0.15);
+            transform: translateY(-2px);
         }
         
         .player-rank {
-            font-size: 32px;
-            font-weight: bold;
-            width: 70px;
+            font-size: 1.5rem;
+            font-weight: 800;
+            width: 60px;
             text-align: center;
             color: var(--text-secondary);
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         }
         
         .rank.top-1 {
-            color: gold;
-            text-shadow: 0 0 10px gold, 0 0 20px rgba(255, 215, 0, 0.5);
+            color: #ffd700;
         }
         
         .rank.top-3 {
-            color: silver;
-            text-shadow: 0 0 8px silver;
+            color: #c0c0c0;
         }
         
         .rank.top-10 {
             color: #cd7f32;
-            text-shadow: 0 0 6px #cd7f32;
         }
         
         .player-avatar {
-            width: 90px;
-            height: 90px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
             overflow: hidden;
             flex-shrink: 0;
-            border: 3px solid var(--accent-orange);
-            transition: border-color 0.3s;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            background: var(--bg-tertiary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--border-color);
         }
         
-        .player-row:hover .player-avatar {
-            border-color: var(--accent-green);
-            transform: scale(1.1);
+        .player-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         
         .avatar-placeholder {
@@ -319,10 +352,10 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(45deg, var(--halloween-orange), var(--halloween-purple));
+            background: var(--accent-red);
             color: white;
-            font-size: 32px;
-            font-weight: bold;
+            font-size: 2rem;
+            font-weight: 800;
         }
         
         .player-info {
@@ -332,284 +365,281 @@
             justify-content: space-between;
         }
         
-        .player-name {
-            font-size: 28px;
-            color: var(--text-primary);
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: inline-block;
-            padding: 8px 20px;
-            border-radius: 8px;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        .player-details {
+            flex: 1;
         }
         
-        .player-name:hover {
-            background: rgba(255, 107, 0, 0.3);
-            color: var(--accent-green);
-            transform: translateY(-3px);
-            box-shadow: 0 4px 12px rgba(255, 107, 0, 0.3);
+        .player-name {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .player-stats {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            font-weight: 600;
         }
         
         .player-score {
-            font-size: 26px;
-            font-weight: bold;
+            font-size: 1.25rem;
+            font-weight: 800;
             color: var(--accent-green);
-            min-width: 140px;
+            min-width: 120px;
             text-align: right;
-            padding: 12px 20px;
-            background: var(--bg-tertiary);
-            border-radius: 10px;
-            border: 2px solid var(--border-color);
-            text-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
-
+        
         /* Refresh Button */
         .refresh-btn {
             display: block;
-            margin: 30px auto;
-            padding: 15px 30px;
-            background: linear-gradient(45deg, var(--halloween-orange), var(--halloween-purple));
+            margin: 2rem auto;
+            padding: 0.75rem 2rem;
+            background: var(--accent-red);
             color: white;
             border: none;
-            border-radius: 50px;
+            border-radius: 6px;
             cursor: pointer;
-            font-size: 18px;
-            font-weight: 600;
-            transition: all 0.3s;
-            box-shadow: 0 6px 20px rgba(255, 107, 0, 0.4);
-            position: relative;
-            overflow: hidden;
+            font-size: 1rem;
+            font-weight: 700;
+            transition: all 0.2s;
         }
-
+        
         .refresh-btn:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 10px 25px rgba(255, 107, 0, 0.6);
-            background: linear-gradient(45deg, var(--halloween-purple), var(--halloween-orange));
+            background: #c82333;
+            transform: translateY(-1px);
         }
-
+        
         /* Status */
         .sync-status {
             text-align: center;
-            padding: 15px;
-            background: var(--bg-tertiary);
-            border-radius: 10px;
-            margin: 20px 0;
-            font-size: 16px;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border-radius: 6px;
+            margin: 1rem 0;
             color: var(--text-secondary);
-            border: 2px solid var(--border-color);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-color);
+            font-weight: 600;
         }
         
         .sync-status.synced {
             color: var(--accent-green);
-            border-left: 4px solid var(--accent-green);
-            text-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+            border-color: var(--accent-green);
+            background: var(--bg-primary);
         }
         
         .error-message {
             text-align: center;
-            padding: 25px;
-            background: var(--bg-secondary);
-            border: 2px solid var(--accent-orange);
-            border-radius: 12px;
-            margin: 25px 0;
-            color: var(--accent-orange);
-            box-shadow: 0 6px 20px rgba(255, 107, 0, 0.3);
+            padding: 1rem;
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            border-radius: 6px;
+            margin: 1rem 0;
+            color: #721c24;
+            font-weight: 600;
         }
         
-        /* Empty State */
+        [data-theme="dark"] .error-message {
+            background: #5c2a2a;
+            border-color: #7a3a3a;
+            color: #ffb3b3;
+        }
+        
         .empty-state {
             text-align: center;
-            padding: 80px 20px;
+            padding: 3rem;
             color: var(--text-secondary);
         }
         
         .empty-state .icon {
-            font-size: 64px;
-            margin-bottom: 20px;
+            font-size: 4rem;
+            margin-bottom: 1rem;
         }
         
         /* Footer */
         footer {
-            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
-            border-top: 3px solid var(--border-color);
-            padding: 50px 0;
-            margin-top: 80px;
-            position: relative;
-        }
-
-        footer::before {
-            content: "🦇 Happy Halloween! 🎃";
-            position: absolute;
-            top: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(45deg, var(--halloween-orange), var(--halloween-purple));
-            color: white;
-            padding: 10px 30px;
-            border-radius: 25px;
-            font-weight: bold;
-            font-size: 16px;
-            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.4);
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 2rem 0;
+            margin-top: 3rem;
         }
         
         .footer-content {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-        }
-        
-        .footer-section {
-            flex: 1;
-            min-width: 250px;
-            margin-bottom: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
         }
         
         .footer-section h3 {
-            font-size: 20px;
-            margin-bottom: 25px;
-            color: var(--halloween-orange);
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            font-size: 1.125rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            font-weight: 800;
         }
         
         .footer-section p, .footer-section a {
             color: var(--text-secondary);
-            margin-bottom: 12px;
+            margin-bottom: 0.5rem;
             display: block;
             text-decoration: none;
-            transition: all 0.3s;
+            transition: color 0.2s;
+            font-weight: 600;
         }
         
         .footer-section a:hover {
-            color: var(--accent-green);
-            transform: translateX(5px);
-            text-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+            color: var(--accent-red);
         }
         
         .copyright {
             text-align: center;
-            padding-top: 30px;
-            border-top: 2px solid var(--border-color);
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
             color: var(--text-secondary);
-            font-size: 14px;
-            margin-top: 20px;
+            margin-top: 2rem;
+            font-size: 0.875rem;
+            font-weight: 600;
         }
         
         /* Responsive */
         @media (max-width: 768px) {
             .header-content {
                 flex-direction: column;
-                text-align: center;
+                gap: 1rem;
+            }
+            
+            .header-controls {
+                order: -1;
+                width: 100%;
+                justify-content: space-between;
             }
             
             nav ul {
-                margin-top: 15px;
-                justify-content: center;
-                flex-wrap: wrap;
+                gap: 0;
             }
             
-            nav ul li {
-                margin: 5px 10px;
+            nav ul li a {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.9rem;
             }
             
             .hero h1 {
-                font-size: 36px;
+                font-size: 2rem;
             }
             
             .player-row {
+                padding: 1rem;
+                gap: 1rem;
                 flex-direction: column;
                 text-align: center;
-                padding: 30px;
-                gap: 20px;
+            }
+            
+            .player-avatar {
+                width: 100px;
+                height: 100px;
             }
             
             .player-info {
                 flex-direction: column;
-                gap: 20px;
-                text-align: center;
+                align-items: center;
+                gap: 0.5rem;
                 width: 100%;
             }
             
             .player-score {
                 text-align: center;
-                min-width: auto;
-                width: 100%;
             }
             
             .footer-content {
-                flex-direction: column;
-            }
-
-            .floating-ghost {
-                display: none;
+                grid-template-columns: 1fr;
             }
         }
-
+        
         @media (max-width: 480px) {
+            .hero {
+                padding: 2rem 0;
+            }
+            
+            .hero h1 {
+                font-size: 1.75rem;
+            }
+            
+            .list-header h2 {
+                font-size: 1.5rem;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
             .player-avatar {
-                width: 70px;
-                height: 70px;
+                width: 80px;
+                height: 80px;
             }
             
-            .avatar-placeholder {
-                font-size: 24px;
+            nav ul li a::after {
+                bottom: -0.5rem;
             }
             
-            .player-name {
-                font-size: 22px;
+            .search-result-item {
+                padding: 0.5rem;
+            }
+            
+            .search-result-avatar {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Halloween decorations -->
-    <div class="halloween-decoration decoration-1">🎃</div>
-    <div class="halloween-decoration decoration-2">👻</div>
-    <div class="halloween-decoration decoration-3">💀</div>
-    <div class="halloween-decoration decoration-4">🦇</div>
-    <div class="halloween-decoration decoration-5">🕷️</div>
-    
-    <div class="floating-ghost ghost-1">👻</div>
-    <div class="floating-ghost ghost-2">👻</div>
-    <div class="floating-ghost ghost-3">👻</div>
-    
     <header>
         <div class="container">
             <div class="header-content">
                 <a href="index.html" class="logo">DFPS <span>DemonList</span></a>
-                <nav>
-                    <ul>
-                        <li><a href="index.html">Главная</a></li>
-                        <li><a href="players.html" style="color: var(--accent-green);">Топ игроков</a></li>
-                        <li><a href="news.html">Новости</a></li>
-                        <li><a href="contacts.html">Контакты</a></li>
-                        <li><a href="rules.html">Правила</a></li>
-                    </ul>
-                </nav>
+                <div class="header-controls">
+                    <button class="theme-toggle" onclick="toggleTheme()">
+                        🌙
+                    </button>
+                    <nav>
+                        <ul>
+                            <li><a href="index.html">Главная</a></li>
+                            <li><a href="players.html" class="active">Топ игроков</a></li>
+                            <li><a href="news.html">Новости</a></li>
+                            <li><a href="contacts.html">Контакты</a></li>
+                            <li><a href="rules.html">Правила</a></li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
         </div>
     </header>
     
-    <div class="breadcrumb container">
-        <a href="index.html">Главная</a> &gt; Топ игроков
-    </div>
-    
     <section class="hero">
         <div class="container">
-            <h1>Топ Игроков 👻</h1>
+            <h1>Топ Игроков</h1>
             <p>Рейтинг лучших игроков Geometry Dash по количеству очков</p>
+        </div>
+    </section>
+    
+    <!-- Поиск игроков -->
+    <section class="search-section">
+        <div class="container">
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-input" placeholder="Поиск игроков по имени...">
+                <div class="search-results" id="searchResults"></div>
+            </div>
         </div>
     </section>
     
     <section class="players-list">
         <div class="container">
             <div class="list-header">
-                <h2>🏆 Лучшие игроки</h2>
+                <h2>Лучшие игроки</h2>
+                <p>Игроки отсортированы по количеству набранных очков</p>
             </div>
 
-            <!-- Кнопка обновления и статус -->
             <button class="refresh-btn" onclick="refreshData()">
                 🔄 Обновить список игроков
             </button>
@@ -631,10 +661,10 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>Geometry Dash Demon List</h3>
-                    <p>Неофициальный рейтинг самых сложных уровней в Geometry Dash. Специальная Halloween версия!</p>
+                    <p>Неофициальный рейтинг самых сложных уровней в Geometry Dash.</p>
                 </div>
                 <div class="footer-section">
-                    <h3>Ссылки</h3>
+                    <h3>Навигация</h3>
                     <a href="index.html">Главная</a>
                     <a href="players.html">Топ игроков</a>
                     <a href="news.html">Новости</a>
@@ -642,25 +672,112 @@
                     <a href="rules.html">Правила</a>
                 </div>
                 <div class="footer-section">
-                    <h3>Контакты</h3>
-                    <a href="contacts.html">Команда</a>
+                    <h3>Сообщество</h3>
+                    <a href="#">Discord</a>
+                    <a href="#">YouTube</a>
+                    <a href="#">Twitter</a>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2025 Geometry Dash Demon List. Неофициальный фанатский проект. Все права принадлежат их соответствующим владельцам. 🎃</p>
+                <p>&copy; 2025 Geometry Dash Demon List. Неофициальный фанатский проект.</p>
             </div>
         </div>
     </footer>
 
     <script>
+        // ========== THEME TOGGLE ==========
+        
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            const themeButton = document.querySelector('.theme-toggle');
+            themeButton.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+        }
+        
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            
+            const themeButton = document.querySelector('.theme-toggle');
+            themeButton.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+        }
+
         // ========== PLAYERS DATA SYSTEM ==========
         
         let players = [];
         let demons = [];
+        let filteredPlayers = [];
+
+        // ========== SEARCH SYSTEM ==========
+
+        function initializeSearch() {
+            const searchInput = document.getElementById('searchInput');
+            const searchResults = document.getElementById('searchResults');
+            
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase().trim();
+                
+                if (searchTerm.length === 0) {
+                    searchResults.style.display = 'none';
+                    filteredPlayers = [...players];
+                    renderPlayers();
+                    return;
+                }
+                
+                const results = players.filter(player => 
+                    player.name.toLowerCase().includes(searchTerm)
+                );
+                
+                displaySearchResults(results);
+                filteredPlayers = results;
+                renderPlayers();
+            });
+            
+            document.addEventListener('click', function(e) {
+                if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+                    searchResults.style.display = 'none';
+                }
+            });
+        }
+        
+        function displaySearchResults(results) {
+            const searchResults = document.getElementById('searchResults');
+            
+            if (results.length === 0) {
+                searchResults.innerHTML = '<div class="no-results">Игроки не найдены</div>';
+                searchResults.style.display = 'block';
+                return;
+            }
+            
+            searchResults.innerHTML = '';
+            
+            results.slice(0, 8).forEach(player => {
+                const playerPoints = calculatePlayerPoints(player);
+                const resultItem = document.createElement('div');
+                resultItem.className = 'search-result-item';
+                resultItem.innerHTML = `
+                    <div class="search-result-avatar">${player.avatar}</div>
+                    <div class="search-result-info">
+                        <div class="search-result-name">${player.name}</div>
+                        <div class="search-result-points">${playerPoints} pts</div>
+                    </div>
+                `;
+                resultItem.addEventListener('click', function() {
+                    openPlayerProfile(player.id);
+                    searchResults.style.display = 'none';
+                });
+                searchResults.appendChild(resultItem);
+            });
+            
+            searchResults.style.display = 'block';
+        }
 
         // ========== DATA MANAGEMENT ==========
 
-        // Функция для открытия профиля игрока
         function openPlayerProfile(playerId) {
             window.location.href = `player.html?id=${playerId}`;
         }
@@ -669,8 +786,7 @@
             const errorContainer = document.getElementById('errorContainer');
             errorContainer.innerHTML = `
                 <div class="error-message">
-                    <strong>❌ Ошибка:</strong> ${message}
-                    <br><small>Проверьте консоль для подробностей</small>
+                    <strong>Ошибка:</strong> ${message}
                 </div>
             `;
         }
@@ -683,16 +799,15 @@
             }
         }
 
-        // Функция: Расчет очков с учетом прогресса
         function calculatePointsWithProgress(demonRank, progress) {
             const basePoints = calculatePointsByRank(demonRank);
             
             if (progress === 100) {
-                return basePoints; // Полные очки за 100%
+                return basePoints;
             } else if (progress >= 51) {
-                return Math.floor(basePoints / 4); // 1/4 очков за 51%+
+                return Math.floor(basePoints / 4);
             } else {
-                return 0; // Нет очков за прогресс менее 51%
+                return 0;
             }
         }
 
@@ -707,6 +822,7 @@
                 
                 if (data.players && Array.isArray(data.players)) {
                     players = data.players;
+                    filteredPlayers = [...players];
                     console.log('✅ Игроки загружены из players.json:', players.length);
                     return true;
                 } else {
@@ -755,9 +871,7 @@
         }
 
         function calculateDemonRank(demonId) {
-            // Находим позицию демона в отсортированном списке
             const sortedDemons = [...demons].sort((a, b) => {
-                // Простая сортировка по порядку в JSON
                 return demons.indexOf(a) - demons.indexOf(b);
             });
             
@@ -768,7 +882,7 @@
             const statusElement = document.getElementById('syncStatus');
             if (statusElement) {
                 statusElement.textContent = message;
-                statusElement.className = 'sync-status ' + (message.includes('✅') ? 'synced' : '');
+                statusElement.className = 'sync-status ' + (message.includes('✅') || message.includes('Загружено') ? 'synced' : '');
             }
         }
 
@@ -783,44 +897,49 @@
             
             playersList.innerHTML = '';
             
-            if (players.length === 0) {
+            if (filteredPlayers.length === 0) {
                 playersList.innerHTML = `
                     <div class="empty-state">
                         <div class="icon">😔</div>
-                        <div style="font-size: 20px; margin-bottom: 10px;">Игроки не найдены</div>
-                        <div style="font-size: 14px;">Проверьте файл data/players.json</div>
+                        <div style="font-size: 1.25rem; margin-bottom: 0.5rem; font-weight: 700;">Игроки не найдены</div>
+                        <div style="font-weight: 600;">Попробуйте изменить поисковый запрос</div>
                     </div>
                 `;
                 return;
             }
             
             // Считаем очки для каждого игрока и сортируем
-            players.forEach(player => {
-                player.totalPoints = calculatePlayerPoints(player);
-            });
+            const playersWithPoints = filteredPlayers.map(player => ({
+                ...player,
+                totalPoints: calculatePlayerPoints(player)
+            }));
             
             // Сортируем по очкам (по убыванию)
-            players.sort((a, b) => b.totalPoints - a.totalPoints);
+            playersWithPoints.sort((a, b) => b.totalPoints - a.totalPoints);
             
-            console.log('🎯 Отсортированные игроки:', players);
+            console.log('🎯 Отсортированные игроки:', playersWithPoints);
             
             // Рендерим игроков
-            players.forEach((player, index) => {
+            playersWithPoints.forEach((player, index) => {
                 const rank = index + 1;
                 const rankClass = rank === 1 ? 'top-1' : 
                                 rank <= 3 ? 'top-3' : 
                                 rank <= 10 ? 'top-10' : '';
                 
+                const completedDemonsCount = player.completedDemons ? player.completedDemons.length : 0;
+                
                 const playerRow = document.createElement('div');
                 playerRow.className = 'player-row';
+                playerRow.onclick = () => openPlayerProfile(player.id);
                 playerRow.innerHTML = `
                     <div class="player-rank ${rankClass}">${rank}</div>
                     <div class="player-avatar">
                         <div class="avatar-placeholder">${player.avatar}</div>
                     </div>
                     <div class="player-info">
-                        <div class="player-name" onclick="openPlayerProfile('${player.id}')">
-                            ${player.name}
+                        <div class="player-details">
+                            <div class="player-name">${player.name}</div>
+                            <div class="player-stats">Пройдено демонов: ${completedDemonsCount}</div>
                         </div>
                         <div class="player-score">${player.totalPoints} pts</div>
                     </div>
@@ -836,18 +955,17 @@
             await loadDemonsFromJSON();
             await loadPlayersFromJSON();
             renderPlayers();
-            updateSyncStatus(`✅ Загружено ${players.length} игроков`);
+            updateSyncStatus(`Загружено ${players.length} игроков`);
             
-            // Анимация обновления
             document.querySelectorAll('.player-row').forEach((row, index) => {
                 row.style.opacity = '0';
                 row.style.transform = 'translateX(-20px)';
                 
                 setTimeout(() => {
-                    row.style.transition = 'opacity 0.5s, transform 0.5s';
+                    row.style.transition = 'opacity 0.3s, transform 0.3s';
                     row.style.opacity = '1';
                     row.style.transform = 'translateX(0)';
-                }, index * 100);
+                }, index * 50);
             });
         }
 
@@ -855,23 +973,24 @@
 
         async function initializeData() {
             console.log('🎮 Инициализация списка игроков...');
+            loadTheme();
             try {
                 await loadDemonsFromJSON();
                 await loadPlayersFromJSON();
+                initializeSearch();
                 renderPlayers();
-                updateSyncStatus(`✅ Загружено ${players.length} игроков`);
+                updateSyncStatus(`Загружено ${players.length} игроков`);
                 
-                // Анимация появления
                 setTimeout(() => {
                     document.querySelectorAll('.player-row').forEach((row, index) => {
                         row.style.opacity = '0';
                         row.style.transform = 'translateX(-20px)';
                         
                         setTimeout(() => {
-                            row.style.transition = 'opacity 0.5s, transform 0.5s';
+                            row.style.transition = 'opacity 0.3s, transform 0.3s';
                             row.style.opacity = '1';
                             row.style.transform = 'translateX(0)';
-                        }, index * 100);
+                        }, index * 50);
                     });
                 }, 100);
             } catch (error) {
@@ -883,21 +1002,13 @@
         // Глобальные функции
         window.refreshData = refreshData;
         window.openPlayerProfile = openPlayerProfile;
+        window.toggleTheme = toggleTheme;
 
         // Запуск при загрузке страницы
         document.addEventListener('DOMContentLoaded', function() {
             console.log('🚀 Players.html загружен, начинаем инициализацию...');
             initializeData();
         });
-
-        // Обработчик глобальных ошибок
-        window.addEventListener('error', function(e) {
-            console.error('💥 Глобальная ошибка:', e.error);
-            showError('Произошла непредвиденная ошибка: ' + (e.error ? e.error.message : 'Неизвестная ошибка'));
-        });
     </script>
 </body>
 </html>
-
-
-
