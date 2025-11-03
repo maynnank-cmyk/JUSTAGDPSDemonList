@@ -11,11 +11,11 @@
             --bg-tertiary: #e9ecef;
             --text-primary: #212529;
             --text-secondary: #6c757d;
-            --accent-blue: #0056b3;
+            --accent-red: #dc3545;
             --accent-green: #28a745;
             --border-color: #dee2e6;
             --card-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            --header-blue: #0056b3;
+            --header-red: #dc3545;
         }
         
         [data-theme="dark"] {
@@ -24,11 +24,11 @@
             --bg-tertiary: #3d3d3d;
             --text-primary: #ffffff;
             --text-secondary: #b0b0b0;
-            --accent-blue: #4d8fe5;
+            --accent-red: #ff6b6b;
             --accent-green: #34c759;
             --border-color: #404040;
             --card-shadow: 0 2px 8px rgba(0,0,0,0.3);
-            --header-blue: #003d82;
+            --header-red: #c82333;
         }
         
         * {
@@ -54,8 +54,8 @@
         
         /* Header */
         header {
-            background: var(--header-blue);
-            border-bottom: 1px solid var(--header-blue);
+            background: var(--header-red);
+            border-bottom: 1px solid var(--header-red);
             padding: 1rem 0 0 0;
             position: sticky;
             top: 0;
@@ -78,7 +78,7 @@
         }
         
         .logo span {
-            color: var(--accent-green);
+            color: white;
         }
         
         .header-controls {
@@ -185,8 +185,8 @@
         
         .search-input:focus {
             outline: none;
-            border-color: var(--accent-blue);
-            box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+            border-color: var(--accent-red);
+            box-shadow: 0 0 0 2px rgba(220,53,69,0.25);
         }
         
         .search-results {
@@ -281,8 +281,8 @@
         }
         
         .demon-row:hover {
-            border-color: var(--accent-blue);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border-color: var(--accent-red);
+            box-shadow: 0 4px 12px rgba(220,53,69,0.15);
             transform: translateY(-2px);
         }
         
@@ -374,7 +374,7 @@
             display: block;
             margin: 2rem auto;
             padding: 0.75rem 2rem;
-            background: var(--accent-blue);
+            background: var(--accent-red);
             color: white;
             border: none;
             border-radius: 6px;
@@ -385,7 +385,7 @@
         }
         
         .refresh-btn:hover {
-            background: #004494;
+            background: #c82333;
             transform: translateY(-1px);
         }
         
@@ -455,7 +455,7 @@
         }
         
         .footer-section a:hover {
-            color: var(--accent-blue);
+            color: var(--accent-red);
         }
         
         .copyright {
