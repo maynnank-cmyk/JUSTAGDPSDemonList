@@ -1,6 +1,14 @@
 {
   "demons": [
      {
+      "id": "decade",
+      "name": "Decade",
+      "creator": "Unity",
+      "videoUrl": "https://youtu.be/ZTBPlnrQ26I?si=TtrH1Ab39Ja4hpKM",
+      "image": "images/fenix.png",
+      "description": "Лёгкий хард демон."
+    },
+     {
       "id": "fenix",
       "name": "Fenix",
       "creator": "VladGMD",
