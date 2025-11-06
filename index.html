@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DFPS</title>
     <style>
+        /* Все стили остаются без изменений */
         :root {
             --bg-primary: #ffffff;
             --bg-secondary: #f8f9fa;
@@ -666,6 +667,39 @@
             themeButton.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
         }
 
+        // ========== YOUTUBE THUMBNAIL FUNCTIONS ==========
+        
+        function getYouTubeVideoId(url) {
+            if (!url) return null;
+            
+            const regex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
+            const match = url.match(regex);
+            return match ? match[1] : null;
+        }
+        
+        function getYouTubeThumbnail(videoUrl, quality = 'hqdefault') {
+            const videoId = getYouTubeVideoId(videoUrl);
+            if (!videoId) return null;
+            
+            const qualities = {
+                'default': `https://img.youtube.com/vi/${videoId}/default.jpg`,
+                'medium': `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`,
+                'high': `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`,
+                'standard': `https://img.youtube.com/vi/${videoId}/sddefault.jpg`,
+                'maxres': `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`
+            };
+            
+            return qualities[quality] || qualities['high'];
+        }
+        
+        function getBestAvailableThumbnail(videoUrl) {
+            const videoId = getYouTubeVideoId(videoUrl);
+            if (!videoId) return null;
+            
+            // Попробуем получить максимальное качество
+            return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+        }
+
         // ========== AUTOMATIC RANKING SYSTEM ==========
         
         const defaultDemons = [
@@ -673,21 +707,18 @@
                 id: 'bloodbath',
                 name: 'Bloodbath',
                 creator: 'Riot & more',
-                image: 'https://images.placeholders.tech/?width=240&height=135&text=Bloodbath&bgColor=ff6b6b&textColor=white',
                 videoUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
             },
             {
                 id: 'cataclysm',
                 name: 'Cataclysm',
                 creator: 'Ggb0y',
-                image: 'https://images.placeholders.tech/?width=240&height=135&text=Cataclysm&bgColor=4ecdc4&textColor=white',
                 videoUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
             },
             {
                 id: 'sakupen-hell',
                 name: 'Sakupen Hell',
                 creator: 'Noobas',
-                image: 'https://images.placeholders.tech/?width=240&height=135&text=Sakupen+Hell&bgColor=45b7d1&textColor=white',
                 videoUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
             }
         ];
@@ -785,10 +816,18 @@
                 const data = await response.json();
                 
                 if (data.demons && Array.isArray(data.demons)) {
-                    demons = data.demons.map((demon, index) => ({
-                        ...demon,
-                        rank: index + 1
-                    }));
+                    // Генерируем YouTube превью для каждого демона
+                    demons = data.demons.map((demon, index) => {
+                        const thumbnailUrl = demon.videoUrl ? 
+                            getBestAvailableThumbnail(demon.videoUrl) : null;
+                        
+                        return {
+                            ...demon,
+                            rank: index + 1,
+                            // Перезаписываем изображение на YouTube превью
+                            image: thumbnailUrl
+                        };
+                    });
                     
                     filteredDemons = [...demons];
                     
@@ -802,10 +841,17 @@
             } catch (error) {
                 console.error('❌ Ошибка загрузки:', error);
                 
-                demons = defaultDemons.map((demon, index) => ({
-                    ...demon,
-                    rank: index + 1
-                }));
+                // Для демо-данных тоже генерируем YouTube превью
+                demons = defaultDemons.map((demon, index) => {
+                    const thumbnailUrl = demon.videoUrl ? 
+                        getBestAvailableThumbnail(demon.videoUrl) : null;
+                    
+                    return {
+                        ...demon,
+                        rank: index + 1,
+                        image: thumbnailUrl
+                    };
+                });
                 
                 filteredDemons = [...demons];
                 
@@ -859,7 +905,7 @@
                     <div class="demon-rank ${rankClass}">${demon.rank}</div>
                     <div class="demon-image">
                         ${demon.image ? 
-                            `<img src="${demon.image}" alt="${demon.name}" onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\\'image-placeholder\\'>${demon.name.charAt(0)}</div>'">` :
+                            `<img src="${demon.image}" alt="${demon.name}" onerror="handleImageError(this, '${demon.name}')">` :
                             `<div class="image-placeholder">${demon.name.charAt(0)}</div>`
                         }
                     </div>
@@ -873,6 +919,13 @@
                 `;
                 demonList.appendChild(demonRow);
             });
+        }
+
+        // Обработчик ошибок загрузки изображений
+        function handleImageError(img, demonName) {
+            console.warn(`❌ Не удалось загрузить превью для ${demonName}, используется заглушка`);
+            const parent = img.parentNode;
+            parent.innerHTML = `<div class="image-placeholder">${demonName.charAt(0)}</div>`;
         }
 
         // ========== UTILITY FUNCTIONS ==========
@@ -924,6 +977,7 @@
         window.refreshData = refreshData;
         window.openDemonPage = openDemonPage;
         window.toggleTheme = toggleTheme;
+        window.handleImageError = handleImageError;
 
         // Запуск при загрузке страницы
         document.addEventListener('DOMContentLoaded', function() {
