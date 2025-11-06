@@ -318,12 +318,14 @@
             align-items: center;
             justify-content: center;
             border: 2px solid var(--border-color);
+            position: relative;
         }
         
         .demon-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: opacity 0.3s ease;
         }
         
         .image-placeholder {
@@ -336,6 +338,19 @@
             color: var(--text-secondary);
             font-size: 2rem;
             font-weight: 800;
+        }
+        
+        .youtube-icon {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: rgba(255, 0, 0, 0.8);
+            color: white;
+            border-radius: 4px;
+            padding: 4px 6px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            z-index: 2;
         }
         
         .demon-info {
@@ -677,27 +692,47 @@
             return match ? match[1] : null;
         }
         
-        function getYouTubeThumbnail(videoUrl, quality = 'hqdefault') {
+        function getYouTubeThumbnail(videoUrl) {
             const videoId = getYouTubeVideoId(videoUrl);
             if (!videoId) return null;
             
-            const qualities = {
-                'default': `https://img.youtube.com/vi/${videoId}/default.jpg`,
-                'medium': `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`,
-                'high': `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`,
-                'standard': `https://img.youtube.com/vi/${videoId}/sddefault.jpg`,
-                'maxres': `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`
-            };
+            // Пробуем разные варианты качества по порядку
+            const qualities = [
+                `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`, // Максимальное качество
+                `https://i.ytimg.com/vi/${videoId}/sddefault.jpg`,     // Стандартное качество
+                `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`,     // Высокое качество
+                `https://i.ytimg.com/vi/${videoId}/mqdefault.jpg`,     // Среднее качество
+                `https://i.ytimg.com/vi/${videoId}/default.jpg`        // Низкое качество
+            ];
             
-            return qualities[quality] || qualities['high'];
+            return qualities;
         }
         
-        function getBestAvailableThumbnail(videoUrl) {
-            const videoId = getYouTubeVideoId(videoUrl);
-            if (!videoId) return null;
+        // Функция для проверки доступности изображения
+        function checkImageAvailability(url) {
+            return new Promise((resolve) => {
+                const img = new Image();
+                img.onload = () => resolve(true);
+                img.onerror = () => resolve(false);
+                img.src = url;
+            });
+        }
+        
+        // Получение первого доступного превью
+        async function getAvailableThumbnail(videoUrl) {
+            const thumbnailUrls = getYouTubeThumbnail(videoUrl);
+            if (!thumbnailUrls) return null;
             
-            // Попробуем получить максимальное качество
-            return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+            for (const url of thumbnailUrls) {
+                const isAvailable = await checkImageAvailability(url);
+                if (isAvailable) {
+                    console.log(`✅ Найдено превью: ${url}`);
+                    return url;
+                }
+            }
+            
+            console.log('❌ Не найдено доступных превью');
+            return null;
         }
 
         // ========== AUTOMATIC RANKING SYSTEM ==========
@@ -707,19 +742,19 @@
                 id: 'bloodbath',
                 name: 'Bloodbath',
                 creator: 'Riot & more',
-                videoUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+                videoUrl: 'https://www.youtube.com/watch?v=6jJbA4a3+4U' // Замените на реальные YouTube ID
             },
             {
                 id: 'cataclysm',
                 name: 'Cataclysm',
                 creator: 'Ggb0y',
-                videoUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+                videoUrl: 'https://www.youtube.com/watch?v=abcdefghijk' // Замените на реальные YouTube ID
             },
             {
                 id: 'sakupen-hell',
                 name: 'Sakupen Hell',
                 creator: 'Noobas',
-                videoUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+                videoUrl: 'https://www.youtube.com/watch?v=xyz12345678' // Замените на реальные YouTube ID
             }
         ];
 
@@ -816,18 +851,19 @@
                 const data = await response.json();
                 
                 if (data.demons && Array.isArray(data.demons)) {
-                    // Генерируем YouTube превью для каждого демона
-                    demons = data.demons.map((demon, index) => {
+                    // Загружаем превью для каждого демона
+                    demons = [];
+                    
+                    for (const demon of data.demons) {
                         const thumbnailUrl = demon.videoUrl ? 
-                            getBestAvailableThumbnail(demon.videoUrl) : null;
+                            await getAvailableThumbnail(demon.videoUrl) : null;
                         
-                        return {
+                        demons.push({
                             ...demon,
-                            rank: index + 1,
-                            // Перезаписываем изображение на YouTube превью
+                            rank: demons.length + 1,
                             image: thumbnailUrl
-                        };
-                    });
+                        });
+                    }
                     
                     filteredDemons = [...demons];
                     
@@ -841,17 +877,18 @@
             } catch (error) {
                 console.error('❌ Ошибка загрузки:', error);
                 
-                // Для демо-данных тоже генерируем YouTube превью
-                demons = defaultDemons.map((demon, index) => {
+                // Для демо-данных тоже загружаем превью
+                demons = [];
+                for (const demon of defaultDemons) {
                     const thumbnailUrl = demon.videoUrl ? 
-                        getBestAvailableThumbnail(demon.videoUrl) : null;
+                        await getAvailableThumbnail(demon.videoUrl) : null;
                     
-                    return {
+                    demons.push({
                         ...demon,
-                        rank: index + 1,
+                        rank: demons.length + 1,
                         image: thumbnailUrl
-                    };
-                });
+                    });
+                }
                 
                 filteredDemons = [...demons];
                 
@@ -901,11 +938,16 @@
                 const demonRow = document.createElement('div');
                 demonRow.className = 'demon-row';
                 demonRow.onclick = () => openDemonPage(demon.id);
+                
+                const hasYouTubeThumbnail = demon.image && demon.videoUrl;
+                
                 demonRow.innerHTML = `
                     <div class="demon-rank ${rankClass}">${demon.rank}</div>
                     <div class="demon-image">
-                        ${demon.image ? 
-                            `<img src="${demon.image}" alt="${demon.name}" onerror="handleImageError(this, '${demon.name}')">` :
+                        ${hasYouTubeThumbnail ? 
+                            `<img src="${demon.image}" alt="${demon.name}" 
+                                  onerror="handleImageError(this, '${demon.name}')">
+                             <div class="youtube-icon">YT</div>` :
                             `<div class="image-placeholder">${demon.name.charAt(0)}</div>`
                         }
                     </div>
