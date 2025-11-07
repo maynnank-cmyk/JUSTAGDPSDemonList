@@ -4,19 +4,21 @@
       "id": "vladgmd",
       "name": "VladGMD",
       "avatar": "V",
-      "completedDemons": ["fanera", "sigareta"],
+      "completedDemons": ["fanera", "sigareta", "decade"],
       "progress": {
         "fanera": 100,
-        "sigareta": 100
+        "sigareta": 100,
+        "decade": 100
       }
     },
     {
       "id": "afrumka",
       "name": "Afrumka",
       "avatar": "A",
-      "completedDemons": ["miner"],
+      "completedDemons": ["geometryas", "sigareta"],
       "progress": {
-        "miner": 100
+        "geometryas": 100,
+        "sigareta": 100
       }
      },   
     {
