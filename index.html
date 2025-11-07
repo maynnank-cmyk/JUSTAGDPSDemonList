@@ -718,7 +718,7 @@
             });
         }
         
-        // Получение первого доступного превью
+        // Получение первого доступного превью (только если нужно)
         async function getAvailableThumbnail(videoUrl) {
             const thumbnailUrls = getYouTubeThumbnail(videoUrl);
             if (!thumbnailUrls) return null;
@@ -726,12 +726,12 @@
             for (const url of thumbnailUrls) {
                 const isAvailable = await checkImageAvailability(url);
                 if (isAvailable) {
-                    console.log(`✅ Найдено превью: ${url}`);
+                    console.log(`✅ Найдено YouTube превью: ${url}`);
                     return url;
                 }
             }
             
-            console.log('❌ Не найдено доступных превью');
+            console.log('❌ Не найдено доступных YouTube превью');
             return null;
         }
 
@@ -742,19 +742,15 @@
                 id: 'bloodbath',
                 name: 'Bloodbath',
                 creator: 'Riot & more',
-                videoUrl: 'https://www.youtube.com/watch?v=6jJbA4a3+4U' // Замените на реальные YouTube ID
+                videoUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+                image: "" // Пустая строка - будет использоваться YouTube превью
             },
             {
                 id: 'cataclysm',
                 name: 'Cataclysm',
                 creator: 'Ggb0y',
-                videoUrl: 'https://www.youtube.com/watch?v=abcdefghijk' // Замените на реальные YouTube ID
-            },
-            {
-                id: 'sakupen-hell',
-                name: 'Sakupen Hell',
-                creator: 'Noobas',
-                videoUrl: 'https://www.youtube.com/watch?v=xyz12345678' // Замените на реальные YouTube ID
+                videoUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+                image: "" // Пустая строка - будет использоваться YouTube превью
             }
         ];
 
@@ -851,17 +847,28 @@
                 const data = await response.json();
                 
                 if (data.demons && Array.isArray(data.demons)) {
-                    // Загружаем превью для каждого демона
+                    // Загружаем демоны, для пустых image полей ищем YouTube превью
                     demons = [];
                     
                     for (const demon of data.demons) {
-                        const thumbnailUrl = demon.videoUrl ? 
-                            await getAvailableThumbnail(demon.videoUrl) : null;
+                        let finalImage = demon.image;
+                        
+                        // Если поле image пустое И есть videoUrl, ищем YouTube превью
+                        if ((!demon.image || demon.image === "") && demon.videoUrl) {
+                            console.log(`🔍 Поиск YouTube превью для: ${demon.name}`);
+                            const youtubeThumbnail = await getAvailableThumbnail(demon.videoUrl);
+                            if (youtubeThumbnail) {
+                                finalImage = youtubeThumbnail;
+                                console.log(`✅ Используется YouTube превью для: ${demon.name}`);
+                            }
+                        } else if (demon.image && demon.image !== "") {
+                            console.log(`✅ Используется локальное изображение для: ${demon.name}`);
+                        }
                         
                         demons.push({
                             ...demon,
                             rank: demons.length + 1,
-                            image: thumbnailUrl
+                            image: finalImage
                         });
                     }
                     
@@ -877,16 +884,22 @@
             } catch (error) {
                 console.error('❌ Ошибка загрузки:', error);
                 
-                // Для демо-данных тоже загружаем превью
+                // Для демо-данных тоже загружаем превью только для пустых image
                 demons = [];
                 for (const demon of defaultDemons) {
-                    const thumbnailUrl = demon.videoUrl ? 
-                        await getAvailableThumbnail(demon.videoUrl) : null;
+                    let finalImage = demon.image;
+                    
+                    if ((!demon.image || demon.image === "") && demon.videoUrl) {
+                        const youtubeThumbnail = await getAvailableThumbnail(demon.videoUrl);
+                        if (youtubeThumbnail) {
+                            finalImage = youtubeThumbnail;
+                        }
+                    }
                     
                     demons.push({
                         ...demon,
                         rank: demons.length + 1,
-                        image: thumbnailUrl
+                        image: finalImage
                     });
                 }
                 
@@ -939,15 +952,17 @@
                 demonRow.className = 'demon-row';
                 demonRow.onclick = () => openDemonPage(demon.id);
                 
-                const hasYouTubeThumbnail = demon.image && demon.videoUrl;
+                const hasCustomImage = demon.image && demon.image !== "";
+                const isYouTubeThumbnail = demon.image && demon.image.includes('i.ytimg.com');
+                const showYouTubeIcon = isYouTubeThumbnail && demon.videoUrl;
                 
                 demonRow.innerHTML = `
                     <div class="demon-rank ${rankClass}">${demon.rank}</div>
                     <div class="demon-image">
-                        ${hasYouTubeThumbnail ? 
+                        ${hasCustomImage ? 
                             `<img src="${demon.image}" alt="${demon.name}" 
                                   onerror="handleImageError(this, '${demon.name}')">
-                             <div class="youtube-icon">YT</div>` :
+                             ${showYouTubeIcon ? '<div class="youtube-icon">YT</div>' : ''}` :
                             `<div class="image-placeholder">${demon.name.charAt(0)}</div>`
                         }
                     </div>
@@ -965,7 +980,7 @@
 
         // Обработчик ошибок загрузки изображений
         function handleImageError(img, demonName) {
-            console.warn(`❌ Не удалось загрузить превью для ${demonName}, используется заглушка`);
+            console.warn(`❌ Не удалось загрузить изображение для ${demonName}, используется заглушка`);
             const parent = img.parentNode;
             parent.innerHTML = `<div class="image-placeholder">${demonName.charAt(0)}</div>`;
         }
