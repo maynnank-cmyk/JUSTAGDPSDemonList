@@ -5,7 +5,7 @@
       "name": "Decade",
       "creator": "Unity",
       "videoUrl": "https://youtu.be/ZTBPlnrQ26I?si=TtrH1Ab39Ja4hpKM",
-      "image": "images/fenix.png",
+      "image": "",
       "description": "Лёгкий хард демон."
     },
      {
@@ -13,7 +13,7 @@
       "name": "Fenix",
       "creator": "VladGMD",
       "videoUrl": "youtube.com/watch?si=uhJc5ibNVDARx3WN&v=diTKT0m9pds&feature=youtu.be",
-      "image": "images/fenix.png",
+      "image": "",
       "description": "Лёгкий хард демон."
     },
     {
@@ -29,7 +29,7 @@
       "name": "Geometry As v2",
       "creator": "Afrumka & more",
       "videoUrl": "https://youtu.be/JnUA9PCMYpQ",
-      "image": "images/miner.jpg",
+      "image": "",
       "description": "Уровень построенный dydo, vladgmd и afrumka за один день."
     },
     {
@@ -45,7 +45,7 @@
       "name": "Sigareta",
       "creator": "VladGMD",
       "videoUrl": "https://youtu.be/8LCYDkDXDPc?si=qbzvK1MKjYg59yat",
-      "image": "images/sigareta.png",
+      "image": "",
       "description": "Сиквел на kowareta."
     }
   ]
