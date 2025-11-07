@@ -25,12 +25,12 @@
       "description": "Один из самых известных демонов"
      },
      {
-      "id": "miner",
-      "name": "Miner",
-      "creator": "afr team",
-      "videoUrl": "https://youtu.be/8RaKyQ0j77Y?si=dOYoztEU_zoxj5n5",
+      "id": "geometryas",
+      "name": "Geometry As v2",
+      "creator": "Afrumka & more",
+      "videoUrl": "https://youtu.be/JnUA9PCMYpQ",
       "image": "images/miner.jpg",
-      "description": "Уровень от команды Afr."
+      "description": "Уровень построенный dydo, vladgmd и afrumka за один день."
     },
     {
       "id": "fanera",
