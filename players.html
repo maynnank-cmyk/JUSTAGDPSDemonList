@@ -101,7 +101,30 @@
         .theme-toggle:hover {
             transform: scale(1.1);
         }
+ /* Обычная навигация для ПК */
+.header-controls nav ul {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+}
 
+.header-controls nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 0.5rem 0.8rem;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.header-controls nav ul li a:hover,
+.header-controls nav ul li a.active {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+}
         /* Гамбургер меню */
       /* Простое гамбургер меню без анимации полосок */
 .menu-toggle {
@@ -1219,6 +1242,7 @@ document.addEventListener('keydown', (e) => {
     </script>
 </body>
 </html>
+
 
 
 
