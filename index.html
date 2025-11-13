@@ -100,7 +100,44 @@
         .theme-toggle:hover {
             transform: scale(1.1);
         }
+
+        /* Гамбургер меню */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.3rem;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+        }
+
+        .menu-toggle span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: white;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
         
+        /* Основная навигация */
         nav ul {
             display: flex;
             list-style: none;
@@ -116,6 +153,7 @@
             transition: all 0.2s;
             font-size: 0.8rem;
             position: relative;
+            display: block;
         }
         
         nav ul li a::after {
@@ -136,6 +174,65 @@
         
         nav ul li a:hover::after {
             transform: scaleX(1);
+        }
+        
+        /* Мобильное меню */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu nav ul {
+            flex-direction: column;
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .mobile-menu nav ul li a {
+            font-size: 1.2rem;
+            padding: 0.8rem 1.5rem;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        .mobile-menu nav ul li a:hover {
+            color: var(--accent-red);
+            transform: scale(1.1);
+        }
+
+        .mobile-menu nav ul li a.active {
+            color: var(--accent-red);
+        }
+
+        .close-menu {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 0.5rem;
         }
         
         /* Hero Section */
@@ -501,7 +598,26 @@
             font-weight: 600;
         }
 
-        /* Адаптивность для очень маленьких экранов */
+        /* Адаптивность для мобильных устройств */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            /* Скрываем обычную навигацию на мобильных */
+            .header-controls nav {
+                display: none;
+            }
+
+            .header-content {
+                flex-wrap: nowrap;
+            }
+
+            .logo {
+                font-size: 1.1rem;
+            }
+        }
+
         @media (max-width: 480px) {
             .container {
                 padding: 0 10px;
@@ -514,11 +630,6 @@
             
             .logo {
                 font-size: 1.1rem;
-            }
-            
-            nav ul li a {
-                padding: 0.2rem 0.4rem;
-                font-size: 0.75rem;
             }
             
             .hero {
@@ -560,6 +671,11 @@
                 grid-template-columns: 1fr;
                 gap: 1rem;
             }
+
+            .mobile-menu nav ul li a {
+                font-size: 1.1rem;
+                padding: 0.7rem 1.2rem;
+            }
         }
 
         @media (max-width: 360px) {
@@ -575,10 +691,6 @@
             
             .demon-name {
                 font-size: 0.85rem;
-            }
-            
-            nav ul {
-                justify-content: center;
             }
         }
 
@@ -611,6 +723,13 @@
                     <button class="theme-toggle" onclick="toggleTheme()">
                         🌙
                     </button>
+                    <!-- Гамбургер меню для мобильных -->
+                    <button class="menu-toggle" onclick="toggleMobileMenu()">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <!-- Обычная навигация -->
                     <nav>
                         <ul>
                             <li><a href="index.html" class="active">Главная</a></li>
@@ -624,6 +743,20 @@
             </div>
         </div>
     </header>
+
+    <!-- Мобильное меню -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="close-menu" onclick="toggleMobileMenu()">×</button>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active" onclick="toggleMobileMenu()">Главная</a></li>
+                <li><a href="players.html" onclick="toggleMobileMenu()">Топ игроков</a></li>
+                <li><a href="news.html" onclick="toggleMobileMenu()">Новости</a></li>
+                <li><a href="contacts.html" onclick="toggleMobileMenu()">Контакты</a></li>
+                <li><a href="rules.html" onclick="toggleMobileMenu()">Правила</a></li>
+            </ul>
+        </nav>
+    </div>
     
     <section class="hero">
         <div class="container">
@@ -693,6 +826,37 @@
     </footer>
 
     <script>
+        // ========== MOBILE MENU ==========
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            mobileMenu.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+            
+            // Блокируем скролл тела страницы когда меню открыто
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        // Закрываем меню при клике на ссылку
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                toggleMobileMenu();
+            });
+        });
+
+        // Закрываем меню при клике вне его области
+        document.addEventListener('click', (e) => {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            if (mobileMenu.classList.contains('active') && 
+                !mobileMenu.contains(e.target) && 
+                !menuToggle.contains(e.target)) {
+                toggleMobileMenu();
+            }
+        });
+
         // ========== THEME TOGGLE ==========
         
         function toggleTheme() {
@@ -1032,6 +1196,7 @@
         window.refreshData = refreshData;
         window.openDemonPage = openDemonPage;
         window.toggleTheme = toggleTheme;
+        window.toggleMobileMenu = toggleMobileMenu;
         window.handleImageError = handleImageError;
 
         document.addEventListener('DOMContentLoaded', function() {
