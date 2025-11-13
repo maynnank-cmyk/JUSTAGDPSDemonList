@@ -911,6 +911,25 @@
     </footer>
 
     <script>
+        // Добавьте этот код в каждый файл для улучшения работы на мобильных
+function optimizeForMobile() {
+    // Улучшение touch событий
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints;
+    
+    if (isTouchDevice) {
+        // Добавляем класс для touch-устройств
+        document.body.classList.add('touch-device');
+        
+        // Улучшаем обработку кликов
+        document.addEventListener('touchstart', function() {}, {passive: true});
+    }
+}
+
+// Вызывайте эту функцию при загрузке страницы
+document.addEventListener('DOMContentLoaded', function() {
+    optimizeForMobile();
+    // остальной код инициализации...
+});
         // ========== THEME TOGGLE ==========
         
         function toggleTheme() {
@@ -1281,4 +1300,5 @@
     </script>
 </body>
 </html>
+
 
