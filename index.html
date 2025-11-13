@@ -5,6 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DFPS</title>
     <style>
+        /* Стили для touch-устройств */
+.touch-device .demon-row,
+.touch-device .player-row,
+.touch-device .moderator-card,
+.touch-device .news-card {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.touch-device .demon-row:active,
+.touch-device .player-row:active,
+.touch-device .moderator-card:active,
+.touch-device .news-card:active {
+    background-color: var(--bg-secondary);
+    transition: background-color 0.1s;
+}
         /* Добавьте этот CSS в секцию Responsive каждого файла */
 
 @media (max-width: 768px) {
@@ -1300,5 +1316,6 @@ document.addEventListener('DOMContentLoaded', function() {
     </script>
 </body>
 </html>
+
 
 
