@@ -1,0 +1,51 @@
+/* forced-desktop.css */
+* {
+    box-sizing: border-box !important;
+}
+
+body {
+    min-width: 1200px !important;
+    overflow-x: auto !important;
+}
+
+.container {
+    min-width: 1200px !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+}
+
+/* Принудительно фиксируем все layout элементы */
+.header-content,
+.demon-row,
+.player-row,
+.demon-info,
+.player-info {
+    display: flex !important;
+    flex-direction: row !important;
+}
+
+/* Фиксируем размеры */
+.demon-image {
+    width: 240px !important;
+    height: 135px !important;
+}
+
+.player-avatar {
+    width: 80px !important;
+    height: 80px !important;
+}
+
+/* Отключаем все адаптивные изменения */
+@media (max-width: 768px) {
+    .container {
+        min-width: 1200px !important;
+        max-width: 1200px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        min-width: 1200px !important;
+        max-width: 1200px !important;
+    }
+}
