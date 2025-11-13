@@ -1,51 +1,63 @@
-/* forced-desktop.css */
-* {
-    box-sizing: border-box !important;
+/* forced-desktop-responsive.css */
+/* Уменьшаем весь сайт пропорционально ширине экрана */
+
+@media (max-width: 1200px) {
+    .desktop-container {
+        transform: scale(0.8);
+        transform-origin: 0 0;
+        width: 125%; /* 100 / 0.8 */
+        min-height: 125vh;
+    }
 }
 
-body {
-    min-width: 1200px !important;
-    overflow-x: auto !important;
-}
-
-.container {
-    min-width: 1200px !important;
-    max-width: 1200px !important;
-    margin: 0 auto !important;
-}
-
-/* Принудительно фиксируем все layout элементы */
-.header-content,
-.demon-row,
-.player-row,
-.demon-info,
-.player-info {
-    display: flex !important;
-    flex-direction: row !important;
-}
-
-/* Фиксируем размеры */
-.demon-image {
-    width: 240px !important;
-    height: 135px !important;
-}
-
-.player-avatar {
-    width: 80px !important;
-    height: 80px !important;
-}
-
-/* Отключаем все адаптивные изменения */
 @media (max-width: 768px) {
-    .container {
-        min-width: 1200px !important;
-        max-width: 1200px !important;
+    .desktop-container {
+        transform: scale(0.6);
+        transform-origin: 0 0;
+        width: 166.667%; /* 100 / 0.6 */
+        min-height: 167vh;
     }
 }
 
 @media (max-width: 480px) {
-    .container {
-        min-width: 1200px !important;
-        max-width: 1200px !important;
+    .desktop-container {
+        transform: scale(0.45);
+        transform-origin: 0 0;
+        width: 222.222%; /* 100 / 0.45 */
+        min-height: 222vh;
     }
+}
+
+@media (max-width: 360px) {
+    .desktop-container {
+        transform: scale(0.35);
+        transform-origin: 0 0;
+        width: 285.714%; /* 100 / 0.35 */
+        min-height: 286vh;
+    }
+}
+
+/* Базовые стили для контейнера */
+.desktop-container {
+    min-width: 1200px;
+    overflow-x: visible;
+}
+
+/* Улучшаем взаимодействие */
+body {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Исправляем проблемы с текстом */
+.desktop-container {
+    -webkit-text-size-adjust: none;
+    -moz-text-size-adjust: none;
+    text-size-adjust: none;
+}
+
+/* Улучшаем производительность */
+.desktop-container {
+    will-change: transform;
+    backface-visibility: hidden;
 }
