@@ -860,51 +860,36 @@
     </footer>
 
     <script>
-        // ========== MOBILE MENU ==========
-        function toggleMobileMenu() {
-            const mobileMenu = document.getElementById('mobileMenu');
-            const menuToggle = document.querySelector('.menu-toggle');
-            
-            mobileMenu.classList.toggle('active');
-            menuToggle.classList.toggle('active');
-            
-            // Блокируем скролл тела страницы когда меню открыто
-            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
-        }
+       // ========== ПРОСТОЕ МОБИЛЬНОЕ МЕНЮ ==========
+function toggleMobileMenu() {
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
+    
+    mobileMenu.classList.toggle('active');
+    menuOverlay.classList.toggle('active');
+    document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+}
 
-        function closeMobileMenu() {
-            const mobileMenu = document.getElementById('mobileMenu');
-            const menuToggle = document.querySelector('.menu-toggle');
-            
-            mobileMenu.classList.remove('active');
-            menuToggle.classList.remove('active');
-            document.body.style.overflow = '';
-        }
+function closeMobileMenu() {
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
+    
+    mobileMenu.classList.remove('active');
+    menuOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+}
 
-        // Закрываем меню при клике на ссылку
-        document.querySelectorAll('.mobile-menu a').forEach(link => {
-            link.addEventListener('click', closeMobileMenu);
-        });
+// Закрываем меню при клике на ссылку
+document.querySelectorAll('.mobile-menu a').forEach(link => {
+    link.addEventListener('click', closeMobileMenu);
+});
 
-        // Закрываем меню при клике вне его области
-        document.addEventListener('click', (e) => {
-            const mobileMenu = document.getElementById('mobileMenu');
-            const menuToggle = document.querySelector('.menu-toggle');
-            
-            if (mobileMenu.classList.contains('active') && 
-                !mobileMenu.contains(e.target) && 
-                !menuToggle.contains(e.target)) {
-                closeMobileMenu();
-            }
-        });
-
-        // Закрываем меню при нажатии Escape
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                closeMobileMenu();
-            }
-        });
-
+// Закрываем меню при нажатии Escape
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        closeMobileMenu();
+    }
+});
         // ========== THEME TOGGLE ==========
         
         function toggleTheme() {
@@ -1234,5 +1219,6 @@
     </script>
 </body>
 </html>
+
 
 
