@@ -1,0 +1,225 @@
+/* force-desktop-mobile.css */
+/* ПЕРЕОПРЕДЕЛЯЕМ ВСЕ СТИЛИ ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ */
+
+/* Отключаем ВСЕ адаптивные медиа-запросы */
+@media (max-width: 768px) {
+    /* HEADER - всегда горизонтальный */
+    .header-content {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        padding-bottom: 1rem !important;
+    }
+    
+    .header-controls {
+        display: flex !important;
+        align-items: center !important;
+        gap: 1rem !important;
+        order: 0 !important;
+        width: auto !important;
+        justify-content: flex-end !important;
+    }
+    
+    nav ul {
+        display: flex !important;
+        list-style: none !important;
+        gap: 0 !important;
+        flex-wrap: nowrap !important;
+    }
+    
+    nav ul li a {
+        padding: 0.5rem 1rem !important;
+        font-size: 0.9rem !important;
+    }
+    
+    /* DEMON LIST - картинка слева, информация справа */
+    .demon-row {
+        background: var(--bg-primary) !important;
+        border: 1px solid var(--border-color) !important;
+        border-radius: 8px !important;
+        padding: 1.5rem !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 1.5rem !important;
+        transition: all 0.2s !important;
+        cursor: pointer !important;
+        box-shadow: var(--card-shadow) !important;
+        flex-direction: row !important;
+        text-align: left !important;
+    }
+    
+    .demon-rank {
+        font-size: 1.5rem !important;
+        font-weight: 800 !important;
+        width: 60px !important;
+        text-align: center !important;
+        color: var(--text-secondary) !important;
+    }
+    
+    .demon-image {
+        width: 240px !important;
+        height: 135px !important;
+        border-radius: 8px !important;
+        overflow: hidden !important;
+        flex-shrink: 0 !important;
+        background: var(--bg-tertiary) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        border: 2px solid var(--border-color) !important;
+        position: relative !important;
+    }
+    
+    .demon-info {
+        flex: 1 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        flex-direction: row !important;
+        gap: normal !important;
+    }
+    
+    .demon-details {
+        flex: 1 !important;
+        text-align: left !important;
+    }
+    
+    .demon-name {
+        font-size: 1.5rem !important;
+        font-weight: 800 !important;
+        color: var(--text-primary) !important;
+        margin-bottom: 0.5rem !important;
+    }
+    
+    .demon-creator {
+        color: var(--text-secondary) !important;
+        font-size: 1.1rem !important;
+        font-weight: 600 !important;
+    }
+    
+    .demon-points {
+        font-size: 1.25rem !important;
+        font-weight: 800 !important;
+        color: var(--accent-green) !important;
+        min-width: 100px !important;
+        text-align: right !important;
+    }
+    
+    /* PLAYERS LIST - аналогично демонам */
+    .player-row {
+        background: var(--bg-primary) !important;
+        border: 1px solid var(--border-color) !important;
+        border-radius: 8px !important;
+        padding: 1.5rem !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 1.5rem !important;
+        transition: all 0.2s !important;
+        cursor: pointer !important;
+        box-shadow: var(--card-shadow) !important;
+        flex-direction: row !important;
+        text-align: left !important;
+    }
+    
+    .player-avatar {
+        width: 80px !important;
+        height: 80px !important;
+        flex-shrink: 0 !important;
+    }
+    
+    .player-info {
+        flex: 1 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        flex-direction: row !important;
+        gap: normal !important;
+    }
+    
+    .player-score {
+        text-align: right !important;
+        min-width: 120px !important;
+    }
+    
+    /* GRID LAYOUTS - остаются многоколоночными */
+    .news-grid {
+        display: grid !important;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)) !important;
+        gap: 1.5rem !important;
+    }
+    
+    .moderators-grid {
+        display: grid !important;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+        gap: 1.5rem !important;
+    }
+    
+    .footer-content {
+        display: grid !important;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+        gap: 2rem !important;
+    }
+    
+    /* DEMON PAGE - двухколоночный layout */
+    .content-grid {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 2rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    /* На очень маленьких экранах просто уменьшаем размеры но сохраняем layout */
+    .demon-image {
+        width: 200px !important;
+        height: 112px !important;
+    }
+    
+    .player-avatar {
+        width: 60px !important;
+        height: 60px !important;
+    }
+    
+    .demon-row,
+    .player-row {
+        padding: 1rem !important;
+        gap: 1rem !important;
+    }
+    
+    .demon-name {
+        font-size: 1.25rem !important;
+    }
+    
+    .player-name {
+        font-size: 1.25rem !important;
+    }
+}
+
+/* ОСНОВНОЙ FIX - принудительная ширина и скролл */
+body {
+    min-width: 1200px !important;
+    overflow-x: auto !important;
+}
+
+.container {
+    min-width: 1200px !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: 0 20px !important;
+}
+
+/* Убираем text-size-adjust на iOS */
+html {
+    -webkit-text-size-adjust: 100% !important;
+    text-size-adjust: 100% !important;
+}
+
+/* Убедимся, что все важные элементы видны */
+.demon-row,
+.player-row,
+.moderator-card,
+.news-card {
+    opacity: 1 !important;
+    transform: none !important;
+}
