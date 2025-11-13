@@ -49,14 +49,14 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 15px;
         }
         
         /* Header */
         header {
             background: var(--header-red);
             border-bottom: 1px solid var(--header-red);
-            padding: 1rem 0 0 0;
+            padding: 0.5rem 0 0 0;
             position: sticky;
             top: 0;
             z-index: 100;
@@ -67,11 +67,11 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-bottom: 1rem;
+            padding-bottom: 0.5rem;
         }
         
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 800;
             color: white;
             text-decoration: none;
@@ -84,7 +84,7 @@
         .header-controls {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 0.5rem;
         }
         
         .theme-toggle {
@@ -92,38 +92,78 @@
             border: none;
             color: white;
             cursor: pointer;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             transition: all 0.3s ease;
-            padding: 0.5rem;
+            padding: 0.3rem;
         }
         
         .theme-toggle:hover {
             transform: scale(1.1);
         }
+
+        /* Гамбургер меню */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.3rem;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: white;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
         
+        /* Основная навигация */
         nav ul {
             display: flex;
             list-style: none;
             gap: 0;
+            flex-wrap: wrap;
         }
         
         nav ul li a {
             color: white;
             text-decoration: none;
             font-weight: 600;
-            padding: 0.5rem 1rem;
+            padding: 0.3rem 0.6rem;
             transition: all 0.2s;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             position: relative;
+            display: block;
         }
         
         nav ul li a::after {
             content: '';
             position: absolute;
-            bottom: -1rem;
+            bottom: -0.5rem;
             left: 0;
             width: 100%;
-            height: 3px;
+            height: 2px;
             background: white;
             transform: scaleX(0);
             transition: transform 0.3s ease;
@@ -137,23 +177,85 @@
             transform: scaleX(1);
         }
         
+        /* Мобильное меню */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 999;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu nav ul {
+            flex-direction: column;
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .mobile-menu nav ul li a {
+            font-size: 1.2rem;
+            padding: 0.8rem 1.5rem;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: block;
+            border-radius: 8px;
+        }
+
+        .mobile-menu nav ul li a:hover,
+        .mobile-menu nav ul li a.active {
+            color: var(--accent-red);
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .close-menu {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1000;
+        }
+
+        .close-menu:hover {
+            color: var(--accent-red);
+        }
+        
         /* Hero Section */
         .hero {
-            padding: 3rem 0;
+            padding: 2rem 0;
             text-align: center;
             background: var(--bg-secondary);
             border-bottom: 1px solid var(--border-color);
         }
         
         .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            margin-bottom: 0.8rem;
             color: var(--text-primary);
             font-weight: 800;
         }
         
         .hero p {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: var(--text-secondary);
             max-width: 600px;
             margin: 0 auto;
@@ -162,7 +264,7 @@
         
         /* Search Section */
         .search-section {
-            padding: 2rem 0;
+            padding: 1.5rem 0;
             background: var(--bg-primary);
         }
         
@@ -174,8 +276,8 @@
         
         .search-input {
             width: 100%;
-            padding: 0.75rem 1rem;
-            font-size: 1rem;
+            padding: 0.6rem 0.8rem;
+            font-size: 0.9rem;
             border: 1px solid var(--border-color);
             border-radius: 6px;
             background: var(--bg-primary);
@@ -197,8 +299,8 @@
             background: var(--bg-primary);
             border: 1px solid var(--border-color);
             border-radius: 6px;
-            margin-top: 0.5rem;
-            max-height: 300px;
+            margin-top: 0.3rem;
+            max-height: 200px;
             overflow-y: auto;
             z-index: 1000;
             display: none;
@@ -206,13 +308,13 @@
         }
         
         .search-result-item {
-            padding: 0.75rem 1rem;
+            padding: 0.6rem 0.8rem;
             cursor: pointer;
             border-bottom: 1px solid var(--border-color);
             transition: background-color 0.2s;
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 0.8rem;
         }
         
         .search-result-item:hover {
@@ -224,8 +326,8 @@
         }
         
         .search-result-avatar {
-            width: 40px;
-            height: 40px;
+            width: 35px;
+            height: 35px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -233,7 +335,7 @@
             background: var(--accent-red);
             color: white;
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 1rem;
             flex-shrink: 0;
         }
         
@@ -244,35 +346,37 @@
         .search-result-name {
             font-weight: 700;
             color: var(--text-primary);
+            font-size: 0.9rem;
         }
         
         .search-result-points {
-            font-size: 0.875rem;
+            font-size: 0.75rem;
             color: var(--text-secondary);
-            margin-top: 0.25rem;
+            margin-top: 0.2rem;
             font-weight: 600;
         }
         
         .no-results {
-            padding: 1rem;
+            padding: 0.8rem;
             text-align: center;
             color: var(--text-secondary);
             font-weight: 600;
+            font-size: 0.9rem;
         }
         
         /* Players List */
         .players-list {
-            padding: 2rem 0;
+            padding: 1.5rem 0;
         }
         
         .list-header {
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             text-align: center;
         }
         
         .list-header h2 {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+            margin-bottom: 0.4rem;
             color: var(--text-primary);
             font-weight: 800;
         }
@@ -280,22 +384,24 @@
         .list-header p {
             color: var(--text-secondary);
             font-weight: 600;
+            font-size: 0.9rem;
         }
         
         .list-container {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 0.8rem;
         }
         
+        /* Плашки игроков - стили как у демонов в index.html */
         .player-row {
             background: var(--bg-primary);
             border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 1.5rem;
+            border-radius: 6px;
+            padding: 1rem;
             display: flex;
             align-items: center;
-            gap: 1.5rem;
+            gap: 1rem;
             transition: all 0.2s;
             cursor: pointer;
             box-shadow: var(--card-shadow);
@@ -303,16 +409,17 @@
         
         .player-row:hover {
             border-color: var(--accent-red);
-            box-shadow: 0 4px 12px rgba(220,53,69,0.15);
-            transform: translateY(-2px);
+            box-shadow: 0 2px 8px rgba(220,53,69,0.15);
+            transform: translateY(-1px);
         }
         
         .player-rank {
-            font-size: 1.5rem;
+            font-size: 1.1rem;
             font-weight: 800;
-            width: 60px;
+            width: 40px;
             text-align: center;
             color: var(--text-secondary);
+            flex-shrink: 0;
         }
         
         .rank.top-1 {
@@ -328,8 +435,8 @@
         }
         
         .player-avatar {
-            width: 80px;
-            height: 80px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             overflow: hidden;
             flex-shrink: 0;
@@ -354,7 +461,7 @@
             justify-content: center;
             background: var(--accent-red);
             color: white;
-            font-size: 2rem;
+            font-size: 1.5rem;
             font-weight: 800;
         }
         
@@ -363,44 +470,54 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            min-width: 0;
         }
         
         .player-details {
             flex: 1;
+            min-width: 0;
+            margin-right: 0.5rem;
         }
         
         .player-name {
-            font-size: 1.5rem;
+            font-size: 1rem;
             font-weight: 800;
             color: var(--text-primary);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         
         .player-stats {
             color: var(--text-secondary);
-            font-size: 1rem;
+            font-size: 0.8rem;
             font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         
         .player-score {
-            font-size: 1.25rem;
+            font-size: 0.9rem;
             font-weight: 800;
             color: var(--accent-green);
-            min-width: 120px;
+            min-width: 80px;
             text-align: right;
+            flex-shrink: 0;
         }
         
         /* Refresh Button */
         .refresh-btn {
             display: block;
-            margin: 2rem auto;
-            padding: 0.75rem 2rem;
+            margin: 1.5rem auto;
+            padding: 0.6rem 1.5rem;
             background: var(--accent-red);
             color: white;
             border: none;
             border-radius: 6px;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-weight: 700;
             transition: all 0.2s;
         }
@@ -413,13 +530,14 @@
         /* Status */
         .sync-status {
             text-align: center;
-            padding: 1rem;
+            padding: 0.8rem;
             background: var(--bg-secondary);
             border-radius: 6px;
-            margin: 1rem 0;
+            margin: 0.8rem 0;
             color: var(--text-secondary);
             border: 1px solid var(--border-color);
             font-weight: 600;
+            font-size: 0.9rem;
         }
         
         .sync-status.synced {
@@ -430,13 +548,14 @@
         
         .error-message {
             text-align: center;
-            padding: 1rem;
+            padding: 0.8rem;
             background: #f8d7da;
             border: 1px solid #f5c6cb;
             border-radius: 6px;
-            margin: 1rem 0;
+            margin: 0.8rem 0;
             color: #721c24;
             font-weight: 600;
+            font-size: 0.9rem;
         }
         
         [data-theme="dark"] .error-message {
@@ -447,43 +566,44 @@
         
         .empty-state {
             text-align: center;
-            padding: 3rem;
+            padding: 2rem;
             color: var(--text-secondary);
         }
         
         .empty-state .icon {
-            font-size: 4rem;
-            margin-bottom: 1rem;
+            font-size: 3rem;
+            margin-bottom: 0.8rem;
         }
         
         /* Footer */
         footer {
             background: var(--bg-secondary);
             border-top: 1px solid var(--border-color);
-            padding: 2rem 0;
-            margin-top: 3rem;
+            padding: 1.5rem 0;
+            margin-top: 2rem;
         }
         
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
         }
         
         .footer-section h3 {
-            font-size: 1.125rem;
-            margin-bottom: 1rem;
+            font-size: 1rem;
+            margin-bottom: 0.8rem;
             color: var(--text-primary);
             font-weight: 800;
         }
         
         .footer-section p, .footer-section a {
             color: var(--text-secondary);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
             display: block;
             text-decoration: none;
             transition: color 0.2s;
             font-weight: 600;
+            font-size: 0.85rem;
         }
         
         .footer-section a:hover {
@@ -492,104 +612,141 @@
         
         .copyright {
             text-align: center;
-            padding-top: 2rem;
+            padding-top: 1.5rem;
             border-top: 1px solid var(--border-color);
             color: var(--text-secondary);
-            margin-top: 2rem;
-            font-size: 0.875rem;
+            margin-top: 1.5rem;
+            font-size: 0.75rem;
             font-weight: 600;
         }
-        
-        /* Responsive */
+
+        /* Адаптивность для мобильных устройств */
         @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            /* Скрываем обычную навигацию на мобильных */
+            .header-controls nav {
+                display: none;
+            }
+
             .header-content {
-                flex-direction: column;
-                gap: 1rem;
+                flex-wrap: nowrap;
+            }
+
+            .logo {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 10px;
             }
             
-            .header-controls {
-                order: -1;
-                width: 100%;
-                justify-content: space-between;
+            .header-content {
+                flex-wrap: wrap;
+                gap: 0.5rem;
             }
             
-            nav ul {
-                gap: 0;
+            .logo {
+                font-size: 1.1rem;
             }
             
-            nav ul li a {
-                padding: 0.4rem 0.8rem;
-                font-size: 0.9rem;
+            .hero {
+                padding: 1.5rem 0;
             }
             
             .hero h1 {
-                font-size: 2rem;
+                font-size: 1.5rem;
+            }
+            
+            .hero p {
+                font-size: 0.9rem;
             }
             
             .player-row {
-                padding: 1rem;
-                gap: 1rem;
-                flex-direction: column;
-                text-align: center;
+                padding: 0.8rem;
+                gap: 0.8rem;
             }
             
             .player-avatar {
-                width: 100px;
-                height: 100px;
+                width: 50px;
+                height: 50px;
             }
             
-            .player-info {
-                flex-direction: column;
-                align-items: center;
-                gap: 0.5rem;
-                width: 100%;
+            .avatar-placeholder {
+                font-size: 1.2rem;
+            }
+            
+            .player-name {
+                font-size: 0.9rem;
+            }
+            
+            .player-stats {
+                font-size: 0.75rem;
             }
             
             .player-score {
-                text-align: center;
+                font-size: 0.8rem;
+                min-width: 60px;
             }
             
             .footer-content {
                 grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .mobile-menu nav ul li a {
+                font-size: 1.1rem;
+                padding: 0.7rem 1.2rem;
+            }
+
+            .search-result-avatar {
+                width: 30px;
+                height: 30px;
+                font-size: 0.9rem;
             }
         }
-        
-        @media (max-width: 480px) {
-            .hero {
-                padding: 2rem 0;
-            }
-            
-            .hero h1 {
-                font-size: 1.75rem;
-            }
-            
-            .list-header h2 {
-                font-size: 1.5rem;
-            }
-            
-            nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
+
+        @media (max-width: 360px) {
             .player-avatar {
-                width: 80px;
-                height: 80px;
+                width: 45px;
+                height: 45px;
             }
             
-            nav ul li a::after {
-                bottom: -0.5rem;
-            }
-            
-            .search-result-item {
-                padding: 0.5rem;
-            }
-            
-            .search-result-avatar {
-                width: 35px;
-                height: 35px;
+            .player-rank {
+                width: 30px;
                 font-size: 1rem;
             }
+            
+            .player-name {
+                font-size: 0.85rem;
+            }
+            
+            .player-score {
+                min-width: 50px;
+            }
+        }
+
+        /* Улучшения для touch-устройств */
+        @media (hover: none) {
+            .player-row:hover {
+                transform: none;
+                border-color: var(--border-color);
+            }
+            
+            .player-row:active {
+                border-color: var(--accent-red);
+                transform: scale(0.98);
+            }
+        }
+
+        /* Убираем text-size-adjust на iOS */
+        html {
+            -webkit-text-size-adjust: 100%;
+            text-size-adjust: 100%;
         }
     </style>
 </head>
@@ -602,6 +759,13 @@
                     <button class="theme-toggle" onclick="toggleTheme()">
                         🌙
                     </button>
+                    <!-- Гамбургер меню для мобильных -->
+                    <button class="menu-toggle" onclick="toggleMobileMenu()">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <!-- Обычная навигация -->
                     <nav>
                         <ul>
                             <li><a href="index.html">Главная</a></li>
@@ -615,6 +779,20 @@
             </div>
         </div>
     </header>
+
+    <!-- Мобильное меню -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="close-menu" onclick="toggleMobileMenu()">×</button>
+        <nav>
+            <ul>
+                <li><a href="index.html" onclick="closeMobileMenu()">Главная</a></li>
+                <li><a href="players.html" class="active" onclick="closeMobileMenu()">Топ игроков</a></li>
+                <li><a href="news.html" onclick="closeMobileMenu()">Новости</a></li>
+                <li><a href="contacts.html" onclick="closeMobileMenu()">Контакты</a></li>
+                <li><a href="rules.html" onclick="closeMobileMenu()">Правила</a></li>
+            </ul>
+        </nav>
+    </div>
     
     <section class="hero">
         <div class="container">
@@ -685,6 +863,51 @@
     </footer>
 
     <script>
+        // ========== MOBILE MENU ==========
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            mobileMenu.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+            
+            // Блокируем скролл тела страницы когда меню открыто
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            mobileMenu.classList.remove('active');
+            menuToggle.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Закрываем меню при клике на ссылку
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+
+        // Закрываем меню при клике вне его области
+        document.addEventListener('click', (e) => {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            if (mobileMenu.classList.contains('active') && 
+                !mobileMenu.contains(e.target) && 
+                !menuToggle.contains(e.target)) {
+                closeMobileMenu();
+            }
+        });
+
+        // Закрываем меню при нажатии Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeMobileMenu();
+            }
+        });
+
         // ========== THEME TOGGLE ==========
         
         function toggleTheme() {
@@ -755,7 +978,7 @@
             
             searchResults.innerHTML = '';
             
-            results.slice(0, 8).forEach(player => {
+            results.slice(0, 6).forEach(player => {
                 const playerPoints = calculatePlayerPoints(player);
                 const resultItem = document.createElement('div');
                 resultItem.className = 'search-result-item';
@@ -901,8 +1124,8 @@
                 playersList.innerHTML = `
                     <div class="empty-state">
                         <div class="icon">😔</div>
-                        <div style="font-size: 1.25rem; margin-bottom: 0.5rem; font-weight: 700;">Игроки не найдены</div>
-                        <div style="font-weight: 600;">Попробуйте изменить поисковый запрос</div>
+                        <div style="font-size: 1rem; margin-bottom: 0.4rem; font-weight: 700;">Игроки не найдены</div>
+                        <div style="font-weight: 600; font-size: 0.9rem;">Попробуйте изменить поисковый запрос</div>
                     </div>
                 `;
                 return;
@@ -919,7 +1142,7 @@
             
             console.log('🎯 Отсортированные игроки:', playersWithPoints);
             
-            // Рендерим игроков
+            // Рендерим игроков в стиле демонов из index.html
             playersWithPoints.forEach((player, index) => {
                 const rank = index + 1;
                 const rankClass = rank === 1 ? 'top-1' : 
@@ -959,13 +1182,13 @@
             
             document.querySelectorAll('.player-row').forEach((row, index) => {
                 row.style.opacity = '0';
-                row.style.transform = 'translateX(-20px)';
+                row.style.transform = 'translateX(-10px)';
                 
                 setTimeout(() => {
                     row.style.transition = 'opacity 0.3s, transform 0.3s';
                     row.style.opacity = '1';
                     row.style.transform = 'translateX(0)';
-                }, index * 50);
+                }, index * 30);
             });
         }
 
@@ -984,13 +1207,13 @@
                 setTimeout(() => {
                     document.querySelectorAll('.player-row').forEach((row, index) => {
                         row.style.opacity = '0';
-                        row.style.transform = 'translateX(-20px)';
+                        row.style.transform = 'translateX(-10px)';
                         
                         setTimeout(() => {
                             row.style.transition = 'opacity 0.3s, transform 0.3s';
                             row.style.opacity = '1';
                             row.style.transform = 'translateX(0)';
-                        }, index * 50);
+                        }, index * 30);
                     });
                 }, 100);
             } catch (error) {
@@ -1003,6 +1226,8 @@
         window.refreshData = refreshData;
         window.openPlayerProfile = openPlayerProfile;
         window.toggleTheme = toggleTheme;
+        window.toggleMobileMenu = toggleMobileMenu;
+        window.closeMobileMenu = closeMobileMenu;
 
         // Запуск при загрузке страницы
         document.addEventListener('DOMContentLoaded', function() {
