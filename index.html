@@ -2,10 +2,9 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=1200, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DFPS</title>
     <style>
-        /* Все стили остаются без изменений */
         :root {
             --bg-primary: #ffffff;
             --bg-secondary: #f8f9fa;
@@ -45,22 +44,19 @@
             line-height: 1.6;
             transition: all 0.3s ease;
             font-weight: 600;
-            min-width: 1200px;
-            overflow-x: auto;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
-            min-width: 1200px;
+            padding: 0 15px;
         }
         
         /* Header */
         header {
             background: var(--header-red);
             border-bottom: 1px solid var(--header-red);
-            padding: 1rem 0 0 0;
+            padding: 0.5rem 0 0 0;
             position: sticky;
             top: 0;
             z-index: 100;
@@ -71,11 +67,11 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-bottom: 1rem;
+            padding-bottom: 0.5rem;
         }
         
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 800;
             color: white;
             text-decoration: none;
@@ -88,7 +84,7 @@
         .header-controls {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 0.5rem;
         }
         
         .theme-toggle {
@@ -96,9 +92,9 @@
             border: none;
             color: white;
             cursor: pointer;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             transition: all 0.3s ease;
-            padding: 0.5rem;
+            padding: 0.3rem;
         }
         
         .theme-toggle:hover {
@@ -109,25 +105,26 @@
             display: flex;
             list-style: none;
             gap: 0;
+            flex-wrap: wrap;
         }
         
         nav ul li a {
             color: white;
             text-decoration: none;
             font-weight: 600;
-            padding: 0.5rem 1rem;
+            padding: 0.3rem 0.6rem;
             transition: all 0.2s;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             position: relative;
         }
         
         nav ul li a::after {
             content: '';
             position: absolute;
-            bottom: -1rem;
+            bottom: -0.5rem;
             left: 0;
             width: 100%;
-            height: 3px;
+            height: 2px;
             background: white;
             transform: scaleX(0);
             transition: transform 0.3s ease;
@@ -143,21 +140,21 @@
         
         /* Hero Section */
         .hero {
-            padding: 3rem 0;
+            padding: 2rem 0;
             text-align: center;
             background: var(--bg-secondary);
             border-bottom: 1px solid var(--border-color);
         }
         
         .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            margin-bottom: 0.8rem;
             color: var(--text-primary);
             font-weight: 800;
         }
         
         .hero p {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: var(--text-secondary);
             max-width: 600px;
             margin: 0 auto;
@@ -166,7 +163,7 @@
         
         /* Search Section */
         .search-section {
-            padding: 2rem 0;
+            padding: 1.5rem 0;
             background: var(--bg-primary);
         }
         
@@ -178,8 +175,8 @@
         
         .search-input {
             width: 100%;
-            padding: 0.75rem 1rem;
-            font-size: 1rem;
+            padding: 0.6rem 0.8rem;
+            font-size: 0.9rem;
             border: 1px solid var(--border-color);
             border-radius: 6px;
             background: var(--bg-primary);
@@ -201,8 +198,8 @@
             background: var(--bg-primary);
             border: 1px solid var(--border-color);
             border-radius: 6px;
-            margin-top: 0.5rem;
-            max-height: 300px;
+            margin-top: 0.3rem;
+            max-height: 200px;
             overflow-y: auto;
             z-index: 1000;
             display: none;
@@ -210,7 +207,7 @@
         }
         
         .search-result-item {
-            padding: 0.75rem 1rem;
+            padding: 0.6rem 0.8rem;
             cursor: pointer;
             border-bottom: 1px solid var(--border-color);
             transition: background-color 0.2s;
@@ -227,35 +224,37 @@
         .search-result-name {
             font-weight: 700;
             color: var(--text-primary);
+            font-size: 0.9rem;
         }
         
         .search-result-creator {
-            font-size: 0.875rem;
+            font-size: 0.75rem;
             color: var(--text-secondary);
-            margin-top: 0.25rem;
+            margin-top: 0.2rem;
             font-weight: 600;
         }
         
         .no-results {
-            padding: 1rem;
+            padding: 0.8rem;
             text-align: center;
             color: var(--text-secondary);
             font-weight: 600;
+            font-size: 0.9rem;
         }
         
         /* Demon List */
         .demon-list {
-            padding: 2rem 0;
+            padding: 1.5rem 0;
         }
         
         .list-header {
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             text-align: center;
         }
         
         .list-header h2 {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+            margin-bottom: 0.4rem;
             color: var(--text-primary);
             font-weight: 800;
         }
@@ -263,22 +262,23 @@
         .list-header p {
             color: var(--text-secondary);
             font-weight: 600;
+            font-size: 0.9rem;
         }
         
         .list-container {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 0.8rem;
         }
         
         .demon-row {
             background: var(--bg-primary);
             border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 1.5rem;
+            border-radius: 6px;
+            padding: 1rem;
             display: flex;
             align-items: center;
-            gap: 1.5rem;
+            gap: 1rem;
             transition: all 0.2s;
             cursor: pointer;
             box-shadow: var(--card-shadow);
@@ -286,16 +286,17 @@
         
         .demon-row:hover {
             border-color: var(--accent-red);
-            box-shadow: 0 4px 12px rgba(220,53,69,0.15);
-            transform: translateY(-2px);
+            box-shadow: 0 2px 8px rgba(220,53,69,0.15);
+            transform: translateY(-1px);
         }
         
         .demon-rank {
-            font-size: 1.5rem;
+            font-size: 1.1rem;
             font-weight: 800;
-            width: 60px;
+            width: 40px;
             text-align: center;
             color: var(--text-secondary);
+            flex-shrink: 0;
         }
         
         .rank.top-1 {
@@ -311,16 +312,16 @@
         }
         
         .demon-image {
-            width: 240px;
-            height: 135px;
-            border-radius: 8px;
+            width: 100px;
+            height: 56px;
+            border-radius: 4px;
             overflow: hidden;
             flex-shrink: 0;
             background: var(--bg-tertiary);
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 2px solid var(--border-color);
+            border: 1px solid var(--border-color);
             position: relative;
         }
         
@@ -339,19 +340,19 @@
             justify-content: center;
             background: var(--bg-tertiary);
             color: var(--text-secondary);
-            font-size: 2rem;
+            font-size: 1.2rem;
             font-weight: 800;
         }
         
         .youtube-icon {
             position: absolute;
-            top: 8px;
-            right: 8px;
+            top: 4px;
+            right: 4px;
             background: rgba(255, 0, 0, 0.8);
             color: white;
-            border-radius: 4px;
-            padding: 4px 6px;
-            font-size: 0.8rem;
+            border-radius: 2px;
+            padding: 2px 4px;
+            font-size: 0.6rem;
             font-weight: 700;
             z-index: 2;
         }
@@ -361,44 +362,54 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            min-width: 0;
         }
         
         .demon-details {
             flex: 1;
+            min-width: 0;
+            margin-right: 0.5rem;
         }
         
         .demon-name {
-            font-size: 1.5rem;
+            font-size: 1rem;
             font-weight: 800;
             color: var(--text-primary);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         
         .demon-creator {
             color: var(--text-secondary);
-            font-size: 1.1rem;
+            font-size: 0.8rem;
             font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         
         .demon-points {
-            font-size: 1.25rem;
+            font-size: 0.9rem;
             font-weight: 800;
             color: var(--accent-green);
-            min-width: 100px;
+            min-width: 60px;
             text-align: right;
+            flex-shrink: 0;
         }
         
         /* Refresh Button */
         .refresh-btn {
             display: block;
-            margin: 2rem auto;
-            padding: 0.75rem 2rem;
+            margin: 1.5rem auto;
+            padding: 0.6rem 1.5rem;
             background: var(--accent-red);
             color: white;
             border: none;
             border-radius: 6px;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-weight: 700;
             transition: all 0.2s;
         }
@@ -411,13 +422,14 @@
         /* Status */
         .sync-status {
             text-align: center;
-            padding: 1rem;
+            padding: 0.8rem;
             background: var(--bg-secondary);
             border-radius: 6px;
-            margin: 1rem 0;
+            margin: 0.8rem 0;
             color: var(--text-secondary);
             border: 1px solid var(--border-color);
             font-weight: 600;
+            font-size: 0.9rem;
         }
         
         .sync-status.synced {
@@ -428,13 +440,14 @@
         
         .error-message {
             text-align: center;
-            padding: 1rem;
+            padding: 0.8rem;
             background: #f8d7da;
             border: 1px solid #f5c6cb;
             border-radius: 6px;
-            margin: 1rem 0;
+            margin: 0.8rem 0;
             color: #721c24;
             font-weight: 600;
+            font-size: 0.9rem;
         }
         
         [data-theme="dark"] .error-message {
@@ -447,30 +460,31 @@
         footer {
             background: var(--bg-secondary);
             border-top: 1px solid var(--border-color);
-            padding: 2rem 0;
-            margin-top: 3rem;
+            padding: 1.5rem 0;
+            margin-top: 2rem;
         }
         
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
         }
         
         .footer-section h3 {
-            font-size: 1.125rem;
-            margin-bottom: 1rem;
+            font-size: 1rem;
+            margin-bottom: 0.8rem;
             color: var(--text-primary);
             font-weight: 800;
         }
         
         .footer-section p, .footer-section a {
             color: var(--text-secondary);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
             display: block;
             text-decoration: none;
             transition: color 0.2s;
             font-weight: 600;
+            font-size: 0.85rem;
         }
         
         .footer-section a:hover {
@@ -479,93 +493,105 @@
         
         .copyright {
             text-align: center;
-            padding-top: 2rem;
+            padding-top: 1.5rem;
             border-top: 1px solid var(--border-color);
             color: var(--text-secondary);
-            margin-top: 2rem;
-            font-size: 0.875rem;
+            margin-top: 1.5rem;
+            font-size: 0.75rem;
             font-weight: 600;
         }
 
-        /* ПРИНУДИТЕЛЬНЫЙ ДЕСКТОПНЫЙ ВИД НА МОБИЛЬНЫХ */
-        @media (max-width: 768px) {
-            /* Header всегда горизонтальный */
-            .header-content {
-                flex-direction: row !important;
-                justify-content: space-between !important;
-            }
-            
-            .header-controls {
-                order: 0 !important;
-                width: auto !important;
-                justify-content: flex-end !important;
-            }
-            
-            nav ul {
-                flex-wrap: nowrap !important;
-            }
-            
-            /* Демоны - картинка слева, информация справа */
-            .demon-row {
-                flex-direction: row !important;
-                text-align: left !important;
-                padding: 1.5rem !important;
-                gap: 1.5rem !important;
-            }
-            
-            .demon-image {
-                width: 240px !important;
-                height: 135px !important;
-                flex-shrink: 0 !important;
-                margin: 0 !important;
-            }
-            
-            .demon-info {
-                flex-direction: row !important;
-                align-items: center !important;
-                justify-content: space-between !important;
-                gap: normal !important;
-                width: auto !important;
-            }
-            
-            .demon-details {
-                text-align: left !important;
-                flex: 1 !important;
-            }
-            
-            .demon-points {
-                text-align: right !important;
-                min-width: 100px !important;
-            }
-            
-            /* Сетки остаются многоколоночными */
-            .news-grid {
-                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)) !important;
-            }
-            
-            .moderators-grid {
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
-            }
-            
-            .footer-content {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
-            }
-        }
-
+        /* Адаптивность для очень маленьких экранов */
         @media (max-width: 480px) {
-            /* На очень маленьких экранах просто уменьшаем отступы */
+            .container {
+                padding: 0 10px;
+            }
+            
+            .header-content {
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+            
+            .logo {
+                font-size: 1.1rem;
+            }
+            
+            nav ul li a {
+                padding: 0.2rem 0.4rem;
+                font-size: 0.75rem;
+            }
+            
+            .hero {
+                padding: 1.5rem 0;
+            }
+            
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+            
+            .hero p {
+                font-size: 0.9rem;
+            }
+            
             .demon-row {
-                padding: 1rem !important;
-                gap: 1rem !important;
+                padding: 0.8rem;
+                gap: 0.8rem;
             }
             
             .demon-image {
-                width: 200px !important;
-                height: 112px !important;
+                width: 80px;
+                height: 45px;
             }
             
             .demon-name {
-                font-size: 1.25rem !important;
+                font-size: 0.9rem;
+            }
+            
+            .demon-creator {
+                font-size: 0.75rem;
+            }
+            
+            .demon-points {
+                font-size: 0.8rem;
+                min-width: 50px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .demon-image {
+                width: 70px;
+                height: 39px;
+            }
+            
+            .demon-rank {
+                width: 30px;
+                font-size: 1rem;
+            }
+            
+            .demon-name {
+                font-size: 0.85rem;
+            }
+            
+            nav ul {
+                justify-content: center;
+            }
+        }
+
+        /* Улучшения для touch-устройств */
+        @media (hover: none) {
+            .demon-row:hover {
+                transform: none;
+                border-color: var(--border-color);
+            }
+            
+            .demon-row:active {
+                border-color: var(--accent-red);
+                transform: scale(0.98);
             }
         }
 
@@ -676,12 +702,10 @@
             document.documentElement.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
             
-            // Обновляем иконку кнопки
             const themeButton = document.querySelector('.theme-toggle');
             themeButton.textContent = newTheme === 'dark' ? '☀️' : '🌙';
         }
         
-        // Загружаем сохраненную тему
         function loadTheme() {
             const savedTheme = localStorage.getItem('theme') || 'light';
             document.documentElement.setAttribute('data-theme', savedTheme);
@@ -704,19 +728,17 @@
             const videoId = getYouTubeVideoId(videoUrl);
             if (!videoId) return null;
             
-            // Пробуем разные варианты качества по порядку
             const qualities = [
-                `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`, // Максимальное качество
-                `https://i.ytimg.com/vi/${videoId}/sddefault.jpg`,     // Стандартное качество
-                `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`,     // Высокое качество
-                `https://i.ytimg.com/vi/${videoId}/mqdefault.jpg`,     // Среднее качество
-                `https://i.ytimg.com/vi/${videoId}/default.jpg`        // Низкое качество
+                `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`,
+                `https://i.ytimg.com/vi/${videoId}/sddefault.jpg`,
+                `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`,
+                `https://i.ytimg.com/vi/${videoId}/mqdefault.jpg`,
+                `https://i.ytimg.com/vi/${videoId}/default.jpg`
             ];
             
             return qualities;
         }
         
-        // Функция для проверки доступности изображения
         function checkImageAvailability(url) {
             return new Promise((resolve) => {
                 const img = new Image();
@@ -726,7 +748,6 @@
             });
         }
         
-        // Получение первого доступного превью
         async function getAvailableThumbnail(videoUrl) {
             const thumbnailUrls = getYouTubeThumbnail(videoUrl);
             if (!thumbnailUrls) return null;
@@ -734,12 +755,10 @@
             for (const url of thumbnailUrls) {
                 const isAvailable = await checkImageAvailability(url);
                 if (isAvailable) {
-                    console.log(`✅ Найдено превью: ${url}`);
                     return url;
                 }
             }
             
-            console.log('❌ Не найдено доступных превью');
             return null;
         }
 
@@ -750,19 +769,19 @@
                 id: 'bloodbath',
                 name: 'Bloodbath',
                 creator: 'Riot & more',
-                videoUrl: 'https://www.youtube.com/watch?v=6jJbA4a3+4U' // Замените на реальные YouTube ID
+                videoUrl: 'https://www.youtube.com/watch?v=6jJbA4a3+4U'
             },
             {
                 id: 'cataclysm',
                 name: 'Cataclysm',
                 creator: 'Ggb0y',
-                videoUrl: 'https://www.youtube.com/watch?v=abcdefghijk' // Замените на реальные YouTube ID
+                videoUrl: 'https://www.youtube.com/watch?v=abcdefghijk'
             },
             {
                 id: 'sakupen-hell',
                 name: 'Sakupen Hell',
                 creator: 'Noobas',
-                videoUrl: 'https://www.youtube.com/watch?v=xyz12345678' // Замените на реальные YouTube ID
+                videoUrl: 'https://www.youtube.com/watch?v=xyz12345678'
             }
         ];
 
@@ -813,7 +832,7 @@
             
             searchResults.innerHTML = '';
             
-            results.slice(0, 8).forEach(demon => {
+            results.slice(0, 6).forEach(demon => {
                 const resultItem = document.createElement('div');
                 resultItem.className = 'search-result-item';
                 resultItem.innerHTML = `
@@ -851,15 +870,12 @@
 
         async function loadDataFromJSON() {
             try {
-                console.log('📥 Загрузка данных из demons.json...');
-                
                 const response = await fetch('data/demons.json');
                 if (!response.ok) throw new Error('Файл demons.json не найден');
                 
                 const data = await response.json();
                 
                 if (data.demons && Array.isArray(data.demons)) {
-                    // Загружаем превью для каждого демона
                     demons = [];
                     
                     for (const demon of data.demons) {
@@ -875,17 +891,13 @@
                     
                     filteredDemons = [...demons];
                     
-                    console.log('✅ Данные загружены из demons.json:', demons.length);
                     updateSyncStatus(`Загружено ${demons.length} демонов`);
                     return true;
                 } else {
-                    throw new Error('Неверный формат demons.json - отсутствует массив demons');
+                    throw new Error('Неверный формат demons.json');
                 }
                 
             } catch (error) {
-                console.error('❌ Ошибка загрузки:', error);
-                
-                // Для демо-данных тоже загружаем превью
                 demons = [];
                 for (const demon of defaultDemons) {
                     const thumbnailUrl = demon.videoUrl ? 
@@ -919,19 +931,16 @@
         function renderDemons() {
             const demonList = document.getElementById('demonList');
             
-            if (!demonList) {
-                console.error('❌ Element demonList not found');
-                return;
-            }
+            if (!demonList) return;
             
             demonList.innerHTML = '';
             
             if (filteredDemons.length === 0) {
                 demonList.innerHTML = `
-                    <div style="text-align: center; padding: 3rem; color: var(--text-secondary);">
-                        <div style="font-size: 3rem; margin-bottom: 1rem;">🔍</div>
-                        <div style="font-size: 1.25rem; margin-bottom: 0.5rem; font-weight: 700;">Демоны не найдены</div>
-                        <div style="font-weight: 600;">Попробуйте изменить поисковый запрос</div>
+                    <div style="text-align: center; padding: 2rem; color: var(--text-secondary);">
+                        <div style="font-size: 2rem; margin-bottom: 0.8rem;">🔍</div>
+                        <div style="font-size: 1rem; margin-bottom: 0.4rem; font-weight: 700;">Демоны не найдены</div>
+                        <div style="font-weight: 600; font-size: 0.9rem;">Попробуйте изменить поисковый запрос</div>
                     </div>
                 `;
                 return;
@@ -971,9 +980,7 @@
             });
         }
 
-        // Обработчик ошибок загрузки изображений
         function handleImageError(img, demonName) {
-            console.warn(`❌ Не удалось загрузить превью для ${demonName}, используется заглушка`);
             const parent = img.parentNode;
             parent.innerHTML = `<div class="image-placeholder">${demonName.charAt(0)}</div>`;
         }
@@ -990,20 +997,19 @@
             
             document.querySelectorAll('.demon-row').forEach((row, index) => {
                 row.style.opacity = '0';
-                row.style.transform = 'translateX(-20px)';
+                row.style.transform = 'translateX(-10px)';
                 
                 setTimeout(() => {
                     row.style.transition = 'opacity 0.3s, transform 0.3s';
                     row.style.opacity = '1';
                     row.style.transform = 'translateX(0)';
-                }, index * 50);
+                }, index * 30);
             });
         }
 
         // ========== INITIALIZATION ==========
 
         async function initializeData() {
-            console.log('🎮 Инициализация Geometry Dash Demon List...');
             loadTheme();
             await loadDataFromJSON();
             initializeSearch();
@@ -1012,27 +1018,24 @@
             setTimeout(() => {
                 document.querySelectorAll('.demon-row').forEach((row, index) => {
                     row.style.opacity = '0';
-                    row.style.transform = 'translateX(-20px)';
+                    row.style.transform = 'translateX(-10px)';
                     
                     setTimeout(() => {
                         row.style.transition = 'opacity 0.3s, transform 0.3s';
                         row.style.opacity = '1';
                         row.style.transform = 'translateX(0)';
-                    }, index * 50);
+                    }, index * 30);
                 });
             }, 100);
         }
 
-        // Глобальные функции
         window.refreshData = refreshData;
         window.openDemonPage = openDemonPage;
         window.toggleTheme = toggleTheme;
         window.handleImageError = handleImageError;
 
-        // Запуск при загрузке страницы
         document.addEventListener('DOMContentLoaded', function() {
             initializeData();
-            console.log('✅ DFPS Demon List ready!');
         });
     </script>
 </body>
