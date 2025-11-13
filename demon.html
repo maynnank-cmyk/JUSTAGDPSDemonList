@@ -49,14 +49,14 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 15px;
         }
         
         /* Header */
         header {
             background: var(--header-red);
             border-bottom: 1px solid var(--header-red);
-            padding: 1rem 0 0 0;
+            padding: 0.5rem 0 0 0;
             position: sticky;
             top: 0;
             z-index: 100;
@@ -67,11 +67,11 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-bottom: 1rem;
+            padding-bottom: 0.5rem;
         }
         
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 800;
             color: white;
             text-decoration: none;
@@ -84,7 +84,7 @@
         .header-controls {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 0.5rem;
         }
         
         .theme-toggle {
@@ -92,38 +92,78 @@
             border: none;
             color: white;
             cursor: pointer;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             transition: all 0.3s ease;
-            padding: 0.5rem;
+            padding: 0.3rem;
         }
         
         .theme-toggle:hover {
             transform: scale(1.1);
         }
+
+        /* Гамбургер меню */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.3rem;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: white;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
         
+        /* Основная навигация */
         nav ul {
             display: flex;
             list-style: none;
             gap: 0;
+            flex-wrap: wrap;
         }
         
         nav ul li a {
             color: white;
             text-decoration: none;
             font-weight: 600;
-            padding: 0.5rem 1rem;
+            padding: 0.3rem 0.6rem;
             transition: all 0.2s;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             position: relative;
+            display: block;
         }
         
         nav ul li a::after {
             content: '';
             position: absolute;
-            bottom: -1rem;
+            bottom: -0.5rem;
             left: 0;
             width: 100%;
-            height: 3px;
+            height: 2px;
             background: white;
             transform: scaleX(0);
             transition: transform 0.3s ease;
@@ -135,6 +175,68 @@
         
         nav ul li a:hover::after {
             transform: scaleX(1);
+        }
+        
+        /* Мобильное меню */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 999;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu nav ul {
+            flex-direction: column;
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .mobile-menu nav ul li a {
+            font-size: 1.2rem;
+            padding: 0.8rem 1.5rem;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: block;
+            border-radius: 8px;
+        }
+
+        .mobile-menu nav ul li a:hover,
+        .mobile-menu nav ul li a.active {
+            color: var(--accent-red);
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .close-menu {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1000;
+        }
+
+        .close-menu:hover {
+            color: var(--accent-red);
         }
         
         /* Breadcrumb */
@@ -159,31 +261,31 @@
         
         /* Demon Header */
         .demon-header {
-            padding: 3rem 0;
+            padding: 2rem 0;
             text-align: center;
             background: var(--bg-secondary);
             border-bottom: 1px solid var(--border-color);
         }
         
         .demon-name {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            margin-bottom: 0.8rem;
             color: var(--text-primary);
             font-weight: 800;
         }
         
         .demon-description {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: var(--text-secondary);
             max-width: 600px;
-            margin: 0 auto 2rem;
+            margin: 0 auto 1.5rem;
             font-weight: 600;
         }
         
         .demon-meta {
             display: flex;
             justify-content: center;
-            gap: 2rem;
+            gap: 1rem;
             margin-top: 1rem;
             flex-wrap: wrap;
         }
@@ -191,57 +293,51 @@
         .meta-item {
             text-align: center;
             background: var(--bg-primary);
-            padding: 1rem 1.5rem;
-            border-radius: 8px;
+            padding: 0.8rem 1rem;
+            border-radius: 6px;
             border: 1px solid var(--border-color);
             box-shadow: var(--card-shadow);
-            min-width: 150px;
+            min-width: 120px;
         }
         
         .meta-value {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 800;
             color: var(--accent-green);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
         }
         
         .meta-label {
-            font-size: 0.875rem;
+            font-size: 0.75rem;
             color: var(--text-secondary);
             font-weight: 600;
         }
         
         /* Demon Content */
         .demon-content {
-            padding: 2rem 0;
+            padding: 1.5rem 0;
         }
         
         .content-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        @media (max-width: 1024px) {
-            .content-grid {
-                grid-template-columns: 1fr;
-            }
+            gap: 1.5rem;
+            margin-top: 1.5rem;
         }
         
         /* Video Section */
         .video-section {
             background: var(--bg-primary);
             border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 1.5rem;
+            border-radius: 6px;
+            padding: 1.2rem;
             box-shadow: var(--card-shadow);
         }
         
         .video-section h2 {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
             color: var(--text-primary);
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 800;
             display: flex;
             align-items: center;
@@ -250,7 +346,7 @@
         
         .video-section h2::before {
             content: "🎥";
-            font-size: 1.25rem;
+            font-size: 1.1rem;
         }
         
         .video-container {
@@ -258,7 +354,7 @@
             width: 100%;
             height: 0;
             padding-bottom: 56.25%;
-            border-radius: 6px;
+            border-radius: 4px;
             overflow: hidden;
             margin: 0 auto;
             background: var(--bg-tertiary);
@@ -287,21 +383,21 @@
             background: var(--bg-tertiary);
             color: var(--text-secondary);
             text-align: center;
-            padding: 2rem;
+            padding: 1.5rem;
         }
         
         .video-placeholder .icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            font-size: 2rem;
+            margin-bottom: 0.8rem;
         }
         
         .video-info {
-            margin-top: 1rem;
-            padding: 1rem;
+            margin-top: 0.8rem;
+            padding: 0.8rem;
             background: var(--bg-secondary);
-            border-radius: 6px;
-            border-left: 4px solid var(--accent-green);
-            font-size: 0.9rem;
+            border-radius: 4px;
+            border-left: 3px solid var(--accent-green);
+            font-size: 0.8rem;
             font-weight: 600;
         }
         
@@ -309,15 +405,15 @@
         .completions-section {
             background: var(--bg-primary);
             border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 1.5rem;
+            border-radius: 6px;
+            padding: 1.2rem;
             box-shadow: var(--card-shadow);
         }
         
         .completions-section h2 {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
             color: var(--text-primary);
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 800;
             display: flex;
             align-items: center;
@@ -326,25 +422,25 @@
         
         .completions-section h2::before {
             content: "🏆";
-            font-size: 1.25rem;
+            font-size: 1.1rem;
         }
         
         .completions-list {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
-            max-height: 500px;
+            gap: 0.8rem;
+            max-height: 400px;
             overflow-y: auto;
-            padding: 0.5rem;
+            padding: 0.3rem;
         }
         
         .completion-item {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            padding: 1rem;
+            gap: 0.8rem;
+            padding: 0.8rem;
             background: var(--bg-secondary);
-            border-radius: 6px;
+            border-radius: 4px;
             border: 1px solid var(--border-color);
             transition: all 0.2s;
             cursor: pointer;
@@ -352,12 +448,12 @@
         
         .completion-item:hover {
             border-color: var(--accent-red);
-            transform: translateX(4px);
+            transform: translateX(3px);
         }
         
         .player-avatar {
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -365,7 +461,7 @@
             background: var(--accent-red);
             color: white;
             font-weight: bold;
-            font-size: 1.25rem;
+            font-size: 1rem;
             flex-shrink: 0;
             border: 2px solid var(--border-color);
         }
@@ -377,8 +473,8 @@
         
         .player-name {
             font-weight: 700;
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+            font-size: 0.9rem;
             color: var(--text-primary);
             transition: color 0.2s;
         }
@@ -391,21 +487,21 @@
         .progress-container {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-            margin-top: 0.5rem;
+            gap: 0.6rem;
+            margin-top: 0.3rem;
         }
         
         .progress-bar {
             flex: 1;
-            height: 6px;
+            height: 5px;
             background: var(--bg-tertiary);
-            border-radius: 3px;
+            border-radius: 2px;
             overflow: hidden;
         }
         
         .progress-fill {
             height: 100%;
-            border-radius: 3px;
+            border-radius: 2px;
             transition: width 0.3s ease;
         }
         
@@ -418,46 +514,46 @@
         }
         
         .progress-text {
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             color: var(--text-secondary);
-            min-width: 35px;
+            min-width: 30px;
             text-align: right;
             font-weight: 700;
         }
         
         .points-badge {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: var(--accent-green);
             font-weight: 800;
-            min-width: 60px;
+            min-width: 50px;
             text-align: right;
         }
         
         .no-completions {
             text-align: center;
-            padding: 3rem;
+            padding: 2rem;
             color: var(--text-secondary);
             background: var(--bg-secondary);
-            border-radius: 6px;
+            border-radius: 4px;
             border: 2px dashed var(--border-color);
         }
         
         .no-completions .icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            font-size: 2rem;
+            margin-bottom: 0.8rem;
         }
         
         /* Refresh Button */
         .refresh-btn {
             display: block;
-            margin: 2rem auto;
-            padding: 0.75rem 2rem;
+            margin: 1.5rem auto;
+            padding: 0.6rem 1.5rem;
             background: var(--accent-red);
             color: white;
             border: none;
             border-radius: 6px;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-weight: 700;
             transition: all 0.2s;
         }
@@ -470,13 +566,13 @@
         /* Error Container */
         .error-container {
             text-align: center;
-            padding: 4rem 2rem;
+            padding: 3rem 1.5rem;
             color: var(--text-secondary);
         }
         
         .error-title {
-            font-size: 2rem;
-            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
             color: var(--accent-red);
             font-weight: 800;
         }
@@ -485,30 +581,31 @@
         footer {
             background: var(--bg-secondary);
             border-top: 1px solid var(--border-color);
-            padding: 2rem 0;
-            margin-top: 3rem;
+            padding: 1.5rem 0;
+            margin-top: 2rem;
         }
         
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
         }
         
         .footer-section h3 {
-            font-size: 1.125rem;
-            margin-bottom: 1rem;
+            font-size: 1rem;
+            margin-bottom: 0.8rem;
             color: var(--text-primary);
             font-weight: 800;
         }
         
         .footer-section p, .footer-section a {
             color: var(--text-secondary);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
             display: block;
             text-decoration: none;
             transition: color 0.2s;
             font-weight: 600;
+            font-size: 0.85rem;
         }
         
         .footer-section a:hover {
@@ -517,75 +614,87 @@
         
         .copyright {
             text-align: center;
-            padding-top: 2rem;
+            padding-top: 1.5rem;
             border-top: 1px solid var(--border-color);
             color: var(--text-secondary);
-            margin-top: 2rem;
-            font-size: 0.875rem;
+            margin-top: 1.5rem;
+            font-size: 0.75rem;
             font-weight: 600;
         }
-        
-        /* Responsive */
+
+        /* Адаптивность для мобильных устройств */
         @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            /* Скрываем обычную навигацию на мобильных */
+            .header-controls nav {
+                display: none;
+            }
+
             .header-content {
-                flex-direction: column;
+                flex-wrap: nowrap;
+            }
+
+            .logo {
+                font-size: 1.1rem;
+            }
+
+            /* Адаптация контента для мобильных */
+            .content-grid {
+                grid-template-columns: 1fr;
                 gap: 1rem;
             }
-            
-            .header-controls {
-                order: -1;
-                width: 100%;
-                justify-content: space-between;
+
+            .demon-meta {
+                gap: 0.8rem;
             }
-            
-            nav ul {
-                gap: 0;
+
+            .meta-item {
+                padding: 0.6rem 0.8rem;
+                min-width: 100px;
             }
-            
-            nav ul li a {
-                padding: 0.4rem 0.8rem;
+
+            .meta-value {
+                font-size: 1.1rem;
+            }
+
+            .completions-list {
+                max-height: 300px;
+            }
+
+            .completion-item {
+                padding: 0.6rem;
+            }
+
+            .player-avatar {
+                width: 35px;
+                height: 35px;
                 font-size: 0.9rem;
             }
-            
-            .demon-name {
-                font-size: 2rem;
-            }
-            
-            .demon-meta {
-                gap: 1rem;
-            }
-            
-            .meta-item {
-                padding: 0.75rem 1rem;
-                min-width: 120px;
-            }
-            
-            .meta-value {
-                font-size: 1.25rem;
-            }
-            
-            .completion-item {
-                padding: 0.75rem;
-            }
-            
-            .player-avatar {
-                width: 40px;
-                height: 40px;
-                font-size: 1rem;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
         }
-        
+
         @media (max-width: 480px) {
+            .container {
+                padding: 0 10px;
+            }
+            
+            .header-content {
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+            
+            .logo {
+                font-size: 1.1rem;
+            }
+            
             .demon-header {
-                padding: 2rem 0;
+                padding: 1.5rem 0;
             }
             
             .demon-name {
-                font-size: 1.75rem;
+                font-size: 1.5rem;
             }
             
             .demon-meta {
@@ -595,17 +704,52 @@
             
             .meta-item {
                 width: 100%;
-                max-width: 200px;
+                max-width: 150px;
             }
             
-            nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .mobile-menu nav ul li a {
+                font-size: 1.1rem;
+                padding: 0.7rem 1.2rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .demon-name {
+                font-size: 1.3rem;
             }
             
-            nav ul li a::after {
-                bottom: -0.5rem;
+            .meta-item {
+                padding: 0.5rem 0.6rem;
             }
+            
+            .video-section,
+            .completions-section {
+                padding: 1rem;
+            }
+        }
+
+        /* Улучшения для touch-устройств */
+        @media (hover: none) {
+            .completion-item:hover {
+                transform: none;
+                border-color: var(--border-color);
+            }
+            
+            .completion-item:active {
+                border-color: var(--accent-red);
+                transform: scale(0.98);
+            }
+        }
+
+        /* Убираем text-size-adjust на iOS */
+        html {
+            -webkit-text-size-adjust: 100%;
+            text-size-adjust: 100%;
         }
     </style>
 </head>
@@ -618,6 +762,13 @@
                     <button class="theme-toggle" onclick="toggleTheme()">
                         🌙
                     </button>
+                    <!-- Гамбургер меню для мобильных -->
+                    <button class="menu-toggle" onclick="toggleMobileMenu()">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <!-- Обычная навигация -->
                     <nav>
                         <ul>
                             <li><a href="index.html">Главная</a></li>
@@ -632,13 +783,27 @@
         </div>
     </header>
 
+    <!-- Мобильное меню -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="close-menu" onclick="toggleMobileMenu()">×</button>
+        <nav>
+            <ul>
+                <li><a href="index.html" onclick="closeMobileMenu()">Главная</a></li>
+                <li><a href="players.html" onclick="closeMobileMenu()">Топ игроков</a></li>
+                <li><a href="news.html" onclick="closeMobileMenu()">Новости</a></li>
+                <li><a href="contacts.html" onclick="closeMobileMenu()">Контакты</a></li>
+                <li><a href="rules.html" onclick="closeMobileMenu()">Правила</a></li>
+            </ul>
+        </nav>
+    </div>
+
     <div class="breadcrumb container">
         <a href="index.html">Главная</a> &gt; <span id="breadcrumbDemonName">Демон</span>
     </div>
 
     <div class="container">
         <div id="content">
-            <div style="text-align: center; padding: 4rem 2rem;">
+            <div style="text-align: center; padding: 3rem 1.5rem;">
                 <h2>Загрузка демона...</h2>
             </div>
         </div>
@@ -673,6 +838,51 @@
     </footer>
 
     <script>
+        // ========== MOBILE MENU ==========
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            mobileMenu.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+            
+            // Блокируем скролл тела страницы когда меню открыто
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            mobileMenu.classList.remove('active');
+            menuToggle.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Закрываем меню при клике на ссылку
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+
+        // Закрываем меню при клике вне его области
+        document.addEventListener('click', (e) => {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            if (mobileMenu.classList.contains('active') && 
+                !mobileMenu.contains(e.target) && 
+                !menuToggle.contains(e.target)) {
+                closeMobileMenu();
+            }
+        });
+
+        // Закрываем меню при нажатии Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeMobileMenu();
+            }
+        });
+
         // ========== THEME TOGGLE ==========
         
         function toggleTheme() {
@@ -867,7 +1077,7 @@
                                         <div class="video-placeholder">
                                             <div class="icon">📹</div>
                                             <div>Видео верификация отсутствует</div>
-                                            <div style="font-size: 0.8rem; margin-top: 0.5rem;">Для этого демона нет видео подтверждения</div>
+                                            <div style="font-size: 0.7rem; margin-top: 0.3rem;">Для этого демона нет видео подтверждения</div>
                                         </div>
                                     `}
                                 </div>
@@ -875,7 +1085,7 @@
                                 ${demon.videoUrl ? `
                                     <div class="video-info">
                                         <strong>ℹ️ Официальная верификация</strong>
-                                        <div style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--text-secondary);">
+                                        <div style="margin-top: 0.3rem; font-size: 0.7rem; color: var(--text-secondary);">
                                             Это официальное видео подтверждение прохождения демона
                                         </div>
                                     </div>
@@ -914,8 +1124,8 @@
                                         }).join('') :
                                         `<div class="no-completions">
                                             <div class="icon">😔</div>
-                                            <div style="font-size: 1.1rem; margin-bottom: 0.5rem; font-weight: 700;">Пока никто не прошел этого демона</div>
-                                            <div style="font-weight: 600;">Будьте первым!</div>
+                                            <div style="font-size: 1rem; margin-bottom: 0.3rem; font-weight: 700;">Пока никто не прошел этого демона</div>
+                                            <div style="font-weight: 600; font-size: 0.9rem;">Будьте первым!</div>
                                         </div>`
                                     }
                                 </div>
@@ -942,6 +1152,8 @@
         window.calculatePointsByRank = calculatePointsByRank;
         window.calculatePointsWithProgress = calculatePointsWithProgress;
         window.toggleTheme = toggleTheme;
+        window.toggleMobileMenu = toggleMobileMenu;
+        window.closeMobileMenu = closeMobileMenu;
 
         // Загружаем данные при загрузке страницы
         document.addEventListener('DOMContentLoaded', function() {
