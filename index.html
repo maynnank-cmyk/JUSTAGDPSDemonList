@@ -4,7 +4,239 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DFPS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <style>
+        /* Удалим или изменим медиа-запросы, которые ломают layout на мобильных */
+
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: row; /* Оставляем горизонтальное расположение */
+        gap: 1rem;
+    }
+    
+    .header-controls {
+        order: 0; /* Не меняем порядок */
+        width: auto;
+        justify-content: flex-end;
+    }
+    
+    nav ul {
+        gap: 0;
+        flex-wrap: nowrap; /* Не переносим навигацию */
+    }
+    
+    nav ul li a {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    /* Сохраняем горизонтальное расположение демонов */
+    .demon-row {
+        padding: 1rem;
+        gap: 1.5rem;
+        flex-direction: row; /* Оставляем строки горизонтальными */
+        text-align: left;
+    }
+    
+    .demon-image {
+        width: 180px; /* Немного уменьшаем но сохраняем пропорции */
+        height: 101px;
+        margin: 0;
+    }
+    
+    .demon-info {
+        flex-direction: row; /* Сохраняем горизонтальное расположение */
+        align-items: center;
+        gap: normal;
+        width: auto;
+    }
+    
+    .demon-points {
+        text-align: right;
+    }
+    
+    /* Для страницы игроков - сохраняем горизонтальный layout */
+    .player-row {
+        padding: 1rem;
+        gap: 1.5rem;
+        flex-direction: row;
+        text-align: left;
+    }
+    
+    .player-avatar {
+        width: 60px;
+        height: 60px;
+        margin: 0;
+    }
+    
+    .player-info {
+        flex-direction: row;
+        align-items: center;
+        gap: normal;
+        width: auto;
+    }
+    
+    .player-score {
+        text-align: right;
+    }
+    
+    /* Для контактов - сохраняем сетку */
+    .moderators-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .moderator-card {
+        padding: 1.5rem;
+    }
+    
+    /* Для новостей - сохраняем сетку */
+    .news-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .news-card {
+        padding: 1.25rem;
+    }
+    
+    .footer-content {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 10px; /* Минимальные отступы */
+    }
+    
+    .hero {
+        padding: 2rem 0;
+    }
+    
+    .hero h1 {
+        font-size: 1.75rem;
+    }
+    
+    .list-header h2 {
+        font-size: 1.5rem;
+    }
+    
+    /* Уменьшаем но сохраняем layout */
+    .demon-image {
+        width: 150px;
+        height: 84px;
+    }
+    
+    .player-avatar {
+        width: 50px;
+        height: 50px;
+    }
+    
+    /* Уменьшаем отступы но сохраняем структуру */
+    .demon-row,
+    .player-row {
+        padding: 0.75rem;
+        gap: 1rem;
+    }
+    
+    .demon-name,
+    .player-name {
+        font-size: 1.1rem;
+    }
+    
+    /* На очень маленьких экранах можем слегка адаптировать навигацию */
+    nav ul li a {
+        padding: 0.4rem 0.7rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* Улучшения для очень маленьких экранов но с сохранением layout */
+@media (max-width: 360px) {
+    .demon-image {
+        width: 120px;
+        height: 68px;
+    }
+    
+    .demon-rank {
+        width: 40px;
+        font-size: 1.25rem;
+    }
+    
+    .player-avatar {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .player-rank {
+        width: 40px;
+        font-size: 1.25rem;
+    }
+    
+    nav ul li a {
+        padding: 0.3rem 0.5rem;
+        font-size: 0.75rem;
+    }
+}
+
+/* Убедимся, что контент не выходит за пределы экрана */
+.demon-row,
+.player-row,
+.moderator-card,
+.news-card {
+    max-width: 100%;
+    overflow: hidden;
+}
+
+/* Улучшение для горизонтальной ориентации на мобильных */
+@media (max-width: 768px) and (orientation: landscape) {
+    .hero {
+        padding: 1rem 0;
+    }
+    
+    .hero h1 {
+        font-size: 1.5rem;
+    }
+    
+    .hero p {
+        font-size: 0.9rem;
+    }
+}
+
+/* Улучшение скролла и производительности */
+.demon-list,
+.players-list,
+.news-section,
+.contacts-section {
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Сохраняем hover эффекты для устройств с поддержкой hover */
+@media (hover: hover) {
+    .demon-row:hover,
+    .player-row:hover,
+    .moderator-card:hover,
+    .news-card:hover {
+        border-color: var(--accent-red);
+        box-shadow: 0 4px 12px rgba(220,53,69,0.15);
+        transform: translateY(-2px);
+    }
+}
+
+/* Для touch устройств добавляем активные состояния */
+.demon-row:active,
+.player-row:active,
+.moderator-card:active,
+.news-card:active {
+    border-color: var(--accent-red);
+    transform: scale(0.98);
+    transition: transform 0.1s;
+}
         /* Все стили остаются без изменений */
         :root {
             --bg-primary: #ffffff;
@@ -1030,6 +1262,7 @@
     </script>
 </body>
 </html>
+
 
 
 
