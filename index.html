@@ -101,143 +101,139 @@
             transform: scale(1.1);
         }
 
-        /* Гамбургер меню */
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 0.3rem;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 30px;
-            height: 21px;
-            z-index: 1001;
-        }
+     /* Простое гамбургер меню без анимации полосок */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    position: relative;
+    z-index: 1001;
+}
 
-        .menu-toggle span {
-            display: block;
-            height: 3px;
-            width: 100%;
-            background-color: white;
-            border-radius: 2px;
-            transition: all 0.3s ease;
-        }
+.menu-toggle span {
+    display: block;
+    height: 3px;
+    width: 24px;
+    background-color: white;
+    border-radius: 1px;
+    margin: 2px 0;
+}
 
-        .menu-toggle.active span:nth-child(1) {
-            transform: rotate(45deg) translate(6px, 6px);
-        }
+/* Мобильное меню выезжающее справа */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 300px;
+    height: 100%;
+    background: var(--bg-primary);
+    z-index: 999;
+    flex-direction: column;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    transition: right 0.3s ease;
+    border-left: 1px solid var(--border-color);
+}
 
-        .menu-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
+.mobile-menu.active {
+    right: 0;
+}
 
-        .menu-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(6px, -6px);
-        }
-        
-        /* Основная навигация */
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 0;
-            flex-wrap: wrap;
-        }
-        
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            padding: 0.3rem 0.6rem;
-            transition: all 0.2s;
-            font-size: 0.8rem;
-            position: relative;
-            display: block;
-        }
-        
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: -0.5rem;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: white;
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-        
-        nav ul li a.active::after {
-            transform: scaleX(1);
-        }
-        
-        nav ul li a:hover::after {
-            transform: scaleX(1);
-        }
-        
-        /* Мобильное меню - ИСПРАВЛЕНО: убрано display: none */
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 999;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
+.mobile-menu nav ul {
+    flex-direction: column;
+    gap: 0;
+    padding: 80px 0 0 0;
+}
 
-        .mobile-menu.active {
-            opacity: 1;
-            visibility: visible;
-        }
+.mobile-menu nav ul li {
+    border-bottom: 1px solid var(--border-color);
+}
 
-        .mobile-menu nav ul {
-            flex-direction: column;
-            gap: 2rem;
-            text-align: center;
-        }
+.mobile-menu nav ul li:last-child {
+    border-bottom: none;
+}
 
-        .mobile-menu nav ul li a {
-            font-size: 1.2rem;
-            padding: 0.8rem 1.5rem;
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: block;
-            border-radius: 8px;
-        }
+.mobile-menu nav ul li a {
+    font-size: 1rem;
+    padding: 1rem 1.5rem;
+    color: var(--text-primary);
+    text-decoration: none;
+    display: block;
+    transition: all 0.2s ease;
+    font-weight: 600;
+}
 
-        .mobile-menu nav ul li a:hover,
-        .mobile-menu nav ul li a.active {
-            color: var(--accent-red);
-            transform: scale(1.1);
-            background: rgba(255, 255, 255, 0.1);
-        }
+.mobile-menu nav ul li a:hover,
+.mobile-menu nav ul li a.active {
+    background: var(--bg-secondary);
+    color: var(--accent-red);
+}
 
-        .close-menu {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 2rem;
-            cursor: pointer;
-            padding: 0.5rem;
-            z-index: 1000;
-        }
+/* Кнопка закрытия */
+.close-menu {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 1000;
+    transition: color 0.2s ease;
+}
 
-        .close-menu:hover {
-            color: var(--accent-red);
-        }
+.close-menu:hover {
+    color: var(--accent-red);
+}
+
+/* Затемнение фона */
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+    }
+
+    .header-controls nav {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .mobile-menu {
+        width: 280px;
+    }
+    
+    .mobile-menu nav ul li a {
+        padding: 0.9rem 1.2rem;
+        font-size: 0.95rem;
+    }
+}
         
         /* Hero Section */
         .hero {
@@ -830,51 +826,36 @@
     </footer>
 
     <script>
-        // ========== MOBILE MENU ==========
-        function toggleMobileMenu() {
-            const mobileMenu = document.getElementById('mobileMenu');
-            const menuToggle = document.querySelector('.menu-toggle');
-            
-            mobileMenu.classList.toggle('active');
-            menuToggle.classList.toggle('active');
-            
-            // Блокируем скролл тела страницы когда меню открыто
-            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
-        }
+        // ========== ПРОСТОЕ МОБИЛЬНОЕ МЕНЮ ==========
+function toggleMobileMenu() {
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
+    
+    mobileMenu.classList.toggle('active');
+    menuOverlay.classList.toggle('active');
+    document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+}
 
-        function closeMobileMenu() {
-            const mobileMenu = document.getElementById('mobileMenu');
-            const menuToggle = document.querySelector('.menu-toggle');
-            
-            mobileMenu.classList.remove('active');
-            menuToggle.classList.remove('active');
-            document.body.style.overflow = '';
-        }
+function closeMobileMenu() {
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
+    
+    mobileMenu.classList.remove('active');
+    menuOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+}
 
-        // Закрываем меню при клике на ссылку
-        document.querySelectorAll('.mobile-menu a').forEach(link => {
-            link.addEventListener('click', closeMobileMenu);
-        });
+// Закрываем меню при клике на ссылку
+document.querySelectorAll('.mobile-menu a').forEach(link => {
+    link.addEventListener('click', closeMobileMenu);
+});
 
-        // Закрываем меню при клике вне его области
-        document.addEventListener('click', (e) => {
-            const mobileMenu = document.getElementById('mobileMenu');
-            const menuToggle = document.querySelector('.menu-toggle');
-            
-            if (mobileMenu.classList.contains('active') && 
-                !mobileMenu.contains(e.target) && 
-                !menuToggle.contains(e.target)) {
-                closeMobileMenu();
-            }
-        });
-
-        // Закрываем меню при нажатии Escape
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                closeMobileMenu();
-            }
-        });
-
+// Закрываем меню при нажатии Escape
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        closeMobileMenu();
+    }
+});
         // ========== THEME TOGGLE ==========
         
         function toggleTheme() {
@@ -1224,3 +1205,4 @@
     </script>
 </body>
 </html>
+
