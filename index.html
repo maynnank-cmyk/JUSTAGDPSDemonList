@@ -114,6 +114,7 @@
             justify-content: space-between;
             width: 30px;
             height: 21px;
+            z-index: 1001;
         }
 
         .menu-toggle span {
@@ -176,16 +177,15 @@
             transform: scaleX(1);
         }
         
-        /* Мобильное меню */
+        /* Мобильное меню - ИСПРАВЛЕНО: убрано display: none */
         .mobile-menu {
-            display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 1000;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 999;
             flex-direction: column;
             justify-content: center;
             align-items: center;
@@ -212,15 +212,14 @@
             text-decoration: none;
             transition: all 0.3s ease;
             display: block;
+            border-radius: 8px;
         }
 
-        .mobile-menu nav ul li a:hover {
-            color: var(--accent-red);
-            transform: scale(1.1);
-        }
-
+        .mobile-menu nav ul li a:hover,
         .mobile-menu nav ul li a.active {
             color: var(--accent-red);
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.1);
         }
 
         .close-menu {
@@ -233,6 +232,11 @@
             font-size: 2rem;
             cursor: pointer;
             padding: 0.5rem;
+            z-index: 1000;
+        }
+
+        .close-menu:hover {
+            color: var(--accent-red);
         }
         
         /* Hero Section */
@@ -744,16 +748,16 @@
         </div>
     </header>
 
-    <!-- Мобильное меню -->
+    <!-- Мобильное меню - ИСПРАВЛЕНО: убрано display: none -->
     <div class="mobile-menu" id="mobileMenu">
         <button class="close-menu" onclick="toggleMobileMenu()">×</button>
         <nav>
             <ul>
-                <li><a href="index.html" class="active" onclick="toggleMobileMenu()">Главная</a></li>
-                <li><a href="players.html" onclick="toggleMobileMenu()">Топ игроков</a></li>
-                <li><a href="news.html" onclick="toggleMobileMenu()">Новости</a></li>
-                <li><a href="contacts.html" onclick="toggleMobileMenu()">Контакты</a></li>
-                <li><a href="rules.html" onclick="toggleMobileMenu()">Правила</a></li>
+                <li><a href="index.html" class="active" onclick="closeMobileMenu()">Главная</a></li>
+                <li><a href="players.html" onclick="closeMobileMenu()">Топ игроков</a></li>
+                <li><a href="news.html" onclick="closeMobileMenu()">Новости</a></li>
+                <li><a href="contacts.html" onclick="closeMobileMenu()">Контакты</a></li>
+                <li><a href="rules.html" onclick="closeMobileMenu()">Правила</a></li>
             </ul>
         </nav>
     </div>
@@ -838,11 +842,18 @@
             document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
         }
 
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            mobileMenu.classList.remove('active');
+            menuToggle.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
         // Закрываем меню при клике на ссылку
         document.querySelectorAll('.mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                toggleMobileMenu();
-            });
+            link.addEventListener('click', closeMobileMenu);
         });
 
         // Закрываем меню при клике вне его области
@@ -853,7 +864,14 @@
             if (mobileMenu.classList.contains('active') && 
                 !mobileMenu.contains(e.target) && 
                 !menuToggle.contains(e.target)) {
-                toggleMobileMenu();
+                closeMobileMenu();
+            }
+        });
+
+        // Закрываем меню при нажатии Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeMobileMenu();
             }
         });
 
@@ -1197,6 +1215,7 @@
         window.openDemonPage = openDemonPage;
         window.toggleTheme = toggleTheme;
         window.toggleMobileMenu = toggleMobileMenu;
+        window.closeMobileMenu = closeMobileMenu;
         window.handleImageError = handleImageError;
 
         document.addEventListener('DOMContentLoaded', function() {
