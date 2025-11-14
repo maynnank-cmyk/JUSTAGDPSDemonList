@@ -133,6 +133,8 @@
             color: var(--text-primary) !important;
             border: 1px solid white !important;
             margin-left: 0.5rem;
+            font-weight: 800 !important;
+            font-size: 0.9rem;
         }
 
         .request-btn:hover {
@@ -458,61 +460,6 @@
             font-weight: 800;
         }
         
-        .youtube-icon {
-            position: absolute;
-            top: 4px;
-            right: 4px;
-            background: rgba(255, 0, 0, 0.8);
-            color: white;
-            border-radius: 2px;
-            padding: 2px 4px;
-            font-size: 0.6rem;
-            font-weight: 700;
-            z-index: 2;
-        }
-        
-        .demon-info {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            min-width: 0;
-        }
-        
-        .demon-details {
-            flex: 1;
-            min-width: 0;
-            margin-right: 0.5rem;
-        }
-        
-        .demon-name {
-            font-size: 1rem;
-            font-weight: 800;
-            color: var(--text-primary);
-            margin-bottom: 0.3rem;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        
-        .demon-creator {
-            color: var(--text-secondary);
-            font-size: 0.8rem;
-            font-weight: 600;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        
-        .demon-points {
-            font-size: 0.9rem;
-            font-weight: 800;
-            color: var(--accent-green);
-            min-width: 60px;
-            text-align: right;
-            flex-shrink: 0;
-        }
-        
         /* Refresh Button */
         .refresh-btn {
             display: block;
@@ -618,57 +565,57 @@
         /* Большие плашки демонов для ПК */
         @media (min-width: 1024px) {
             .demon-row {
-                padding: 1.5rem !important;
-                gap: 1.5rem !important;
-                border-radius: 10px !important;
-                margin-bottom: 1rem !important;
+                padding: 1.25rem !important;
+                gap: 1.25rem !important;
+                border-radius: 8px !important;
+                margin-bottom: 0.8rem !important;
             }
             
             .demon-rank {
-                font-size: 1.5rem !important;
-                width: 60px !important;
+                font-size: 1.3rem !important;
+                width: 50px !important;
             }
             
             .demon-image {
-                width: 280px !important;
-                height: 157px !important;
-                border-radius: 8px !important;
+                width: 200px !important;
+                height: 112px !important;
+                border-radius: 6px !important;
             }
             
             .demon-name {
-                font-size: 1.3rem !important;
-                margin-bottom: 0.5rem !important;
+                font-size: 1.2rem !important;
+                margin-bottom: 0.4rem !important;
             }
             
             .demon-creator {
-                font-size: 1rem !important;
+                font-size: 0.9rem !important;
             }
             
             .demon-points {
-                font-size: 1.2rem !important;
-                min-width: 80px !important;
+                font-size: 1.1rem !important;
+                min-width: 70px !important;
             }
             
             /* Улучшенные эффекты при наведении для больших плашек */
             .demon-row:hover {
-                transform: translateY(-3px) !important;
-                box-shadow: 0 6px 20px rgba(220,53,69,0.2) !important;
+                transform: translateY(-2px) !important;
+                box-shadow: 0 4px 12px rgba(220,53,69,0.15) !important;
             }
         }
 
         /* Еще больше для очень больших экранов */
         @media (min-width: 1440px) {
             .demon-row {
-                padding: 2rem !important;
+                padding: 1.5rem !important;
             }
             
             .demon-image {
-                width: 320px !important;
-                height: 180px !important;
+                width: 220px !important;
+                height: 124px !important;
             }
             
             .demon-name {
-                font-size: 1.5rem !important;
+                font-size: 1.3rem !important;
             }
         }
 
@@ -716,6 +663,7 @@
                 margin: 0.5rem 1.5rem;
                 text-align: center;
                 border-radius: 4px;
+                font-weight: 800 !important;
             }
 
             .mobile-menu .request-btn:hover {
@@ -999,29 +947,11 @@
             themeButton.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
         }
 
-        // ========== YOUTUBE THUMBNAIL FUNCTIONS ==========
+        // ========== IMAGE FUNCTIONS ==========
         
-        function getYouTubeVideoId(url) {
-            if (!url) return null;
-            
-            const regex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
-            const match = url.match(regex);
-            return match ? match[1] : null;
-        }
-        
-        function getYouTubeThumbnail(videoUrl) {
-            const videoId = getYouTubeVideoId(videoUrl);
-            if (!videoId) return null;
-            
-            const qualities = [
-                `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`,
-                `https://i.ytimg.com/vi/${videoId}/sddefault.jpg`,
-                `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`,
-                `https://i.ytimg.com/vi/${videoId}/mqdefault.jpg`,
-                `https://i.ytimg.com/vi/${videoId}/default.jpg`
-            ];
-            
-            return qualities;
+        function getDemonImage(demonId) {
+            // Путь к локальным PNG изображениям
+            return `images/${demonId}.png`;
         }
         
         function checkImageAvailability(url) {
@@ -1033,18 +963,10 @@
             });
         }
         
-        async function getAvailableThumbnail(videoUrl) {
-            const thumbnailUrls = getYouTubeThumbnail(videoUrl);
-            if (!thumbnailUrls) return null;
-            
-            for (const url of thumbnailUrls) {
-                const isAvailable = await checkImageAvailability(url);
-                if (isAvailable) {
-                    return url;
-                }
-            }
-            
-            return null;
+        async function getAvailableImage(demonId) {
+            const imageUrl = getDemonImage(demonId);
+            const isAvailable = await checkImageAvailability(imageUrl);
+            return isAvailable ? imageUrl : null;
         }
 
         // ========== AUTOMATIC RANKING SYSTEM ==========
@@ -1053,20 +975,17 @@
             {
                 id: 'bloodbath',
                 name: 'Bloodbath',
-                creator: 'Riot & more',
-                videoUrl: 'https://www.youtube.com/watch?v=6jJbA4a3+4U'
+                creator: 'Riot & more'
             },
             {
                 id: 'cataclysm',
                 name: 'Cataclysm',
-                creator: 'Ggb0y',
-                videoUrl: 'https://www.youtube.com/watch?v=abcdefghijk'
+                creator: 'Ggb0y'
             },
             {
                 id: 'sakupen-hell',
                 name: 'Sakupen Hell',
-                creator: 'Noobas',
-                videoUrl: 'https://www.youtube.com/watch?v=xyz12345678'
+                creator: 'Noobas'
             }
         ];
 
@@ -1164,13 +1083,12 @@
                     demons = [];
                     
                     for (const demon of data.demons) {
-                        const thumbnailUrl = demon.videoUrl ? 
-                            await getAvailableThumbnail(demon.videoUrl) : null;
+                        const imageUrl = await getAvailableImage(demon.id);
                         
                         demons.push({
                             ...demon,
                             rank: demons.length + 1,
-                            image: thumbnailUrl
+                            image: imageUrl
                         });
                     }
                     
@@ -1185,13 +1103,12 @@
             } catch (error) {
                 demons = [];
                 for (const demon of defaultDemons) {
-                    const thumbnailUrl = demon.videoUrl ? 
-                        await getAvailableThumbnail(demon.videoUrl) : null;
+                    const imageUrl = await getAvailableImage(demon.id);
                     
                     demons.push({
                         ...demon,
                         rank: demons.length + 1,
-                        image: thumbnailUrl
+                        image: imageUrl
                     });
                 }
                 
@@ -1241,15 +1158,14 @@
                 demonRow.className = 'demon-row';
                 demonRow.onclick = () => openDemonPage(demon.id);
                 
-                const hasYouTubeThumbnail = demon.image && demon.videoUrl;
+                const hasImage = demon.image;
                 
                 demonRow.innerHTML = `
                     <div class="demon-rank ${rankClass}">${demon.rank}</div>
                     <div class="demon-image">
-                        ${hasYouTubeThumbnail ? 
+                        ${hasImage ? 
                             `<img src="${demon.image}" alt="${demon.name}" 
-                                  onerror="handleImageError(this, '${demon.name}')">
-                             <div class="youtube-icon">YT</div>` :
+                                  onerror="handleImageError(this, '${demon.name}')">` :
                             `<div class="image-placeholder">${demon.name.charAt(0)}</div>`
                         }
                     </div>
