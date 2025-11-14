@@ -460,6 +460,48 @@
             font-weight: 800;
         }
         
+        .demon-info {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-width: 0;
+        }
+        
+        .demon-details {
+            flex: 1;
+            min-width: 0;
+            margin-right: 0.5rem;
+        }
+        
+        .demon-name {
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 0.3rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .demon-creator {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .demon-points {
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: var(--accent-green);
+            min-width: 60px;
+            text-align: right;
+            flex-shrink: 0;
+        }
+        
         /* Refresh Button */
         .refresh-btn {
             display: block;
@@ -594,6 +636,7 @@
             .demon-points {
                 font-size: 1.1rem !important;
                 min-width: 70px !important;
+                text-align: right !important;
             }
             
             /* Улучшенные эффекты при наведении для больших плашек */
@@ -633,6 +676,10 @@
             
             .demon-name {
                 font-size: 1rem;
+            }
+            
+            .demon-points {
+                text-align: right !important;
             }
         }
 
@@ -719,6 +766,7 @@
             .demon-points {
                 font-size: 0.8rem;
                 min-width: 50px;
+                text-align: right !important;
             }
             
             .footer-content {
@@ -745,6 +793,10 @@
             
             .demon-name {
                 font-size: 0.85rem;
+            }
+            
+            .demon-points {
+                text-align: right !important;
             }
         }
 
