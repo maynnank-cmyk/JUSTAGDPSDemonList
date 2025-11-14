@@ -7,7 +7,7 @@
       "completedDemons": ["test"],
       "progress": {
         "test": 100,
-      }
+      },
     }
   ]
 }
