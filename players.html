@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Топ Игроков - DFPS</title>
+    <title>Топ игроков - Just a GDPS</title>
     <style>
-       
         :root {
             --bg-primary: #ffffff;
             --bg-secondary: #f8f9fa;
@@ -101,164 +100,159 @@
         .theme-toggle:hover {
             transform: scale(1.1);
         }
- /* Обычная навигация для ПК */
-.header-controls nav ul {
-    display: flex;
-    list-style: none;
-    gap: 1.5rem;
-    margin: 0;
-    padding: 0;
-}
+        
+        /* Обычная навигация для ПК */
+        .header-controls nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1rem;
+            margin: 0;
+            padding: 0;
+        }
 
-.header-controls nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 600;
-    padding: 0.5rem 0.8rem;
-    border-radius: 4px;
-    transition: all 0.2s ease;
-}
+        .header-controls nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 0.5rem 0.8rem;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
 
-.header-controls nav ul li a:hover,
-.header-controls nav ul li a.active {
-    background: rgba(255, 255, 255, 0.15);
-    color: white;
-}
-        /* Гамбургер меню */
-      /* Простое гамбургер меню без анимации полосок */
-.menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0.5rem;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 40px;
-    height: 40px;
-    position: relative;
-    z-index: 1001;
-}
+        .header-controls nav ul li a:hover,
+        .header-controls nav ul li a.active {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+        }
 
-.menu-toggle span {
-    display: block;
-    height: 3px;
-    width: 24px;
-    background-color: white;
-    border-radius: 1px;
-    margin: 2px 0;
-}
+        /* Кнопка "Отправить реквест" для ПК */
+        .request-btn {
+            background: white !important;
+            color: var(--text-primary) !important;
+            border: 1px solid white !important;
+            margin-left: 0.5rem;
+            font-weight: 800 !important;
+            font-size: 0.9rem;
+        }
 
-/* Мобильное меню выезжающее справа */
-.mobile-menu {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 300px;
-    height: 100%;
-    background: var(--bg-primary);
-    z-index: 999;
-    flex-direction: column;
-    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-    transition: right 0.3s ease;
-    border-left: 1px solid var(--border-color);
-}
+        .request-btn:hover {
+            background: rgba(255, 255, 255, 0.9) !important;
+            transform: translateY(-1px);
+        }
 
-.mobile-menu.active {
-    right: 0;
-}
+        /* Простое гамбургер меню без анимации полосок */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            position: relative;
+            z-index: 1001;
+        }
 
-.mobile-menu nav ul {
-    flex-direction: column;
-    gap: 0;
-    padding: 80px 0 0 0;
-}
+        .menu-toggle span {
+            display: block;
+            height: 3px;
+            width: 24px;
+            background-color: white;
+            border-radius: 1px;
+            margin: 2px 0;
+        }
 
-.mobile-menu nav ul li {
-    border-bottom: 1px solid var(--border-color);
-}
+        /* Мобильное меню выезжающее справа */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 300px;
+            height: 100%;
+            background: var(--bg-primary);
+            z-index: 999;
+            flex-direction: column;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            transition: right 0.3s ease;
+            border-left: 1px solid var(--border-color);
+        }
 
-.mobile-menu nav ul li:last-child {
-    border-bottom: none;
-}
+        .mobile-menu.active {
+            right: 0;
+        }
 
-.mobile-menu nav ul li a {
-    font-size: 1rem;
-    padding: 1rem 1.5rem;
-    color: var(--text-primary);
-    text-decoration: none;
-    display: block;
-    transition: all 0.2s ease;
-    font-weight: 600;
-}
+        .mobile-menu nav ul {
+            flex-direction: column;
+            gap: 0;
+            padding: 80px 0 0 0;
+        }
 
-.mobile-menu nav ul li a:hover,
-.mobile-menu nav ul li a.active {
-    background: var(--bg-secondary);
-    color: var(--accent-red);
-}
+        .mobile-menu nav ul li {
+            border-bottom: 1px solid var(--border-color);
+        }
 
-/* Кнопка закрытия */
-.close-menu {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: none;
-    border: none;
-    color: var(--text-secondary);
-    font-size: 1.5rem;
-    cursor: pointer;
-    padding: 0.5rem;
-    z-index: 1000;
-    transition: color 0.2s ease;
-}
+        .mobile-menu nav ul li:last-child {
+            border-bottom: none;
+        }
 
-.close-menu:hover {
-    color: var(--accent-red);
-}
+        .mobile-menu nav ul li a {
+            font-size: 1rem;
+            padding: 1rem 1.5rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: block;
+            transition: all 0.2s ease;
+            font-weight: 600;
+        }
 
-/* Затемнение фона */
-.menu-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 998;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-}
+        .mobile-menu nav ul li a:hover,
+        .mobile-menu nav ul li a.active {
+            background: var(--bg-secondary);
+            color: var(--accent-red);
+        }
 
-.menu-overlay.active {
-    opacity: 1;
-    visibility: visible;
-}
+        /* Кнопка закрытия */
+        .close-menu {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1000;
+            transition: color 0.2s ease;
+        }
 
-/* Адаптивность */
-@media (max-width: 768px) {
-    .menu-toggle {
-        display: flex;
-    }
+        .close-menu:hover {
+            color: var(--accent-red);
+        }
 
-    .header-controls nav {
-        display: none;
-    }
-}
+        /* Затемнение фона */
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
 
-@media (max-width: 480px) {
-    .mobile-menu {
-        width: 280px;
-    }
-    
-    .mobile-menu nav ul li a {
-        padding: 0.9rem 1.2rem;
-        font-size: 0.95rem;
-    }
-}
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
         /* Hero Section */
         .hero {
             padding: 2rem 0;
@@ -332,9 +326,6 @@
             cursor: pointer;
             border-bottom: 1px solid var(--border-color);
             transition: background-color 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
         }
         
         .search-result-item:hover {
@@ -345,31 +336,13 @@
             border-bottom: none;
         }
         
-        .search-result-avatar {
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--accent-red);
-            color: white;
-            font-weight: bold;
-            font-size: 1rem;
-            flex-shrink: 0;
-        }
-        
-        .search-result-info {
-            flex: 1;
-        }
-        
         .search-result-name {
             font-weight: 700;
             color: var(--text-primary);
             font-size: 0.9rem;
         }
         
-        .search-result-points {
+        .search-result-score {
             font-size: 0.75rem;
             color: var(--text-secondary);
             margin-top: 0.2rem;
@@ -413,7 +386,6 @@
             gap: 0.8rem;
         }
         
-        /* Плашки игроков - стили как у демонов в index.html */
         .player-row {
             background: var(--bg-primary);
             border: 1px solid var(--border-color);
@@ -460,29 +432,23 @@
             border-radius: 50%;
             overflow: hidden;
             flex-shrink: 0;
-            background: var(--bg-tertiary);
+            background: var(--accent-red);
             display: flex;
             align-items: center;
             justify-content: center;
             border: 2px solid var(--border-color);
+            position: relative;
         }
         
-        .player-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .avatar-placeholder {
+        .player-avatar-content {
             width: 100%;
             height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: var(--accent-red);
             color: white;
             font-size: 1.5rem;
-            font-weight: 800;
+            font-weight: bold;
         }
         
         .player-info {
@@ -584,17 +550,6 @@
             color: #ffb3b3;
         }
         
-        .empty-state {
-            text-align: center;
-            padding: 2rem;
-            color: var(--text-secondary);
-        }
-        
-        .empty-state .icon {
-            font-size: 3rem;
-            margin-bottom: 0.8rem;
-        }
-        
         /* Footer */
         footer {
             background: var(--bg-secondary);
@@ -640,6 +595,68 @@
             font-weight: 600;
         }
 
+        /* Большие плашки игроков для ПК */
+        @media (min-width: 1024px) {
+            .player-row {
+                padding: 1.25rem !important;
+                gap: 1.25rem !important;
+                border-radius: 8px !important;
+                margin-bottom: 0.8rem !important;
+            }
+            
+            .player-rank {
+                font-size: 1.3rem !important;
+                width: 50px !important;
+            }
+            
+            .player-avatar {
+                width: 80px !important;
+                height: 80px !important;
+            }
+            
+            .player-name {
+                font-size: 1.2rem !important;
+                margin-bottom: 0.4rem !important;
+            }
+            
+            .player-stats {
+                font-size: 0.9rem !important;
+            }
+            
+            .player-score {
+                font-size: 1.1rem !important;
+                min-width: 100px !important;
+                text-align: right !important;
+            }
+            
+            /* Улучшенные эффекты при наведении для больших плашек */
+            .player-row:hover {
+                transform: translateY(-2px) !important;
+                box-shadow: 0 4px 12px rgba(220,53,69,0.15) !important;
+            }
+        }
+
+        /* Сохраняем мобильные стили */
+        @media (max-width: 1023px) {
+            .player-row {
+                padding: 1rem;
+                gap: 1rem;
+            }
+            
+            .player-avatar {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .player-name {
+                font-size: 1rem;
+            }
+            
+            .player-score {
+                text-align: right !important;
+            }
+        }
+
         /* Адаптивность для мобильных устройств */
         @media (max-width: 768px) {
             .menu-toggle {
@@ -657,6 +674,34 @@
 
             .logo {
                 font-size: 1.1rem;
+            }
+
+            /* Кнопка "Отправить реквест" для мобильных */
+            .mobile-menu .request-btn {
+                background: var(--bg-secondary) !important;
+                color: var(--text-primary) !important;
+                border: 1px solid var(--border-color) !important;
+                margin: 0.5rem 1.5rem;
+                text-align: center;
+                border-radius: 4px;
+                font-weight: 800 !important;
+            }
+
+            .mobile-menu .request-btn:hover {
+                background: var(--bg-tertiary) !important;
+                color: var(--accent-red) !important;
+            }
+
+            .hero {
+                padding: 1.5rem 0;
+            }
+            
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+            
+            .hero p {
+                font-size: 0.9rem;
             }
         }
 
@@ -682,10 +727,6 @@
                 font-size: 1.5rem;
             }
             
-            .hero p {
-                font-size: 0.9rem;
-            }
-            
             .player-row {
                 padding: 0.8rem;
                 gap: 0.8rem;
@@ -696,7 +737,7 @@
                 height: 50px;
             }
             
-            .avatar-placeholder {
+            .player-avatar-content {
                 font-size: 1.2rem;
             }
             
@@ -710,7 +751,8 @@
             
             .player-score {
                 font-size: 0.8rem;
-                min-width: 60px;
+                min-width: 70px;
+                text-align: right !important;
             }
             
             .footer-content {
@@ -721,12 +763,6 @@
             .mobile-menu nav ul li a {
                 font-size: 1.1rem;
                 padding: 0.7rem 1.2rem;
-            }
-
-            .search-result-avatar {
-                width: 30px;
-                height: 30px;
-                font-size: 0.9rem;
             }
         }
 
@@ -746,7 +782,7 @@
             }
             
             .player-score {
-                min-width: 50px;
+                text-align: right !important;
             }
         }
 
@@ -768,13 +804,24 @@
             -webkit-text-size-adjust: 100%;
             text-size-adjust: 100%;
         }
+
+        /* Темная тема для кнопки запроса */
+        [data-theme="dark"] .request-btn {
+            background: var(--bg-primary) !important;
+            color: var(--text-primary) !important;
+            border: 1px solid var(--border-color) !important;
+        }
+
+        [data-theme="dark"] .request-btn:hover {
+            background: var(--bg-secondary) !important;
+        }
     </style>
 </head>
 <body>
     <header>
         <div class="container">
             <div class="header-content">
-                <a href="index.html" class="logo">DFPS <span>DemonList</span></a>
+                <a href="index.html" class="logo">Just a GDPS <span>DemonList</span></a>
                 <div class="header-controls">
                     <button class="theme-toggle" onclick="toggleTheme()">
                         🌙
@@ -793,6 +840,8 @@
                             <li><a href="news.html">Новости</a></li>
                             <li><a href="contacts.html">Контакты</a></li>
                             <li><a href="rules.html">Правила</a></li>
+                            <!-- Кнопка "Отправить реквест" для ПК -->
+                            <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSceFzm37tUw0B5t6h3L3U5alQJ5P41F1uZEeC3DaVdDXbNmrQ/viewform?usp=dialog" class="request-btn">Отправить реквест</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -810,18 +859,19 @@
                 <li><a href="news.html" onclick="closeMobileMenu()">Новости</a></li>
                 <li><a href="contacts.html" onclick="closeMobileMenu()">Контакты</a></li>
                 <li><a href="rules.html" onclick="closeMobileMenu()">Правила</a></li>
+                <!-- Кнопка "Отправить реквест" для мобильных -->
+                <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSceFzm37tUw0B5t6h3L3U5alQJ5P41F1uZEeC3DaVdDXbNmrQ/viewform?usp=dialog" class="request-btn" onclick="closeMobileMenu()">Отправить реквест</a></li>
             </ul>
         </nav>
     </div>
     
     <section class="hero">
         <div class="container">
-            <h1>Топ Игроков</h1>
-            <p>Рейтинг лучших игроков Geometry Dash по количеству очков</p>
+            <h1>Топ игроков</h1>
+            <p>Рейтинг лучших игроков Geometry Dash Demon List</p>
         </div>
     </section>
     
-    <!-- Поиск игроков -->
     <section class="search-section">
         <div class="container">
             <div class="search-container">
@@ -834,12 +884,12 @@
     <section class="players-list">
         <div class="container">
             <div class="list-header">
-                <h2>Лучшие игроки</h2>
+                <h2>Рейтинг игроков</h2>
                 <p>Игроки отсортированы по количеству набранных очков</p>
             </div>
 
             <button class="refresh-btn" onclick="refreshData()">
-                🔄 Обновить список игроков
+                🔄 Обновить список
             </button>
             
             <div id="syncStatus" class="sync-status">
@@ -883,36 +933,37 @@
     </footer>
 
     <script>
-       // ========== ПРОСТОЕ МОБИЛЬНОЕ МЕНЮ ==========
-function toggleMobileMenu() {
-    const mobileMenu = document.getElementById('mobileMenu');
-    const menuOverlay = document.getElementById('menuOverlay');
-    
-    mobileMenu.classList.toggle('active');
-    menuOverlay.classList.toggle('active');
-    document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
-}
+        // ========== ПРОСТОЕ МОБИЛЬНОЕ МЕНЮ ==========
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuOverlay = document.getElementById('menuOverlay');
+            
+            mobileMenu.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        }
 
-function closeMobileMenu() {
-    const mobileMenu = document.getElementById('mobileMenu');
-    const menuOverlay = document.getElementById('menuOverlay');
-    
-    mobileMenu.classList.remove('active');
-    menuOverlay.classList.remove('active');
-    document.body.style.overflow = '';
-}
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuOverlay = document.getElementById('menuOverlay');
+            
+            mobileMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
 
-// Закрываем меню при клике на ссылку
-document.querySelectorAll('.mobile-menu a').forEach(link => {
-    link.addEventListener('click', closeMobileMenu);
-});
+        // Закрываем меню при клике на ссылку
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
 
-// Закрываем меню при нажатии Escape
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-        closeMobileMenu();
-    }
-});
+        // Закрываем меню при нажатии Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeMobileMenu();
+            }
+        });
+
         // ========== THEME TOGGLE ==========
         
         function toggleTheme() {
@@ -934,10 +985,9 @@ document.addEventListener('keydown', (e) => {
             themeButton.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
         }
 
-        // ========== PLAYERS DATA SYSTEM ==========
-        
+        // ========== PLAYERS LIST FUNCTIONALITY ==========
+
         let players = [];
-        let demons = [];
         let filteredPlayers = [];
 
         // ========== SEARCH SYSTEM ==========
@@ -984,15 +1034,11 @@ document.addEventListener('keydown', (e) => {
             searchResults.innerHTML = '';
             
             results.slice(0, 6).forEach(player => {
-                const playerPoints = calculatePlayerPoints(player);
                 const resultItem = document.createElement('div');
                 resultItem.className = 'search-result-item';
                 resultItem.innerHTML = `
-                    <div class="search-result-avatar">${player.avatar}</div>
-                    <div class="search-result-info">
-                        <div class="search-result-name">${player.name}</div>
-                        <div class="search-result-points">${playerPoints} pts</div>
-                    </div>
+                    <div class="search-result-name">${player.name}</div>
+                    <div class="search-result-score">${player.totalPoints} очков</div>
                 `;
                 resultItem.addEventListener('click', function() {
                     openPlayerProfile(player.id);
@@ -1005,10 +1051,6 @@ document.addEventListener('keydown', (e) => {
         }
 
         // ========== DATA MANAGEMENT ==========
-
-        function openPlayerProfile(playerId) {
-            window.location.href = `player.html?id=${playerId}`;
-        }
 
         function showError(message) {
             const errorContainer = document.getElementById('errorContainer');
@@ -1039,78 +1081,83 @@ document.addEventListener('keydown', (e) => {
             }
         }
 
-        async function loadPlayersFromJSON() {
-            try {
-                console.log('📥 Загрузка игроков из players.json...');
-                
-                const response = await fetch('data/players.json');
-                if (!response.ok) throw new Error('Файл players.json не найден');
-                
-                const data = await response.json();
-                
-                if (data.players && Array.isArray(data.players)) {
-                    players = data.players;
-                    filteredPlayers = [...players];
-                    console.log('✅ Игроки загружены из players.json:', players.length);
-                    return true;
-                } else {
-                    throw new Error('Неверный формат players.json');
-                }
-                
-            } catch (error) {
-                console.error('❌ Ошибка загрузки игроков:', error);
-                showError('Ошибка загрузки игроков: ' + error.message);
-                return false;
-            }
-        }
-
-        async function loadDemonsFromJSON() {
-            try {
-                console.log('📥 Загрузка демонов для расчета очков...');
-                
-                const response = await fetch('data/demons.json');
-                if (!response.ok) throw new Error('Файл demons.json не найден');
-                
-                const data = await response.json();
-                
-                if (data.demons && Array.isArray(data.demons)) {
-                    demons = data.demons;
-                    console.log('✅ Демоны загружены для расчета очков:', demons.length);
-                    return true;
-                } else {
-                    throw new Error('Неверный формат demons.json');
-                }
-                
-            } catch (error) {
-                console.error('❌ Ошибка загрузки демонов:', error);
-                showError('Ошибка загрузки демонов: ' + error.message);
-                return false;
-            }
-        }
-
-        function calculatePlayerPoints(player) {
+        function calculatePlayerTotalPoints(player, allDemons) {
             if (!player.completedDemons) return 0;
             
             return player.completedDemons.reduce((total, demonId) => {
-                const demonRank = calculateDemonRank(demonId);
+                const demonRank = calculateDemonRank(demonId, allDemons);
                 const progress = player.progress ? player.progress[demonId] || 100 : 100;
                 return total + calculatePointsWithProgress(demonRank, progress);
             }, 0);
         }
 
-        function calculateDemonRank(demonId) {
-            const sortedDemons = [...demons].sort((a, b) => {
-                return demons.indexOf(a) - demons.indexOf(b);
+        function calculateDemonRank(demonId, allDemons) {
+            const sortedDemons = [...allDemons].sort((a, b) => {
+                return allDemons.indexOf(a) - allDemons.indexOf(b);
             });
             
             return sortedDemons.findIndex(d => d.id === demonId) + 1;
+        }
+
+        async function loadDataFromJSON() {
+            try {
+                console.log('📥 Загрузка игроков из players.json...');
+                
+                const playersResponse = await fetch('data/players.json');
+                if (!playersResponse.ok) throw new Error('Файл players.json не найден');
+                
+                const playersData = await playersResponse.json();
+                
+                const demonsResponse = await fetch('data/demons.json');
+                if (!demonsResponse.ok) throw new Error('Файл demons.json не найден');
+                
+                const demonsData = await demonsResponse.json();
+                
+                if (playersData.players && Array.isArray(playersData.players)) {
+                    // Рассчитываем очки для каждого игрока
+                    players = playersData.players.map(player => {
+                        const totalPoints = calculatePlayerTotalPoints(player, demonsData.demons);
+                        const completedCount = player.completedDemons ? player.completedDemons.length : 0;
+                        
+                        return {
+                            ...player,
+                            totalPoints: totalPoints,
+                            completedCount: completedCount
+                        };
+                    }).filter(player => player.totalPoints > 0);
+                    
+                    // Сортируем игроков по очкам (по убыванию)
+                    players.sort((a, b) => b.totalPoints - a.totalPoints);
+                    
+                    // Добавляем ранги
+                    players.forEach((player, index) => {
+                        player.rank = index + 1;
+                    });
+                    
+                    filteredPlayers = [...players];
+                    
+                    console.log('✅ Игроки загружены из players.json:', players.length);
+                    updateSyncStatus(`Загружено ${players.length} игроков`);
+                    return true;
+                } else {
+                    throw new Error('Неверный формат players.json - отсутствует массив players');
+                }
+                
+            } catch (error) {
+                console.error('❌ Ошибка загрузки игроков:', error);
+                showError('Ошибка загрузки данных: ' + error.message);
+                players = [];
+                filteredPlayers = [];
+                updateSyncStatus('Ошибка загрузки данных');
+                return false;
+            }
         }
 
         function updateSyncStatus(message) {
             const statusElement = document.getElementById('syncStatus');
             if (statusElement) {
                 statusElement.textContent = message;
-                statusElement.className = 'sync-status ' + (message.includes('✅') || message.includes('Загружено') ? 'synced' : '');
+                statusElement.className = 'sync-status ' + (message.includes('Загружено') ? 'synced' : '');
             }
         }
 
@@ -1118,17 +1165,15 @@ document.addEventListener('keydown', (e) => {
 
         function renderPlayers() {
             const playersList = document.getElementById('playersList');
-            if (!playersList) {
-                console.error('❌ Element playersList not found');
-                return;
-            }
+            
+            if (!playersList) return;
             
             playersList.innerHTML = '';
             
             if (filteredPlayers.length === 0) {
                 playersList.innerHTML = `
-                    <div class="empty-state">
-                        <div class="icon">😔</div>
+                    <div style="text-align: center; padding: 2rem; color: var(--text-secondary);">
+                        <div style="font-size: 2rem; margin-bottom: 0.8rem;">🔍</div>
                         <div style="font-size: 1rem; margin-bottom: 0.4rem; font-weight: 700;">Игроки не найдены</div>
                         <div style="font-weight: 600; font-size: 0.9rem;">Попробуйте изменить поисковый запрос</div>
                     </div>
@@ -1136,38 +1181,24 @@ document.addEventListener('keydown', (e) => {
                 return;
             }
             
-            // Считаем очки для каждого игрока и сортируем
-            const playersWithPoints = filteredPlayers.map(player => ({
-                ...player,
-                totalPoints: calculatePlayerPoints(player)
-            }));
-            
-            // Сортируем по очкам (по убыванию)
-            playersWithPoints.sort((a, b) => b.totalPoints - a.totalPoints);
-            
-            console.log('🎯 Отсортированные игроки:', playersWithPoints);
-            
-            // Рендерим игроков в стиле демонов из index.html
-            playersWithPoints.forEach((player, index) => {
-                const rank = index + 1;
-                const rankClass = rank === 1 ? 'top-1' : 
-                                rank <= 3 ? 'top-3' : 
-                                rank <= 10 ? 'top-10' : '';
-                
-                const completedDemonsCount = player.completedDemons ? player.completedDemons.length : 0;
+            filteredPlayers.forEach(player => {
+                const rankClass = player.rank === 1 ? 'top-1' : 
+                                player.rank <= 3 ? 'top-3' : 
+                                player.rank <= 10 ? 'top-10' : '';
                 
                 const playerRow = document.createElement('div');
                 playerRow.className = 'player-row';
                 playerRow.onclick = () => openPlayerProfile(player.id);
+                
                 playerRow.innerHTML = `
-                    <div class="player-rank ${rankClass}">${rank}</div>
+                    <div class="player-rank ${rankClass}">${player.rank}</div>
                     <div class="player-avatar">
-                        <div class="avatar-placeholder">${player.avatar}</div>
+                        <div class="player-avatar-content">${player.avatar}</div>
                     </div>
                     <div class="player-info">
                         <div class="player-details">
                             <div class="player-name">${player.name}</div>
-                            <div class="player-stats">Пройдено демонов: ${completedDemonsCount}</div>
+                            <div class="player-stats">${player.completedCount} пройденных демонов</div>
                         </div>
                         <div class="player-score">${player.totalPoints} pts</div>
                     </div>
@@ -1178,12 +1209,13 @@ document.addEventListener('keydown', (e) => {
 
         // ========== UTILITY FUNCTIONS ==========
 
+        function openPlayerProfile(playerId) {
+            window.location.href = `player.html?id=${playerId}`;
+        }
+
         async function refreshData() {
-            console.log('🔄 Обновление данных...');
-            await loadDemonsFromJSON();
-            await loadPlayersFromJSON();
+            await loadDataFromJSON();
             renderPlayers();
-            updateSyncStatus(`Загружено ${players.length} игроков`);
             
             document.querySelectorAll('.player-row').forEach((row, index) => {
                 row.style.opacity = '0';
@@ -1200,49 +1232,34 @@ document.addEventListener('keydown', (e) => {
         // ========== INITIALIZATION ==========
 
         async function initializeData() {
-            console.log('🎮 Инициализация списка игроков...');
             loadTheme();
-            try {
-                await loadDemonsFromJSON();
-                await loadPlayersFromJSON();
-                initializeSearch();
-                renderPlayers();
-                updateSyncStatus(`Загружено ${players.length} игроков`);
-                
-                setTimeout(() => {
-                    document.querySelectorAll('.player-row').forEach((row, index) => {
-                        row.style.opacity = '0';
-                        row.style.transform = 'translateX(-10px)';
-                        
-                        setTimeout(() => {
-                            row.style.transition = 'opacity 0.3s, transform 0.3s';
-                            row.style.opacity = '1';
-                            row.style.transform = 'translateX(0)';
-                        }, index * 30);
-                    });
-                }, 100);
-            } catch (error) {
-                console.error('❌ Ошибка инициализации:', error);
-                showError('Ошибка загрузки данных: ' + error.message);
-            }
+            await loadDataFromJSON();
+            initializeSearch();
+            renderPlayers();
+            
+            setTimeout(() => {
+                document.querySelectorAll('.player-row').forEach((row, index) => {
+                    row.style.opacity = '0';
+                    row.style.transform = 'translateX(-10px)';
+                    
+                    setTimeout(() => {
+                        row.style.transition = 'opacity 0.3s, transform 0.3s';
+                        row.style.opacity = '1';
+                        row.style.transform = 'translateX(0)';
+                    }, index * 30);
+                });
+            }, 100);
         }
 
-        // Глобальные функции
         window.refreshData = refreshData;
         window.openPlayerProfile = openPlayerProfile;
         window.toggleTheme = toggleTheme;
         window.toggleMobileMenu = toggleMobileMenu;
         window.closeMobileMenu = closeMobileMenu;
 
-        // Запуск при загрузке страницы
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('🚀 Players.html загружен, начинаем инициализацию...');
             initializeData();
         });
     </script>
 </body>
 </html>
-
-
-
-
