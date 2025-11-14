@@ -49,14 +49,14 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 15px;
         }
         
         /* Header */
         header {
             background: var(--header-red);
             border-bottom: 1px solid var(--header-red);
-            padding: 1rem 0 0 0;
+            padding: 0.5rem 0 0 0;
             position: sticky;
             top: 0;
             z-index: 100;
@@ -67,11 +67,11 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-bottom: 1rem;
+            padding-bottom: 0.5rem;
         }
         
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 800;
             color: white;
             text-decoration: none;
@@ -84,7 +84,7 @@
         .header-controls {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 0.5rem;
         }
         
         .theme-toggle {
@@ -92,68 +92,184 @@
             border: none;
             color: white;
             cursor: pointer;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             transition: all 0.3s ease;
-            padding: 0.5rem;
+            padding: 0.3rem;
         }
         
         .theme-toggle:hover {
             transform: scale(1.1);
         }
         
-        nav ul {
+        /* Обычная навигация для ПК */
+        .header-controls nav ul {
             display: flex;
             list-style: none;
-            gap: 0;
+            gap: 1rem;
+            margin: 0;
+            padding: 0;
         }
-        
-        nav ul li a {
+
+        .header-controls nav ul li a {
             color: white;
             text-decoration: none;
-            font-weight: 600;
-            padding: 0.5rem 1rem;
-            transition: all 0.2s;
             font-size: 0.9rem;
-            position: relative;
+            font-weight: 600;
+            padding: 0.5rem 0.8rem;
+            border-radius: 4px;
+            transition: all 0.2s ease;
         }
-        
-        nav ul li a::after {
-            content: '';
+
+        .header-controls nav ul li a:hover,
+        .header-controls nav ul li a.active {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+        }
+
+        /* Кнопка "Отправить реквест" для ПК */
+        .request-btn {
+            background: white !important;
+            color: var(--text-primary) !important;
+            border: 1px solid white !important;
+            margin-left: 0.5rem;
+            font-weight: 800 !important;
+            font-size: 0.9rem;
+        }
+
+        .request-btn:hover {
+            background: rgba(255, 255, 255, 0.9) !important;
+            transform: translateY(-1px);
+        }
+
+        /* Простое гамбургер меню без анимации полосок */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            position: relative;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            display: block;
+            height: 3px;
+            width: 24px;
+            background-color: white;
+            border-radius: 1px;
+            margin: 2px 0;
+        }
+
+        /* Мобильное меню выезжающее справа */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 300px;
+            height: 100%;
+            background: var(--bg-primary);
+            z-index: 999;
+            flex-direction: column;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            transition: right 0.3s ease;
+            border-left: 1px solid var(--border-color);
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu nav ul {
+            flex-direction: column;
+            gap: 0;
+            padding: 80px 0 0 0;
+        }
+
+        .mobile-menu nav ul li {
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .mobile-menu nav ul li:last-child {
+            border-bottom: none;
+        }
+
+        .mobile-menu nav ul li a {
+            font-size: 1rem;
+            padding: 1rem 1.5rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: block;
+            transition: all 0.2s ease;
+            font-weight: 600;
+        }
+
+        .mobile-menu nav ul li a:hover,
+        .mobile-menu nav ul li a.active {
+            background: var(--bg-secondary);
+            color: var(--accent-red);
+        }
+
+        /* Кнопка закрытия */
+        .close-menu {
             position: absolute;
-            bottom: -1rem;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1000;
+            transition: color 0.2s ease;
+        }
+
+        .close-menu:hover {
+            color: var(--accent-red);
+        }
+
+        /* Затемнение фона */
+        .menu-overlay {
+            position: fixed;
+            top: 0;
             left: 0;
             width: 100%;
-            height: 3px;
-            background: white;
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
         }
-        
-        nav ul li a.active::after {
-            transform: scaleX(1);
-        }
-        
-        nav ul li a:hover::after {
-            transform: scaleX(1);
+
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
         }
         
         /* Hero Section */
         .hero {
-            padding: 3rem 0;
+            padding: 2rem 0;
             text-align: center;
             background: var(--bg-secondary);
             border-bottom: 1px solid var(--border-color);
         }
         
         .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            margin-bottom: 0.8rem;
             color: var(--text-primary);
             font-weight: 800;
         }
         
         .hero p {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: var(--text-secondary);
             max-width: 600px;
             margin: 0 auto;
@@ -162,7 +278,7 @@
         
         /* Search Section */
         .search-section {
-            padding: 2rem 0;
+            padding: 1.5rem 0;
             background: var(--bg-primary);
         }
         
@@ -174,8 +290,8 @@
         
         .search-input {
             width: 100%;
-            padding: 0.75rem 1rem;
-            font-size: 1rem;
+            padding: 0.6rem 0.8rem;
+            font-size: 0.9rem;
             border: 1px solid var(--border-color);
             border-radius: 6px;
             background: var(--bg-primary);
@@ -197,8 +313,8 @@
             background: var(--bg-primary);
             border: 1px solid var(--border-color);
             border-radius: 6px;
-            margin-top: 0.5rem;
-            max-height: 300px;
+            margin-top: 0.3rem;
+            max-height: 200px;
             overflow-y: auto;
             z-index: 1000;
             display: none;
@@ -206,7 +322,7 @@
         }
         
         .search-result-item {
-            padding: 0.75rem 1rem;
+            padding: 0.6rem 0.8rem;
             cursor: pointer;
             border-bottom: 1px solid var(--border-color);
             transition: background-color 0.2s;
@@ -227,31 +343,32 @@
         }
         
         .search-result-date {
-            font-size: 0.875rem;
+            font-size: 0.75rem;
             color: var(--text-secondary);
             font-weight: 600;
         }
         
         .no-results {
-            padding: 1rem;
+            padding: 0.8rem;
             text-align: center;
             color: var(--text-secondary);
             font-weight: 600;
+            font-size: 0.9rem;
         }
         
         /* News Section */
         .news-section {
-            padding: 2rem 0;
+            padding: 1.5rem 0;
         }
         
         .section-header {
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             text-align: center;
         }
         
         .section-header h2 {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+            margin-bottom: 0.4rem;
             color: var(--text-primary);
             font-weight: 800;
         }
@@ -259,19 +376,20 @@
         .section-header p {
             color: var(--text-secondary);
             font-weight: 600;
+            font-size: 0.9rem;
         }
         
         .news-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
         }
         
         .news-card {
             background: var(--bg-primary);
             border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 1.5rem;
+            border-radius: 6px;
+            padding: 1rem;
             transition: all 0.2s;
             cursor: pointer;
             box-shadow: var(--card-shadow);
@@ -282,15 +400,15 @@
         
         .news-card:hover {
             border-color: var(--accent-red);
-            box-shadow: 0 4px 12px rgba(220,53,69,0.15);
-            transform: translateY(-2px);
+            box-shadow: 0 2px 8px rgba(220,53,69,0.15);
+            transform: translateY(-1px);
         }
         
         .news-date {
             color: var(--accent-red);
-            font-size: 0.875rem;
+            font-size: 0.8rem;
             font-weight: 700;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
             display: flex;
             align-items: center;
             gap: 0.5rem;
@@ -298,13 +416,13 @@
         
         .news-date::before {
             content: "📅";
-            font-size: 1rem;
+            font-size: 0.9rem;
         }
         
         .news-title {
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             font-weight: 800;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
             color: var(--text-primary);
             line-height: 1.4;
         }
@@ -314,35 +432,36 @@
             line-height: 1.6;
             flex: 1;
             font-weight: 600;
+            font-size: 0.9rem;
         }
         
         .news-meta {
-            margin-top: 1rem;
-            padding-top: 1rem;
+            margin-top: 0.8rem;
+            padding-top: 0.8rem;
             border-top: 1px solid var(--border-color);
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            font-size: 0.875rem;
+            font-size: 0.8rem;
             color: var(--text-secondary);
         }
         
         .news-meta::before {
             content: "🏷️";
-            font-size: 0.875rem;
+            font-size: 0.8rem;
         }
         
         /* Refresh Button */
         .refresh-btn {
             display: block;
-            margin: 2rem auto;
-            padding: 0.75rem 2rem;
+            margin: 1.5rem auto;
+            padding: 0.6rem 1.5rem;
             background: var(--accent-red);
             color: white;
             border: none;
             border-radius: 6px;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-weight: 700;
             transition: all 0.2s;
         }
@@ -355,13 +474,14 @@
         /* Status */
         .sync-status {
             text-align: center;
-            padding: 1rem;
+            padding: 0.8rem;
             background: var(--bg-secondary);
             border-radius: 6px;
-            margin: 1rem 0;
+            margin: 0.8rem 0;
             color: var(--text-secondary);
             border: 1px solid var(--border-color);
             font-weight: 600;
+            font-size: 0.9rem;
         }
         
         .sync-status.synced {
@@ -372,13 +492,14 @@
         
         .error-message {
             text-align: center;
-            padding: 1rem;
+            padding: 0.8rem;
             background: #f8d7da;
             border: 1px solid #f5c6cb;
             border-radius: 6px;
-            margin: 1rem 0;
+            margin: 0.8rem 0;
             color: #721c24;
             font-weight: 600;
+            font-size: 0.9rem;
         }
         
         [data-theme="dark"] .error-message {
@@ -389,44 +510,45 @@
         
         .empty-state {
             text-align: center;
-            padding: 3rem;
+            padding: 2rem;
             color: var(--text-secondary);
             grid-column: 1 / -1;
         }
         
         .empty-state .icon {
-            font-size: 4rem;
-            margin-bottom: 1rem;
+            font-size: 3rem;
+            margin-bottom: 0.8rem;
         }
         
         /* Footer */
         footer {
             background: var(--bg-secondary);
             border-top: 1px solid var(--border-color);
-            padding: 2rem 0;
-            margin-top: 3rem;
+            padding: 1.5rem 0;
+            margin-top: 2rem;
         }
         
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
         }
         
         .footer-section h3 {
-            font-size: 1.125rem;
-            margin-bottom: 1rem;
+            font-size: 1rem;
+            margin-bottom: 0.8rem;
             color: var(--text-primary);
             font-weight: 800;
         }
         
         .footer-section p, .footer-section a {
             color: var(--text-secondary);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
             display: block;
             text-decoration: none;
             transition: color 0.2s;
             font-weight: 600;
+            font-size: 0.85rem;
         }
         
         .footer-section a:hover {
@@ -435,79 +557,166 @@
         
         .copyright {
             text-align: center;
-            padding-top: 2rem;
+            padding-top: 1.5rem;
             border-top: 1px solid var(--border-color);
             color: var(--text-secondary);
-            margin-top: 2rem;
-            font-size: 0.875rem;
+            margin-top: 1.5rem;
+            font-size: 0.75rem;
             font-weight: 600;
         }
-        
-        /* Responsive */
+
+        /* Адаптивность для мобильных устройств */
         @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            /* Скрываем обычную навигацию на мобильных */
+            .header-controls nav {
+                display: none;
+            }
+
             .header-content {
-                flex-direction: column;
-                gap: 1rem;
+                flex-wrap: nowrap;
             }
-            
-            .header-controls {
-                order: -1;
-                width: 100%;
-                justify-content: space-between;
+
+            .logo {
+                font-size: 1.1rem;
             }
-            
-            nav ul {
-                gap: 0;
+
+            /* Кнопка "Отправить реквест" для мобильных */
+            .mobile-menu .request-btn {
+                background: var(--bg-secondary) !important;
+                color: var(--text-primary) !important;
+                border: 1px solid var(--border-color) !important;
+                margin: 0.5rem 1.5rem;
+                text-align: center;
+                border-radius: 4px;
+                font-weight: 800 !important;
             }
-            
-            nav ul li a {
-                padding: 0.4rem 0.8rem;
-                font-size: 0.9rem;
+
+            .mobile-menu .request-btn:hover {
+                background: var(--bg-tertiary) !important;
+                color: var(--accent-red) !important;
+            }
+
+            .hero {
+                padding: 1.5rem 0;
             }
             
             .hero h1 {
-                font-size: 2rem;
+                font-size: 1.5rem;
+            }
+            
+            .hero p {
+                font-size: 0.9rem;
             }
             
             .news-grid {
                 grid-template-columns: 1fr;
-                gap: 1rem;
+                gap: 0.8rem;
             }
             
             .news-card {
-                padding: 1.25rem;
+                padding: 0.8rem;
+            }
+            
+            .news-title {
+                font-size: 1rem;
+            }
+            
+            .news-content {
+                font-size: 0.85rem;
             }
             
             .footer-content {
                 grid-template-columns: 1fr;
+                gap: 1rem;
             }
         }
-        
+
         @media (max-width: 480px) {
+            .container {
+                padding: 0 10px;
+            }
+            
+            .header-content {
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+            
+            .logo {
+                font-size: 1.1rem;
+            }
+            
             .hero {
-                padding: 2rem 0;
+                padding: 1.5rem 0;
             }
             
             .hero h1 {
-                font-size: 1.75rem;
-            }
-            
-            .section-header h2 {
                 font-size: 1.5rem;
             }
             
-            nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            nav ul li a::after {
-                bottom: -0.5rem;
+            .section-header h2 {
+                font-size: 1.3rem;
             }
             
             .search-result-item {
                 padding: 0.5rem;
             }
+            
+            .mobile-menu nav ul li a {
+                font-size: 1.1rem;
+                padding: 0.7rem 1.2rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .hero h1 {
+                font-size: 1.3rem;
+            }
+            
+            .section-header h2 {
+                font-size: 1.2rem;
+            }
+            
+            .news-card {
+                padding: 0.7rem;
+            }
+            
+            .news-title {
+                font-size: 0.95rem;
+            }
+        }
+
+        /* Улучшения для touch-устройств */
+        @media (hover: none) {
+            .news-card:hover {
+                transform: none;
+                border-color: var(--border-color);
+            }
+            
+            .news-card:active {
+                border-color: var(--accent-red);
+                transform: scale(0.98);
+            }
+        }
+
+        /* Убираем text-size-adjust на iOS */
+        html {
+            -webkit-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+        }
+
+        /* Темная тема для кнопки запроса */
+        [data-theme="dark"] .request-btn {
+            background: var(--bg-primary) !important;
+            color: var(--text-primary) !important;
+            border: 1px solid var(--border-color) !important;
+        }
+
+        [data-theme="dark"] .request-btn:hover {
+            background: var(--bg-secondary) !important;
         }
     </style>
 </head>
@@ -520,6 +729,13 @@
                     <button class="theme-toggle" onclick="toggleTheme()">
                         🌙
                     </button>
+                    <!-- Гамбургер меню для мобильных -->
+                    <button class="menu-toggle" onclick="toggleMobileMenu()">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <!-- Обычная навигация -->
                     <nav>
                         <ul>
                             <li><a href="index.html">Главная</a></li>
@@ -527,12 +743,30 @@
                             <li><a href="news.html" class="active">Новости</a></li>
                             <li><a href="contacts.html">Контакты</a></li>
                             <li><a href="rules.html">Правила</a></li>
+                            <!-- Кнопка "Отправить реквест" для ПК -->
+                            <li><a href="#" class="request-btn">Отправить реквест</a></li>
                         </ul>
                     </nav>
                 </div>
             </div>
         </div>
     </header>
+
+    <!-- Мобильное меню -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="close-menu" onclick="toggleMobileMenu()">×</button>
+        <nav>
+            <ul>
+                <li><a href="index.html" onclick="closeMobileMenu()">Главная</a></li>
+                <li><a href="players.html" onclick="closeMobileMenu()">Топ игроков</a></li>
+                <li><a href="news.html" class="active" onclick="closeMobileMenu()">Новости</a></li>
+                <li><a href="contacts.html" onclick="closeMobileMenu()">Контакты</a></li>
+                <li><a href="rules.html" onclick="closeMobileMenu()">Правила</a></li>
+                <!-- Кнопка "Отправить реквест" для мобильных -->
+                <li><a href="#" class="request-btn" onclick="closeMobileMenu()">Отправить реквест</a></li>
+            </ul>
+        </nav>
+    </div>
     
     <section class="hero">
         <div class="container">
@@ -603,6 +837,37 @@
     </footer>
 
     <script>
+        // ========== ПРОСТОЕ МОБИЛЬНОЕ МЕНЮ ==========
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuOverlay = document.getElementById('menuOverlay');
+            
+            mobileMenu.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuOverlay = document.getElementById('menuOverlay');
+            
+            mobileMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Закрываем меню при клике на ссылку
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+
+        // Закрываем меню при нажатии Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeMobileMenu();
+            }
+        });
+
         // ========== THEME TOGGLE ==========
         
         function toggleTheme() {
@@ -757,8 +1022,8 @@
                 newsGrid.innerHTML = `
                     <div class="empty-state">
                         <div class="icon">📰</div>
-                        <div style="font-size: 1.25rem; margin-bottom: 0.5rem; font-weight: 700;">Новости не найдены</div>
-                        <div style="font-weight: 600;">Попробуйте изменить поисковый запрос</div>
+                        <div style="font-size: 1rem; margin-bottom: 0.4rem; font-weight: 700;">Новости не найдены</div>
+                        <div style="font-weight: 600; font-size: 0.9rem;">Попробуйте изменить поисковый запрос</div>
                     </div>
                 `;
                 return;
@@ -832,6 +1097,8 @@
         // Глобальные функции
         window.refreshData = refreshData;
         window.toggleTheme = toggleTheme;
+        window.toggleMobileMenu = toggleMobileMenu;
+        window.closeMobileMenu = closeMobileMenu;
 
         // Запуск при загрузке страницы
         document.addEventListener('DOMContentLoaded', function() {
