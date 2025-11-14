@@ -7,22 +7,6 @@
       "avatarImage": "images/vladgmd.png", 
       "role": "Создатель листа",
       "roleClass": "role-leader"
-    },
-    {
-      "id": "unity",
-      "name": "Unity",
-      "avatar": "U",
-      "avatarImage": "images/unity.png", 
-      "role": "Создатель ГДПС",
-      "roleClass": "role-admin"
-    },
-    {
-      "id": "lodz",
-      "name": "Lodz",
-      "avatar": "L",
-      "avatarImage": "images/lodz.png", 
-      "role": "Старший модератор ГДПС",
-      "roleClass": "role-admin"
-    }
+    }  
   ]
 }
