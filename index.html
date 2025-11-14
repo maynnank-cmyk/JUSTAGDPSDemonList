@@ -106,7 +106,7 @@
         .header-controls nav ul {
             display: flex;
             list-style: none;
-            gap: 1.5rem;
+            gap: 1rem;
             margin: 0;
             padding: 0;
         }
@@ -125,6 +125,19 @@
         .header-controls nav ul li a.active {
             background: rgba(255, 255, 255, 0.15);
             color: white;
+        }
+
+        /* Кнопка "Отправить реквест" для ПК */
+        .request-btn {
+            background: white !important;
+            color: var(--text-primary) !important;
+            border: 1px solid white !important;
+            margin-left: 0.5rem;
+        }
+
+        .request-btn:hover {
+            background: rgba(255, 255, 255, 0.9) !important;
+            transform: translateY(-1px);
         }
 
         /* Простое гамбургер меню без анимации полосок */
@@ -617,8 +630,8 @@
             }
             
             .demon-image {
-                width: 180px !important;
-                height: 101px !important;
+                width: 280px !important;
+                height: 157px !important;
                 border-radius: 8px !important;
             }
             
@@ -650,8 +663,8 @@
             }
             
             .demon-image {
-                width: 220px !important;
-                height: 124px !important;
+                width: 320px !important;
+                height: 180px !important;
             }
             
             .demon-name {
@@ -693,6 +706,21 @@
 
             .logo {
                 font-size: 1.1rem;
+            }
+
+            /* Кнопка "Отправить реквест" для мобильных */
+            .mobile-menu .request-btn {
+                background: var(--bg-secondary) !important;
+                color: var(--text-primary) !important;
+                border: 1px solid var(--border-color) !important;
+                margin: 0.5rem 1.5rem;
+                text-align: center;
+                border-radius: 4px;
+            }
+
+            .mobile-menu .request-btn:hover {
+                background: var(--bg-tertiary) !important;
+                color: var(--accent-red) !important;
             }
         }
 
@@ -790,6 +818,17 @@
             -webkit-text-size-adjust: 100%;
             text-size-adjust: 100%;
         }
+
+        /* Темная тема для кнопки запроса */
+        [data-theme="dark"] .request-btn {
+            background: var(--bg-primary) !important;
+            color: var(--text-primary) !important;
+            border: 1px solid var(--border-color) !important;
+        }
+
+        [data-theme="dark"] .request-btn:hover {
+            background: var(--bg-secondary) !important;
+        }
     </style>
 </head>
 <body>
@@ -815,6 +854,8 @@
                             <li><a href="news.html">Новости</a></li>
                             <li><a href="contacts.html">Контакты</a></li>
                             <li><a href="rules.html">Правила</a></li>
+                            <!-- Кнопка "Отправить реквест" для ПК -->
+                            <li><a href="#" class="request-btn">Отправить реквест</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -822,7 +863,7 @@
         </div>
     </header>
 
-    <!-- Мобильное меню - ИСПРАВЛЕНО: убрано display: none -->
+    <!-- Мобильное меню -->
     <div class="mobile-menu" id="mobileMenu">
         <button class="close-menu" onclick="toggleMobileMenu()">×</button>
         <nav>
@@ -832,6 +873,8 @@
                 <li><a href="news.html" onclick="closeMobileMenu()">Новости</a></li>
                 <li><a href="contacts.html" onclick="closeMobileMenu()">Контакты</a></li>
                 <li><a href="rules.html" onclick="closeMobileMenu()">Правила</a></li>
+                <!-- Кнопка "Отправить реквест" для мобильных -->
+                <li><a href="#" class="request-btn" onclick="closeMobileMenu()">Отправить реквест</a></li>
             </ul>
         </nav>
     </div>
