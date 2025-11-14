@@ -49,14 +49,14 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 15px;
         }
         
         /* Header */
         header {
             background: var(--header-red);
             border-bottom: 1px solid var(--header-red);
-            padding: 1rem 0 0 0;
+            padding: 0.5rem 0 0 0;
             position: sticky;
             top: 0;
             z-index: 100;
@@ -67,11 +67,11 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-bottom: 1rem;
+            padding-bottom: 0.5rem;
         }
         
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 800;
             color: white;
             text-decoration: none;
@@ -84,7 +84,7 @@
         .header-controls {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 0.5rem;
         }
         
         .theme-toggle {
@@ -92,68 +92,184 @@
             border: none;
             color: white;
             cursor: pointer;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             transition: all 0.3s ease;
-            padding: 0.5rem;
+            padding: 0.3rem;
         }
         
         .theme-toggle:hover {
             transform: scale(1.1);
         }
         
-        nav ul {
+        /* Обычная навигация для ПК */
+        .header-controls nav ul {
             display: flex;
             list-style: none;
-            gap: 0;
+            gap: 1rem;
+            margin: 0;
+            padding: 0;
         }
-        
-        nav ul li a {
+
+        .header-controls nav ul li a {
             color: white;
             text-decoration: none;
-            font-weight: 600;
-            padding: 0.5rem 1rem;
-            transition: all 0.2s;
             font-size: 0.9rem;
-            position: relative;
+            font-weight: 600;
+            padding: 0.5rem 0.8rem;
+            border-radius: 4px;
+            transition: all 0.2s ease;
         }
-        
-        nav ul li a::after {
-            content: '';
+
+        .header-controls nav ul li a:hover,
+        .header-controls nav ul li a.active {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+        }
+
+        /* Кнопка "Отправить реквест" для ПК */
+        .request-btn {
+            background: white !important;
+            color: var(--text-primary) !important;
+            border: 1px solid white !important;
+            margin-left: 0.5rem;
+            font-weight: 800 !important;
+            font-size: 0.9rem;
+        }
+
+        .request-btn:hover {
+            background: rgba(255, 255, 255, 0.9) !important;
+            transform: translateY(-1px);
+        }
+
+        /* Простое гамбургер меню без анимации полосок */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            position: relative;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            display: block;
+            height: 3px;
+            width: 24px;
+            background-color: white;
+            border-radius: 1px;
+            margin: 2px 0;
+        }
+
+        /* Мобильное меню выезжающее справа */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 300px;
+            height: 100%;
+            background: var(--bg-primary);
+            z-index: 999;
+            flex-direction: column;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            transition: right 0.3s ease;
+            border-left: 1px solid var(--border-color);
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu nav ul {
+            flex-direction: column;
+            gap: 0;
+            padding: 80px 0 0 0;
+        }
+
+        .mobile-menu nav ul li {
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .mobile-menu nav ul li:last-child {
+            border-bottom: none;
+        }
+
+        .mobile-menu nav ul li a {
+            font-size: 1rem;
+            padding: 1rem 1.5rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: block;
+            transition: all 0.2s ease;
+            font-weight: 600;
+        }
+
+        .mobile-menu nav ul li a:hover,
+        .mobile-menu nav ul li a.active {
+            background: var(--bg-secondary);
+            color: var(--accent-red);
+        }
+
+        /* Кнопка закрытия */
+        .close-menu {
             position: absolute;
-            bottom: -1rem;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1000;
+            transition: color 0.2s ease;
+        }
+
+        .close-menu:hover {
+            color: var(--accent-red);
+        }
+
+        /* Затемнение фона */
+        .menu-overlay {
+            position: fixed;
+            top: 0;
             left: 0;
             width: 100%;
-            height: 3px;
-            background: white;
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
         }
-        
-        nav ul li a.active::after {
-            transform: scaleX(1);
-        }
-        
-        nav ul li a:hover::after {
-            transform: scaleX(1);
+
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
         }
         
         /* Hero Section */
         .hero {
-            padding: 3rem 0;
+            padding: 2rem 0;
             text-align: center;
             background: var(--bg-secondary);
             border-bottom: 1px solid var(--border-color);
         }
         
         .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            margin-bottom: 0.8rem;
             color: var(--text-primary);
             font-weight: 800;
         }
         
         .hero p {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: var(--text-secondary);
             max-width: 600px;
             margin: 0 auto;
@@ -162,17 +278,17 @@
         
         /* Contacts Section */
         .contacts-section {
-            padding: 2rem 0;
+            padding: 1.5rem 0;
         }
         
         .section-header {
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             text-align: center;
         }
         
         .section-header h2 {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+            margin-bottom: 0.4rem;
             color: var(--text-primary);
             font-weight: 800;
         }
@@ -180,19 +296,20 @@
         .section-header p {
             color: var(--text-secondary);
             font-weight: 600;
+            font-size: 0.9rem;
         }
         
         .moderators-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
         }
         
         .moderator-card {
             background: var(--bg-primary);
             border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 2rem;
+            border-radius: 6px;
+            padding: 1rem;
             text-align: center;
             transition: all 0.2s;
             box-shadow: var(--card-shadow);
@@ -203,31 +320,31 @@
         
         .moderator-card:hover {
             border-color: var(--accent-red);
-            box-shadow: 0 4px 12px rgba(220,53,69,0.15);
-            transform: translateY(-2px);
+            box-shadow: 0 2px 8px rgba(220,53,69,0.15);
+            transform: translateY(-1px);
         }
         
         .moderator-avatar {
-            width: 100px;
-            height: 100px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
-            margin: 0 auto 1.5rem;
+            margin: 0 auto 1rem;
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
             background: var(--accent-red);
             color: white;
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: bold;
-            border: 3px solid var(--border-color);
+            border: 2px solid var(--border-color);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             transition: all 0.3s;
         }
         
         .moderator-card:hover .moderator-avatar {
             border-color: var(--accent-red);
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
         
         .avatar-image {
@@ -238,20 +355,20 @@
         }
         
         .moderator-name {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
             color: var(--text-primary);
             font-weight: 800;
         }
         
         .moderator-role {
             display: inline-block;
-            padding: 0.5rem 1.5rem;
+            padding: 0.4rem 1rem;
             color: white;
-            border-radius: 25px;
-            font-size: 0.875rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
             font-weight: 700;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
         
@@ -269,22 +386,22 @@
         
         .moderator-contact {
             color: var(--text-secondary);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 600;
-            margin-top: 0.5rem;
+            margin-top: 0.4rem;
         }
         
         /* Refresh Button */
         .refresh-btn {
             display: block;
-            margin: 2rem auto;
-            padding: 0.75rem 2rem;
+            margin: 1.5rem auto;
+            padding: 0.6rem 1.5rem;
             background: var(--accent-red);
             color: white;
             border: none;
             border-radius: 6px;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-weight: 700;
             transition: all 0.2s;
         }
@@ -297,13 +414,14 @@
         /* Status */
         .sync-status {
             text-align: center;
-            padding: 1rem;
+            padding: 0.8rem;
             background: var(--bg-secondary);
             border-radius: 6px;
-            margin: 1rem 0;
+            margin: 0.8rem 0;
             color: var(--text-secondary);
             border: 1px solid var(--border-color);
             font-weight: 600;
+            font-size: 0.9rem;
         }
         
         .sync-status.synced {
@@ -314,13 +432,14 @@
         
         .error-message {
             text-align: center;
-            padding: 1rem;
+            padding: 0.8rem;
             background: #f8d7da;
             border: 1px solid #f5c6cb;
             border-radius: 6px;
-            margin: 1rem 0;
+            margin: 0.8rem 0;
             color: #721c24;
             font-weight: 600;
+            font-size: 0.9rem;
         }
         
         [data-theme="dark"] .error-message {
@@ -331,44 +450,45 @@
         
         .empty-state {
             text-align: center;
-            padding: 3rem;
+            padding: 2rem;
             color: var(--text-secondary);
             grid-column: 1 / -1;
         }
         
         .empty-state .icon {
-            font-size: 4rem;
-            margin-bottom: 1rem;
+            font-size: 3rem;
+            margin-bottom: 0.8rem;
         }
         
         /* Footer */
         footer {
             background: var(--bg-secondary);
             border-top: 1px solid var(--border-color);
-            padding: 2rem 0;
-            margin-top: 3rem;
+            padding: 1.5rem 0;
+            margin-top: 2rem;
         }
         
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
         }
         
         .footer-section h3 {
-            font-size: 1.125rem;
-            margin-bottom: 1rem;
+            font-size: 1rem;
+            margin-bottom: 0.8rem;
             color: var(--text-primary);
             font-weight: 800;
         }
         
         .footer-section p, .footer-section a {
             color: var(--text-secondary);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
             display: block;
             text-decoration: none;
             transition: color 0.2s;
             font-weight: 600;
+            font-size: 0.85rem;
         }
         
         .footer-section a:hover {
@@ -377,89 +497,199 @@
         
         .copyright {
             text-align: center;
-            padding-top: 2rem;
+            padding-top: 1.5rem;
             border-top: 1px solid var(--border-color);
             color: var(--text-secondary);
-            margin-top: 2rem;
-            font-size: 0.875rem;
+            margin-top: 1.5rem;
+            font-size: 0.75rem;
             font-weight: 600;
         }
-        
-        /* Responsive */
+
+        /* Адаптивность для мобильных устройств */
         @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            /* Скрываем обычную навигацию на мобильных */
+            .header-controls nav {
+                display: none;
+            }
+
             .header-content {
-                flex-direction: column;
-                gap: 1rem;
+                flex-wrap: nowrap;
             }
-            
-            .header-controls {
-                order: -1;
-                width: 100%;
-                justify-content: space-between;
+
+            .logo {
+                font-size: 1.1rem;
             }
-            
-            nav ul {
-                gap: 0;
+
+            /* Кнопка "Отправить реквест" для мобильных */
+            .mobile-menu .request-btn {
+                background: var(--bg-secondary) !important;
+                color: var(--text-primary) !important;
+                border: 1px solid var(--border-color) !important;
+                margin: 0.5rem 1.5rem;
+                text-align: center;
+                border-radius: 4px;
+                font-weight: 800 !important;
             }
-            
-            nav ul li a {
-                padding: 0.4rem 0.8rem;
-                font-size: 0.9rem;
+
+            .mobile-menu .request-btn:hover {
+                background: var(--bg-tertiary) !important;
+                color: var(--accent-red) !important;
+            }
+
+            .hero {
+                padding: 1.5rem 0;
             }
             
             .hero h1 {
-                font-size: 2rem;
+                font-size: 1.5rem;
+            }
+            
+            .hero p {
+                font-size: 0.9rem;
             }
             
             .moderators-grid {
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-                gap: 1.25rem;
+                grid-template-columns: 1fr;
+                gap: 0.8rem;
             }
             
             .moderator-card {
-                padding: 1.5rem;
+                padding: 0.8rem;
             }
             
             .moderator-avatar {
-                width: 80px;
-                height: 80px;
-                font-size: 2rem;
+                width: 70px;
+                height: 70px;
+                font-size: 1.8rem;
+            }
+            
+            .moderator-name {
+                font-size: 1rem;
             }
             
             .footer-content {
                 grid-template-columns: 1fr;
+                gap: 1rem;
             }
         }
-        
+
         @media (max-width: 480px) {
+            .container {
+                padding: 0 10px;
+            }
+            
+            .header-content {
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+            
+            .logo {
+                font-size: 1.1rem;
+            }
+            
             .hero {
-                padding: 2rem 0;
+                padding: 1.5rem 0;
             }
             
             .hero h1 {
-                font-size: 1.75rem;
-            }
-            
-            .section-header h2 {
                 font-size: 1.5rem;
             }
             
-            nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            .moderators-grid {
-                grid-template-columns: 1fr;
+            .section-header h2 {
+                font-size: 1.3rem;
             }
             
             .moderator-card {
-                padding: 1.25rem;
+                padding: 0.7rem;
             }
             
-            nav ul li a::after {
-                bottom: -0.5rem;
+            .moderator-avatar {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
             }
+            
+            .moderator-role {
+                padding: 0.3rem 0.8rem;
+                font-size: 0.75rem;
+            }
+            
+            .moderator-contact {
+                font-size: 0.8rem;
+            }
+            
+            .mobile-menu nav ul li a {
+                font-size: 1.1rem;
+                padding: 0.7rem 1.2rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .hero h1 {
+                font-size: 1.3rem;
+            }
+            
+            .section-header h2 {
+                font-size: 1.2rem;
+            }
+            
+            .moderator-card {
+                padding: 0.6rem;
+            }
+            
+            .moderator-avatar {
+                width: 55px;
+                height: 55px;
+                font-size: 1.3rem;
+            }
+            
+            .moderator-name {
+                font-size: 0.95rem;
+            }
+        }
+
+        /* Улучшения для touch-устройств */
+        @media (hover: none) {
+            .moderator-card:hover {
+                transform: none;
+                border-color: var(--border-color);
+            }
+            
+            .moderator-card:active {
+                border-color: var(--accent-red);
+                transform: scale(0.98);
+            }
+            
+            .moderator-card:hover .moderator-avatar {
+                transform: none;
+                border-color: var(--border-color);
+            }
+            
+            .moderator-card:active .moderator-avatar {
+                border-color: var(--accent-red);
+                transform: scale(0.95);
+            }
+        }
+
+        /* Убираем text-size-adjust на iOS */
+        html {
+            -webkit-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+        }
+
+        /* Темная тема для кнопки запроса */
+        [data-theme="dark"] .request-btn {
+            background: var(--bg-primary) !important;
+            color: var(--text-primary) !important;
+            border: 1px solid var(--border-color) !important;
+        }
+
+        [data-theme="dark"] .request-btn:hover {
+            background: var(--bg-secondary) !important;
         }
     </style>
 </head>
@@ -467,11 +697,18 @@
     <header>
         <div class="container">
             <div class="header-content">
-                <a href="index.html" class="logo">DFPS <span>DemonList</span></a>
+                <a href="index.html" class="logo">Just a GDPS <span>DemonList</span></a>
                 <div class="header-controls">
                     <button class="theme-toggle" onclick="toggleTheme()">
                         🌙
                     </button>
+                    <!-- Гамбургер меню для мобильных -->
+                    <button class="menu-toggle" onclick="toggleMobileMenu()">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <!-- Обычная навигация -->
                     <nav>
                         <ul>
                             <li><a href="index.html">Главная</a></li>
@@ -479,17 +716,35 @@
                             <li><a href="news.html">Новости</a></li>
                             <li><a href="contacts.html" class="active">Контакты</a></li>
                             <li><a href="rules.html">Правила</a></li>
+                            <!-- Кнопка "Отправить реквест" для ПК -->
+                            <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSceFzm37tUw0B5t6h3L3U5alQJ5P41F1uZEeC3DaVdDXbNmrQ/viewform?usp=dialog" class="request-btn">Отправить реквест</a></li>
                         </ul>
                     </nav>
                 </div>
             </div>
         </div>
     </header>
+
+    <!-- Мобильное меню -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="close-menu" onclick="toggleMobileMenu()">×</button>
+        <nav>
+            <ul>
+                <li><a href="index.html" onclick="closeMobileMenu()">Главная</a></li>
+                <li><a href="players.html" onclick="closeMobileMenu()">Топ игроков</a></li>
+                <li><a href="news.html" onclick="closeMobileMenu()">Новости</a></li>
+                <li><a href="contacts.html" class="active" onclick="closeMobileMenu()">Контакты</a></li>
+                <li><a href="rules.html" onclick="closeMobileMenu()">Правила</a></li>
+                <!-- Кнопка "Отправить реквест" для мобильных -->
+                <li><a href="#" class="request-btn" onclick="closeMobileMenu()">Отправить реквест</a></li>
+            </ul>
+        </nav>
+    </div>
     
     <section class="hero">
         <div class="container">
             <h1>Контакты</h1>
-            <p>Команда модераторов DFPS DemonList</p>
+            <p>Команда модераторов Just a GDPS DemonList</p>
         </div>
     </section>
     
@@ -545,6 +800,37 @@
     </footer>
 
     <script>
+        // ========== ПРОСТОЕ МОБИЛЬНОЕ МЕНЮ ==========
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuOverlay = document.getElementById('menuOverlay');
+            
+            mobileMenu.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuOverlay = document.getElementById('menuOverlay');
+            
+            mobileMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Закрываем меню при клике на ссылку
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+
+        // Закрываем меню при нажатии Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeMobileMenu();
+            }
+        });
+
         // ========== THEME TOGGLE ==========
         
         function toggleTheme() {
@@ -628,8 +914,8 @@
                 teamGrid.innerHTML = `
                     <div class="empty-state">
                         <div class="icon">😔</div>
-                        <div style="font-size: 1.25rem; margin-bottom: 0.5rem; font-weight: 700;">Команда не найдена</div>
-                        <div style="font-weight: 600;">Проверьте файл data/team.json</div>
+                        <div style="font-size: 1rem; margin-bottom: 0.4rem; font-weight: 700;">Команда не найдена</div>
+                        <div style="font-weight: 600; font-size: 0.9rem;">Проверьте файл data/team.json</div>
                     </div>
                 `;
                 return;
@@ -717,6 +1003,8 @@
         // Глобальные функции
         window.refreshData = refreshData;
         window.toggleTheme = toggleTheme;
+        window.toggleMobileMenu = toggleMobileMenu;
+        window.closeMobileMenu = closeMobileMenu;
 
         // Запуск при загрузке страницы
         document.addEventListener('DOMContentLoaded', function() {
