@@ -1,52 +1,12 @@
 {
   "demons": [
      {
-      "id": "decade",
-      "name": "Decade",
-      "creator": "Unity",
+      "id": "test",
+      "name": "Test",
+      "creator": "vladgdmj",
       "videoUrl": "https://youtu.be/ZTBPlnrQ26I?si=TtrH1Ab39Ja4hpKM",
       "image": "",
       "description": "Лёгкий хард демон."
-    },
-     {
-      "id": "fenix",
-      "name": "Fenix",
-      "creator": "VladGMD",
-      "videoUrl": "youtube.com/watch?si=uhJc5ibNVDARx3WN&v=diTKT0m9pds&feature=youtu.be",
-      "image": "",
-      "description": "Лёгкий хард демон."
-    },
-    {
-      "id": "reboot",
-      "name": "Reboot",
-      "creator": "Dydo & more",
-      "videoUrl": "https://www.youtube.com/watch?v=XUaEtyGOYq4",
-      "image": "images/reboot.png",
-      "description": "Один из самых известных демонов"
-     },
-     {
-      "id": "geometryas",
-      "name": "Geometry As v2",
-      "creator": "Afrumka & more",
-      "videoUrl": "https://youtu.be/JnUA9PCMYpQ",
-      "image": "",
-      "description": "Уровень построенный dydo, vladgmd и afrumka за один день."
-    },
-    {
-      "id": "fanera",
-      "name": "Fanera",
-      "creator": "VladGMD",
-      "videoUrl": "https://www.youtube.com/watch?v=MI93QKreROk",
-      "image": "images/fanera.png",
-      "description": "Уровень построенный креатором VladGMD вместе с DnKyar4ik."
-    },
-    {
-      "id": "sigareta",
-      "name": "Sigareta",
-      "creator": "VladGMD",
-      "videoUrl": "https://youtu.be/8LCYDkDXDPc?si=qbzvK1MKjYg59yat",
-      "image": "",
-      "description": "Сиквел на kowareta."
     }
   ]
 }
