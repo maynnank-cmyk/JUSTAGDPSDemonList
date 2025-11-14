@@ -4,31 +4,9 @@
       "id": "vladgmd",
       "name": "VladGMD",
       "avatar": "V",
-      "completedDemons": ["fanera", "sigareta", "decade"],
+      "completedDemons": ["test"],
       "progress": {
-        "fanera": 100,
-        "sigareta": 100,
-        "decade": 100
-      }
-    },
-    {
-      "id": "afrumka",
-      "name": "Afrumka",
-      "avatar": "A",
-      "completedDemons": ["geometryas", "sigareta"],
-      "progress": {
-        "geometryas": 100,
-        "sigareta": 100
-      }
-     },   
-    {
-      "id": "korden",
-      "name": "Korden",
-      "avatar": "K",
-      "completedDemons": ["reboot", "fenix"],
-      "progress": {
-        "reboot": 100,
-        "fenix": 100
+        "test": 100,
       }
     }
   ]
