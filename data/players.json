@@ -6,8 +6,8 @@
       "avatar": "V",
       "completedDemons": ["test"],
       "progress": {
-        "test": 100,
-      },
+        "test": 100
+      }
     }
   ]
 }
