@@ -101,164 +101,143 @@
         .theme-toggle:hover {
             transform: scale(1.1);
         }
-         /* Обычная навигация для ПК */
-.header-controls nav ul {
-    display: flex;
-    list-style: none;
-    gap: 1.5rem;
-    margin: 0;
-    padding: 0;
-}
+        
+        /* Обычная навигация для ПК */
+        .header-controls nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            margin: 0;
+            padding: 0;
+        }
 
-.header-controls nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 600;
-    padding: 0.5rem 0.8rem;
-    border-radius: 4px;
-    transition: all 0.2s ease;
-}
+        .header-controls nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 0.5rem 0.8rem;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
 
-.header-controls nav ul li a:hover,
-.header-controls nav ul li a.active {
-    background: rgba(255, 255, 255, 0.15);
-    color: white;
-}
+        .header-controls nav ul li a:hover,
+        .header-controls nav ul li a.active {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+        }
 
-     /* Простое гамбургер меню без анимации полосок */
-.menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0.5rem;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 40px;
-    height: 40px;
-    position: relative;
-    z-index: 1001;
-}
+        /* Простое гамбургер меню без анимации полосок */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            position: relative;
+            z-index: 1001;
+        }
 
-.menu-toggle span {
-    display: block;
-    height: 3px;
-    width: 24px;
-    background-color: white;
-    border-radius: 1px;
-    margin: 2px 0;
-}
+        .menu-toggle span {
+            display: block;
+            height: 3px;
+            width: 24px;
+            background-color: white;
+            border-radius: 1px;
+            margin: 2px 0;
+        }
 
-/* Мобильное меню выезжающее справа */
-.mobile-menu {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 300px;
-    height: 100%;
-    background: var(--bg-primary);
-    z-index: 999;
-    flex-direction: column;
-    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-    transition: right 0.3s ease;
-    border-left: 1px solid var(--border-color);
-}
+        /* Мобильное меню выезжающее справа */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 300px;
+            height: 100%;
+            background: var(--bg-primary);
+            z-index: 999;
+            flex-direction: column;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            transition: right 0.3s ease;
+            border-left: 1px solid var(--border-color);
+        }
 
-.mobile-menu.active {
-    right: 0;
-}
+        .mobile-menu.active {
+            right: 0;
+        }
 
-.mobile-menu nav ul {
-    flex-direction: column;
-    gap: 0;
-    padding: 80px 0 0 0;
-}
+        .mobile-menu nav ul {
+            flex-direction: column;
+            gap: 0;
+            padding: 80px 0 0 0;
+        }
 
-.mobile-menu nav ul li {
-    border-bottom: 1px solid var(--border-color);
-}
+        .mobile-menu nav ul li {
+            border-bottom: 1px solid var(--border-color);
+        }
 
-.mobile-menu nav ul li:last-child {
-    border-bottom: none;
-}
+        .mobile-menu nav ul li:last-child {
+            border-bottom: none;
+        }
 
-.mobile-menu nav ul li a {
-    font-size: 1rem;
-    padding: 1rem 1.5rem;
-    color: var(--text-primary);
-    text-decoration: none;
-    display: block;
-    transition: all 0.2s ease;
-    font-weight: 600;
-}
+        .mobile-menu nav ul li a {
+            font-size: 1rem;
+            padding: 1rem 1.5rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: block;
+            transition: all 0.2s ease;
+            font-weight: 600;
+        }
 
-.mobile-menu nav ul li a:hover,
-.mobile-menu nav ul li a.active {
-    background: var(--bg-secondary);
-    color: var(--accent-red);
-}
+        .mobile-menu nav ul li a:hover,
+        .mobile-menu nav ul li a.active {
+            background: var(--bg-secondary);
+            color: var(--accent-red);
+        }
 
-/* Кнопка закрытия */
-.close-menu {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: none;
-    border: none;
-    color: var(--text-secondary);
-    font-size: 1.5rem;
-    cursor: pointer;
-    padding: 0.5rem;
-    z-index: 1000;
-    transition: color 0.2s ease;
-}
+        /* Кнопка закрытия */
+        .close-menu {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1000;
+            transition: color 0.2s ease;
+        }
 
-.close-menu:hover {
-    color: var(--accent-red);
-}
+        .close-menu:hover {
+            color: var(--accent-red);
+        }
 
-/* Затемнение фона */
-.menu-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 998;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-}
+        /* Затемнение фона */
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
 
-.menu-overlay.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-/* Адаптивность */
-@media (max-width: 768px) {
-    .menu-toggle {
-        display: flex;
-    }
-
-    .header-controls nav {
-        display: none;
-    }
-}
-
-@media (max-width: 480px) {
-    .mobile-menu {
-        width: 280px;
-    }
-    
-    .mobile-menu nav ul li a {
-        padding: 0.9rem 1.2rem;
-        font-size: 0.95rem;
-    }
-}
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
         
         /* Hero Section */
         .hero {
@@ -623,6 +602,80 @@
             font-weight: 600;
         }
 
+        /* Большие плашки демонов для ПК */
+        @media (min-width: 1024px) {
+            .demon-row {
+                padding: 1.5rem !important;
+                gap: 1.5rem !important;
+                border-radius: 10px !important;
+                margin-bottom: 1rem !important;
+            }
+            
+            .demon-rank {
+                font-size: 1.5rem !important;
+                width: 60px !important;
+            }
+            
+            .demon-image {
+                width: 180px !important;
+                height: 101px !important;
+                border-radius: 8px !important;
+            }
+            
+            .demon-name {
+                font-size: 1.3rem !important;
+                margin-bottom: 0.5rem !important;
+            }
+            
+            .demon-creator {
+                font-size: 1rem !important;
+            }
+            
+            .demon-points {
+                font-size: 1.2rem !important;
+                min-width: 80px !important;
+            }
+            
+            /* Улучшенные эффекты при наведении для больших плашек */
+            .demon-row:hover {
+                transform: translateY(-3px) !important;
+                box-shadow: 0 6px 20px rgba(220,53,69,0.2) !important;
+            }
+        }
+
+        /* Еще больше для очень больших экранов */
+        @media (min-width: 1440px) {
+            .demon-row {
+                padding: 2rem !important;
+            }
+            
+            .demon-image {
+                width: 220px !important;
+                height: 124px !important;
+            }
+            
+            .demon-name {
+                font-size: 1.5rem !important;
+            }
+        }
+
+        /* Сохраняем мобильные стили */
+        @media (max-width: 1023px) {
+            .demon-row {
+                padding: 1rem;
+                gap: 1rem;
+            }
+            
+            .demon-image {
+                width: 100px;
+                height: 56px;
+            }
+            
+            .demon-name {
+                font-size: 1rem;
+            }
+        }
+
         /* Адаптивность для мобильных устройств */
         @media (max-width: 768px) {
             .menu-toggle {
@@ -852,35 +905,36 @@
 
     <script>
         // ========== ПРОСТОЕ МОБИЛЬНОЕ МЕНЮ ==========
-function toggleMobileMenu() {
-    const mobileMenu = document.getElementById('mobileMenu');
-    const menuOverlay = document.getElementById('menuOverlay');
-    
-    mobileMenu.classList.toggle('active');
-    menuOverlay.classList.toggle('active');
-    document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
-}
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuOverlay = document.getElementById('menuOverlay');
+            
+            mobileMenu.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        }
 
-function closeMobileMenu() {
-    const mobileMenu = document.getElementById('mobileMenu');
-    const menuOverlay = document.getElementById('menuOverlay');
-    
-    mobileMenu.classList.remove('active');
-    menuOverlay.classList.remove('active');
-    document.body.style.overflow = '';
-}
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuOverlay = document.getElementById('menuOverlay');
+            
+            mobileMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
 
-// Закрываем меню при клике на ссылку
-document.querySelectorAll('.mobile-menu a').forEach(link => {
-    link.addEventListener('click', closeMobileMenu);
-});
+        // Закрываем меню при клике на ссылку
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
 
-// Закрываем меню при нажатии Escape
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-        closeMobileMenu();
-    }
-});
+        // Закрываем меню при нажатии Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeMobileMenu();
+            }
+        });
+
         // ========== THEME TOGGLE ==========
         
         function toggleTheme() {
@@ -1230,5 +1284,3 @@ document.addEventListener('keydown', (e) => {
     </script>
 </body>
 </html>
-
-
