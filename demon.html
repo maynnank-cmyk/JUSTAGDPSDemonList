@@ -989,6 +989,15 @@
             }
         }
 
+        // Функция для расчета ранга демона (такая же как в index.html)
+        function calculateDemonRank(demonId, allDemons) {
+            const sortedDemons = [...allDemons].sort((a, b) => {
+                return allDemons.indexOf(a) - allDemons.indexOf(b);
+            });
+            
+            return sortedDemons.findIndex(d => d.id === demonId) + 1;
+        }
+
         // Загружаем данные
         async function loadDemonData() {
             const demonId = getDemonIdFromURL();
@@ -1024,7 +1033,7 @@
                 }
 
                 console.log('🎯 Найден демон:', demon.name);
-                renderDemonPage(demon, playersData.players);
+                renderDemonPage(demon, playersData.players, demonsData.demons);
                 
             } catch (error) {
                 console.error('❌ Ошибка загрузки:', error);
@@ -1033,7 +1042,7 @@
         }
 
         // Отображаем страницу демона
-        function renderDemonPage(demon, players) {
+        function renderDemonPage(demon, players, allDemons) {
             // Находим всех игроков, которые имеют прогресс на этом демоне (51%+)
             const playersWithProgress = players.filter(player => {
                 if (!player.completedDemons || !player.completedDemons.includes(demon.id)) {
@@ -1054,11 +1063,8 @@
                 return progressB - progressA;
             });
 
-            // Рассчитываем ранг и очки демона
-            const demonRank = playersWithProgress.filter(p => {
-                const progress = p.progress ? p.progress[demon.id] || 100 : 100;
-                return progress === 100;
-            }).length > 0 ? 1 : 0;
+            // Рассчитываем ранг демона (такой же как в index.html)
+            const demonRank = calculateDemonRank(demon.id, allDemons);
             const points = calculatePointsByRank(demonRank);
 
             const content = document.getElementById('content');
@@ -1182,6 +1188,7 @@
         window.extractYouTubeId = extractYouTubeId;
         window.calculatePointsByRank = calculatePointsByRank;
         window.calculatePointsWithProgress = calculatePointsWithProgress;
+        window.calculateDemonRank = calculateDemonRank;
         window.toggleTheme = toggleTheme;
         window.toggleMobileMenu = toggleMobileMenu;
         window.closeMobileMenu = closeMobileMenu;
