@@ -55,6 +55,70 @@
       "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
       "image": "images/oldamethyst.png",
       "description": ""
+    },
+    {
+      "id": "bloodinthesnow",
+      "name": "Blood In The Snow",
+      "creator": "ESC",
+      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
+      "image": "images/bloodinthesnow.png",
+      "description": ""
+    },
+    {
+      "id": "jag",
+      "name": "Jag",
+      "creator": "M4l",
+      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
+      "image": "images/jag.png",
+      "description": ""
+    },
+    {
+      "id": "orbsuicide",
+      "name": "Orb Suicide",
+      "creator": "M4l",
+      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
+      "image": "images/orbssuicide.png",
+      "description": ""
+    },
+    {
+      "id": "fuzeii",
+      "name": "Fuze II",
+      "creator": "Terraria",
+      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
+      "image": "images/fuzeii.png",
+      "description": ""
+    },
+     {
+      "id": "sigareta1",
+      "name": "Sigareta",
+      "creator": "Sarizx",
+      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
+      "image": "images/sigareta1.png",
+      "description": ""
+    },
+    {
+      "id": "blueberrycircles",
+      "name": "Blueberry Circles",
+      "creator": "FanDavid",
+      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
+      "image": "images/blueberrycircles.png",
+      "description": ""
+    },
+    {
+      "id": "proximacentaura",
+      "name": "Proxima Centaura",
+      "creator": "Terraria",
+      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
+      "image": "images/proximacentaura.png",
+      "description": ""
+    },
+     {
+      "id": "proximacentaura",
+      "name": "Proxima Centaura",
+      "creator": "Terraria",
+      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
+      "image": "images/proximacentaura.png",
+      "description": ""
     }
   ]
 }
