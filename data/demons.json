@@ -1,12 +1,12 @@
 {
   "demons": [
      {
-      "id": "test",
-      "name": "Test",
-      "creator": "vladgdmj",
-      "videoUrl": "https://youtu.be/ZTBPlnrQ26I?si=TtrH1Ab39Ja4hpKM",
-      "image": "",
-      "description": "Лёгкий хард демон."
+      "id": "theredrealm",
+      "name": "The Red Realm",
+      "creator": "faquteam",
+      "videoUrl": "https://drive.google.com/file/d/1jktPsHjEkSmBTTQVRpQYDQQ0Pv2Bnx-n/view",
+      "image": "images/theredrealm.png",
+      "description": "Экстрим демон от команды FaquTeam."
     }
   ]
 }
