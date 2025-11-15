@@ -8,6 +8,33 @@
       "progress": {
         "theredrealm": 100
       }
+    },
+        {
+      "id": "ho4",
+      "name": "Ho4",
+      "avatar": "H",
+      "completedDemons": ["oldamethyst"],
+      "progress": {
+        "oldamethyst": 100
+      }
+    },
+        {
+      "id": "naz0rro",
+      "name": "Naz0rro",
+      "avatar": "N",
+      "completedDemons": ["heliorobot"],
+      "progress": {
+        "heliorobot": 100
+      }
+    },
+        {
+      "id": "yoyka",
+      "name": "yoyka",
+      "avatar": "Y",
+      "completedDemons": ["uauafactorial"],
+      "progress": {
+        "uauafactorial": 100
+      }
     }
   ]
 }
