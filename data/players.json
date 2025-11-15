@@ -1,12 +1,12 @@
 {
   "players": [
     {
-      "id": "vladgmd",
-      "name": "VladGMD",
-      "avatar": "V",
-      "completedDemons": ["test"],
+      "id": "azimut",
+      "name": "Azimut",
+      "avatar": "A",
+      "completedDemons": ["theredrealm"],
       "progress": {
-        "test": 100
+        "theredrealm": 100
       }
     }
   ]
