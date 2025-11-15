@@ -35,6 +35,15 @@
       "progress": {
         "uauafactorial": 100
       }
+    },
+    {
+      "id": "wezt",
+      "name": "wezt",
+      "avatar": "W",
+      "completedDemons": ["unmaded"],
+      "progress": {
+        "unmaded": 100
+      }
     }
   ]
 }
