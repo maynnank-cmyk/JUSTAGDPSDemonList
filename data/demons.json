@@ -119,6 +119,54 @@
       "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
       "image": "images/dualistic.png",
       "description": ""
+    },
+      {
+      "id": "dualistic",
+      "name": "Dualistic",
+      "creator": "1000",
+      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
+      "image": "images/dualistic.png",
+      "description": ""
+    },
+     {
+      "id": "primaparssagae",
+      "name": "Prima Pars Sagae",
+      "creator": "wWanderer",
+      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
+      "image": "images/primaparssagae.png",
+      "description": ""
+    },
+    {
+      "id": "solareclipse",
+      "name": "Solar Eclipse",
+      "creator": "acheronn",
+      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
+      "image": "images/solareclipse.png",
+      "description": ""
+    },
+    {
+      "id": "klaxonbeat",
+      "name": "Klaxon Beat",
+      "creator": "andregd",
+      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
+      "image": "images/klaxonbeat.png",
+      "description": ""
+    },
+     {
+      "id": "wasted",
+      "name": "Wasted",
+      "creator": "Quintana",
+      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
+      "image": "images/wasted.png",
+      "description": ""
+    },
+    {
+      "id": "themaidandthepocketwatchofblood",
+      "name": "The Maid and the pocket watch of blood",
+      "creator": "1000",
+      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
+      "image": "images/themaidandthepocketwatchofblood.png",
+      "description": ""
     }
   ]
 }
