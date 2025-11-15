@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Демон - DFPS</title>
+    <title>Демон - Just a GDPS</title>
     <style>
         :root {
             --bg-primary: #ffffff;
@@ -100,163 +100,158 @@
         .theme-toggle:hover {
             transform: scale(1.1);
         }
- /* Обычная навигация для ПК */
-.header-controls nav ul {
-    display: flex;
-    list-style: none;
-    gap: 1.5rem;
-    margin: 0;
-    padding: 0;
-}
+        
+        /* Обычная навигация для ПК */
+        .header-controls nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1rem;
+            margin: 0;
+            padding: 0;
+        }
 
-.header-controls nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 600;
-    padding: 0.5rem 0.8rem;
-    border-radius: 4px;
-    transition: all 0.2s ease;
-}
+        .header-controls nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 0.5rem 0.8rem;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
 
-.header-controls nav ul li a:hover,
-.header-controls nav ul li a.active {
-    background: rgba(255, 255, 255, 0.15);
-    color: white;
-}
-/* Простое гамбургер меню без анимации полосок */
-.menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0.5rem;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 40px;
-    height: 40px;
-    position: relative;
-    z-index: 1001;
-}
+        .header-controls nav ul li a:hover,
+        .header-controls nav ul li a.active {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+        }
 
-.menu-toggle span {
-    display: block;
-    height: 3px;
-    width: 24px;
-    background-color: white;
-    border-radius: 1px;
-    margin: 2px 0;
-}
+        /* Кнопка "Отправить реквест" для ПК */
+        .request-btn {
+            background: white !important;
+            color: var(--text-primary) !important;
+            border: 1px solid white !important;
+            margin-left: 0.5rem;
+            font-weight: 800 !important;
+            font-size: 0.9rem;
+        }
 
-/* Мобильное меню выезжающее справа */
-.mobile-menu {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 300px;
-    height: 100%;
-    background: var(--bg-primary);
-    z-index: 999;
-    flex-direction: column;
-    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-    transition: right 0.3s ease;
-    border-left: 1px solid var(--border-color);
-}
+        .request-btn:hover {
+            background: rgba(255, 255, 255, 0.9) !important;
+            transform: translateY(-1px);
+        }
 
-.mobile-menu.active {
-    right: 0;
-}
+        /* Простое гамбургер меню без анимации полосок */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            position: relative;
+            z-index: 1001;
+        }
 
-.mobile-menu nav ul {
-    flex-direction: column;
-    gap: 0;
-    padding: 80px 0 0 0;
-}
+        .menu-toggle span {
+            display: block;
+            height: 3px;
+            width: 24px;
+            background-color: white;
+            border-radius: 1px;
+            margin: 2px 0;
+        }
 
-.mobile-menu nav ul li {
-    border-bottom: 1px solid var(--border-color);
-}
+        /* Мобильное меню выезжающее справа */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 300px;
+            height: 100%;
+            background: var(--bg-primary);
+            z-index: 999;
+            flex-direction: column;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            transition: right 0.3s ease;
+            border-left: 1px solid var(--border-color);
+        }
 
-.mobile-menu nav ul li:last-child {
-    border-bottom: none;
-}
+        .mobile-menu.active {
+            right: 0;
+        }
 
-.mobile-menu nav ul li a {
-    font-size: 1rem;
-    padding: 1rem 1.5rem;
-    color: var(--text-primary);
-    text-decoration: none;
-    display: block;
-    transition: all 0.2s ease;
-    font-weight: 600;
-}
+        .mobile-menu nav ul {
+            flex-direction: column;
+            gap: 0;
+            padding: 80px 0 0 0;
+        }
 
-.mobile-menu nav ul li a:hover,
-.mobile-menu nav ul li a.active {
-    background: var(--bg-secondary);
-    color: var(--accent-red);
-}
+        .mobile-menu nav ul li {
+            border-bottom: 1px solid var(--border-color);
+        }
 
-/* Кнопка закрытия */
-.close-menu {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: none;
-    border: none;
-    color: var(--text-secondary);
-    font-size: 1.5rem;
-    cursor: pointer;
-    padding: 0.5rem;
-    z-index: 1000;
-    transition: color 0.2s ease;
-}
+        .mobile-menu nav ul li:last-child {
+            border-bottom: none;
+        }
 
-.close-menu:hover {
-    color: var(--accent-red);
-}
+        .mobile-menu nav ul li a {
+            font-size: 1rem;
+            padding: 1rem 1.5rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: block;
+            transition: all 0.2s ease;
+            font-weight: 600;
+        }
 
-/* Затемнение фона */
-.menu-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 998;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-}
+        .mobile-menu nav ul li a:hover,
+        .mobile-menu nav ul li a.active {
+            background: var(--bg-secondary);
+            color: var(--accent-red);
+        }
 
-.menu-overlay.active {
-    opacity: 1;
-    visibility: visible;
-}
+        /* Кнопка закрытия */
+        .close-menu {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1000;
+            transition: color 0.2s ease;
+        }
 
-/* Адаптивность */
-@media (max-width: 768px) {
-    .menu-toggle {
-        display: flex;
-    }
+        .close-menu:hover {
+            color: var(--accent-red);
+        }
 
-    .header-controls nav {
-        display: none;
-    }
-}
+        /* Затемнение фона */
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
 
-@media (max-width: 480px) {
-    .mobile-menu {
-        width: 280px;
-    }
-    
-    .mobile-menu nav ul li a {
-        padding: 0.9rem 1.2rem;
-        font-size: 0.95rem;
-    }
-}
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
         
         /* Breadcrumb */
         .breadcrumb {
@@ -660,6 +655,22 @@
                 font-size: 1.1rem;
             }
 
+            /* Кнопка "Отправить реквест" для мобильных */
+            .mobile-menu .request-btn {
+                background: var(--bg-secondary) !important;
+                color: var(--text-primary) !important;
+                border: 1px solid var(--border-color) !important;
+                margin: 0.5rem 1.5rem;
+                text-align: center;
+                border-radius: 4px;
+                font-weight: 800 !important;
+            }
+
+            .mobile-menu .request-btn:hover {
+                background: var(--bg-tertiary) !important;
+                color: var(--accent-red) !important;
+            }
+
             /* Адаптация контента для мобильных */
             .content-grid {
                 grid-template-columns: 1fr;
@@ -770,13 +781,24 @@
             -webkit-text-size-adjust: 100%;
             text-size-adjust: 100%;
         }
+
+        /* Темная тема для кнопки запроса */
+        [data-theme="dark"] .request-btn {
+            background: var(--bg-primary) !important;
+            color: var(--text-primary) !important;
+            border: 1px solid var(--border-color) !important;
+        }
+
+        [data-theme="dark"] .request-btn:hover {
+            background: var(--bg-secondary) !important;
+        }
     </style>
 </head>
 <body>
     <header>
         <div class="container">
             <div class="header-content">
-                <a href="index.html" class="logo">DFPS <span>DemonList</span></a>
+                <a href="index.html" class="logo">Just a GDPS <span>DemonList</span></a>
                 <div class="header-controls">
                     <button class="theme-toggle" onclick="toggleTheme()">
                         🌙
@@ -795,6 +817,8 @@
                             <li><a href="news.html">Новости</a></li>
                             <li><a href="contacts.html">Контакты</a></li>
                             <li><a href="rules.html">Правила</a></li>
+                            <!-- Кнопка "Отправить реквест" для ПК -->
+                            <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSceFzm37tUw0B5t6h3L3U5alQJ5P41F1uZEeC3DaVdDXbNmrQ/viewform?usp=dialog" class="request-btn">Отправить реквест</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -812,6 +836,8 @@
                 <li><a href="news.html" onclick="closeMobileMenu()">Новости</a></li>
                 <li><a href="contacts.html" onclick="closeMobileMenu()">Контакты</a></li>
                 <li><a href="rules.html" onclick="closeMobileMenu()">Правила</a></li>
+                <!-- Кнопка "Отправить реквест" для мобильных -->
+                <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSceFzm37tUw0B5t6h3L3U5alQJ5P41F1uZEeC3DaVdDXbNmrQ/viewform?usp=dialog" class="request-btn" onclick="closeMobileMenu()">Отправить реквест</a></li>
             </ul>
         </nav>
     </div>
@@ -857,36 +883,37 @@
     </footer>
 
     <script>
-       // ========== ПРОСТОЕ МОБИЛЬНОЕ МЕНЮ ==========
-function toggleMobileMenu() {
-    const mobileMenu = document.getElementById('mobileMenu');
-    const menuOverlay = document.getElementById('menuOverlay');
-    
-    mobileMenu.classList.toggle('active');
-    menuOverlay.classList.toggle('active');
-    document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
-}
+        // ========== ПРОСТОЕ МОБИЛЬНОЕ МЕНЮ ==========
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuOverlay = document.getElementById('menuOverlay');
+            
+            mobileMenu.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        }
 
-function closeMobileMenu() {
-    const mobileMenu = document.getElementById('mobileMenu');
-    const menuOverlay = document.getElementById('menuOverlay');
-    
-    mobileMenu.classList.remove('active');
-    menuOverlay.classList.remove('active');
-    document.body.style.overflow = '';
-}
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuOverlay = document.getElementById('menuOverlay');
+            
+            mobileMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
 
-// Закрываем меню при клике на ссылку
-document.querySelectorAll('.mobile-menu a').forEach(link => {
-    link.addEventListener('click', closeMobileMenu);
-});
+        // Закрываем меню при клике на ссылку
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
 
-// Закрываем меню при нажатии Escape
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-        closeMobileMenu();
-    }
-});
+        // Закрываем меню при нажатии Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeMobileMenu();
+            }
+        });
+
         // ========== THEME TOGGLE ==========
         
         function toggleTheme() {
@@ -1140,7 +1167,7 @@ document.addEventListener('keydown', (e) => {
             `;
             
             // Обновляем заголовок страницы и хлебные крошки
-            document.title = `${demon.name} - DFPS Demon List`;
+            document.title = `${demon.name} - Just a GDPS Demon List`;
             document.getElementById('breadcrumbDemonName').textContent = demon.name;
         }
 
