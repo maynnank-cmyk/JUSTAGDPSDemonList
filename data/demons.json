@@ -31,6 +31,30 @@
       "videoUrl": "https://youtu.be/-ZsZh7wsbjA",
       "image": "images/unmaded.png",
       "description": "Баллистик вистфулли."
+    },
+    {
+      "id": "rip",
+      "name": "RIP",
+      "creator": "Ariller",
+      "videoUrl": "https://youtu.be/-ZsZh7wsbjA",
+      "image": "images/rip.png",
+      "description": "Прохождение (https://drive.google.com/file/d/1E66OevrF3JXSeSdbqWZmsLyQVnNC7MFD/view?usp=sharing)"
+    },
+    {
+      "id": "oldamethyst",
+      "name": "Old Amethyst",
+      "creator": "To4nowhy",
+      "videoUrl": "https://youtu.be/-ZsZh7wsbjA",
+      "image": "images/oldamethyst.png",
+      "description": ""
+    },
+     {
+      "id": "heliorobot",
+      "name": "HelioRobot",
+      "creator": "Sayori",
+      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
+      "image": "images/oldamethyst.png",
+      "description": ""
     }
   ]
 }
