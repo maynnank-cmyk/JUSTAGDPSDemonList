@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Just a GDPS</title>
     <style>
-       
+        /* Стили остаются без изменений */
         :root {
             --bg-primary: #ffffff;
             --bg-secondary: #f8f9fa;
@@ -1126,14 +1126,18 @@
 
         async function loadDataFromJSON() {
             try {
+                console.log('📥 Загружаем демонов из demons.json...');
+                
                 const response = await fetch('data/demons.json');
                 if (!response.ok) throw new Error('Файл demons.json не найден');
                 
                 const data = await response.json();
                 
                 if (data.demons && Array.isArray(data.demons)) {
+                    // Очищаем массив демонов перед загрузкой новых данных
                     demons = [];
                     
+                    // Загружаем демонов из JSON с изображениями
                     for (const demon of data.demons) {
                         const imageUrl = await getAvailableImage(demon.id);
                         
@@ -1146,6 +1150,7 @@
                     
                     filteredDemons = [...demons];
                     
+                    console.log('✅ Демоны загружены из demons.json:', demons.length);
                     updateSyncStatus(`Загружено ${demons.length} демонов`);
                     return true;
                 } else {
@@ -1153,21 +1158,28 @@
                 }
                 
             } catch (error) {
-                demons = [];
-                for (const demon of defaultDemons) {
-                    const imageUrl = await getAvailableImage(demon.id);
+                console.error('❌ Ошибка загрузки демонов:', error);
+                
+                // Используем стандартных демонов только если JSON не загрузился
+                if (demons.length === 0) {
+                    console.log('🔄 Используем стандартных демонов');
+                    demons = [];
                     
-                    demons.push({
-                        ...demon,
-                        rank: demons.length + 1,
-                        image: imageUrl
-                    });
+                    for (const demon of defaultDemons) {
+                        const imageUrl = await getAvailableImage(demon.id);
+                        
+                        demons.push({
+                            ...demon,
+                            rank: demons.length + 1,
+                            image: imageUrl
+                        });
+                    }
+                    
+                    filteredDemons = [...demons];
+                    
+                    updateSyncStatus('Используются стандартные демоны');
+                    showError(error.message);
                 }
-                
-                filteredDemons = [...demons];
-                
-                updateSyncStatus('Используются стандартные демоны');
-                showError(error.message);
                 return false;
             }
         }
@@ -1245,6 +1257,11 @@
         }
 
         async function refreshData() {
+            console.log('🔄 Обновление данных...');
+            // Очищаем массив демонов перед обновлением
+            demons = [];
+            filteredDemons = [];
+            
             await loadDataFromJSON();
             renderDemons();
             
@@ -1295,5 +1312,3 @@
     </script>
 </body>
 </html>
-
-
