@@ -33,14 +33,6 @@
       "description": "Баллистик вистфулли."
     },
     {
-      "id": "rip",
-      "name": "RIP",
-      "creator": "Ariller",
-      "videoUrl": "https://youtu.be/-ZsZh7wsbjA",
-      "image": "images/rip.png",
-      "description": "Прохождение (https://drive.google.com/file/d/1E66OevrF3JXSeSdbqWZmsLyQVnNC7MFD/view?usp=sharing)"
-    },
-    {
       "id": "oldamethyst",
       "name": "Old Amethyst",
       "creator": "To4nowhy",
