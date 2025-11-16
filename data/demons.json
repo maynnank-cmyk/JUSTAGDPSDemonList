@@ -159,6 +159,94 @@
       "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
       "image": "images/escape.png",
       "description": ""
+    },
+     {
+      "id": "rumordethanatos",
+      "name": "Rumor De Thanathos",
+      "creator": "Booba123",
+      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
+      "image": "images/rumordethanatos.png",
+      "description": ""
+    },
+    {
+      "id": "viennacircles",
+      "name": "Vienna Circles",
+      "creator": "Terraria",
+      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
+      "image": "images/viennacircles.png",
+      "description": ""
+    },
+    {
+      "id": "xrebirth",
+      "name": "X Rebirth",
+      "creator": "Nzcir2",
+      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
+      "image": "images/xrebirth.png",
+      "description": ""
+    },
+    {
+      "id": "clubstepreborn",
+      "name": "Clubstep Reborn",
+      "creator": "spectre111",
+      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
+      "image": "images/clubstepreborn.png",
+      "description": ""
+    },
+    {
+      "id": "tralalelotralala",
+      "name": "TralaleloTralala",
+      "creator": "Terraria",
+      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
+      "image": "images/tralalelotralala.png",
+      "description": ""
+    },
+     {
+      "id": "turnthelightsoff",
+      "name": "Turn The Lights Off",
+      "creator": "Terraria",
+      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
+      "image": "images/turnthelightsoff.png",
+      "description": ""
+    },
+     {
+      "id": "elproblemo",
+      "name": "El ProblemO",
+      "creator": "acheronn",
+      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
+      "image": "images/elproblemo.png",
+      "description": ""
+    },
+    {
+      "id": "duat",
+      "name": "Duat",
+      "creator": "Booba123",
+      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
+      "image": "images/duat.png",
+      "description": ""
+    },
+    {
+      "id": "jawbrackercircles",
+      "name": "Jawbraker Circles",
+      "creator": "NerdDuck",
+      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
+      "image": "images/jawbrakercircles.png",
+      "description": ""
+    },
+    {
+      "id": "jawbrackercircles",
+      "name": "Jawbraker Circles",
+      "creator": "NerdDuck",
+      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
+      "image": "images/jawbrakercircles.png",
+      "description": ""
+    },
+    {
+      "id": "hideandseek",
+      "name": "Hide And Seek",
+      "creator": "NerdDuck",
+      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
+      "image": "images/hideandseek.png",
+      "description": ""
     }
   ]
 }
