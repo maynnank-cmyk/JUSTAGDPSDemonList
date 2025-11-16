@@ -256,6 +256,7 @@
       "image": "images/hideandseek.png",
       "description": ""
     },
+    {
       "id": "sigareta2",
       "name": "Sigareta ",
       "creator": "Vladgdmj",
@@ -271,7 +272,6 @@
       "image": "images/fallingcircles.png",
       "description": ""
     },
-      {
      {
       "id": "finalboss",
       "name": "Final Boss",
