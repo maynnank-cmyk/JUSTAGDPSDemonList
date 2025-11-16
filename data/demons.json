@@ -239,6 +239,54 @@
       "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
       "image": "images/hideandseek.png",
       "description": ""
+    },
+    {
+      "id": "fallingcircles",
+      "name": "Falling Circles",
+      "creator": "Dodjeman55",
+      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
+      "image": "images/fallingcircles.png",
+      "description": ""
+    },
+     {
+      "id": "finalboss",
+      "name": "Final Boss",
+      "creator": "Matvei77764",
+      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
+      "image": "images/finalboss.png",
+      "description": ""
+    },
+     {
+      "id": "thecognition",
+      "name": "The Cognition",
+      "creator": "thefunnygame15",
+      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
+      "image": "images/thecognition.png",
+      "description": ""
+    },
+      {
+      "id": "thespirit",
+      "name": "The Spirit",
+      "creator": "acheronn",
+      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
+      "image": "images/thespirit.png",
+      "description": ""
+    },
+    {
+      "id": "hyperstellar",
+      "name": "HyperStellar",
+      "creator": "vrodeESC",
+      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
+      "image": "images/hyperstellar.png",
+      "description": ""
+    },
+    {
+      "id": "chinafunk",
+      "name": "China Funk",
+      "creator": "Sigmafr",
+      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
+      "image": "images/chinafunk.png",
+      "description": ""
     }
   ]
 }
