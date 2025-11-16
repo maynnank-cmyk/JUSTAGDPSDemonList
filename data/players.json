@@ -53,6 +53,16 @@
       "progress": {
         "heliorobot": 100
       }
+    },
+     {
+      "id": "vladgdmj",
+      "name": "Vladgdmj",
+      "avatar": "V",
+      "completedDemons": ["badabum", "sigareta2"],
+      "progress": {
+        "badabum": 100,
+        "sigareta2": 100
+      }
     }
   ]
 }
