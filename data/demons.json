@@ -256,6 +256,13 @@
       "image": "images/hideandseek.png",
       "description": ""
     },
+      "id": "sigareta2",
+      "name": "Sigareta ",
+      "creator": "Vladgdmj",
+      "videoUrl": "https://youtu.be/6UbV9tNb-y0",
+      "image": "images/sigareta.png",
+      "description": ""
+    },
     {
       "id": "fallingcircles",
       "name": "Falling Circles",
@@ -264,6 +271,7 @@
       "image": "images/fallingcircles.png",
       "description": ""
     },
+      {
      {
       "id": "finalboss",
       "name": "Final Boss",
@@ -342,14 +350,6 @@
       "creator": "onyxxx13",
       "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
       "image": "images/purgatory.png",
-      "description": ""
-    },
-     {
-      "id": "sigareta2",
-      "name": "Sigareta ",
-      "creator": "Vladgdmj",
-      "videoUrl": "https://youtu.be/6UbV9tNb-y0",
-      "image": "images/sigareta.png",
       "description": ""
     },
      {
