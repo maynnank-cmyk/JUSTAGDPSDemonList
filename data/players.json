@@ -54,6 +54,15 @@
         "heliorobot": 100
       }
     },
+      {
+      "id": "skeletronelite",
+      "name": "SkeletronElite",
+      "avatar": "S",
+      "completedDemons": ["sigareta2"],
+      "progress": {
+        "sigareta2": 100
+      }
+    },
      {
       "id": "vladgdmj",
       "name": "Vladgdmj",
