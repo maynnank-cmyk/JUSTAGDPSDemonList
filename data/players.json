@@ -44,6 +44,15 @@
       "progress": {
         "unmaded": 100
       }
+    },
+     {
+      "id": "sayori",
+      "name": "Sayori",
+      "avatar": "S",
+      "completedDemons": ["heliorobot"],
+      "progress": {
+        "heliorobot": 100
+      }
     }
   ]
 }
