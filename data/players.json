@@ -73,6 +73,15 @@
         "badabum": 100,
         "sigareta2": 100
       }
+    },
+     {
+      "id": "nizelix",
+      "name": "NIzelix",
+      "avatar": "N",
+      "completedDemons": ["heliorobot"],
+      "progress": {
+        "heliorobot": 100
+      }
     }
   ]
 }
