@@ -152,6 +152,14 @@
       "image": "images/wasted.png",
       "description": ""
     },
+      {
+      "id": "sigareta2",
+      "name": "Sigareta ",
+      "creator": "Vladgdmj",
+      "videoUrl": "https://youtu.be/6UbV9tNb-y0",
+      "image": "images/sigareta.png",
+      "description": ""
+    },
      {
       "id": "proximacentaura",
       "name": "Proxima Centaura",
@@ -254,14 +262,6 @@
       "creator": "NerdDuck",
       "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
       "image": "images/hideandseek.png",
-      "description": ""
-    },
-    {
-      "id": "sigareta2",
-      "name": "Sigareta ",
-      "creator": "Vladgdmj",
-      "videoUrl": "https://youtu.be/6UbV9tNb-y0",
-      "image": "images/sigareta.png",
       "description": ""
     },
     {
