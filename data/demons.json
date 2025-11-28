@@ -88,6 +88,14 @@
       "image": "images/fuzeii.png",
       "description": ""
     },
+    {
+      "id": "selfharm",
+      "name": "Selfharm",
+      "creator": "ppsha",
+      "videoUrl": "https://www.youtube.com/watch?v=xFKaflRbZJ8",
+      "image": "images/selfharm.png",
+      "description": ""
+    },
      {
       "id": "sigareta1",
       "name": "Sigareta",
