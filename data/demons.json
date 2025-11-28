@@ -112,14 +112,6 @@
       "image": "images/fuzeii.png",
       "description": ""
     },
-    {
-      "id": "proximacentaura",
-      "name": "Proxima Centaura",
-      "creator": "Terraria",
-      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
-      "image": "images/proximacentaura.png",
-      "description": ""
-    },
      {
       "id": "dualistic",
       "name": "Dualistic",
@@ -158,6 +150,14 @@
       "creator": "Quintana",
       "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
       "image": "images/wasted.png",
+      "description": ""
+    },
+     {
+      "id": "proximacentaura",
+      "name": "Proxima Centaura",
+      "creator": "Terraria",
+      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
+      "image": "images/proximacentaura.png",
       "description": ""
     },
     {
