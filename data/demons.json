@@ -56,6 +56,14 @@
       "image": "images/heliorobot.png",
       "description": ""
     },
+     {
+      "id": "dualistic",
+      "name": "Dualistic",
+      "creator": "1000",
+      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
+      "image": "images/dualistic.png",
+      "description": ""
+    },
     {
       "id": "blueberrycircles",
       "name": "Blueberry Circles",
@@ -110,14 +118,6 @@
       "creator": "Terraria",
       "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
       "image": "images/fuzeii.png",
-      "description": ""
-    },
-     {
-      "id": "dualistic",
-      "name": "Dualistic",
-      "creator": "1000",
-      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
-      "image": "images/dualistic.png",
       "description": ""
     },
      {
