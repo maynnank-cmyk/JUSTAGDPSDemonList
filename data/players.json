@@ -70,10 +70,11 @@
       "id": "vladgdmj",
       "name": "Vladgdmj",
       "avatar": "V",
-      "completedDemons": ["badabum", "sigareta2"],
+      "completedDemons": ["badabum", "sigareta2", "turnthelightsoff"],
       "progress": {
         "badabum": 100,
-        "sigareta2": 100
+        "sigareta2": 100,
+        "turnthelightsoff": 100
       }
     },
      {
