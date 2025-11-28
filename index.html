@@ -999,52 +999,13 @@
             themeButton.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
         }
 
-        // ========== IMAGE FUNCTIONS ==========
-        
-        function getDemonImage(demonId) {
-            // Путь к локальным PNG изображениям
-            return `images/${demonId}.png`;
-        }
-        
-        function checkImageAvailability(url) {
-            return new Promise((resolve) => {
-                const img = new Image();
-                img.onload = () => resolve(true);
-                img.onerror = () => resolve(false);
-                img.src = url;
-            });
-        }
-        
-        async function getAvailableImage(demonId) {
-            const imageUrl = getDemonImage(demonId);
-            const isAvailable = await checkImageAvailability(imageUrl);
-            return isAvailable ? imageUrl : null;
-        }
-
-        // ========== AUTOMATIC RANKING SYSTEM ==========
-        
-        const defaultDemons = [
-            {
-                id: 'bloodbath',
-                name: 'Bloodbath',
-                creator: 'Riot & more'
-            },
-            {
-                id: 'cataclysm',
-                name: 'Cataclysm',
-                creator: 'Ggb0y'
-            },
-            {
-                id: 'sakupen-hell',
-                name: 'Sakupen Hell',
-                creator: 'Noobas'
-            }
-        ];
+        // ========== ОПТИМИЗИРОВАННАЯ ЗАГРУЗКА ДАННЫХ ==========
 
         let demons = [];
         let filteredDemons = [];
+        let imageCache = new Map(); // Кэш для проверки изображений
 
-        // ========== SEARCH SYSTEM ==========
+        // ========== СИСТЕМА ПОИСКА ==========
 
         function initializeSearch() {
             const searchInput = document.getElementById('searchInput');
@@ -1105,7 +1066,7 @@
             searchResults.style.display = 'block';
         }
 
-        // ========== DATA MANAGEMENT ==========
+        // ========== ОПТИМИЗИРОВАННОЕ УПРАВЛЕНИЕ ДАННЫМИ ==========
 
         function showError(message) {
             const errorContainer = document.getElementById('errorContainer');
@@ -1124,11 +1085,42 @@
             }
         }
 
+        // Оптимизированная функция проверки изображений с кэшированием
+        async function getAvailableImage(demonId) {
+            // Проверяем кэш
+            if (imageCache.has(demonId)) {
+                return imageCache.get(demonId);
+            }
+
+            const imageUrl = `images/${demonId}.png`;
+            
+            try {
+                const response = await fetch(imageUrl, { method: 'HEAD' });
+                const isAvailable = response.ok;
+                imageCache.set(demonId, isAvailable ? imageUrl : null);
+                return isAvailable ? imageUrl : null;
+            } catch (error) {
+                imageCache.set(demonId, null);
+                return null;
+            }
+        }
+
+        // Оптимизированная загрузка данных
         async function loadDataFromJSON() {
             try {
                 console.log('📥 Загружаем демонов из demons.json...');
                 
-                const response = await fetch('data/demons.json');
+                const startTime = performance.now();
+                
+                // Параллельная загрузка данных и проверка изображений
+                const [response, imageChecks] = await Promise.all([
+                    fetch('data/demons.json'),
+                    // Предзагрузка изображений для первых 10 демонов
+                    ...Array.from({ length: 10 }, (_, i) => 
+                        getAvailableImage(`demon-${i + 1}`)
+                    )
+                ]);
+                
                 if (!response.ok) throw new Error('Файл demons.json не найден');
                 
                 const data = await response.json();
@@ -1137,21 +1129,24 @@
                     // Очищаем массив демонов перед загрузкой новых данных
                     demons = [];
                     
-                    // Загружаем демонов из JSON с изображениями
-                    for (const demon of data.demons) {
-                        const imageUrl = await getAvailableImage(demon.id);
-                        
-                        demons.push({
-                            ...demon,
-                            rank: demons.length + 1,
-                            image: imageUrl
-                        });
-                    }
+                    // Быстро создаем демонов без ожидания проверки изображений
+                    demons = data.demons.map((demon, index) => ({
+                        ...demon,
+                        rank: index + 1
+                    }));
                     
                     filteredDemons = [...demons];
                     
-                    console.log('✅ Демоны загружены из demons.json:', demons.length);
-                    updateSyncStatus(`Загружено ${demons.length} демонов`);
+                    const loadTime = performance.now() - startTime;
+                    console.log(`✅ Демоны загружены за ${loadTime.toFixed(2)}ms:`, demons.length);
+                    updateSyncStatus(`Загружено ${demons.length} демонов за ${loadTime.toFixed(0)}ms`);
+                    
+                    // Отображаем демоны сразу
+                    renderDemons();
+                    
+                    // Затем асинхронно загружаем изображения
+                    loadImagesAsync();
+                    
                     return true;
                 } else {
                     throw new Error('Неверный формат demons.json');
@@ -1159,29 +1154,55 @@
                 
             } catch (error) {
                 console.error('❌ Ошибка загрузки демонов:', error);
-                
-                // Используем стандартных демонов только если JSON не загрузился
-                if (demons.length === 0) {
-                    console.log('🔄 Используем стандартных демонов');
-                    demons = [];
-                    
-                    for (const demon of defaultDemons) {
-                        const imageUrl = await getAvailableImage(demon.id);
-                        
-                        demons.push({
-                            ...demon,
-                            rank: demons.length + 1,
-                            image: imageUrl
-                        });
-                    }
-                    
-                    filteredDemons = [...demons];
-                    
-                    updateSyncStatus('Используются стандартные демоны');
-                    showError(error.message);
-                }
+                showError(error.message);
+                updateSyncStatus('Ошибка загрузки данных');
                 return false;
             }
+        }
+
+        // Асинхронная загрузка изображений после рендера
+        async function loadImagesAsync() {
+            if (demons.length === 0) return;
+            
+            console.log('🖼️ Асинхронная загрузка изображений...');
+            
+            // Ограничиваем количество одновременно проверяемых изображений
+            const batchSize = 5;
+            
+            for (let i = 0; i < demons.length; i += batchSize) {
+                const batch = demons.slice(i, i + batchSize);
+                
+                await Promise.all(
+                    batch.map(async (demon) => {
+                        const imageUrl = await getAvailableImage(demon.id);
+                        if (imageUrl) {
+                            // Обновляем демона с изображением
+                            demon.image = imageUrl;
+                            
+                            // Находим и обновляем соответствующий элемент DOM
+                            const demonElement = document.querySelector(`[data-demon-id="${demon.id}"]`);
+                            if (demonElement) {
+                                const imgElement = demonElement.querySelector('.demon-image img');
+                                if (imgElement) {
+                                    imgElement.src = imageUrl;
+                                    imgElement.style.opacity = '0';
+                                    setTimeout(() => {
+                                        imgElement.style.opacity = '1';
+                                        imgElement.style.transition = 'opacity 0.3s ease';
+                                    }, 10);
+                                }
+                            }
+                        }
+                    })
+                );
+                
+                // Небольшая задержка между батчами для лучшей производительности
+                if (i + batchSize < demons.length) {
+                    await new Promise(resolve => setTimeout(resolve, 50));
+                }
+            }
+            
+            console.log('✅ Все изображения загружены');
         }
 
         function updateSyncStatus(message) {
@@ -1192,14 +1213,15 @@
             }
         }
 
-        // ========== RENDERING ==========
+        // ========== ОПТИМИЗИРОВАННЫЙ РЕНДЕРИНГ ==========
 
         function renderDemons() {
             const demonList = document.getElementById('demonList');
             
             if (!demonList) return;
             
-            demonList.innerHTML = '';
+            // Используем DocumentFragment для быстрой вставки
+            const fragment = document.createDocumentFragment();
             
             if (filteredDemons.length === 0) {
                 demonList.innerHTML = `
@@ -1220,6 +1242,7 @@
                 
                 const demonRow = document.createElement('div');
                 demonRow.className = 'demon-row';
+                demonRow.setAttribute('data-demon-id', demon.id);
                 demonRow.onclick = () => openDemonPage(demon.id);
                 
                 const hasImage = demon.image;
@@ -1229,6 +1252,7 @@
                     <div class="demon-image">
                         ${hasImage ? 
                             `<img src="${demon.image}" alt="${demon.name}" 
+                                  loading="lazy"
                                   onerror="handleImageError(this, '${demon.name}')">` :
                             `<div class="image-placeholder">${demon.name.charAt(0)}</div>`
                         }
@@ -1241,8 +1265,12 @@
                         <div class="demon-points">${points} pts</div>
                     </div>
                 `;
-                demonList.appendChild(demonRow);
+                fragment.appendChild(demonRow);
             });
+            
+            // Быстрая замена содержимого
+            demonList.innerHTML = '';
+            demonList.appendChild(fragment);
         }
 
         function handleImageError(img, demonName) {
@@ -1250,7 +1278,7 @@
             parent.innerHTML = `<div class="image-placeholder">${demonName.charAt(0)}</div>`;
         }
 
-        // ========== UTILITY FUNCTIONS ==========
+        // ========== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ==========
 
         function openDemonPage(demonId) {
             window.location.href = `demon.html?id=${demonId}`;
@@ -1258,13 +1286,14 @@
 
         async function refreshData() {
             console.log('🔄 Обновление данных...');
-            // Очищаем массив демонов перед обновлением
+            // Очищаем кэш и массивы перед обновлением
+            imageCache.clear();
             demons = [];
             filteredDemons = [];
             
             await loadDataFromJSON();
-            renderDemons();
             
+            // Анимация обновления
             document.querySelectorAll('.demon-row').forEach((row, index) => {
                 row.style.opacity = '0';
                 row.style.transform = 'translateX(-10px)';
@@ -1277,14 +1306,17 @@
             });
         }
 
-        // ========== INITIALIZATION ==========
+        // ========== ИНИЦИАЛИЗАЦИЯ ==========
 
         async function initializeData() {
             loadTheme();
-            await loadDataFromJSON();
-            initializeSearch();
-            renderDemons();
             
+            // Начинаем загрузку данных сразу
+            const dataPromise = loadDataFromJSON();
+            
+            initializeSearch();
+            
+            // Запускаем анимацию загрузки
             setTimeout(() => {
                 document.querySelectorAll('.demon-row').forEach((row, index) => {
                     row.style.opacity = '0';
@@ -1297,6 +1329,9 @@
                     }, index * 30);
                 });
             }, 100);
+            
+            // Ждем завершения загрузки данных
+            await dataPromise;
         }
 
         window.refreshData = refreshData;
@@ -1306,9 +1341,24 @@
         window.closeMobileMenu = closeMobileMenu;
         window.handleImageError = handleImageError;
 
+        // Запускаем инициализацию сразу после загрузки DOM
         document.addEventListener('DOMContentLoaded', function() {
             initializeData();
         });
+
+        // Предзагрузка критически важных ресурсов
+        if ('requestIdleCallback' in window) {
+            window.requestIdleCallback(() => {
+                // Предзагрузка следующих страниц
+                const links = ['players.html', 'demon.html'];
+                links.forEach(link => {
+                    const preloadLink = document.createElement('link');
+                    preloadLink.rel = 'prefetch';
+                    preloadLink.href = link;
+                    document.head.appendChild(preloadLink);
+                });
+            });
+        }
     </script>
 </body>
 </html>
