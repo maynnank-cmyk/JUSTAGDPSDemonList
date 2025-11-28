@@ -1117,10 +1117,11 @@
             }
         }
 
-        // Оптимизированная загрузка игроков
+        // Оптимизированная загрузка игроков с прогрессивным рендерингом
         async function loadDataFromJSON() {
             try {
                 console.log('📥 Загрузка игроков из players.json...');
+                updateSyncStatus('Загрузка игроков...');
                 
                 // Параллельная загрузка игроков и демонов
                 const [playersResponse, demons] = await Promise.all([
@@ -1133,30 +1134,28 @@
                 const playersData = await playersResponse.json();
                 
                 if (playersData.players && Array.isArray(playersData.players)) {
-                    // Быстро рассчитываем очки для игроков
-                    players = playersData.players.map(player => {
-                        const totalPoints = calculatePlayerTotalPoints(player, demons);
+                    updateSyncStatus('Расчет очков...');
+                    
+                    // Сначала отображаем игроков без полного расчета очков
+                    const playersWithBasicInfo = playersData.players.map(player => {
                         const completedCount = player.completedDemons ? player.completedDemons.length : 0;
                         
                         return {
                             ...player,
-                            totalPoints: totalPoints,
+                            totalPoints: 0, // Временное значение
                             completedCount: completedCount
                         };
-                    }).filter(player => player.totalPoints > 0);
+                    }).filter(player => player.completedCount > 0);
                     
-                    // Сортируем игроков по очкам (по убыванию)
-                    players.sort((a, b) => b.totalPoints - a.totalPoints);
-                    
-                    // Добавляем ранги
-                    players.forEach((player, index) => {
-                        player.rank = index + 1;
-                    });
-                    
+                    players = playersWithBasicInfo;
                     filteredPlayers = [...players];
                     
-                    console.log('✅ Игроки загружены из players.json:', players.length);
-                    updateSyncStatus(`Загружено ${players.length} игроков`);
+                    // Быстро отображаем игроков с базовой информацией
+                    renderPlayersBasic();
+                    
+                    // Затем рассчитываем очки в фоновом режиме
+                    setTimeout(() => calculateAndUpdatePoints(playersWithBasicInfo, demons), 0);
+                    
                     return true;
                 } else {
                     throw new Error('Неверный формат players.json - отсутствует массив players');
@@ -1169,6 +1168,58 @@
                 filteredPlayers = [];
                 updateSyncStatus('Ошибка загрузки данных');
                 return false;
+            }
+        }
+
+        // Фоновая функция для расчета очков
+        async function calculateAndUpdatePoints(playersList, demons) {
+            try {
+                console.log('🧮 Расчет очков для игроков...');
+                
+                // Разбиваем на части для избежания блокировки UI
+                const batchSize = 50;
+                const totalBatches = Math.ceil(playersList.length / batchSize);
+                
+                for (let i = 0; i < totalBatches; i++) {
+                    const batchStart = i * batchSize;
+                    const batchEnd = batchStart + batchSize;
+                    const batch = playersList.slice(batchStart, batchEnd);
+                    
+                    // Рассчитываем очки для батча
+                    batch.forEach(player => {
+                        player.totalPoints = calculatePlayerTotalPoints(player, demons);
+                    });
+                    
+                    // Обновляем статус прогресса
+                    if (totalBatches > 1) {
+                        updateSyncStatus(`Расчет очков... (${Math.round(((i + 1) / totalBatches) * 100)}%)`);
+                    }
+                    
+                    // Даем браузеру время на обновление UI
+                    if (i < totalBatches - 1) {
+                        await new Promise(resolve => setTimeout(resolve, 10));
+                    }
+                }
+                
+                // Сортируем игроков по очкам (по убыванию)
+                players.sort((a, b) => b.totalPoints - a.totalPoints);
+                
+                // Добавляем ранги
+                players.forEach((player, index) => {
+                    player.rank = index + 1;
+                });
+                
+                filteredPlayers = [...players];
+                
+                console.log('✅ Очки рассчитаны для всех игроков');
+                updateSyncStatus(`Загружено ${players.length} игроков`);
+                
+                // Перерисовываем с актуальными данными
+                renderPlayers();
+                
+            } catch (error) {
+                console.error('❌ Ошибка расчета очков:', error);
+                updateSyncStatus('Ошибка расчета очков');
             }
         }
 
@@ -1193,12 +1244,60 @@
 
         // ========== ОПТИМИЗИРОВАННЫЙ РЕНДЕРИНГ ==========
 
+        // Быстрый рендеринг с базовой информацией
+        function renderPlayersBasic() {
+            const playersList = document.getElementById('playersList');
+            
+            if (!playersList) return;
+            
+            const fragment = document.createDocumentFragment();
+            
+            if (players.length === 0) {
+                playersList.innerHTML = `
+                    <div style="text-align: center; padding: 2rem; color: var(--text-secondary);">
+                        <div style="font-size: 2rem; margin-bottom: 0.8rem;">🔍</div>
+                        <div style="font-size: 1rem; margin-bottom: 0.4rem; font-weight: 700;">Игроки не найдены</div>
+                        <div style="font-weight: 600; font-size: 0.9rem;">Попробуйте изменить поисковый запрос</div>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Рендерим только первые 20 игроков для быстрого отображения
+            const playersToRender = players.slice(0, 20);
+            
+            playersToRender.forEach((player, index) => {
+                const playerRow = document.createElement('div');
+                playerRow.className = 'player-row';
+                playerRow.setAttribute('data-player-id', player.id);
+                playerRow.onclick = () => openPlayerProfile(player.id);
+                
+                playerRow.innerHTML = `
+                    <div class="player-rank">${index + 1}</div>
+                    <div class="player-avatar">
+                        <div class="player-avatar-content">${player.avatar}</div>
+                    </div>
+                    <div class="player-info">
+                        <div class="player-details">
+                            <div class="player-name">${player.name}</div>
+                            <div class="player-stats">${player.completedCount} пройденных демонов</div>
+                        </div>
+                        <div class="player-score">...</div>
+                    </div>
+                `;
+                fragment.appendChild(playerRow);
+            });
+            
+            playersList.innerHTML = '';
+            playersList.appendChild(fragment);
+        }
+
+        // Полный рендеринг с очками
         function renderPlayers() {
             const playersList = document.getElementById('playersList');
             
             if (!playersList) return;
             
-            // Используем DocumentFragment для быстрой вставки
             const fragment = document.createDocumentFragment();
             
             if (filteredPlayers.length === 0) {
@@ -1212,11 +1311,7 @@
                 return;
             }
             
-            // Ограничиваем количество одновременно рендерящихся игроков для больших списков
-            const playersToRender = filteredPlayers.length > 100 ? 
-                filteredPlayers.slice(0, 100) : filteredPlayers;
-            
-            playersToRender.forEach(player => {
+            filteredPlayers.forEach(player => {
                 const rankClass = player.rank === 1 ? 'top-1' : 
                                 player.rank <= 3 ? 'top-3' : 
                                 player.rank <= 10 ? 'top-10' : '';
@@ -1242,66 +1337,8 @@
                 fragment.appendChild(playerRow);
             });
             
-            // Быстрая замена содержимого
             playersList.innerHTML = '';
             playersList.appendChild(fragment);
-            
-            // Если игроков больше 100, добавляем оставшихся постепенно
-            if (filteredPlayers.length > 100) {
-                loadRemainingPlayers(filteredPlayers.slice(100));
-            }
-        }
-
-        // Постепенная загрузка оставшихся игроков для лучшей производительности
-        function loadRemainingPlayers(remainingPlayers) {
-            const playersList = document.getElementById('playersList');
-            const batchSize = 20;
-            let currentIndex = 0;
-            
-            function loadNextBatch() {
-                const batch = remainingPlayers.slice(currentIndex, currentIndex + batchSize);
-                const fragment = document.createDocumentFragment();
-                
-                batch.forEach(player => {
-                    const rankClass = player.rank === 1 ? 'top-1' : 
-                                    player.rank <= 3 ? 'top-3' : 
-                                    player.rank <= 10 ? 'top-10' : '';
-                    
-                    const playerRow = document.createElement('div');
-                    playerRow.className = 'player-row';
-                    playerRow.setAttribute('data-player-id', player.id);
-                    playerRow.onclick = () => openPlayerProfile(player.id);
-                    
-                    playerRow.innerHTML = `
-                        <div class="player-rank ${rankClass}">${player.rank}</div>
-                        <div class="player-avatar">
-                            <div class="player-avatar-content">${player.avatar}</div>
-                        </div>
-                        <div class="player-info">
-                            <div class="player-details">
-                                <div class="player-name">${player.name}</div>
-                                <div class="player-stats">${player.completedCount} пройденных демонов</div>
-                            </div>
-                            <div class="player-score">${player.totalPoints} pts</div>
-                        </div>
-                    `;
-                    fragment.appendChild(playerRow);
-                });
-                
-                playersList.appendChild(fragment);
-                currentIndex += batchSize;
-                
-                if (currentIndex < remainingPlayers.length) {
-                    // Используем requestIdleCallback для лучшей производительности
-                    if ('requestIdleCallback' in window) {
-                        requestIdleCallback(loadNextBatch);
-                    } else {
-                        setTimeout(loadNextBatch, 50);
-                    }
-                }
-            }
-            
-            loadNextBatch();
         }
 
         // ========== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ==========
@@ -1318,19 +1355,6 @@
             filteredPlayers = [];
             
             await loadDataFromJSON();
-            renderPlayers();
-            
-            // Анимация обновления
-            document.querySelectorAll('.player-row').forEach((row, index) => {
-                row.style.opacity = '0';
-                row.style.transform = 'translateX(-10px)';
-                
-                setTimeout(() => {
-                    row.style.transition = 'opacity 0.3s, transform 0.3s';
-                    row.style.opacity = '1';
-                    row.style.transform = 'translateX(0)';
-                }, index * 20); // Уменьшенная задержка для скорости
-            });
         }
 
         // ========== ИНИЦИАЛИЗАЦИЯ ==========
@@ -1339,27 +1363,8 @@
             loadTheme();
             
             // Начинаем загрузку данных сразу
-            const dataPromise = loadDataFromJSON();
-            
-            // Инициализируем поиск параллельно
             initializeSearch();
-            
-            // Запускаем анимацию загрузки
-            setTimeout(() => {
-                document.querySelectorAll('.player-row').forEach((row, index) => {
-                    row.style.opacity = '0';
-                    row.style.transform = 'translateX(-10px)';
-                    
-                    setTimeout(() => {
-                        row.style.transition = 'opacity 0.3s, transform 0.3s';
-                        row.style.opacity = '1';
-                        row.style.transform = 'translateX(0)';
-                    }, index * 20);
-                });
-            }, 100);
-            
-            // Ждем завершения загрузки данных
-            await dataPromise;
+            await loadDataFromJSON();
         }
 
         window.refreshData = refreshData;
@@ -1371,17 +1376,6 @@
         document.addEventListener('DOMContentLoaded', function() {
             initializeData();
         });
-
-        // Предзагрузка связанных ресурсов
-        if ('requestIdleCallback' in window) {
-            window.requestIdleCallback(() => {
-                // Предзагрузка player.html для быстрых переходов
-                const preloadLink = document.createElement('link');
-                preloadLink.rel = 'prefetch';
-                preloadLink.href = 'player.html';
-                document.head.appendChild(preloadLink);
-            });
-        }
     </script>
 </body>
 </html>
