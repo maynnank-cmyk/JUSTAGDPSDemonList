@@ -985,10 +985,11 @@
             themeButton.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
         }
 
-        // ========== PLAYERS LIST FUNCTIONALITY ==========
+        // ========== ОПТИМИЗИРОВАННАЯ ЗАГРУЗКА ИГРОКОВ ==========
 
         let players = [];
         let filteredPlayers = [];
+        let demonsCache = null; // Кэш для демонов
 
         // ========== ОБНОВЛЕННАЯ СИСТЕМА ОЧКОВ ==========
 
@@ -1016,29 +1017,34 @@
             }
         }
 
-        // ========== SEARCH SYSTEM ==========
+        // ========== ОПТИМИЗИРОВАННАЯ СИСТЕМА ПОИСКА ==========
 
         function initializeSearch() {
             const searchInput = document.getElementById('searchInput');
             const searchResults = document.getElementById('searchResults');
             
+            // Отложенный поиск для производительности
+            let searchTimeout;
             searchInput.addEventListener('input', function() {
-                const searchTerm = this.value.toLowerCase().trim();
-                
-                if (searchTerm.length === 0) {
-                    searchResults.style.display = 'none';
-                    filteredPlayers = [...players];
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(() => {
+                    const searchTerm = this.value.toLowerCase().trim();
+                    
+                    if (searchTerm.length === 0) {
+                        searchResults.style.display = 'none';
+                        filteredPlayers = [...players];
+                        renderPlayers();
+                        return;
+                    }
+                    
+                    const results = players.filter(player => 
+                        player.name.toLowerCase().includes(searchTerm)
+                    );
+                    
+                    displaySearchResults(results);
+                    filteredPlayers = results;
                     renderPlayers();
-                    return;
-                }
-                
-                const results = players.filter(player => 
-                    player.name.toLowerCase().includes(searchTerm)
-                );
-                
-                displaySearchResults(results);
-                filteredPlayers = results;
-                renderPlayers();
+                }, 150); // Задержка 150ms
             });
             
             document.addEventListener('click', function(e) {
@@ -1059,7 +1065,8 @@
             
             searchResults.innerHTML = '';
             
-            results.slice(0, 6).forEach(player => {
+            // Ограничиваем результаты для производительности
+            results.slice(0, 8).forEach(player => {
                 const resultItem = document.createElement('div');
                 resultItem.className = 'search-result-item';
                 resultItem.innerHTML = `
@@ -1076,7 +1083,7 @@
             searchResults.style.display = 'block';
         }
 
-        // ========== DATA MANAGEMENT ==========
+        // ========== ОПТИМИЗИРОВАННОЕ УПРАВЛЕНИЕ ДАННЫМИ ==========
 
         function showError(message) {
             const errorContainer = document.getElementById('errorContainer');
@@ -1088,30 +1095,47 @@
         }
 
         function calculateDemonRank(demonId, allDemons) {
-            const sortedDemons = [...allDemons].sort((a, b) => {
-                return allDemons.indexOf(a) - allDemons.indexOf(b);
-            });
-            
-            return sortedDemons.findIndex(d => d.id === demonId) + 1;
+            return allDemons.findIndex(d => d.id === demonId) + 1;
         }
 
-        async function loadDataFromJSON() {
+        // Оптимизированная загрузка демонов с кэшированием
+        async function loadDemons() {
+            if (demonsCache) {
+                return demonsCache;
+            }
+
             try {
-                console.log('📥 Загрузка игроков из players.json...');
-                
-                const playersResponse = await fetch('data/players.json');
-                if (!playersResponse.ok) throw new Error('Файл players.json не найден');
-                
-                const playersData = await playersResponse.json();
-                
                 const demonsResponse = await fetch('data/demons.json');
                 if (!demonsResponse.ok) throw new Error('Файл demons.json не найден');
                 
                 const demonsData = await demonsResponse.json();
+                demonsCache = demonsData.demons || [];
+                return demonsCache;
+            } catch (error) {
+                console.error('❌ Ошибка загрузки демонов:', error);
+                return [];
+            }
+        }
+
+        // Оптимизированная загрузка игроков
+        async function loadDataFromJSON() {
+            try {
+                console.log('📥 Загрузка игроков из players.json...');
+                
+                // Параллельная загрузка игроков и демонов
+                const [playersResponse, demons] = await Promise.all([
+                    fetch('data/players.json'),
+                    loadDemons()
+                ]);
+                
+                if (!playersResponse.ok) throw new Error('Файл players.json не найден');
+                
+                const playersData = await playersResponse.json();
                 
                 if (playersData.players && Array.isArray(playersData.players)) {
+                    // Быстро рассчитываем очки для игроков
                     players = playersData.players.map(player => {
-                        const totalPoints = calculatePlayerTotalPoints(player, demonsData.demons);
+                        const totalPoints = calculatePlayerTotalPoints(player, demons);
                         const completedCount = player.completedDemons ? player.completedDemons.length : 0;
                         
                         return {
@@ -1121,8 +1145,10 @@
                         };
                     }).filter(player => player.totalPoints > 0);
                     
+                    // Сортируем игроков по очкам (по убыванию)
                     players.sort((a, b) => b.totalPoints - a.totalPoints);
                     
+                    // Добавляем ранги
                     players.forEach((player, index) => {
                         player.rank = index + 1;
                     });
@@ -1147,8 +1173,9 @@
         }
 
         function calculatePlayerTotalPoints(player, allDemons) {
-            if (!player.completedDemons) return 0;
+            if (!player.completedDemons || player.completedDemons.length === 0) return 0;
             
+            // Оптимизированный расчет очков
             return player.completedDemons.reduce((total, demonId) => {
                 const demonRank = calculateDemonRank(demonId, allDemons);
                 const progress = player.progress ? player.progress[demonId] || 100 : 100;
@@ -1164,14 +1191,15 @@
             }
         }
 
-        // ========== RENDERING ==========
+        // ========== ОПТИМИЗИРОВАННЫЙ РЕНДЕРИНГ ==========
 
         function renderPlayers() {
             const playersList = document.getElementById('playersList');
             
             if (!playersList) return;
             
-            playersList.innerHTML = '';
+            // Используем DocumentFragment для быстрой вставки
+            const fragment = document.createDocumentFragment();
             
             if (filteredPlayers.length === 0) {
                 playersList.innerHTML = `
@@ -1184,13 +1212,18 @@
                 return;
             }
             
-            filteredPlayers.forEach(player => {
+            // Ограничиваем количество одновременно рендерящихся игроков для больших списков
+            const playersToRender = filteredPlayers.length > 100 ? 
+                filteredPlayers.slice(0, 100) : filteredPlayers;
+            
+            playersToRender.forEach(player => {
                 const rankClass = player.rank === 1 ? 'top-1' : 
                                 player.rank <= 3 ? 'top-3' : 
                                 player.rank <= 10 ? 'top-10' : '';
                 
                 const playerRow = document.createElement('div');
                 playerRow.className = 'player-row';
+                playerRow.setAttribute('data-player-id', player.id);
                 playerRow.onclick = () => openPlayerProfile(player.id);
                 
                 playerRow.innerHTML = `
@@ -1206,20 +1239,88 @@
                         <div class="player-score">${player.totalPoints} pts</div>
                     </div>
                 `;
-                playersList.appendChild(playerRow);
+                fragment.appendChild(playerRow);
             });
+            
+            // Быстрая замена содержимого
+            playersList.innerHTML = '';
+            playersList.appendChild(fragment);
+            
+            // Если игроков больше 100, добавляем оставшихся постепенно
+            if (filteredPlayers.length > 100) {
+                loadRemainingPlayers(filteredPlayers.slice(100));
+            }
         }
 
-        // ========== UTILITY FUNCTIONS ==========
+        // Постепенная загрузка оставшихся игроков для лучшей производительности
+        function loadRemainingPlayers(remainingPlayers) {
+            const playersList = document.getElementById('playersList');
+            const batchSize = 20;
+            let currentIndex = 0;
+            
+            function loadNextBatch() {
+                const batch = remainingPlayers.slice(currentIndex, currentIndex + batchSize);
+                const fragment = document.createDocumentFragment();
+                
+                batch.forEach(player => {
+                    const rankClass = player.rank === 1 ? 'top-1' : 
+                                    player.rank <= 3 ? 'top-3' : 
+                                    player.rank <= 10 ? 'top-10' : '';
+                    
+                    const playerRow = document.createElement('div');
+                    playerRow.className = 'player-row';
+                    playerRow.setAttribute('data-player-id', player.id);
+                    playerRow.onclick = () => openPlayerProfile(player.id);
+                    
+                    playerRow.innerHTML = `
+                        <div class="player-rank ${rankClass}">${player.rank}</div>
+                        <div class="player-avatar">
+                            <div class="player-avatar-content">${player.avatar}</div>
+                        </div>
+                        <div class="player-info">
+                            <div class="player-details">
+                                <div class="player-name">${player.name}</div>
+                                <div class="player-stats">${player.completedCount} пройденных демонов</div>
+                            </div>
+                            <div class="player-score">${player.totalPoints} pts</div>
+                        </div>
+                    `;
+                    fragment.appendChild(playerRow);
+                });
+                
+                playersList.appendChild(fragment);
+                currentIndex += batchSize;
+                
+                if (currentIndex < remainingPlayers.length) {
+                    // Используем requestIdleCallback для лучшей производительности
+                    if ('requestIdleCallback' in window) {
+                        requestIdleCallback(loadNextBatch);
+                    } else {
+                        setTimeout(loadNextBatch, 50);
+                    }
+                }
+            }
+            
+            loadNextBatch();
+        }
+
+        // ========== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ==========
 
         function openPlayerProfile(playerId) {
             window.location.href = `player.html?id=${playerId}`;
         }
 
         async function refreshData() {
+            console.log('🔄 Обновление данных игроков...');
+            // Очищаем кэш демонов при обновлении
+            demonsCache = null;
+            players = [];
+            filteredPlayers = [];
+            
             await loadDataFromJSON();
             renderPlayers();
             
+            // Анимация обновления
             document.querySelectorAll('.player-row').forEach((row, index) => {
                 row.style.opacity = '0';
                 row.style.transform = 'translateX(-10px)';
@@ -1228,18 +1329,22 @@
                     row.style.transition = 'opacity 0.3s, transform 0.3s';
                     row.style.opacity = '1';
                     row.style.transform = 'translateX(0)';
-                }, index * 30);
+                }, index * 20); // Уменьшенная задержка для скорости
             });
         }
 
-        // ========== INITIALIZATION ==========
+        // ========== ИНИЦИАЛИЗАЦИЯ ==========
 
         async function initializeData() {
             loadTheme();
-            await loadDataFromJSON();
-            initializeSearch();
-            renderPlayers();
             
+            // Начинаем загрузку данных сразу
+            const dataPromise = loadDataFromJSON();
+            
+            // Инициализируем поиск параллельно
+            initializeSearch();
+            
+            // Запускаем анимацию загрузки
             setTimeout(() => {
                 document.querySelectorAll('.player-row').forEach((row, index) => {
                     row.style.opacity = '0';
@@ -1249,9 +1354,12 @@
                         row.style.transition = 'opacity 0.3s, transform 0.3s';
                         row.style.opacity = '1';
                         row.style.transform = 'translateX(0)';
-                    }, index * 30);
+                    }, index * 20);
                 });
             }, 100);
+            
+            // Ждем завершения загрузки данных
+            await dataPromise;
         }
 
         window.refreshData = refreshData;
@@ -1263,6 +1371,17 @@
         document.addEventListener('DOMContentLoaded', function() {
             initializeData();
         });
+
+        // Предзагрузка связанных ресурсов
+        if ('requestIdleCallback' in window) {
+            window.requestIdleCallback(() => {
+                // Предзагрузка player.html для быстрых переходов
+                const preloadLink = document.createElement('link');
+                preloadLink.rel = 'prefetch';
+                preloadLink.href = 'player.html';
+                document.head.appendChild(preloadLink);
+            });
+        }
     </script>
 </body>
 </html>
