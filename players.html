@@ -990,6 +990,32 @@
         let players = [];
         let filteredPlayers = [];
 
+        // ========== ОБНОВЛЕННАЯ СИСТЕМА ОЧКОВ ==========
+
+        function calculatePointsByRank(rank) {
+            const basePoints = 1000;
+            if (rank === 1) return basePoints;
+            
+            // Уменьшаем на 5% за каждую позицию после первого места
+            const reduction = 0.05; // 5%
+            const points = basePoints * Math.pow(1 - reduction, rank - 1);
+            
+            // Минимальное количество очков - 1
+            return Math.max(Math.round(points), 1);
+        }
+
+        function calculatePointsWithProgress(demonRank, progress) {
+            const basePoints = calculatePointsByRank(demonRank);
+            
+            if (progress === 100) {
+                return basePoints;
+            } else if (progress >= 51) {
+                return Math.floor(basePoints / 4);
+            } else {
+                return 0;
+            }
+        }
+
         // ========== SEARCH SYSTEM ==========
 
         function initializeSearch() {
@@ -1061,36 +1087,6 @@
             `;
         }
 
-        function calculatePointsByRank(rank) {
-            if (rank <= 50) {
-                return Math.max(1000 - (rank - 1) * 20, 300);
-            } else {
-                return Math.max(300 - (rank - 51) * 5, 5);
-            }
-        }
-
-        function calculatePointsWithProgress(demonRank, progress) {
-            const basePoints = calculatePointsByRank(demonRank);
-            
-            if (progress === 100) {
-                return basePoints;
-            } else if (progress >= 51) {
-                return Math.floor(basePoints / 4);
-            } else {
-                return 0;
-            }
-        }
-
-        function calculatePlayerTotalPoints(player, allDemons) {
-            if (!player.completedDemons) return 0;
-            
-            return player.completedDemons.reduce((total, demonId) => {
-                const demonRank = calculateDemonRank(demonId, allDemons);
-                const progress = player.progress ? player.progress[demonId] || 100 : 100;
-                return total + calculatePointsWithProgress(demonRank, progress);
-            }, 0);
-        }
-
         function calculateDemonRank(demonId, allDemons) {
             const sortedDemons = [...allDemons].sort((a, b) => {
                 return allDemons.indexOf(a) - allDemons.indexOf(b);
@@ -1114,7 +1110,6 @@
                 const demonsData = await demonsResponse.json();
                 
                 if (playersData.players && Array.isArray(playersData.players)) {
-                    // Рассчитываем очки для каждого игрока
                     players = playersData.players.map(player => {
                         const totalPoints = calculatePlayerTotalPoints(player, demonsData.demons);
                         const completedCount = player.completedDemons ? player.completedDemons.length : 0;
@@ -1126,10 +1121,8 @@
                         };
                     }).filter(player => player.totalPoints > 0);
                     
-                    // Сортируем игроков по очкам (по убыванию)
                     players.sort((a, b) => b.totalPoints - a.totalPoints);
                     
-                    // Добавляем ранги
                     players.forEach((player, index) => {
                         player.rank = index + 1;
                     });
@@ -1151,6 +1144,16 @@
                 updateSyncStatus('Ошибка загрузки данных');
                 return false;
             }
+        }
+
+        function calculatePlayerTotalPoints(player, allDemons) {
+            if (!player.completedDemons) return 0;
+            
+            return player.completedDemons.reduce((total, demonId) => {
+                const demonRank = calculateDemonRank(demonId, allDemons);
+                const progress = player.progress ? player.progress[demonId] || 100 : 100;
+                return total + calculatePointsWithProgress(demonRank, progress);
+            }, 0);
         }
 
         function updateSyncStatus(message) {
