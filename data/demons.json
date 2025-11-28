@@ -57,6 +57,14 @@
       "description": ""
     },
     {
+      "id": "blueberrycircles",
+      "name": "Blueberry Circles",
+      "creator": "FanDavid",
+      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
+      "image": "images/blueberrycircles.png",
+      "description": ""
+    },
+    {
       "id": "bloodinthesnow",
       "name": "Blood In The Snow",
       "creator": "ESC",
@@ -81,14 +89,6 @@
       "description": ""
     },
     {
-      "id": "fuzeii",
-      "name": "Fuze II",
-      "creator": "Terraria",
-      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
-      "image": "images/fuzeii.png",
-      "description": ""
-    },
-    {
       "id": "selfharm",
       "name": "Selfharm",
       "creator": "ppsha",
@@ -104,12 +104,12 @@
       "image": "images/sigareta1.png",
       "description": ""
     },
-    {
-      "id": "blueberrycircles",
-      "name": "Blueberry Circles",
-      "creator": "FanDavid",
+     {
+      "id": "fuzeii",
+      "name": "Fuze II",
+      "creator": "Terraria",
       "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
-      "image": "images/blueberrycircles.png",
+      "image": "images/fuzeii.png",
       "description": ""
     },
     {
