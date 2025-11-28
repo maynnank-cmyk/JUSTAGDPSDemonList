@@ -41,10 +41,11 @@
       "id": "wezt",
       "name": "wezt",
       "avatar": "W",
-      "completedDemons": ["unmaded", "nameless"],
+      "completedDemons": ["unmaded", "nameless", "gypers"],
       "progress": {
         "unmaded": 100,
-        "nameless": 100
+        "nameless": 100,
+        "gypers": 100
       }
     },
      {
