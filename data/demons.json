@@ -80,6 +80,14 @@
       "image": "images/bloodinthesnow.png",
       "description": ""
     },
+     {
+      "id": "duat",
+      "name": "Duat",
+      "creator": "Booba123",
+      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
+      "image": "images/duat.png",
+      "description": ""
+    },
     {
       "id": "jag",
       "name": "Jag",
@@ -238,14 +246,6 @@
       "creator": "acheronn",
       "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
       "image": "images/elproblemo.png",
-      "description": ""
-    },
-    {
-      "id": "duat",
-      "name": "Duat",
-      "creator": "Booba123",
-      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
-      "image": "images/duat.png",
       "description": ""
     },
     {
