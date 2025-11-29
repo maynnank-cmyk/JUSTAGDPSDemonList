@@ -41,6 +41,14 @@
       "description": ""
     },
     {
+      "id": "cure",
+      "name": "cure",
+      "creator": "ppsha",
+      "videoUrl": "https://youtu.be/no49Ovcqr6E",
+      "image": "images/cure.png",
+      "description": ""
+    },
+    {
       "id": "oldamethyst",
       "name": "Old Amethyst",
       "creator": "To4nowhy",
