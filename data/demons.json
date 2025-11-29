@@ -152,14 +152,6 @@
       "image": "images/solareclipse.png",
       "description": ""
     },
-    {
-      "id": "klaxonbeat",
-      "name": "Klaxon Beat",
-      "creator": "andregd",
-      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
-      "image": "images/klaxonbeat.png",
-      "description": ""
-    },
      {
       "id": "wasted",
       "name": "Wasted",
