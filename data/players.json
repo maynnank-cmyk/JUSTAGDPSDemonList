@@ -66,6 +66,16 @@
         "sigareta2": 100
       }
     },
+    {
+      "id": "ppsha",
+      "name": "ppsha",
+      "avatar": "PP",
+      "completedDemons": ["cure", "selfharm"],
+      "progress": {
+        "cure": 100,
+        "selfharm": 100
+      }
+    },
      {
       "id": "vladgdmj",
       "name": "Vladgdmj",
