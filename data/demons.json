@@ -32,7 +32,7 @@
       "image": "images/unmaded.png",
       "description": "Баллистик вистфулли."
     },
-     {
+    {
       "id": "badabum",
       "name": "Badabum",
       "creator": "Vladgdmj & Ruslanych",
@@ -56,28 +56,12 @@
       "image": "images/oldamethyst.png",
       "description": ""
     },
-     {
+    {
       "id": "heliorobot",
       "name": "HelioRobot",
       "creator": "Sayori",
       "videoUrl": "https://youtu.be/tiDeKxbGxlM?si=L92j5SPaR2W75e-7",
       "image": "images/heliorobot.png",
-      "description": ""
-    },
-     {
-      "id": "dualistic",
-      "name": "Dualistic",
-      "creator": "1000",
-      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
-      "image": "images/dualistic.png",
-      "description": ""
-    },
-    {
-      "id": "blueberrycircles",
-      "name": "Blueberry Circles",
-      "creator": "FanDavid",
-      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
-      "image": "images/blueberrycircles.png",
       "description": ""
     },
     {
@@ -88,30 +72,6 @@
       "image": "images/bloodinthesnow.png",
       "description": ""
     },
-     {
-      "id": "duat",
-      "name": "Duat",
-      "creator": "Booba123",
-      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
-      "image": "images/duat.png",
-      "description": ""
-    },
-    {
-      "id": "jag",
-      "name": "Jag",
-      "creator": "M4l",
-      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
-      "image": "images/jag.png",
-      "description": ""
-    },
-    {
-      "id": "orbsuicide",
-      "name": "Orb Suicide",
-      "creator": "M4l",
-      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
-      "image": "images/orbssuicide.png",
-      "description": ""
-    },
     {
       "id": "selfharm",
       "name": "Selfharm",
@@ -120,119 +80,15 @@
       "image": "images/selfharm.png",
       "description": ""
     },
-     {
-      "id": "sigareta1",
-      "name": "Sigareta",
-      "creator": "Sarizx",
-      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
-      "image": "images/sigareta1.png",
-      "description": ""
-    },
-     {
-      "id": "fuzeii",
-      "name": "Fuze II",
-      "creator": "Terraria",
-      "videoUrl": "https://youtu.be/8mIKN1XjQts?si=9UJTQ5Gab-dj-bF6 ",
-      "image": "images/fuzeii.png",
-      "description": ""
-    },
-     {
-      "id": "primaparssagae",
-      "name": "Prima Pars Sagae",
-      "creator": "wWanderer",
-      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
-      "image": "images/primaparssagae.png",
-      "description": ""
-    },
     {
-      "id": "solareclipse",
-      "name": "Solar Eclipse",
-      "creator": "acheronn",
-      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
-      "image": "images/solareclipse.png",
-      "description": ""
-    },
-     {
-      "id": "wasted",
-      "name": "Wasted",
-      "creator": "Quintana",
-      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
-      "image": "images/wasted.png",
-      "description": ""
-    },
-      {
       "id": "sigareta2",
-      "name": "Sigareta ",
+      "name": "Sigareta",
       "creator": "Vladgdmj",
       "videoUrl": "https://youtu.be/6UbV9tNb-y0",
       "image": "images/sigareta.png",
       "description": ""
     },
-     {
-      "id": "proximacentaura",
-      "name": "Proxima Centaura",
-      "creator": "Terraria",
-      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
-      "image": "images/proximacentaura.png",
-      "description": ""
-    },
     {
-      "id": "themaidandthepocketwatchofblood",
-      "name": "The Maid and the pocket watch of blood",
-      "creator": "1000",
-      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
-      "image": "images/themaidandthepocketwatchofblood.png",
-      "description": ""
-    },
-      {
-      "id": "escape",
-      "name": "Escape",
-      "creator": "M4l",
-      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
-      "image": "images/escape.png",
-      "description": ""
-    },
-     {
-      "id": "rumordethanatos",
-      "name": "Rumor De Thanathos",
-      "creator": "Booba123",
-      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
-      "image": "images/rumordethanatos.png",
-      "description": ""
-    },
-    {
-      "id": "viennacircles",
-      "name": "Vienna Circles",
-      "creator": "Terraria",
-      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
-      "image": "images/viennacircles.png",
-      "description": ""
-    },
-    {
-      "id": "xrebirth",
-      "name": "X Rebirth",
-      "creator": "Nzcir2",
-      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
-      "image": "images/xrebirth.png",
-      "description": ""
-    },
-    {
-      "id": "clubstepreborn",
-      "name": "Clubstep Reborn",
-      "creator": "spectre111",
-      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
-      "image": "images/clubstepreborn.png",
-      "description": ""
-    },
-    {
-      "id": "tralalelotralala",
-      "name": "TralaleloTralala",
-      "creator": "Terraria",
-      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
-      "image": "images/tralalelotralala.png",
-      "description": ""
-    },
-     {
       "id": "turnthelightsoff",
       "name": "Turn The Lights Off",
       "creator": "Terraria",
@@ -240,204 +96,12 @@
       "image": "images/turnthelightsoff.png",
       "description": "verified by vladgdmj."
     },
-     {
-      "id": "elproblemo",
-      "name": "El ProblemO",
-      "creator": "acheronn",
-      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
-      "image": "images/elproblemo.png",
-      "description": ""
-    },
-      {
+    {
       "id": "nocircles",
       "name": "NoCircles",
       "creator": "Terraria",
       "videoUrl": "https://youtu.be/2imHE4u0x0I?si=pcuoLLqms8fTi0Gz&t=38",
       "image": "images/nocircles.png",
-      "description": ""
-    },
-    {
-      "id": "jawbrackercircles",
-      "name": "Jawbraker Circles",
-      "creator": "NerdDuck",
-      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
-      "image": "images/jawbrakercircles.png",
-      "description": ""
-    },
-    {
-      "id": "hideandseek",
-      "name": "Hide And Seek",
-      "creator": "NerdDuck",
-      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
-      "image": "images/hideandseek.png",
-      "description": ""
-    },
-    {
-      "id": "fallingcircles",
-      "name": "Falling Circles",
-      "creator": "Dodjeman55",
-      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
-      "image": "images/fallingcircles.png",
-      "description": ""
-    },
-     {
-      "id": "finalboss",
-      "name": "Final Boss",
-      "creator": "Matvei77764",
-      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
-      "image": "images/finalboss.png",
-      "description": ""
-    },
-     {
-      "id": "thecognition",
-      "name": "The Cognition",
-      "creator": "thefunnygame15",
-      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
-      "image": "images/thecognition.png",
-      "description": ""
-    },
-      {
-      "id": "thespirit",
-      "name": "The Spirit",
-      "creator": "acheronn",
-      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
-      "image": "images/thespirit.png",
-      "description": ""
-    },
-    {
-      "id": "hyperstellar",
-      "name": "HyperStellar",
-      "creator": "vrodeESC",
-      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
-      "image": "images/hyperstellar.png",
-      "description": ""
-    },
-    {
-      "id": "chinafunk",
-      "name": "China Funk",
-      "creator": "Sigmafr",
-      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
-      "image": "images/chinafunk.png",
-      "description": ""
-    },
-    {
-      "id": "24hourscollab",
-      "name": "24 Hours Collab",
-      "creator": "Serhik",
-      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
-      "image": "images/24hourscollab.png",
-      "description": ""
-    },
-     {
-      "id": "cemeteryofonbashira",
-      "name": "Cemetry Of Bashira",
-      "creator": "1000",
-      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
-      "image": "images/cemeteryofonbashira.png",
-      "description": ""
-    },
-       {
-      "id": "nuclearfushion",
-      "name": "Nuclear Fushion",
-      "creator": "1000",
-      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
-      "image": "images/nuclearfushion.png",
-      "description": ""
-    },
-     {
-      "id": "easycorridor",
-      "name": "Easy Corridor",
-      "creator": "TheRealMraz",
-      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
-      "image": "images/easycorridor.png",
-      "description": ""
-    },
-     {
-      "id": "purgatory",
-      "name": "Purgatory",
-      "creator": "onyxxx13",
-      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
-      "image": "images/purgatory.png",
-      "description": ""
-    },
-     {
-      "id": "goodlvl",
-      "name": "good lvl",
-      "creator": "gigabiba",
-      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
-      "image": "images/goodlvl.png",
-      "description": ""
-    },
-     {
-      "id": "ss223keleron",
-      "name": "SS223Keleron",
-      "creator": "MichGMD",
-      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
-      "image": "images/ss223keleron.png",
-      "description": ""
-    },
-     {
-      "id": "1800",
-      "name": "1800",
-      "creator": "Sayori",
-      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
-      "image": "images/1800.png",
-      "description": ""
-    },
-     {
-      "id": "mirroring",
-      "name": "Mirroring",
-      "creator": "Holic",
-      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
-      "image": "images/mirroring.png",
-      "description": ""
-    },
-     {
-      "id": "jvst",
-      "name": "jvst",
-      "creator": "Terraria",
-      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
-      "image": "images/jvst.png",
-      "description": ""
-    },
-     {
-      "id": "tuna3kilos",
-      "name": "Tuna3kilos",
-      "creator": "Pabel",
-      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
-      "image": "images/tuna3kilos.png",
-      "description": ""
-    },
-     {
-      "id": "lsd",
-      "name": "LSD",
-      "creator": "RoyalGG",
-      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
-      "image": "images/lsd.png",
-      "description": ""
-    },
-     {
-      "id": "wateraura",
-      "name": "WaterAura",
-      "creator": "TheRealMraz",
-      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
-      "image": "images/wateraura.png",
-      "description": ""
-    },
-     {
-      "id": "justgdpsandbeats",
-      "name": "Just Gdps and Beats",
-      "creator": "NerdDuck",
-      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
-      "image": "images/justgdpsandbeats.png",
-      "description": ""
-    },
-     {
-      "id": "azurestar",
-      "name": "Azure Star",
-      "creator": "TheRealMraz",
-      "videoUrl": "https://youtu.be/XxAyFRy_ET8?si=HCNfCGWAH-2mR5__",
-      "image": "images/azurestar.png",
       "description": ""
     }
   ]
