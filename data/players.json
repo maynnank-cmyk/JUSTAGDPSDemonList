@@ -97,6 +97,7 @@
       "completedDemons": ["heliorobot"],
       "progress": {
         "heliorobot": 100
+        }
       },
         {
       "id": "terraria",
@@ -105,6 +106,7 @@
       "completedDemons": ["nocircles"],
       "progress": {
         "nocircles": 100
+        }
       },
        {
       "id": "ster3o",
