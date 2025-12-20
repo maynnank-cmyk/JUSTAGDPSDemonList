@@ -248,6 +248,14 @@
       "image": "images/elproblemo.png",
       "description": ""
     },
+      {
+      "id": "nocircles",
+      "name": "NoCircles",
+      "creator": "Terraria",
+      "videoUrl": "https://youtu.be/2imHE4u0x0I?si=pcuoLLqms8fTi0Gz&t=38",
+      "image": "images/nocircles.png",
+      "description": ""
+    },
     {
       "id": "jawbrackercircles",
       "name": "Jawbraker Circles",
