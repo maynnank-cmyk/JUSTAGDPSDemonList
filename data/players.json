@@ -32,20 +32,23 @@
       "id": "yoyka",
       "name": "yoyka",
       "avatar": "Y",
-      "completedDemons": ["uauafactorial"],
+      "completedDemons": ["uauafactorial", "gypers", "selfharm"],
       "progress": {
-        "uauafactorial": 100
+        "uauafactorial": 100,
+        "gypers": 100,
+        "selfharm": 100
       }
     },
     {
       "id": "wezt",
       "name": "wezt",
       "avatar": "W",
-      "completedDemons": ["unmaded", "nameless", "gypers"],
+      "completedDemons": ["unmaded", "nameless", "gypers", "selfharm"],
       "progress": {
         "unmaded": 100,
         "nameless": 100,
-        "gypers": 100
+        "gypers": 100,
+        "selfharm": 100
       }
     },
      {
@@ -94,6 +97,22 @@
       "completedDemons": ["heliorobot"],
       "progress": {
         "heliorobot": 100
+      },
+        {
+      "id": "terraria",
+      "name": "Terraria",
+      "avatar": "T",
+      "completedDemons": ["nocircles"],
+      "progress": {
+        "nocircles": 100
+      },
+       {
+      "id": "ster3o",
+      "name": "ster3o",
+      "avatar": "S",
+      "completedDemons": ["cure"],
+      "progress": {
+        "cure": 100
       }
     }
   ]
