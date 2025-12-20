@@ -103,9 +103,10 @@
       "id": "terraria",
       "name": "Terraria",
       "avatar": "T",
-      "completedDemons": ["nocircles"],
+      "completedDemons": ["nocircles", "fuzeii"],
       "progress": {
-        "nocircles": 100
+        "nocircles": 100,
+        "fuzeii": 100
         }
       },
        {
