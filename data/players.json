@@ -43,12 +43,14 @@
       "id": "wezt",
       "name": "wezt",
       "avatar": "W",
-      "completedDemons": ["unmaded", "nameless", "gypers", "selfharm"],
+      "completedDemons": ["unmaded", "nameless", "gypers", "selfharm", "cure", "uauafactorial"],
       "progress": {
         "unmaded": 100,
         "nameless": 100,
         "gypers": 100,
-        "selfharm": 100
+        "selfharm": 100,
+        "cure": 100,
+        "uauafactorial": 100
       }
     },
      {
