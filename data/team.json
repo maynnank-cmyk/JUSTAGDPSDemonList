@@ -7,14 +7,6 @@
       "avatarImage": "images/vladgmd.png", 
       "role": "Создатель листа",
       "roleClass": "role-leader"
-    },
-    {
-      "id": "kitkat",
-      "name": "Kitkat",
-      "avatar": "K",
-      "avatarImage": "images/kitkat.png", 
-      "role": "Модератор листа",
-      "roleClass": "role-leader"
-    }  
+    }
   ]
 }
