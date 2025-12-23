@@ -112,6 +112,15 @@
         }
       },
        {
+      "id": "vxmnc",
+      "name": "VXMNC",
+      "avatar": "VX",
+      "completedDemons": ["hellmachine"],
+      "progress": {
+        "hellmachine": 100
+        }
+      },
+       {
       "id": "ster3o",
       "name": "ster3o",
       "avatar": "S",
