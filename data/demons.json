@@ -64,6 +64,14 @@
       "image": "images/heliorobot.png",
       "description": ""
     },
+     {
+      "id": "hellmachine",
+      "name": "Hell Machine",
+      "creator": "VXMNC",
+      "videoUrl": "https://youtu.be/qNGwDHdGhTE",
+      "image": "images/hellmachine.png",
+      "description": ""
+    },
     {
       "id": "bloodinthesnow",
       "name": "Blood In The Snow",
