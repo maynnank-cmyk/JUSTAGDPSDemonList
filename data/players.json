@@ -43,7 +43,7 @@
       "id": "wezt",
       "name": "wezt",
       "avatar": "W",
-      "completedDemons": ["unmaded", "nameless", "gypers", "selfharm", "cure", "uauafactorial", "sapphireglow", "insomnia"],
+      "completedDemons": ["unmaded", "nameless", "gypers", "selfharm", "cure", "uauafactorial", "sapphireglow", "insomnia", "sigareta2", "turnthelightsoff", "bloodinthesnow"],
       "progress": {
         "unmaded": 100,
         "nameless": 100,
@@ -52,7 +52,10 @@
         "cure": 100,
         "uauafactorial": 100,
         "sapphireglow": 100,
-        "insomnia": 100
+        "insomnia": 100,
+        "sigareta2": 100,
+        "turnthelightsoff": 100,
+        "bloodinthesnow": 100
       }
     },
      {
