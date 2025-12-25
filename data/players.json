@@ -43,14 +43,15 @@
       "id": "wezt",
       "name": "wezt",
       "avatar": "W",
-      "completedDemons": ["unmaded", "nameless", "gypers", "selfharm", "cure", "uauafactorial"],
+      "completedDemons": ["unmaded", "nameless", "gypers", "selfharm", "cure", "uauafactorial", "sapphireglow"],
       "progress": {
         "unmaded": 100,
         "nameless": 100,
         "gypers": 100,
         "selfharm": 100,
         "cure": 100,
-        "uauafactorial": 100
+        "uauafactorial": 100,
+        "sapphireglow": 100
       }
     },
      {
@@ -85,11 +86,12 @@
       "id": "vladgdmj",
       "name": "Vladgdmj",
       "avatar": "V",
-      "completedDemons": ["badabum", "sigareta2", "turnthelightsoff"],
+      "completedDemons": ["badabum", "sigareta2", "turnthelightsoff", "insomnia"],
       "progress": {
         "badabum": 100,
         "sigareta2": 100,
-        "turnthelightsoff": 100
+        "turnthelightsoff": 100,
+        "insomnia": 100
       }
     },
      {
@@ -118,6 +120,15 @@
       "completedDemons": ["hellmachine"],
       "progress": {
         "hellmachine": 100
+        }
+      },
+        {
+      "id": "voidamage",
+      "name": "VoiDamage",
+      "avatar": "VD",
+      "completedDemons": ["leyckhemuya"],
+      "progress": {
+        "leyckhemuya": 100
         }
       },
        {
