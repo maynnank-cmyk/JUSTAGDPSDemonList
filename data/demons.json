@@ -9,6 +9,14 @@
       "description": ""
     },
     {
+      "id": "insomnia",
+      "name": "Insomnia",
+      "creator": "VladGDMJ",
+      "videoUrl": "https://youtu.be/s_HhFXHf-vs",
+      "image": "images/insomnia.png",
+      "description": ""
+    },
+    {
       "id": "gypers",
       "name": "Gypers",
       "creator": "WeztT",
@@ -22,14 +30,6 @@
       "creator": "wWanderer",
       "videoUrl": "https://youtu.be/D1K5v6kKAag",
       "image": "images/sapphireglow.png",
-      "description": ""
-    },
-     {
-      "id": "insomnia",
-      "name": "Insomnia",
-      "creator": "VladGDMJ",
-      "videoUrl": "https://youtu.be/s_HhFXHf-vs",
-      "image": "images/insomnia.png",
       "description": ""
     },
     {
