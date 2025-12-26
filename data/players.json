@@ -111,10 +111,12 @@
       "id": "terraria",
       "name": "Terraria",
       "avatar": "T",
-      "completedDemons": ["nocircles", "fuzeii"],
+      "completedDemons": ["nocircles", "fuzeii", "anathema", "atomiccannonmkiii"],
       "progress": {
         "nocircles": 100,
-        "fuzeii": 100
+        "fuzeii": 100,
+        "anathema": 100,
+        "atomiccannonmkiii": 100
         }
       },
        {
@@ -133,6 +135,15 @@
       "completedDemons": ["leyckhemuya"],
       "progress": {
         "leyckhemuya": 100
+        }
+      },
+      {
+      "id": "preh",
+      "name": "preh",
+      "avatar": "PR",
+      "completedDemons": ["invisible"],
+      "progress": {
+        "invisible": 100
         }
       },
        {
