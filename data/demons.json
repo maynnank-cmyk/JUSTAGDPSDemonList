@@ -96,6 +96,22 @@
       "image": "images/leyckhemuya.png",
       "description": ""
     },
+      {
+      "id": "atomiccannonmkiii",
+      "name": "Atomic Cannon Mk III",
+      "creator": "Terraria",
+      "videoUrl": "https://youtu.be/EIQKkJ9qoaA?si=IyoVeeDUIEE_qbw-",
+      "image": "images/atomiccannonmkiii.png",
+      "description": ""
+    },
+      {
+      "id": "anathema",
+      "name": "Anathema",
+      "creator": "Terraria",
+      "videoUrl": "https://youtu.be/iyMbRr_tFaM?si=8xyZ99sSaw3Ye7yT",
+      "image": "images/atomiccannonmkiii.png",
+      "description": ""
+    },
     {
       "id": "bloodinthesnow",
       "name": "Blood In The Snow",
@@ -110,6 +126,14 @@
       "creator": "ppsha",
       "videoUrl": "https://www.youtube.com/watch?v=xFKaflRbZJ8",
       "image": "images/selfharm.png",
+      "description": ""
+    },
+     {
+      "id": "invisible",
+      "name": "Invisible",
+      "creator": "preh",
+      "videoUrl": "https://youtu.be/rK65zUh5lqM?si=gu4YVEmT1GByb62D",
+      "image": "images/invisible.png",
       "description": ""
     },
     {
