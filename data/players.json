@@ -146,6 +146,15 @@
         "invisible": 100
         }
       },
+     {
+      "id": "nzcir2",
+      "name": "NzCir2",
+      "avatar": "NZ",
+      "completedDemons": ["xrebirth"],
+      "progress": {
+        "xrebirth": 100
+        }
+      },
        {
       "id": "ster3o",
       "name": "ster3o",
