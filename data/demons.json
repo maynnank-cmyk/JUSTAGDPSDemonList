@@ -32,6 +32,14 @@
       "image": "images/sapphireglow.png",
       "description": ""
     },
+     {
+      "id": "bullet",
+      "name": "Bullet",
+      "creator": "VladGDMJ",
+      "videoUrl": "https://youtu.be/hQ_jJGBMxfY",
+      "image": "images/bullet.png",
+      "description": "disbalance."
+    },
     {
       "id": "uauafactorial",
       "name": "UaUa Factorial",
