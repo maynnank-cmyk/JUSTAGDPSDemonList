@@ -91,12 +91,13 @@
       "id": "vladgdmj",
       "name": "Vladgdmj",
       "avatar": "V",
-      "completedDemons": ["badabum", "sigareta2", "turnthelightsoff", "insomnia"],
+      "completedDemons": ["badabum", "sigareta2", "turnthelightsoff", "insomnia", "anathema"],
       "progress": {
         "badabum": 100,
         "sigareta2": 100,
         "turnthelightsoff": 100,
-        "insomnia": 100
+        "insomnia": 100,
+        "anathema": 100
       }
     },
      {
