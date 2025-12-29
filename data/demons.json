@@ -64,6 +64,14 @@
       "image": "images/unmaded.png",
       "description": "Баллистик вистфулли."
     },
+      {
+      "id": "lowdeathiii",
+      "name": "Low Death III",
+      "creator": "Terraria",
+      "videoUrl": "https://youtu.be/ABGLVISmq08?si=eqUUzoPX7HWKVj5w&t=11",
+      "image": "images/lowdeathiii.png",
+      "description": ""
+    },
     {
       "id": "badabum",
       "name": "Badabum",
