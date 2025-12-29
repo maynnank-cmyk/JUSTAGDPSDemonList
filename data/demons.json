@@ -1,5 +1,13 @@
 {
   "demons": [
+     {
+      "id": "staru",
+      "name": "Star U",
+      "creator": "VladGDMJ",
+      "videoUrl": "https://youtu.be/yCUikSdgj_0",
+      "image": "images/staru.png",
+      "description": ""
+    },
     {
       "id": "nameless",
       "name": "nameless",
