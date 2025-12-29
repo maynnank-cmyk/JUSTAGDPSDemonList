@@ -43,7 +43,7 @@
       "id": "wezt",
       "name": "wezt",
       "avatar": "W",
-      "completedDemons": ["unmaded", "nameless", "gypers", "selfharm", "cure", "uauafactorial", "sapphireglow", "insomnia", "sigareta2", "turnthelightsoff", "bloodinthesnow", "bullet"],
+      "completedDemons": ["unmaded", "nameless", "gypers", "selfharm", "cure", "uauafactorial", "sapphireglow", "insomnia", "sigareta2", "turnthelightsoff", "bloodinthesnow", "bullet", "staru"],
       "progress": {
         "unmaded": 100,
         "nameless": 100,
@@ -56,7 +56,8 @@
         "sigareta2": 100,
         "turnthelightsoff": 100,
         "bloodinthesnow": 100,
-        "bullet": 100
+        "bullet": 100,
+        "staru": 100
       }
     },
      {
@@ -114,12 +115,13 @@
       "id": "terraria",
       "name": "Terraria",
       "avatar": "T",
-      "completedDemons": ["nocircles", "fuzeii", "anathema", "atomiccannonmkiii"],
+      "completedDemons": ["nocircles", "fuzeii", "anathema", "atomiccannonmkiii", "lowdeathiii"],
       "progress": {
         "nocircles": 100,
         "fuzeii": 100,
         "anathema": 100,
-        "atomiccannonmkiii": 100
+        "atomiccannonmkiii": 100,
+        "lowdeathiii": 100
         }
       },
        {
@@ -156,6 +158,16 @@
       "completedDemons": ["xrebirth"],
       "progress": {
         "xrebirth": 100
+        }
+      },
+     {
+      "id": "vidiourok",
+      "name": "vidiourok",
+      "avatar": "VU",
+      "completedDemons": ["sigareta2", "insomnia"],
+      "progress": {
+        "sigareta2": 100,
+        "insomnia": 100
         }
       },
        {
