@@ -164,11 +164,11 @@
       "id": "vidiourok",
       "name": "vidiourok",
       "avatar": "VU",
-      "completedDemons": ["sigareta2", "insomnia", "nocircle", "selfharm"],
+      "completedDemons": ["sigareta2", "insomnia", "nocircles", "selfharm"],
       "progress": {
         "sigareta2": 100,
         "insomnia": 100,
-        "nocircle": 100,
+        "nocircles": 100,
         "selfharm": 100
         }
       },
