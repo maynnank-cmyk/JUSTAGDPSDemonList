@@ -164,12 +164,15 @@
       "id": "vidiourok",
       "name": "vidiourok",
       "avatar": "VU",
-      "completedDemons": ["sigareta2", "insomnia", "nocircles", "selfharm"],
+      "completedDemons": ["sigareta2", "insomnia", "nocircles", "selfharm", "anathema", "oldamethyst", "bloodinthesnow"],
       "progress": {
         "sigareta2": 100,
         "insomnia": 100,
         "nocircles": 100,
-        "selfharm": 100
+        "selfharm": 100,
+        "anathema": 100,
+        "oldamethyst": 100,
+        "bloodinthesnow": 100
         }
       },
        {
