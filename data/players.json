@@ -176,6 +176,15 @@
         }
       },
        {
+      "id": "vossozdatel",
+      "name": "Vossozdatel",
+      "avatar": "VZ",
+      "completedDemons": ["ccopakpectob"],
+      "progress": {
+        "ccopakpectob": 100
+      }
+    },
+     {
       "id": "ster3o",
       "name": "ster3o",
       "avatar": "S",
