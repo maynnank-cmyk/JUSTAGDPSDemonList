@@ -144,6 +144,14 @@
       "image": "images/atomiccannonmkiii.png",
       "description": ""
     },
+       {
+      "id": "orbsuicide",
+      "name": "Orb Suicide",
+      "creator": "makaron4iki",
+      "videoUrl": "https://youtu.be/2-kCGEZq96k?si=Gi_13KYYYqJG5qhx",
+      "image": "images/orbsuicide.png",
+      "description": ""
+    },
     {
       "id": "bloodinthesnow",
       "name": "Blood In The Snow",
