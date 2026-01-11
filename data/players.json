@@ -202,6 +202,15 @@
         "ccopakpectob": 100
       }
     },
+      {
+      "id": "asyouknow",
+      "name": "AsYouKnow",
+      "avatar": "AYK",
+      "completedDemons": ["sigareta2"],
+      "progress": {
+        "sigareta2": 100
+      }
+    },
      {
       "id": "ster3o",
       "name": "ster3o",
