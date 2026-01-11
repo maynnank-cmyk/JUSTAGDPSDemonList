@@ -18,6 +18,15 @@
         "oldamethyst": 100
       }
     },
+     {
+      "id": "makaron4iki",
+      "name": "Makaron4iki",
+      "avatar": "M4",
+      "completedDemons": ["orbsuicide"],
+      "progress": {
+        "orbsuicide": 100
+      }
+    },
         {
       "id": "naz0rro",
       "name": "Naz0rro",
