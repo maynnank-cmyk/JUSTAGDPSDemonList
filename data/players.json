@@ -221,6 +221,15 @@
       }
     },
      {
+      "id": "mich",
+      "name": "Mich",
+      "avatar": "MH",
+      "completedDemons": ["silentcycles"],
+      "progress": {
+        "silentcycles": 100
+      }
+    },
+     {
       "id": "ster3o",
       "name": "ster3o",
       "avatar": "S",
