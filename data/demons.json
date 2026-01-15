@@ -152,6 +152,14 @@
       "image": "images/atomiccannonmkiii.png",
       "description": ""
     },
+      {
+      "id": "mango",
+      "name": "Mango",
+      "creator": "makaron4iki",
+      "videoUrl": "https://youtu.be/Sf54edyabmc",
+      "image": "images/mango.png",
+      "description": "ufo 72% impossible"
+    },
        {
       "id": "orbsuicide",
       "name": "Orb Suicide",
