@@ -363,7 +363,7 @@
         }
 
         [data-theme="light"] .dropdown-menu-icon {
-            filter: none;
+            filter: brightness(0) saturate(100%) invert(24%) sepia(9%) saturate(1200%) hue-rotate(170deg) brightness(92%) contrast(87%);
         }
 
         .dropdown-menu a:hover .dropdown-menu-icon {
@@ -375,11 +375,12 @@
             filter: brightness(0) invert(1);
         }
 
-        /* Кнопки социальных сетей */
+        /* Кнопки социальных сетей - перенесены вправо */
         .social-buttons {
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            margin-left: auto; /* Это переместит кнопки вправо */
         }
 
         .social-btn {
@@ -407,33 +408,9 @@
             filter: brightness(0) invert(1);
         }
 
-        /* Кнопка Отправить реквест в меню */
+        /* Кнопка Отправить реквест УДАЛЕНА из меню */
         .nav-request-btn {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
-            padding: 0.7rem 1.5rem;
-            color: white;
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            backdrop-filter: blur(10px);
-        }
-
-        .nav-request-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.15);
-        }
-
-        .nav-request-btn img {
-            width: 16px;
-            height: 16px;
-            filter: brightness(0) invert(1);
+            display: none; /* Скрываем отдельную кнопку */
         }
 
         /* Кнопка в выпадающем меню */
@@ -467,7 +444,7 @@
         }
 
         .players-dropdown-menu {
-            min-width: 200px;
+            min-width: 220px; /* Увеличили для размещения кнопки */
         }
 
         .others-dropdown-menu {
@@ -664,7 +641,7 @@
         }
 
         [data-theme="light"] .mobile-menu nav ul li a .dropdown-arrow {
-            filter: none;
+            filter: brightness(0) saturate(100%) invert(24%) sepia(9%) saturate(1200%) hue-rotate(170deg) brightness(92%) contrast(87%);
         }
 
         .mobile-menu nav ul li a.active .dropdown-arrow {
@@ -1578,34 +1555,6 @@
                     <a href="index.html" class="logo">Just a GDPS</a>
                 </div>
                 <div class="header-controls">
-                    <!-- Кнопки социальных сетей -->
-                    <div class="social-buttons">
-                        <a href="#" class="social-btn" title="Discord">
-                            <img src="assets/discord.png" alt="Discord">
-                        </a>
-                        <a href="#" class="social-btn" title="YouTube">
-                            <img src="assets/youtube.png" alt="YouTube">
-                        </a>
-                    </div>
-                    
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSceFzm37tUw0B5t6h3L3U5alQJ5P41F1uZEeC3DaVdDXbNmrQ/viewform?usp=dialog" 
-                       class="nav-request-btn">
-                        <img src="assets/request-icon.png" alt="📝">
-                        <span data-lang="ru">Отправить реквест</span>
-                        <span data-lang="en" style="display: none;">Submit Request</span>
-                    </a>
-                    
-                    <button class="language-toggle" onclick="toggleLanguage()" id="languageToggle">
-                        EN
-                    </button>
-                    <button class="theme-toggle" onclick="toggleTheme()">
-                        <img src="assets/day-and-night.png" alt="Сменить тему" id="theme-icon">
-                    </button>
-                    <button class="menu-toggle" onclick="toggleMobileMenu()">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
                     <nav>
                         <ul>
                             <li class="dropdown">
@@ -1639,6 +1588,13 @@
                                         <span data-lang="ru">Топ игроков</span>
                                         <span data-lang="en" style="display: none;">Top Players</span>
                                     </a>
+                                    <!-- Кнопка Отправить реквест добавлена в меню Лидербордов -->
+                                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSceFzm37tUw0B5t6h3L3U5alQJ5P41F1uZEeC3DaVdDXbNmrQ/viewform?usp=dialog" 
+                                       class="dropdown-request-btn">
+                                        <img src="assets/request-icon.png" alt="📝" class="btn-icon">
+                                        <span data-lang="ru">Отправить реквест</span>
+                                        <span data-lang="en" style="display: none;">Submit Request</span>
+                                    </a>
                                 </div>
                             </li>
                             <li class="dropdown">
@@ -1667,6 +1623,28 @@
                             </li>
                         </ul>
                     </nav>
+                    
+                    <!-- Социальные кнопки перенесены вправо -->
+                    <div class="social-buttons">
+                        <a href="#" class="social-btn" title="Discord">
+                            <img src="assets/discord.png" alt="Discord">
+                        </a>
+                        <a href="#" class="social-btn" title="YouTube">
+                            <img src="assets/youtube.png" alt="YouTube">
+                        </a>
+                    </div>
+                    
+                    <button class="language-toggle" onclick="toggleLanguage()" id="languageToggle">
+                        EN
+                    </button>
+                    <button class="theme-toggle" onclick="toggleTheme()">
+                        <img src="assets/day-and-night.png" alt="Сменить тему" id="theme-icon">
+                    </button>
+                    <button class="menu-toggle" onclick="toggleMobileMenu()">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -1713,6 +1691,13 @@
                             <span data-lang="ru">Топ игроков</span>
                             <span data-lang="en" style="display: none;">Top Players</span>
                         </a>
+                        <!-- Кнопка Отправить реквест в мобильном меню -->
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSceFzm37tUw0B5t6h3L3U5alQJ5P41F1uZEeC3DaVdDXbNmrQ/viewform?usp=dialog" 
+                           onclick="closeMobileMenu()" style="background: linear-gradient(135deg, var(--accent-red), var(--accent-purple)) !important; color: white !important;">
+                            <img src="assets/request-icon.png" alt="📝" class="dropdown-menu-icon">
+                            <span data-lang="ru">Отправить реквест</span>
+                            <span data-lang="en" style="display: none;">Submit Request</span>
+                        </a>
                     </div>
                 </li>
                 <li>
@@ -1738,15 +1723,6 @@
                             <span data-lang="en" style="display: none;">Rules</span>
                         </a>
                     </div>
-                </li>
-                <!-- Кнопка Отправить реквест в мобильном меню -->
-                <li>
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSceFzm37tUw0B5t6h3L3U5alQJ5P41F1uZEeC3DaVdDXbNmrQ/viewform?usp=dialog" 
-                       class="nav-request-btn" onclick="closeMobileMenu()">
-                        <img src="assets/request-icon.png" alt="📝">
-                        <span data-lang="ru">Отправить реквест</span>
-                        <span data-lang="en" style="display: none;">Submit Request</span>
-                    </a>
                 </li>
             </ul>
             <!-- Социальные кнопки в мобильном меню -->
@@ -2045,7 +2021,7 @@
         }
 
         document.querySelectorAll('.mobile-menu a').forEach(link => {
-            if (!link.classList.contains('dropdown-toggle') && !link.classList.contains('nav-request-btn')) {
+            if (!link.classList.contains('dropdown-toggle')) {
                 link.addEventListener('click', closeMobileMenu);
             }
         });
@@ -2081,12 +2057,8 @@
                 if (theme === 'dark') {
                     icon.style.filter = 'brightness(0) invert(1)';
                 } else {
-                    // Для поиска используем оригинальный фильтр для светлой темы
-                    if (icon.classList.contains('search-icon')) {
-                        icon.style.filter = 'brightness(0) saturate(100%) invert(24%) sepia(9%) saturate(1200%) hue-rotate(170deg) brightness(92%) contrast(87%)';
-                    } else {
-                        icon.style.filter = 'none';
-                    }
+                    // Для всех иконок используем специальный фильтр для светлой темы
+                    icon.style.filter = 'brightness(0) saturate(100%) invert(24%) sepia(9%) saturate(1200%) hue-rotate(170deg) brightness(92%) contrast(87%)';
                 }
             });
         }
