@@ -7,66 +7,60 @@
     <style>
         :root {
             --bg-primary: #ffffff;
-            --bg-secondary: #f5f7fa;
-            --bg-tertiary: #eef2f7;
-            --text-primary: #1a1a2e;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #e9ecef;
+            --text-primary: #212529;
             --text-secondary: #6c757d;
             --accent-red: #dc3545;
-            --accent-blue: #4a6fa5;
-            --accent-purple: #6d5acf;
             --accent-green: #28a745;
             --border-color: #dee2e6;
-            --card-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            --header-gradient: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
-            --dropdown-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            --card-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            --header-red: #dc3545;
         }
         
         [data-theme="dark"] {
-            --bg-primary: #121212;
-            --bg-secondary: #1e1e1e;
-            --bg-tertiary: #2d2d2d;
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #2d2d2d;
+            --bg-tertiary: #3d3d3d;
             --text-primary: #ffffff;
-            --text-secondary: #a0a0a0;
+            --text-secondary: #b0b0b0;
             --accent-red: #ff6b6b;
-            --accent-blue: #64b5f6;
-            --accent-purple: #9575cd;
             --accent-green: #34c759;
             --border-color: #404040;
-            --card-shadow: 0 4px 12px rgba(0,0,0,0.25);
-            --header-gradient: linear-gradient(135deg, #ff6b6b 0%, #ff4757 100%);
-            --dropdown-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            --card-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            --header-red: #c82333;
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
             background-color: var(--bg-primary);
             color: var(--text-primary);
-            line-height: 1.7;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            font-weight: 500;
-            min-height: 100vh;
+            line-height: 1.6;
+            transition: all 0.3s ease;
+            font-weight: 600;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 15px;
         }
         
+        /* Header */
         header {
-            background: var(--header-gradient);
-            border-bottom: none;
+            background: var(--header-red);
+            border-bottom: 1px solid var(--header-red);
             padding: 0.5rem 0 0 0;
             position: sticky;
             top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
         
         .header-content {
@@ -76,403 +70,125 @@
             padding-bottom: 0.5rem;
         }
         
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
-        
         .logo {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             font-weight: 800;
             color: white;
             text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem;
-            border-radius: 8px;
-            transition: all 0.3s ease;
         }
         
-        .logo:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-1px);
-        }
-        
-        .cube-icon {
-            width: 32px;
-            height: 32px;
-            filter: brightness(0) invert(1);
+        .logo span {
+            color: white;
         }
         
         .header-controls {
             display: flex;
             align-items: center;
-            gap: 1rem;
-        }
-        
-        .language-toggle {
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            font-weight: 700;
-            color: white;
-            font-size: 0.9rem;
-        }
-        
-        .language-toggle:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: scale(1.1);
+            gap: 0.5rem;
         }
         
         .theme-toggle {
-            background: rgba(255, 255, 255, 0.2);
+            background: none;
             border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
+            color: white;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            font-size: 1.2rem;
             transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
+            padding: 0.3rem;
         }
         
         .theme-toggle:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: scale(1.1) rotate(15deg);
+            transform: scale(1.1);
         }
         
-        .theme-toggle img {
-            width: 22px;
-            height: 22px;
-            filter: brightness(0) invert(1);
-            transition: all 0.3s ease;
-        }
-        
+        /* Обычная навигация для ПК */
         .header-controls nav ul {
             display: flex;
             list-style: none;
-            gap: 0.8rem;
+            gap: 1rem;
             margin: 0;
             padding: 0;
-        }
-
-        .header-controls nav ul li {
-            position: relative;
         }
 
         .header-controls nav ul li a {
             color: white;
             text-decoration: none;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: 600;
-            padding: 0.7rem 1rem;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .header-controls nav ul li a::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-            transition: left 0.6s ease;
-        }
-
-        .header-controls nav ul li a:hover::before {
-            left: 100%;
+            padding: 0.5rem 0.8rem;
+            border-radius: 4px;
+            transition: all 0.2s ease;
         }
 
         .header-controls nav ul li a:hover,
         .header-controls nav ul li a.active {
             background: rgba(255, 255, 255, 0.15);
             color: white;
-            transform: translateY(-1px);
         }
 
-        .header-controls nav ul li a .dropdown-arrow {
-            width: 16px;
-            height: 16px;
-            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            filter: brightness(0) invert(1);
-        }
-
-        .header-controls nav ul li a.active .dropdown-arrow {
-            transform: rotate(180deg);
-        }
-
-        .dropdown-menu {
-            position: absolute;
-            top: calc(100% + 8px);
-            left: 0;
-            background: var(--bg-primary);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            min-width: 220px;
-            box-shadow: var(--dropdown-shadow);
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-15px) scale(0.95);
-            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            overflow: hidden;
-        }
-
-        .dropdown-menu::before {
-            content: '';
-            position: absolute;
-            top: -8px;
-            left: 20px;
-            width: 0;
-            height: 0;
-            border-left: 8px solid transparent;
-            border-right: 8px solid transparent;
-            border-bottom: 8px solid var(--bg-primary);
-        }
-
-        [data-theme="dark"] .dropdown-menu::before {
-            border-bottom-color: var(--bg-primary);
-        }
-
-        .dropdown-menu.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0) scale(1);
-        }
-
-        .dropdown-menu a {
-            color: var(--text-primary) !important;
-            padding: 1rem 1.5rem !important;
-            display: flex !important;
-            align-items: center;
-            gap: 0.8rem;
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 600;
-            border-bottom: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .dropdown-menu a::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 4px;
-            background: var(--accent-red);
-            transform: scaleY(0);
-            transition: transform 0.3s ease;
-        }
-
-        .dropdown-menu a:hover::before {
-            transform: scaleY(1);
-        }
-
-        .dropdown-menu a:last-child {
-            border-bottom: none;
-        }
-
-        .dropdown-menu a:hover {
-            background: var(--bg-secondary);
-            color: var(--accent-red) !important;
-            padding-left: 2rem !important;
-        }
-
-        .dropdown-menu a.active {
-            background: linear-gradient(135deg, var(--accent-red), var(--accent-purple));
-            color: white !important;
-        }
-
-        .dropdown-menu a.active:hover {
-            background: linear-gradient(135deg, #ff6b6b, #8a6bff);
-            opacity: 0.95;
-        }
-
-        .dropdown-menu-icon {
-            width: 18px;
-            height: 18px;
-            opacity: 0.7;
-        }
-
-        [data-theme="dark"] .dropdown-menu-icon {
-            filter: brightness(0) invert(1);
-        }
-
-        .dropdown-menu a:hover .dropdown-menu-icon {
-            opacity: 1;
-            transform: scale(1.1);
-        }
-
-        .dropdown-menu a.active .dropdown-menu-icon {
-            filter: brightness(0) invert(1);
-        }
-
+        /* Кнопка "Отправить реквест" для ПК */
         .request-btn {
             background: white !important;
-            color: var(--accent-red) !important;
-            border: none !important;
-            font-weight: 700 !important;
-            font-size: 0.95rem;
-            padding: 0.7rem 1.5rem !important;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(220, 53, 69, 0.2);
-            transition: all 0.3s ease !important;
-            display: flex !important;
-            align-items: center;
-            gap: 0.5rem;
+            color: var(--text-primary) !important;
+            border: 1px solid white !important;
+            margin-left: 0.5rem;
+            font-weight: 800 !important;
+            font-size: 0.9rem;
         }
 
         .request-btn:hover {
-            background: white !important;
-            transform: translateY(-2px) !important;
-            box-shadow: 0 6px 16px rgba(220, 53, 69, 0.3) !important;
+            background: rgba(255, 255, 255, 0.9) !important;
+            transform: translateY(-1px);
         }
 
-        .btn-icon {
-            width: 16px;
-            height: 16px;
-        }
-
-        .players-dropdown-menu {
-            min-width: 200px;
-        }
-
-        .others-dropdown-menu {
-            min-width: 200px;
-        }
-
+        /* Простое гамбургер меню без анимации полосок */
         .menu-toggle {
             display: none;
-            background: rgba(255, 255, 255, 0.2);
+            background: none;
             border: none;
             cursor: pointer;
             padding: 0.5rem;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            width: 44px;
-            height: 44px;
+            width: 40px;
+            height: 40px;
             position: relative;
             z-index: 1001;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .menu-toggle:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: scale(1.05);
         }
 
         .menu-toggle span {
             display: block;
-            height: 2px;
-            width: 20px;
+            height: 3px;
+            width: 24px;
             background-color: white;
             border-radius: 1px;
-            margin: 2.5px 0;
-            transition: all 0.3s ease;
+            margin: 2px 0;
         }
 
+        /* Мобильное меню выезжающее справа */
         .mobile-menu {
             position: fixed;
             top: 0;
             right: -100%;
-            width: 320px;
+            width: 300px;
             height: 100%;
             background: var(--bg-primary);
             z-index: 999;
             flex-direction: column;
-            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.15);
-            transition: right 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            transition: right 0.3s ease;
             border-left: 1px solid var(--border-color);
-            display: flex;
-            flex-direction: column;
         }
 
         .mobile-menu.active {
             right: 0;
         }
 
-        .mobile-header {
-            background: var(--header-gradient);
-            padding: 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .mobile-logo-container {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
-
-        .mobile-logo {
-            color: white;
-            font-size: 1.3rem;
-            font-weight: 800;
-            text-decoration: none;
-        }
-
-        .mobile-cube-icon {
-            width: 28px;
-            height: 28px;
-            filter: brightness(0) invert(1);
-        }
-
-        .mobile-close {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 2rem;
-            cursor: pointer;
-            width: 44px;
-            height: 44px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .mobile-close:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: rotate(90deg);
-        }
-
-        .mobile-menu nav {
-            flex: 1;
-            overflow-y: auto;
-            padding: 1rem 0;
-        }
-
         .mobile-menu nav ul {
             flex-direction: column;
             gap: 0;
-            padding: 0;
+            padding: 80px 0 0 0;
         }
 
         .mobile-menu nav ul li {
@@ -484,14 +200,12 @@
         }
 
         .mobile-menu nav ul li a {
-            font-size: 1.1rem;
-            padding: 1.2rem 1.5rem;
+            font-size: 1rem;
+            padding: 1rem 1.5rem;
             color: var(--text-primary);
             text-decoration: none;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            transition: all 0.3s ease;
+            display: block;
+            transition: all 0.2s ease;
             font-weight: 600;
         }
 
@@ -499,61 +213,28 @@
         .mobile-menu nav ul li a.active {
             background: var(--bg-secondary);
             color: var(--accent-red);
-            padding-left: 2rem;
         }
 
-        .mobile-dropdown {
-            display: none;
-            background: var(--bg-tertiary);
-            border-top: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
+        /* Кнопка закрытия */
+        .close-menu {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1000;
+            transition: color 0.2s ease;
         }
 
-        .mobile-dropdown.active {
-            display: block;
-            animation: slideDown 0.4s ease;
+        .close-menu:hover {
+            color: var(--accent-red);
         }
 
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .mobile-dropdown a {
-            padding-left: 2.5rem !important;
-            font-size: 1rem !important;
-            color: var(--text-secondary) !important;
-            display: flex !important;
-            align-items: center;
-            gap: 0.8rem;
-        }
-
-        .mobile-dropdown a:hover {
-            color: var(--accent-red) !important;
-            background: var(--bg-secondary) !important;
-        }
-
-        .mobile-menu nav ul li a .dropdown-arrow {
-            width: 16px;
-            height: 16px;
-            transition: transform 0.4s ease;
-            filter: brightness(0) saturate(100%) invert(24%) sepia(9%) saturate(1200%) hue-rotate(170deg) brightness(92%) contrast(87%);
-        }
-
-        [data-theme="dark"] .mobile-menu nav ul li a .dropdown-arrow {
-            filter: brightness(0) invert(1);
-        }
-
-        .mobile-menu nav ul li a.active .dropdown-arrow {
-            transform: rotate(180deg);
-        }
-
+        /* Затемнение фона */
         .menu-overlay {
             position: fixed;
             top: 0;
@@ -564,8 +245,7 @@
             z-index: 998;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.4s ease;
-            backdrop-filter: blur(4px);
+            transition: all 0.3s ease;
         }
 
         .menu-overlay.active {
@@ -573,47 +253,32 @@
             visibility: visible;
         }
         
+        /* Hero Section */
         .hero {
-            padding: 3rem 0;
+            padding: 2rem 0;
             text-align: center;
             background: var(--bg-secondary);
             border-bottom: 1px solid var(--border-color);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent-red), var(--accent-purple), var(--accent-blue));
         }
         
         .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            margin-bottom: 0.8rem;
             color: var(--text-primary);
             font-weight: 800;
-            background: linear-gradient(135deg, var(--accent-red), var(--accent-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
         
         .hero p {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: var(--text-secondary);
             max-width: 600px;
             margin: 0 auto;
-            font-weight: 500;
-            line-height: 1.8;
+            font-weight: 600;
         }
         
+        /* Search Section */
         .search-section {
-            padding: 2rem 0;
+            padding: 1.5rem 0;
             background: var(--bg-primary);
         }
         
@@ -623,71 +288,48 @@
             position: relative;
         }
         
-        .search-input-container {
-            position: relative;
-        }
-        
-        .search-icon {
-            position: absolute;
-            left: 1.2rem;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 20px;
-            height: 20px;
-            filter: brightness(0) saturate(100%) invert(24%) sepia(9%) saturate(1200%) hue-rotate(170deg) brightness(92%) contrast(87%);
-            pointer-events: none;
-        }
-        
-        [data-theme="dark"] .search-icon {
-            filter: brightness(0) invert(1);
-        }
-        
         .search-input {
             width: 100%;
-            padding: 1rem 1.5rem 1rem 3.5rem;
-            font-size: 1rem;
-            border: 2px solid var(--border-color);
-            border-radius: 12px;
+            padding: 0.6rem 0.8rem;
+            font-size: 0.9rem;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
             background: var(--bg-primary);
             color: var(--text-primary);
-            font-weight: 500;
-            transition: all 0.3s ease;
-            box-shadow: var(--card-shadow);
+            font-weight: 600;
         }
         
         .search-input:focus {
             outline: none;
             border-color: var(--accent-red);
-            box-shadow: 0 0 0 3px rgba(220,53,69,0.15);
-            transform: translateY(-1px);
+            box-shadow: 0 0 0 2px rgba(220,53,69,0.25);
         }
         
         .search-results {
             position: absolute;
-            top: calc(100% + 8px);
+            top: 100%;
             left: 0;
             right: 0;
             background: var(--bg-primary);
             border: 1px solid var(--border-color);
-            border-radius: 12px;
+            border-radius: 6px;
             margin-top: 0.3rem;
-            max-height: 300px;
+            max-height: 200px;
             overflow-y: auto;
             z-index: 1000;
             display: none;
-            box-shadow: var(--dropdown-shadow);
+            box-shadow: var(--card-shadow);
         }
         
         .search-result-item {
-            padding: 1rem 1.5rem;
+            padding: 0.6rem 0.8rem;
             cursor: pointer;
             border-bottom: 1px solid var(--border-color);
-            transition: all 0.3s ease;
+            transition: background-color 0.2s;
         }
         
         .search-result-item:hover {
             background-color: var(--bg-secondary);
-            padding-left: 1.8rem;
         }
         
         .search-result-item:last-child {
@@ -697,169 +339,112 @@
         .search-result-name {
             font-weight: 700;
             color: var(--text-primary);
-            font-size: 1rem;
-            margin-bottom: 0.3rem;
+            font-size: 0.9rem;
         }
         
         .search-result-creator {
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             color: var(--text-secondary);
-            font-weight: 500;
+            margin-top: 0.2rem;
+            font-weight: 600;
         }
         
         .no-results {
-            padding: 1.5rem;
+            padding: 0.8rem;
             text-align: center;
             color: var(--text-secondary);
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
         
+        /* Demon List */
         .demon-list {
-            padding: 2rem 0 3rem;
+            padding: 1.5rem 0;
         }
         
         .list-header {
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             text-align: center;
         }
         
         .list-header h2 {
-            font-size: 2rem;
-            margin-bottom: 0.8rem;
+            font-size: 1.5rem;
+            margin-bottom: 0.4rem;
             color: var(--text-primary);
             font-weight: 800;
-            position: relative;
-            display: inline-block;
-        }
-
-        .list-header h2::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent-red), var(--accent-purple));
-            border-radius: 2px;
         }
         
         .list-header p {
             color: var(--text-secondary);
-            font-weight: 500;
-            font-size: 1rem;
-            max-width: 500px;
-            margin: 1rem auto 0;
+            font-weight: 600;
+            font-size: 0.9rem;
         }
         
         .list-container {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 0.8rem;
         }
         
         .demon-row {
             background: var(--bg-primary);
-            border: 2px solid var(--border-color);
-            border-radius: 12px;
-            padding: 1.2rem;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 1rem;
             display: flex;
             align-items: center;
-            gap: 1.2rem;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            gap: 1rem;
+            transition: all 0.2s;
             cursor: pointer;
             box-shadow: var(--card-shadow);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .demon-row::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: linear-gradient(to bottom, var(--accent-red), var(--accent-purple));
-            transform: scaleY(0);
-            transition: transform 0.4s ease;
         }
         
         .demon-row:hover {
             border-color: var(--accent-red);
-            box-shadow: 0 8px 25px rgba(220,53,69,0.15);
-            transform: translateY(-3px);
-        }
-
-        .demon-row:hover::before {
-            transform: scaleY(1);
+            box-shadow: 0 2px 8px rgba(220,53,69,0.15);
+            transform: translateY(-1px);
         }
         
         .demon-rank {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 800;
-            width: 50px;
-            height: 50px;
+            width: 40px;
             text-align: center;
-            line-height: 50px;
             color: var(--text-secondary);
             flex-shrink: 0;
-            background: var(--bg-tertiary);
-            border-radius: 10px;
-            transition: all 0.3s ease;
-        }
-
-        .demon-row:hover .demon-rank {
-            background: var(--accent-red);
-            color: white;
-            transform: scale(1.1) rotate(5deg);
         }
         
         .rank.top-1 {
-            background: linear-gradient(135deg, #ffd700, #ffa500);
-            color: white;
+            color: #ffd700;
         }
         
         .rank.top-3 {
-            background: linear-gradient(135deg, #c0c0c0, #a0a0a0);
-            color: white;
+            color: #c0c0c0;
         }
         
         .rank.top-10 {
-            background: linear-gradient(135deg, #cd7f32, #b56a24);
-            color: white;
+            color: #cd7f32;
         }
         
         .demon-image {
-            width: 120px;
-            height: 68px;
-            border-radius: 8px;
+            width: 100px;
+            height: 56px;
+            border-radius: 4px;
             overflow: hidden;
             flex-shrink: 0;
             background: var(--bg-tertiary);
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 2px solid var(--border-color);
+            border: 1px solid var(--border-color);
             position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .demon-row:hover .demon-image {
-            border-color: var(--accent-red);
-            transform: scale(1.05);
         }
         
         .demon-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: all 0.5s ease;
-        }
-
-        .demon-row:hover .demon-image img {
-            transform: scale(1.1);
+            transition: opacity 0.3s ease;
         }
         
         .image-placeholder {
@@ -870,14 +455,8 @@
             justify-content: center;
             background: var(--bg-tertiary);
             color: var(--text-secondary);
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             font-weight: 800;
-            transition: all 0.3s ease;
-        }
-
-        .demon-row:hover .image-placeholder {
-            background: var(--accent-red);
-            color: white;
         }
         
         .demon-info {
@@ -886,7 +465,6 @@
             align-items: center;
             justify-content: space-between;
             min-width: 0;
-            gap: 1rem;
         }
         
         .demon-details {
@@ -896,191 +474,123 @@
         }
         
         .demon-name {
-            font-size: 1.2rem;
-            font-weight: 700;
+            font-size: 1rem;
+            font-weight: 800;
             color: var(--text-primary);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            transition: color 0.3s ease;
-        }
-
-        .demon-row:hover .demon-name {
-            color: var(--accent-red);
         }
         
         .demon-creator {
             color: var(--text-secondary);
-            font-size: 0.9rem;
-            font-weight: 500;
+            font-size: 0.8rem;
+            font-weight: 600;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
         
         .demon-points {
-            font-size: 1.1rem;
+            font-size: 0.9rem;
             font-weight: 800;
             color: var(--accent-green);
-            min-width: 80px;
+            min-width: 60px;
             text-align: right;
             flex-shrink: 0;
-            background: rgba(40, 167, 69, 0.1);
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .demon-row:hover .demon-points {
-            background: var(--accent-green);
-            color: white;
-            transform: scale(1.05);
         }
         
+        /* Refresh Button */
         .refresh-btn {
             display: block;
-            margin: 2rem auto;
-            padding: 0.8rem 2rem 0.8rem 3rem;
-            background: linear-gradient(135deg, var(--accent-red), var(--accent-purple));
+            margin: 1.5rem auto;
+            padding: 0.6rem 1.5rem;
+            background: var(--accent-red);
             color: white;
             border: none;
-            border-radius: 10px;
+            border-radius: 6px;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-weight: 700;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(220, 53, 69, 0.2);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .refresh-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.6s ease;
+            transition: all 0.2s;
         }
         
         .refresh-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(220, 53, 69, 0.3);
-        }
-
-        .refresh-btn:hover::before {
-            left: 100%;
-        }
-
-        .refresh-btn:active {
-            transform: translateY(0);
-        }
-
-        .refresh-btn img {
-            position: absolute;
-            left: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 20px;
-            height: 20px;
-            filter: brightness(0) invert(1);
-            transition: transform 0.3s ease;
-        }
-
-        .refresh-btn:hover img {
-            transform: translateY(-50%) rotate(180deg);
+            background: #c82333;
+            transform: translateY(-1px);
         }
         
+        /* Status */
         .sync-status {
             text-align: center;
-            padding: 1rem;
+            padding: 0.8rem;
             background: var(--bg-secondary);
-            border-radius: 10px;
-            margin: 1rem 0;
+            border-radius: 6px;
+            margin: 0.8rem 0;
             color: var(--text-secondary);
-            border: 2px solid var(--border-color);
+            border: 1px solid var(--border-color);
             font-weight: 600;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
+            font-size: 0.9rem;
         }
         
         .sync-status.synced {
             color: var(--accent-green);
             border-color: var(--accent-green);
             background: var(--bg-primary);
-            box-shadow: 0 4px 15px rgba(52, 199, 89, 0.15);
         }
         
         .error-message {
             text-align: center;
-            padding: 1rem;
-            background: linear-gradient(135deg, #f8d7da, #f5c6cb);
-            border: 2px solid #f5c6cb;
-            border-radius: 10px;
-            margin: 1rem 0;
+            padding: 0.8rem;
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            border-radius: 6px;
+            margin: 0.8rem 0;
             color: #721c24;
             font-weight: 600;
-            font-size: 0.95rem;
-            box-shadow: 0 4px 15px rgba(245, 198, 203, 0.2);
+            font-size: 0.9rem;
         }
         
         [data-theme="dark"] .error-message {
-            background: linear-gradient(135deg, #5c2a2a, #7a3a3a);
+            background: #5c2a2a;
             border-color: #7a3a3a;
             color: #ffb3b3;
         }
         
+        /* Footer */
         footer {
             background: var(--bg-secondary);
             border-top: 1px solid var(--border-color);
-            padding: 2.5rem 0 1.5rem;
-            margin-top: 3rem;
+            padding: 1.5rem 0;
+            margin-top: 2rem;
         }
         
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
         }
         
         .footer-section h3 {
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
+            font-size: 1rem;
+            margin-bottom: 0.8rem;
             color: var(--text-primary);
-            font-weight: 700;
-            position: relative;
-            display: inline-block;
-        }
-
-        .footer-section h3::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 30px;
-            height: 2px;
-            background: var(--accent-red);
-            border-radius: 1px;
+            font-weight: 800;
         }
         
         .footer-section p, .footer-section a {
             color: var(--text-secondary);
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.4rem;
             display: block;
             text-decoration: none;
-            transition: all 0.3s ease;
-            font-weight: 500;
-            font-size: 0.9rem;
-            line-height: 1.6;
+            transition: color 0.2s;
+            font-weight: 600;
+            font-size: 0.85rem;
         }
         
         .footer-section a:hover {
             color: var(--accent-red);
-            padding-left: 0.5rem;
         }
         
         .copyright {
@@ -1089,51 +599,56 @@
             border-top: 1px solid var(--border-color);
             color: var(--text-secondary);
             margin-top: 1.5rem;
-            font-size: 0.8rem;
-            font-weight: 500;
+            font-size: 0.75rem;
+            font-weight: 600;
         }
 
+        /* Большие плашки демонов для ПК */
         @media (min-width: 1024px) {
             .demon-row {
-                padding: 1.5rem !important;
-                gap: 1.5rem !important;
-                border-radius: 14px !important;
-                margin-bottom: 1rem !important;
+                padding: 1.25rem !important;
+                gap: 1.25rem !important;
+                border-radius: 8px !important;
+                margin-bottom: 0.8rem !important;
             }
             
             .demon-rank {
-                font-size: 1.4rem !important;
-                width: 60px !important;
-                height: 60px !important;
-                line-height: 60px !important;
-                border-radius: 12px !important;
+                font-size: 1.3rem !important;
+                width: 50px !important;
             }
             
             .demon-image {
                 width: 200px !important;
                 height: 112px !important;
-                border-radius: 10px !important;
+                border-radius: 6px !important;
             }
             
             .demon-name {
-                font-size: 1.4rem !important;
-                margin-bottom: 0.6rem !important;
+                font-size: 1.2rem !important;
+                margin-bottom: 0.4rem !important;
             }
             
             .demon-creator {
-                font-size: 1rem !important;
+                font-size: 0.9rem !important;
             }
             
             .demon-points {
-                font-size: 1.2rem !important;
-                min-width: 90px !important;
-                padding: 0.6rem 1.2rem !important;
+                font-size: 1.1rem !important;
+                min-width: 70px !important;
+                text-align: right !important;
+            }
+            
+            /* Улучшенные эффекты при наведении для больших плашек */
+            .demon-row:hover {
+                transform: translateY(-2px) !important;
+                box-shadow: 0 4px 12px rgba(220,53,69,0.15) !important;
             }
         }
 
+        /* Еще больше для очень больших экранов */
         @media (min-width: 1440px) {
             .demon-row {
-                padding: 1.8rem !important;
+                padding: 1.5rem !important;
             }
             
             .demon-image {
@@ -1142,10 +657,11 @@
             }
             
             .demon-name {
-                font-size: 1.5rem !important;
+                font-size: 1.3rem !important;
             }
         }
 
+        /* Сохраняем мобильные стили */
         @media (max-width: 1023px) {
             .demon-row {
                 padding: 1rem;
@@ -1160,13 +676,19 @@
             .demon-name {
                 font-size: 1rem;
             }
+            
+            .demon-points {
+                text-align: right !important;
+            }
         }
 
+        /* Адаптивность для мобильных устройств */
         @media (max-width: 768px) {
             .menu-toggle {
                 display: flex;
             }
 
+            /* Скрываем обычную навигацию на мобильных */
             .header-controls nav {
                 display: none;
             }
@@ -1176,54 +698,29 @@
             }
 
             .logo {
-                font-size: 1.2rem;
+                font-size: 1.1rem;
             }
 
+            /* Кнопка "Отправить реквест" для мобильных */
             .mobile-menu .request-btn {
                 background: var(--bg-secondary) !important;
                 color: var(--text-primary) !important;
-                border: 2px solid var(--border-color) !important;
-                margin: 1rem 1.5rem;
+                border: 1px solid var(--border-color) !important;
+                margin: 0.5rem 1.5rem;
                 text-align: center;
-                border-radius: 8px;
-                font-weight: 700 !important;
-                padding: 1rem !important;
-                box-shadow: var(--card-shadow);
-                display: flex !important;
-                justify-content: center;
-                gap: 0.5rem;
+                border-radius: 4px;
+                font-weight: 800 !important;
             }
 
             .mobile-menu .request-btn:hover {
                 background: var(--bg-tertiary) !important;
                 color: var(--accent-red) !important;
-                transform: translateY(-1px);
-            }
-
-            .refresh-btn {
-                padding: 0.8rem 1.5rem 0.8rem 2.5rem;
-            }
-
-            .refresh-btn img {
-                width: 18px;
-                height: 18px;
-                left: 0.8rem;
-            }
-
-            .search-input {
-                padding: 1rem 1.5rem 1rem 3rem;
-            }
-
-            .search-icon {
-                left: 1rem;
-                width: 18px;
-                height: 18px;
             }
         }
 
         @media (max-width: 480px) {
             .container {
-                padding: 0 15px;
+                padding: 0 10px;
             }
             
             .header-content {
@@ -1235,27 +732,21 @@
                 font-size: 1.1rem;
             }
             
-            .cube-icon {
-                width: 28px;
-                height: 28px;
-            }
-            
             .hero {
-                padding: 2rem 0;
+                padding: 1.5rem 0;
             }
             
             .hero h1 {
-                font-size: 2rem;
+                font-size: 1.5rem;
             }
             
             .hero p {
-                font-size: 1rem;
+                font-size: 0.9rem;
             }
             
             .demon-row {
-                padding: 0.9rem;
-                gap: 0.9rem;
-                flex-wrap: wrap;
+                padding: 0.8rem;
+                gap: 0.8rem;
             }
             
             .demon-image {
@@ -1264,53 +755,27 @@
             }
             
             .demon-name {
-                font-size: 0.95rem;
+                font-size: 0.9rem;
             }
             
             .demon-creator {
-                font-size: 0.8rem;
+                font-size: 0.75rem;
             }
             
             .demon-points {
-                font-size: 0.9rem;
-                min-width: 70px;
-                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+                min-width: 50px;
+                text-align: right !important;
             }
             
             .footer-content {
                 grid-template-columns: 1fr;
-                gap: 1.5rem;
+                gap: 1rem;
             }
 
             .mobile-menu nav ul li a {
-                font-size: 1rem;
-                padding: 1rem 1.2rem;
-            }
-
-            .refresh-btn {
-                padding: 0.7rem 1.2rem 0.7rem 2rem;
-                font-size: 0.9rem;
-            }
-
-            .refresh-btn img {
-                width: 16px;
-                height: 16px;
-                left: 0.7rem;
-            }
-
-            .search-input {
-                padding: 0.9rem 1.2rem 0.9rem 2.8rem;
-            }
-
-            .search-icon {
-                left: 0.9rem;
-                width: 16px;
-                height: 16px;
-            }
-
-            .language-toggle, .theme-toggle {
-                width: 36px;
-                height: 36px;
+                font-size: 1.1rem;
+                padding: 0.7rem 1.2rem;
             }
         }
 
@@ -1321,22 +786,20 @@
             }
             
             .demon-rank {
-                width: 40px;
-                height: 40px;
-                line-height: 40px;
+                width: 30px;
                 font-size: 1rem;
             }
             
             .demon-name {
-                font-size: 0.9rem;
+                font-size: 0.85rem;
             }
             
-            .cube-icon {
-                width: 24px;
-                height: 24px;
+            .demon-points {
+                text-align: right !important;
             }
         }
 
+        /* Улучшения для touch-устройств */
         @media (hover: none) {
             .demon-row:hover {
                 transform: none;
@@ -1347,33 +810,23 @@
                 border-color: var(--accent-red);
                 transform: scale(0.98);
             }
-            
-            .header-controls nav ul li:hover .dropdown-menu {
-                opacity: 0;
-                visibility: hidden;
-            }
-            
-            .dropdown-menu.active {
-                opacity: 1;
-                visibility: visible;
-            }
         }
 
+        /* Убираем text-size-adjust на iOS */
         html {
             -webkit-text-size-adjust: 100%;
             text-size-adjust: 100%;
         }
 
+        /* Темная тема для кнопки запроса */
         [data-theme="dark"] .request-btn {
             background: var(--bg-primary) !important;
             color: var(--text-primary) !important;
-            border: 2px solid var(--border-color) !important;
-            box-shadow: var(--card-shadow) !important;
+            border: 1px solid var(--border-color) !important;
         }
 
         [data-theme="dark"] .request-btn:hover {
             background: var(--bg-secondary) !important;
-            color: var(--accent-red) !important;
         }
     </style>
 </head>
@@ -1381,81 +834,27 @@
     <header>
         <div class="container">
             <div class="header-content">
-                <div class="logo-container">
-                    <img src="assets/cube.png" alt="Cube" class="cube-icon">
-                    <a href="index.html" class="logo">Just a GDPS</a>
-                </div>
+                <a href="index.html" class="logo">Just a GDPS <span>DemonList</span></a>
                 <div class="header-controls">
-                    <button class="language-toggle" onclick="toggleLanguage()" id="languageToggle">
-                        EN
-                    </button>
                     <button class="theme-toggle" onclick="toggleTheme()">
-                        <img src="assets/day-and-night.png" alt="Сменить тему" id="theme-icon">
+                        🌙
                     </button>
+                    <!-- Гамбургер меню для мобильных -->
                     <button class="menu-toggle" onclick="toggleMobileMenu()">
                         <span></span>
                         <span></span>
                         <span></span>
                     </button>
+                    <!-- Обычная навигация -->
                     <nav>
                         <ul>
-                            <li class="dropdown">
-                                <a href="index.html" class="active dropdown-toggle" onclick="toggleDropdown(event)">
-                                    <span data-lang="ru">Главная</span>
-                                    <span data-lang="en" style="display: none;">Home</span>
-                                    <img src="assets/arrow.png" alt="▼" class="dropdown-arrow">
-                                </a>
-                                <div class="dropdown-menu">
-                                    <a href="classic.html">
-                                        <img src="assets/classic-icon.png" alt="📜" class="dropdown-menu-icon">
-                                        <span data-lang="ru">Классический</span>
-                                        <span data-lang="en" style="display: none;">Classic</span>
-                                    </a>
-                                    <a href="impossible.html">
-                                        <img src="assets/impossible-icon.png" alt="🔥" class="dropdown-menu-icon">
-                                        <span data-lang="ru">Невозможный</span>
-                                        <span data-lang="en" style="display: none;">Impossible</span>
-                                    </a>
-                                </div>
-                            </li>
-                            <li class="dropdown">
-                                <a href="players.html" class="dropdown-toggle" onclick="toggleDropdown(event)">
-                                    <span data-lang="ru">Топ игроков</span>
-                                    <span data-lang="en" style="display: none;">Top Players</span>
-                                    <img src="assets/arrow.png" alt="▼" class="dropdown-arrow">
-                                </a>
-                                <div class="dropdown-menu players-dropdown-menu">
-                                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSceFzm37tUw0B5t6h3L3U5alQJ5P41F1uZEeC3DaVdDXbNmrQ/viewform?usp=dialog" class="request-btn">
-                                        <img src="assets/request-icon.png" alt="📝" class="btn-icon">
-                                        <span data-lang="ru">Отправить реквест</span>
-                                        <span data-lang="en" style="display: none;">Submit Request</span>
-                                    </a>
-                                </div>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" onclick="toggleDropdown(event)">
-                                    <span data-lang="ru">Прочее</span>
-                                    <span data-lang="en" style="display: none;">Other</span>
-                                    <img src="assets/arrow.png" alt="▼" class="dropdown-arrow">
-                                </a>
-                                <div class="dropdown-menu others-dropdown-menu">
-                                    <a href="news.html">
-                                        <img src="assets/news-icon.png" alt="📰" class="dropdown-menu-icon">
-                                        <span data-lang="ru">Новости</span>
-                                        <span data-lang="en" style="display: none;">News</span>
-                                    </a>
-                                    <a href="contacts.html">
-                                        <img src="assets/contacts-icon.png" alt="📞" class="dropdown-menu-icon">
-                                        <span data-lang="ru">Контакты</span>
-                                        <span data-lang="en" style="display: none;">Contacts</span>
-                                    </a>
-                                    <a href="rules.html">
-                                        <img src="assets/rules-icon.png" alt="📜" class="dropdown-menu-icon">
-                                        <span data-lang="ru">Правила</span>
-                                        <span data-lang="en" style="display: none;">Rules</span>
-                                    </a>
-                                </div>
-                            </li>
+                            <li><a href="index.html" class="active">Главная</a></li>
+                            <li><a href="players.html">Лидерборды</a></li> <!-- Изменено здесь -->
+                            <li><a href="news.html">Новости</a></li>
+                            <li><a href="contacts.html">Контакты</a></li>
+                            <li><a href="rules.html">Правила</a></li>
+                            <!-- Кнопка "Отправить реквест" для ПК -->
+                            <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSceFzm37tUw0B5t6h3L3U5alQJ5P41F1uZEeC3DaVdDXbNmrQ/viewform?usp=dialog" class="request-btn">Отправить реквест</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -1463,96 +862,33 @@
         </div>
     </header>
 
+    <!-- Мобильное меню -->
     <div class="mobile-menu" id="mobileMenu">
-        <div class="mobile-header">
-            <div class="mobile-logo-container">
-                <img src="assets/cube.png" alt="Cube" class="mobile-cube-icon">
-                <a href="index.html" class="mobile-logo">Just a GDPS</a>
-            </div>
-            <button class="mobile-close" onclick="toggleMobileMenu()">×</button>
-        </div>
+        <button class="close-menu" onclick="toggleMobileMenu()">×</button>
         <nav>
             <ul>
-                <li>
-                    <a href="index.html" class="active dropdown-toggle" onclick="toggleMobileDropdown(event, 'main')">
-                        <span data-lang="ru">Главная</span>
-                        <span data-lang="en" style="display: none;">Home</span>
-                        <img src="assets/arrow.png" alt="▼" class="dropdown-arrow">
-                    </a>
-                    <div class="mobile-dropdown" id="mobileDropdownMain">
-                        <a href="classic.html" onclick="closeMobileMenu()">
-                            <img src="assets/classic-icon.png" alt="📜" class="dropdown-menu-icon">
-                            <span data-lang="ru">Классический</span>
-                            <span data-lang="en" style="display: none;">Classic</span>
-                        </a>
-                        <a href="impossible.html" onclick="closeMobileMenu()">
-                            <img src="assets/impossible-icon.png" alt="🔥" class="dropdown-menu-icon">
-                            <span data-lang="ru">Невозможный</span>
-                            <span data-lang="en" style="display: none;">Impossible</span>
-                        </a>
-                    </div>
-                </li>
-                <li>
-                    <a href="players.html" class="dropdown-toggle" onclick="toggleMobileDropdown(event, 'players')">
-                        <span data-lang="ru">Топ игроков</span>
-                        <span data-lang="en" style="display: none;">Top Players</span>
-                        <img src="assets/arrow.png" alt="▼" class="dropdown-arrow">
-                    </a>
-                    <div class="mobile-dropdown" id="mobileDropdownPlayers">
-                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSceFzm37tUw0B5t6h3L3U5alQJ5P41F1uZEeC3DaVdDXbNmrQ/viewform?usp=dialog" class="request-btn" onclick="closeMobileMenu()">
-                            <img src="assets/request-icon.png" alt="📝" class="btn-icon">
-                            <span data-lang="ru">Отправить реквест</span>
-                            <span data-lang="en" style="display: none;">Submit Request</span>
-                        </a>
-                    </div>
-                </li>
-                <li>
-                    <a href="#" class="dropdown-toggle" onclick="toggleMobileDropdown(event, 'others')">
-                        <span data-lang="ru">Прочее</span>
-                        <span data-lang="en" style="display: none;">Other</span>
-                        <img src="assets/arrow.png" alt="▼" class="dropdown-arrow">
-                    </a>
-                    <div class="mobile-dropdown" id="mobileDropdownOthers">
-                        <a href="news.html" onclick="closeMobileMenu()">
-                            <img src="assets/news-icon.png" alt="📰" class="dropdown-menu-icon">
-                            <span data-lang="ru">Новости</span>
-                            <span data-lang="en" style="display: none;">News</span>
-                        </a>
-                        <a href="contacts.html" onclick="closeMobileMenu()">
-                            <img src="assets/contacts-icon.png" alt="📞" class="dropdown-menu-icon">
-                            <span data-lang="ru">Контакты</span>
-                            <span data-lang="en" style="display: none;">Contacts</span>
-                        </a>
-                        <a href="rules.html" onclick="closeMobileMenu()">
-                            <img src="assets/rules-icon.png" alt="📜" class="dropdown-menu-icon">
-                            <span data-lang="ru">Правила</span>
-                            <span data-lang="en" style="display: none;">Rules</span>
-                        </a>
-                    </div>
-                </li>
+                <li><a href="index.html" class="active" onclick="closeMobileMenu()">Главная</a></li>
+                <li><a href="players.html" onclick="closeMobileMenu()">Лидерборды</a></li> <!-- Изменено здесь -->
+                <li><a href="news.html" onclick="closeMobileMenu()">Новости</a></li>
+                <li><a href="contacts.html" onclick="closeMobileMenu()">Контакты</a></li>
+                <li><a href="rules.html" onclick="closeMobileMenu()">Правила</a></li>
+                <!-- Кнопка "Отправить реквест" для мобильных -->
+                <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSceFzm37tUw0B5t6h3L3U5alQJ5P41F1uZEeC3DaVdDXbNmrQ/viewform?usp=dialog" class="request-btn" onclick="closeMobileMenu()">Отправить реквест</a></li>
             </ul>
         </nav>
     </div>
-    <div class="menu-overlay" id="menuOverlay" onclick="closeMobileMenu()"></div>
     
     <section class="hero">
         <div class="container">
             <h1>Demon List</h1>
-            <p data-lang="ru">Рейтинг самых сложных уровней в Geometry Dash. Откройте для себя самые безумные демоны, которые когда-либо были созданы.</p>
-            <p data-lang="en" style="display: none;">Rating of the most difficult levels in Geometry Dash. Discover the craziest demons ever created.</p>
+            <p>Рейтинг самых сложных уровней в Geometry Dash</p>
         </div>
     </section>
     
     <section class="search-section">
         <div class="container">
             <div class="search-container">
-                <div class="search-input-container">
-                    <img src="assets/search.png" alt="🔍" class="search-icon">
-                    <input type="text" id="searchInput" class="search-input" 
-                           data-placeholder-ru="Поиск демонов по названию или создателю..."
-                           data-placeholder-en="Search demons by name or creator..."
-                           placeholder="Поиск демонов по названию или создателю...">
-                </div>
+                <input type="text" id="searchInput" class="search-input" placeholder="Поиск демонов по названию или создателю...">
                 <div class="search-results" id="searchResults"></div>
             </div>
         </div>
@@ -1561,26 +897,22 @@
     <section class="demon-list">
         <div class="container">
             <div class="list-header">
-                <h2 data-lang="ru">Топ Демонов</h2>
-                <h2 data-lang="en" style="display: none;">Top Demons</h2>
-                <p data-lang="ru">Самые сложные уровни, отсортированные по рейтингу сложности. Нажмите на демона для подробной информации.</p>
-                <p data-lang="en" style="display: none;">The most difficult levels, sorted by difficulty rating. Click on a demon for detailed information.</p>
+                <h2>Топ Демонов</h2>
+                <p>Самые сложные уровни, отсортированные по рейтингу</p>
             </div>
 
             <button class="refresh-btn" onclick="refreshData()">
-                <img src="assets/update.png" alt="🔄">
-                <span data-lang="ru">Обновить список</span>
-                <span data-lang="en" style="display: none;">Refresh List</span>
+                🔄 Обновить список
             </button>
             
             <div id="syncStatus" class="sync-status">
-                <span data-lang="ru">Загрузка данных...</span>
-                <span data-lang="en" style="display: none;">Loading data...</span>
+                Загрузка данных...
             </div>
 
             <div id="errorContainer"></div>
             
             <div class="list-container" id="demonList">
+                <!-- Демоны будут добавлены автоматически через JavaScript -->
             </div>
         </div>
     </section>
@@ -1590,206 +922,18 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>Geometry Dash Demon List</h3>
-                    <p data-lang="ru">Неофициальный рейтинг самых сложных уровней в Geometry Dash. Поддерживается сообществом игроков.</p>
-                    <p data-lang="en" style="display: none;">Unofficial rating of the most difficult levels in Geometry Dash. Supported by the player community.</p>
+                    <p>Неофициальный рейтинг самых сложных уровней в Geometry Dash.</p>
                 </div>
-                <div class="footer-section">
-                    <h3 data-lang="ru">Списки</h3>
-                    <h3 data-lang="en" style="display: none;">Lists</h3>
-                    <a href="classic.html">
-                        <span data-lang="ru">Классический список</span>
-                        <span data-lang="en" style="display: none;">Classic List</span>
-                    </a>
-                    <a href="impossible.html">
-                        <span data-lang="ru">Невозможный список</span>
-                        <span data-lang="en" style="display: none;">Impossible List</span>
-                    </a>
-                    <a href="players.html">
-                        <span data-lang="ru">Топ игроков</span>
-                        <span data-lang="en" style="display: none;">Top Players</span>
-                    </a>
-                </div>
-                <div class="footer-section">
-                    <h3 data-lang="ru">Информация</h3>
-                    <h3 data-lang="en" style="display: none;">Information</h3>
-                    <a href="rules.html">
-                        <span data-lang="ru">Правила списка</span>
-                        <span data-lang="en" style="display: none;">List Rules</span>
-                    </a>
-                    <a href="news.html">
-                        <span data-lang="ru">Новости и обновления</span>
-                        <span data-lang="en" style="display: none;">News & Updates</span>
-                    </a>
-                    <a href="contacts.html">
-                        <span data-lang="ru">Контакты</span>
-                        <span data-lang="en" style="display: none;">Contacts</span>
-                    </a>
-                </div>
-                <div class="footer-section">
-                    <h3 data-lang="ru">Сообщество</h3>
-                    <h3 data-lang="en" style="display: none;">Community</h3>
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSceFzm37tUw0B5t6h3L3U5alQJ5P41F1uZEeC3DaVdDXbNmrQ/viewform?usp=dialog">
-                        <span data-lang="ru">Отправить реквест</span>
-                        <span data-lang="en" style="display: none;">Submit Request</span>
-                    </a>
-                    <a href="#">
-                        <span data-lang="ru">Discord сервер</span>
-                        <span data-lang="en" style="display: none;">Discord Server</span>
-                    </a>
-                    <a href="#">
-                        <span data-lang="ru">Группа VK</span>
-                        <span data-lang="en" style="display: none;">VK Group</span>
-                    </a>
-                </div>
+               
             </div>
             <div class="copyright">
-                <p>&copy; 2025 Geometry Dash Demon List. 
-                   <span data-lang="ru">Неофициальный фанатский проект. Все права на Geometry Dash принадлежат RobTop Games.</span>
-                   <span data-lang="en" style="display: none;">Unofficial fan project. All rights to Geometry Dash belong to RobTop Games.</span>
-                </p>
+                <p>&copy; 2025 Geometry Dash Demon List. Неофициальный фанатский проект.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // ========== ПЕРЕКЛЮЧЕНИЕ ЯЗЫКА ==========
-        function toggleLanguage() {
-            const currentLang = localStorage.getItem('language') || 'ru';
-            const newLang = currentLang === 'ru' ? 'en' : 'ru';
-            
-            localStorage.setItem('language', newLang);
-            updateLanguage(newLang);
-            
-            const langButton = document.getElementById('languageToggle');
-            langButton.textContent = newLang === 'ru' ? 'EN' : 'RU';
-        }
-        
-        function loadLanguage() {
-            const savedLang = localStorage.getItem('language') || 'ru';
-            updateLanguage(savedLang);
-            
-            const langButton = document.getElementById('languageToggle');
-            langButton.textContent = savedLang === 'ru' ? 'EN' : 'RU';
-        }
-        
-        function updateLanguage(lang) {
-            // Показываем/скрываем элементы по языку
-            document.querySelectorAll('[data-lang]').forEach(element => {
-                if (element.getAttribute('data-lang') === lang) {
-                    element.style.display = '';
-                } else {
-                    element.style.display = 'none';
-                }
-            });
-            
-            // Обновляем плейсхолдеры
-            const searchInput = document.getElementById('searchInput');
-            if (searchInput) {
-                searchInput.placeholder = searchInput.getAttribute(`data-placeholder-${lang}`);
-            }
-            
-            // Обновляем иконки в зависимости от языка
-            updateIconColors(document.documentElement.getAttribute('data-theme') || 'light');
-        }
-
-        // ========== ВЫПАДАЮЩИЕ МЕНЮ ==========
-        function toggleDropdown(event) {
-            event.preventDefault();
-            event.stopPropagation();
-            
-            const dropdown = event.currentTarget.parentElement;
-            const dropdownMenu = dropdown.querySelector('.dropdown-menu');
-            const isActive = dropdownMenu.classList.contains('active');
-            
-            document.querySelectorAll('.dropdown-menu').forEach(menu => {
-                menu.classList.remove('active');
-            });
-            document.querySelectorAll('.dropdown-toggle').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            
-            if (!isActive) {
-                dropdownMenu.classList.add('active');
-                event.currentTarget.classList.add('active');
-            }
-        }
-
-        function toggleMobileDropdown(event, type) {
-            event.preventDefault();
-            event.stopPropagation();
-            
-            const mobileDropdown = document.getElementById(`mobileDropdown${type.charAt(0).toUpperCase() + type.slice(1)}`);
-            const isActive = mobileDropdown.classList.contains('active');
-            const arrow = event.currentTarget.querySelector('.dropdown-arrow');
-            
-            document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
-                if (dropdown.id !== mobileDropdown.id) {
-                    dropdown.classList.remove('active');
-                }
-            });
-            
-            document.querySelectorAll('.mobile-menu .dropdown-toggle').forEach(btn => {
-                if (btn !== event.currentTarget) {
-                    btn.classList.remove('active');
-                    const otherArrow = btn.querySelector('.dropdown-arrow');
-                    if (otherArrow) otherArrow.style.transform = 'rotate(0deg)';
-                }
-            });
-            
-            if (!isActive) {
-                mobileDropdown.classList.add('active');
-                arrow.style.transform = 'rotate(180deg)';
-                event.currentTarget.classList.add('active');
-            } else {
-                mobileDropdown.classList.remove('active');
-                arrow.style.transform = 'rotate(0deg)';
-                event.currentTarget.classList.remove('active');
-            }
-        }
-
-        document.addEventListener('click', function(event) {
-            if (!event.target.closest('.dropdown')) {
-                document.querySelectorAll('.dropdown-menu').forEach(menu => {
-                    menu.classList.remove('active');
-                });
-                document.querySelectorAll('.dropdown-toggle').forEach(btn => {
-                    btn.classList.remove('active');
-                });
-            }
-            
-            if (!event.target.closest('.mobile-menu nav ul li')) {
-                document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
-                    dropdown.classList.remove('active');
-                });
-                document.querySelectorAll('.mobile-menu .dropdown-toggle').forEach(btn => {
-                    btn.classList.remove('active');
-                    const arrow = btn.querySelector('.dropdown-arrow');
-                    if (arrow) arrow.style.transform = 'rotate(0deg)';
-                });
-            }
-        });
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                document.querySelectorAll('.dropdown-menu').forEach(menu => {
-                    menu.classList.remove('active');
-                });
-                document.querySelectorAll('.dropdown-toggle').forEach(btn => {
-                    btn.classList.remove('active');
-                });
-                
-                document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
-                    dropdown.classList.remove('active');
-                });
-                document.querySelectorAll('.mobile-menu .dropdown-toggle').forEach(btn => {
-                    btn.classList.remove('active');
-                    const arrow = btn.querySelector('.dropdown-arrow');
-                    if (arrow) arrow.style.transform = 'rotate(0deg)';
-                });
-            }
-        });
-
-        // ========== МОБИЛЬНОЕ МЕНЮ ==========
+        // ========== ПРОСТОЕ МОБИЛЬНОЕ МЕНЮ ==========
         function toggleMobileMenu() {
             const mobileMenu = document.getElementById('mobileMenu');
             const menuOverlay = document.getElementById('menuOverlay');
@@ -1806,24 +950,22 @@
             mobileMenu.classList.remove('active');
             menuOverlay.classList.remove('active');
             document.body.style.overflow = '';
-            
-            document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
-                dropdown.classList.remove('active');
-            });
-            document.querySelectorAll('.mobile-menu .dropdown-toggle').forEach(btn => {
-                btn.classList.remove('active');
-                const arrow = btn.querySelector('.dropdown-arrow');
-                if (arrow) arrow.style.transform = 'rotate(0deg)';
-            });
         }
 
+        // Закрываем меню при клике на ссылку
         document.querySelectorAll('.mobile-menu a').forEach(link => {
-            if (!link.classList.contains('dropdown-toggle') && !link.classList.contains('request-btn')) {
-                link.addEventListener('click', closeMobileMenu);
+            link.addEventListener('click', closeMobileMenu);
+        });
+
+        // Закрываем меню при нажатии Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeMobileMenu();
             }
         });
+
+        // ========== THEME TOGGLE ==========
         
-        // ========== СМЕНА ТЕМЫ ==========
         function toggleTheme() {
             const currentTheme = document.documentElement.getAttribute('data-theme');
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
@@ -1831,48 +973,39 @@
             document.documentElement.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
             
-            const themeIcon = document.getElementById('theme-icon');
-            themeIcon.style.transform = newTheme === 'dark' ? 'rotate(180deg)' : 'rotate(0deg)';
-            
-            updateIconColors(newTheme);
+            const themeButton = document.querySelector('.theme-toggle');
+            themeButton.textContent = newTheme === 'dark' ? '☀️' : '🌙';
         }
         
         function loadTheme() {
             const savedTheme = localStorage.getItem('theme') || 'light';
             document.documentElement.setAttribute('data-theme', savedTheme);
             
-            const themeIcon = document.getElementById('theme-icon');
-            themeIcon.style.transition = 'transform 0.5s ease';
-            themeIcon.style.transform = savedTheme === 'dark' ? 'rotate(180deg)' : 'rotate(0deg)';
-            
-            updateIconColors(savedTheme);
-        }
-        
-        function updateIconColors(theme) {
-            const icons = document.querySelectorAll('.dropdown-menu-icon, .btn-icon');
-            icons.forEach(icon => {
-                if (theme === 'dark') {
-                    icon.style.filter = 'brightness(0) invert(1)';
-                } else {
-                    icon.style.filter = 'none';
-                }
-            });
+            const themeButton = document.querySelector('.theme-toggle');
+            themeButton.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
         }
 
-        // ========== ДАННЫЕ ДЕМОНОВ ==========
+        // ========== ОПТИМИЗИРОВАННАЯ ЗАГРУЗКА ДАННЫХ ==========
+
         let demons = [];
         let filteredDemons = [];
         let imageCache = new Map();
+
+        // ========== ОБНОВЛЕННАЯ СИСТЕМА ОЧКОВ ==========
 
         function calculatePointsByRank(rank) {
             const basePoints = 1000;
             if (rank === 1) return basePoints;
             
-            const reduction = 0.05;
+            // Уменьшаем на 5% за каждую позицию после первого места
+            const reduction = 0.05; // 5%
             const points = basePoints * Math.pow(1 - reduction, rank - 1);
             
+            // Минимальное количество очков - 1
             return Math.max(Math.round(points), 1);
         }
+
+        // ========== СИСТЕМА ПОИСКА ==========
 
         function initializeSearch() {
             const searchInput = document.getElementById('searchInput');
@@ -1907,11 +1040,9 @@
         
         function displaySearchResults(results) {
             const searchResults = document.getElementById('searchResults');
-            const currentLang = localStorage.getItem('language') || 'ru';
-            const noResultsText = currentLang === 'ru' ? 'Демоны не найдены' : 'Demons not found';
             
             if (results.length === 0) {
-                searchResults.innerHTML = `<div class="no-results">${noResultsText}</div>`;
+                searchResults.innerHTML = '<div class="no-results">Демоны не найдены</div>';
                 searchResults.style.display = 'block';
                 return;
             }
@@ -1935,6 +1066,8 @@
             searchResults.style.display = 'block';
         }
 
+        // ========== ОПТИМИЗИРОВАННОЕ УПРАВЛЕНИЕ ДАННЫМИ ==========
+
         function showError(message) {
             const errorContainer = document.getElementById('errorContainer');
             errorContainer.innerHTML = `
@@ -1944,6 +1077,7 @@
             `;
         }
 
+        // Оптимизированная функция проверки изображений с кэшированием
         async function getAvailableImage(demonId) {
             if (imageCache.has(demonId)) {
                 return imageCache.get(demonId);
@@ -1962,6 +1096,7 @@
             }
         }
 
+        // Оптимизированная загрузка данных
         async function loadDataFromJSON() {
             try {
                 console.log('📥 Загружаем демонов из demons.json...');
@@ -1982,10 +1117,7 @@
                     filteredDemons = [...demons];
                     
                     console.log('✅ Демоны загружены:', demons.length);
-                    
-                    const currentLang = localStorage.getItem('language') || 'ru';
-                    const statusText = currentLang === 'ru' ? 'Список демонов загружен' : 'Demon list loaded';
-                    updateSyncStatus(statusText);
+                    updateSyncStatus(`Загружено ${demons.length} демонов`);
                     
                     renderDemons();
                     loadImagesAsync();
@@ -1998,15 +1130,12 @@
             } catch (error) {
                 console.error('❌ Ошибка загрузки демонов:', error);
                 showError(error.message);
-                
-                const currentLang = localStorage.getItem('language') || 'ru';
-                const statusText = currentLang === 'ru' ? 'Ошибка загрузки данных' : 'Error loading data';
-                updateSyncStatus(statusText);
-                
+                updateSyncStatus('Ошибка загрузки данных');
                 return false;
             }
         }
 
+        // Асинхронная загрузка изображений после рендера
         async function loadImagesAsync() {
             if (demons.length === 0) return;
             
@@ -2031,7 +1160,7 @@
                                     imgElement.style.opacity = '0';
                                     setTimeout(() => {
                                         imgElement.style.opacity = '1';
-                                        imgElement.style.transition = 'opacity 0.5s ease';
+                                        imgElement.style.transition = 'opacity 0.3s ease';
                                     }, 10);
                                 }
                             }
@@ -2051,27 +1180,25 @@
             const statusElement = document.getElementById('syncStatus');
             if (statusElement) {
                 statusElement.textContent = message;
-                statusElement.className = 'sync-status ' + (message.includes('загружен') || message.includes('loaded') ? 'synced' : '');
+                statusElement.className = 'sync-status ' + (message.includes('Загружено') ? 'synced' : '');
             }
         }
 
+        // ========== ОПТИМИЗИРОВАННЫЙ РЕНДЕРИНГ ==========
+
         function renderDemons() {
             const demonList = document.getElementById('demonList');
-            const currentLang = localStorage.getItem('language') || 'ru';
             
             if (!demonList) return;
             
             const fragment = document.createDocumentFragment();
             
             if (filteredDemons.length === 0) {
-                const noResultsTitle = currentLang === 'ru' ? 'Демоны не найдены' : 'Demons not found';
-                const noResultsDesc = currentLang === 'ru' ? 'Попробуйте изменить поисковый запрос' : 'Try changing your search query';
-                
                 demonList.innerHTML = `
-                    <div style="text-align: center; padding: 3rem; color: var(--text-secondary);">
-                        <div style="font-size: 2.5rem; margin-bottom: 1rem;">🔍</div>
-                        <div style="font-size: 1.2rem; margin-bottom: 0.8rem; font-weight: 700;">${noResultsTitle}</div>
-                        <div style="font-weight: 500; font-size: 1rem;">${noResultsDesc}</div>
+                    <div style="text-align: center; padding: 2rem; color: var(--text-secondary);">
+                        <div style="font-size: 2rem; margin-bottom: 0.8rem;">🔍</div>
+                        <div style="font-size: 1rem; margin-bottom: 0.4rem; font-weight: 700;">Демоны не найдены</div>
+                        <div style="font-weight: 600; font-size: 0.9rem;">Попробуйте изменить поисковый запрос</div>
                     </div>
                 `;
                 return;
@@ -2120,6 +1247,8 @@
             parent.innerHTML = `<div class="image-placeholder">${demonName.charAt(0)}</div>`;
         }
 
+        // ========== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ==========
+
         function openDemonPage(demonId) {
             window.location.href = `demon.html?id=${demonId}`;
         }
@@ -2134,58 +1263,35 @@
             
             document.querySelectorAll('.demon-row').forEach((row, index) => {
                 row.style.opacity = '0';
-                row.style.transform = 'translateX(-15px)';
+                row.style.transform = 'translateX(-10px)';
                 
                 setTimeout(() => {
-                    row.style.transition = 'opacity 0.5s, transform 0.5s';
+                    row.style.transition = 'opacity 0.3s, transform 0.3s';
                     row.style.opacity = '1';
                     row.style.transform = 'translateX(0)';
-                }, index * 50);
+                }, index * 30);
             });
         }
 
         // ========== ИНИЦИАЛИЗАЦИЯ ==========
+
         async function initializeData() {
             loadTheme();
-            loadLanguage();
             
             const dataPromise = loadDataFromJSON();
             
             initializeSearch();
             
-            if (window.innerWidth > 768) {
-                const dropdownItems = document.querySelectorAll('.dropdown');
-                dropdownItems.forEach(item => {
-                    item.addEventListener('mouseenter', function() {
-                        const dropdownMenu = this.querySelector('.dropdown-menu');
-                        const dropdownToggle = this.querySelector('.dropdown-toggle');
-                        if (dropdownMenu) {
-                            dropdownMenu.classList.add('active');
-                            dropdownToggle.classList.add('active');
-                        }
-                    });
-                    
-                    item.addEventListener('mouseleave', function() {
-                        const dropdownMenu = this.querySelector('.dropdown-menu');
-                        const dropdownToggle = this.querySelector('.dropdown-toggle');
-                        if (dropdownMenu) {
-                            dropdownMenu.classList.remove('active');
-                            dropdownToggle.classList.remove('active');
-                        }
-                    });
-                });
-            }
-            
             setTimeout(() => {
                 document.querySelectorAll('.demon-row').forEach((row, index) => {
                     row.style.opacity = '0';
-                    row.style.transform = 'translateX(-15px)';
+                    row.style.transform = 'translateX(-10px)';
                     
                     setTimeout(() => {
-                        row.style.transition = 'opacity 0.5s, transform 0.5s';
+                        row.style.transition = 'opacity 0.3s, transform 0.3s';
                         row.style.opacity = '1';
                         row.style.transform = 'translateX(0)';
-                    }, index * 50);
+                    }, index * 30);
                 });
             }, 100);
             
@@ -2195,12 +1301,9 @@
         window.refreshData = refreshData;
         window.openDemonPage = openDemonPage;
         window.toggleTheme = toggleTheme;
-        window.toggleLanguage = toggleLanguage;
         window.toggleMobileMenu = toggleMobileMenu;
         window.closeMobileMenu = closeMobileMenu;
         window.handleImageError = handleImageError;
-        window.toggleDropdown = toggleDropdown;
-        window.toggleMobileDropdown = toggleMobileDropdown;
 
         document.addEventListener('DOMContentLoaded', function() {
             initializeData();
