@@ -242,13 +242,13 @@
         .header-controls nav ul li a:hover,
         .header-controls nav ul li a.active {
             background: rgba(255, 255, 255, 0.2);
-            color: white; /* Цвет текста активной страницы такой же как у других */
+            color: white;
             transform: translateY(-2px);
             box-shadow: 0 4px 20px rgba(255, 255, 255, 0.15);
             border-color: rgba(255, 255, 255, 0.3);
         }
 
-        /* Убираем красный цвет для активной страницы в основном меню */
+        /* Цвет текста активной страницы в верхнем меню всегда белый */
         .header-controls nav ul li a.active {
             color: white !important;
         }
@@ -350,11 +350,15 @@
             padding-left: 2rem !important;
         }
 
-        /* Убираем градиентный фон для активной страницы в выпадающем меню */
+        /* Активная страница в выпадающем меню */
         .dropdown-menu a.active {
-            background: rgba(255, 255, 255, 0.05) !important; /* Тот же фон что и у обычных */
-            color: var(--text-primary) !important; /* Тот же цвет текста что и у других */
-            border-left: 4px solid var(--accent-red); /* Только левая граница для индикации */
+            background: rgba(255, 255, 255, 0.05) !important;
+            color: var(--text-primary) !important;
+            border-left: 4px solid var(--accent-red);
+        }
+
+        [data-theme="light"] .dropdown-menu a.active {
+            background: rgba(0, 0, 0, 0.05) !important;
         }
 
         .dropdown-menu a.active:hover {
@@ -362,8 +366,13 @@
             color: var(--accent-red) !important;
         }
 
+        [data-theme="light"] .dropdown-menu a.active:hover {
+            background: rgba(0, 0, 0, 0.1) !important;
+        }
+
         .dropdown-menu a.active .dropdown-menu-icon {
-            filter: none !important; /* Иконки остаются обычными */
+            filter: none !important;
+            opacity: 1;
         }
 
         .dropdown-menu-icon {
@@ -373,19 +382,19 @@
             transition: all 0.3s ease;
         }
 
+        /* Иконки в выпадающем меню для темной темы - белые */
+        .dropdown-menu-icon {
+            filter: brightness(0) invert(1);
+        }
+
+        /* Иконки в выпадающем меню для светлой темы - темные */
         [data-theme="light"] .dropdown-menu-icon {
-            filter: brightness(0) saturate(100%) invert(24%) sepia(9%) saturate(1200%) hue-rotate(170deg) brightness(92%) contrast(87%);
+            filter: none;
         }
 
         .dropdown-menu a:hover .dropdown-menu-icon {
             opacity: 1;
             transform: scale(1.1) rotate(10deg);
-        }
-
-        /* Убираем инвертацию для активной иконки */
-        .dropdown-menu a.active .dropdown-menu-icon {
-            filter: none;
-            opacity: 1;
         }
 
         /* Кнопки социальных сетей - перенесены вправо */
@@ -415,10 +424,11 @@
             box-shadow: 0 4px 15px rgba(255, 255, 255, 0.15);
         }
 
+        /* Значки Discord и YouTube ВСЕГДА белые */
         .social-btn img {
             width: 22px;
             height: 22px;
-            filter: brightness(0) invert(1);
+            filter: brightness(0) invert(1) !important; /* Всегда белые */
         }
 
         /* Кнопка Отправить реквест УДАЛЕНА из меню */
@@ -516,6 +526,10 @@
             background: rgba(26, 26, 46, 0.95);
         }
 
+        [data-theme="light"] .mobile-menu {
+            background: rgba(248, 249, 255, 0.95);
+        }
+
         .mobile-menu.active {
             right: 0;
         }
@@ -609,10 +623,15 @@
             padding-left: 2rem;
         }
 
+        [data-theme="light"] .mobile-menu nav ul li a:hover,
+        [data-theme="light"] .mobile-menu nav ul li a.active {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
         /* Цвет текста активной страницы в мобильном меню */
         .mobile-menu nav ul li a.active {
-            color: var(--text-primary) !important; /* Тот же цвет что и у других */
-            border-left: 4px solid var(--accent-red); /* Только левая граница для индикации */
+            color: var(--text-primary) !important;
+            border-left: 4px solid var(--accent-red);
         }
 
         .mobile-dropdown {
@@ -620,6 +639,10 @@
             background: rgba(255, 255, 255, 0.03);
             border-top: 1px solid var(--border-color);
             border-bottom: 1px solid var(--border-color);
+        }
+
+        [data-theme="light"] .mobile-dropdown {
+            background: rgba(0, 0, 0, 0.03);
         }
 
         .mobile-dropdown.active {
@@ -652,11 +675,19 @@
             background: rgba(255, 255, 255, 0.05) !important;
         }
 
+        [data-theme="light"] .mobile-dropdown a:hover {
+            background: rgba(0, 0, 0, 0.05) !important;
+        }
+
         /* Активная страница в мобильном выпадающем меню */
         .mobile-dropdown a.active {
             color: var(--text-primary) !important;
             background: rgba(255, 255, 255, 0.05) !important;
             border-left: 4px solid var(--accent-red);
+        }
+
+        [data-theme="light"] .mobile-dropdown a.active {
+            background: rgba(0, 0, 0, 0.05) !important;
         }
 
         .mobile-menu nav ul li a .dropdown-arrow {
@@ -1335,26 +1366,6 @@
                 font-size: 1.2rem;
             }
 
-            /* Кнопки в мобильном меню */
-            .mobile-menu .nav-request-btn {
-                background: rgba(255, 255, 255, 0.1) !important;
-                color: white !important;
-                border: 1px solid rgba(255, 255, 255, 0.2) !important;
-                margin: 1rem 1.5rem;
-                text-align: center;
-                border-radius: 8px;
-                font-weight: 600 !important;
-                padding: 1rem !important;
-                display: flex !important;
-                justify-content: center;
-                gap: 0.5rem;
-            }
-
-            .mobile-menu .nav-request-btn:hover {
-                background: rgba(255, 255, 255, 0.2) !important;
-                transform: translateY(-1px);
-            }
-
             /* Социальные кнопки в мобильном меню */
             .mobile-social-buttons {
                 display: flex;
@@ -1382,10 +1393,11 @@
                 transform: translateY(-2px);
             }
 
+            /* Значки Discord и YouTube ВСЕГДА белые и в мобильном меню */
             .mobile-social-btn img {
                 width: 22px;
                 height: 22px;
-                filter: brightness(0) invert(1);
+                filter: brightness(0) invert(1) !important; /* Всегда белые */
             }
 
             .refresh-btn {
@@ -1567,8 +1579,8 @@
             border: 1px solid rgba(0, 0, 0, 0.2);
         }
 
-        [data-theme="light"] .social-btn img {
-            filter: none;
+        [data-theme="light"] .social-btn:hover {
+            background: rgba(0, 0, 0, 0.2);
         }
     </style>
 </head>
@@ -2078,12 +2090,12 @@
         }
         
         function updateIconColors(theme) {
-            const icons = document.querySelectorAll('.dropdown-menu-icon, .search-icon');
-            icons.forEach(icon => {
+            // Обновляем только поисковую иконку, остальные уже имеют нужные фильтры в CSS
+            const searchIcons = document.querySelectorAll('.search-icon');
+            searchIcons.forEach(icon => {
                 if (theme === 'dark') {
                     icon.style.filter = 'brightness(0) invert(1)';
                 } else {
-                    // Для всех иконок используем специальный фильтр для светлой темы
                     icon.style.filter = 'brightness(0) saturate(100%) invert(24%) sepia(9%) saturate(1200%) hue-rotate(170deg) brightness(92%) contrast(87%)';
                 }
             });
