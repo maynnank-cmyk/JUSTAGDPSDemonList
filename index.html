@@ -249,8 +249,9 @@
         }
 
         /* Цвет текста активной страницы в верхнем меню всегда белый */
-        .header-controls nav ul li a.active {
-            color: white !important;
+ .header-controls nav ul li a.active {
+    color: var(--text-primary) !important;
+}
         }
 
         .header-controls nav ul li a .dropdown-arrow {
@@ -796,8 +797,9 @@
             transform: translateY(-50%);
             width: 20px;
             height: 20px;
-            filter: brightness(0) saturate(100%) invert(100%);
+           filter: brightness(0) invert(1);
             pointer-events: none;
+            backdrop-filter: none !important;
         }
         
         [data-theme="light"] .search-icon {
@@ -2450,3 +2452,4 @@
     </script>
 </body>
 </html>
+
