@@ -73,7 +73,7 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 20px;
         }
@@ -724,66 +724,22 @@
             visibility: visible;
         }
 
-        /* Остальные стили для players.html остаются без изменений */
-        /* ... остальные стили ... */
-
-        /* Hero Section */
-        .hero {
-            padding: 2rem 0;
-            text-align: center;
-            background: linear-gradient(135deg, rgba(17, 17, 34, 0.9) 0%, rgba(26, 26, 46, 0.9) 100%);
-            border-bottom: 1px solid var(--border-color);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent-red), var(--accent-purple), var(--accent-blue));
-            animation: gradient 3s ease infinite;
-            background-size: 200% 200%;
-        }
-
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .hero h1 {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--accent-red), var(--accent-purple), var(--accent-blue));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            background-size: 200% 200%;
-            animation: gradient 3s ease infinite;
-        }
-
-        .hero p {
-            font-size: 1rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto;
-            font-weight: 500;
+        /* Удалена hero section и расширен основной контент */
+        .main-content {
+            padding: 1.5rem 0;
+            min-height: calc(100vh - 180px);
+            display: flex;
+            flex-direction: column;
         }
 
         /* Widget Layout - NO SCROLLING */
         .widget-container {
             display: grid;
-            grid-template-columns: 350px 1fr;
+            grid-template-columns: 380px 1fr;
             gap: 1.5rem;
-            padding: 1.5rem 0;
-            max-height: calc(100vh - 200px);
-            overflow: hidden;
+            flex: 1;
+            max-height: none;
+            height: auto;
         }
 
         @media (max-width: 992px) {
@@ -793,68 +749,111 @@
             }
         }
 
-        /* Left Panel - Ultra Compact Players List */
+        /* Left Panel - Расширенный Players List со слайдером */
         .players-widget {
-            background: rgba(26, 26, 46, 0.7);
-            backdrop-filter: blur(10px);
-            border-radius: 16px;
-            border: 1px solid var(--border-color);
-            padding: 1rem;
-            box-shadow: var(--card-shadow);
+            background: rgba(26, 26, 46, 0.85);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            box-shadow: 
+                0 12px 40px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
             display: flex;
             flex-direction: column;
-            max-height: 600px;
+            height: 100%;
+            position: relative;
             overflow: hidden;
         }
 
+        .players-widget::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-red), var(--accent-purple), var(--accent-blue));
+            border-radius: 20px 20px 0 0;
+        }
+
         [data-theme="light"] .players-widget {
-            background: rgba(248, 249, 255, 0.7);
+            background: rgba(248, 249, 255, 0.85);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 
+                0 12px 40px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
         }
 
         .widget-header {
-            margin-bottom: 1rem;
-            text-align: center;
-            padding-bottom: 0.8rem;
-            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border-color);
+            position: relative;
         }
 
         .widget-header h2 {
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             color: var(--text-primary);
             font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .widget-header h2::before {
+            content: '👑';
+            font-size: 1.2rem;
+        }
+
+        .players-count {
+            position: absolute;
+            right: 0;
+            top: 0;
+            background: var(--accent-purple);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
         }
 
         .search-container {
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             position: relative;
         }
 
         .search-input {
             width: 100%;
-            padding: 0.6rem 1rem 0.6rem 2.5rem;
-            font-size: 0.9rem;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            background: var(--bg-secondary);
+            padding: 0.8rem 1rem 0.8rem 3rem;
+            font-size: 0.95rem;
+            border: 2px solid transparent;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.08);
             color: var(--text-primary);
             font-weight: 500;
             transition: all 0.3s ease;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .search-input:focus {
             outline: none;
             border-color: var(--accent-red);
-            box-shadow: 0 0 0 2px rgba(255, 71, 87, 0.25);
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 
+                inset 0 2px 4px rgba(0, 0, 0, 0.1),
+                0 0 0 3px rgba(255, 71, 87, 0.2);
         }
 
         .search-icon {
             position: absolute;
-            left: 0.8rem;
+            left: 1rem;
             top: 50%;
             transform: translateY(-50%);
-            width: 16px;
-            height: 16px;
+            width: 18px;
+            height: 18px;
             filter: brightness(0) invert(1);
+            opacity: 0.7;
             pointer-events: none;
         }
 
@@ -862,86 +861,160 @@
             filter: brightness(0) saturate(100%) invert(24%) sepia(9%) saturate(1200%) hue-rotate(170deg) brightness(92%) contrast(87%);
         }
 
-        /* Ultra Compact Players List */
-        .compact-players-list {
+        /* Слайдер для прокрутки */
+        .slider-container {
+            position: relative;
             flex: 1;
-            overflow-y: auto;
-            padding-right: 0.3rem;
+            overflow: hidden;
         }
 
+        .compact-players-list {
+            height: 100%;
+            overflow-y: auto;
+            padding-right: 0.5rem;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-purple) transparent;
+        }
+
+        .compact-players-list::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .compact-players-list::-webkit-scrollbar-track {
+            background: transparent;
+            border-radius: 10px;
+        }
+
+        .compact-players-list::-webkit-scrollbar-thumb {
+            background: var(--accent-purple);
+            border-radius: 10px;
+            border: 2px solid transparent;
+            background-clip: padding-box;
+        }
+
+        .compact-players-list::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-red);
+        }
+
+        /* Стили для строк игроков */
         .compact-player-row {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 0.5rem;
-            margin-bottom: 0.4rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 0.8rem 1rem;
+            margin-bottom: 0.8rem;
             display: flex;
             align-items: center;
-            gap: 0.6rem;
-            transition: all 0.2s ease;
+            gap: 0.8rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
-            min-height: 40px;
+            min-height: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .compact-player-row::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--accent-red), var(--accent-purple));
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
         }
 
         .compact-player-row:hover {
             border-color: var(--accent-red);
-            transform: translateX(2px);
-            background: rgba(255, 255, 255, 0.05);
+            transform: translateX(4px) translateY(-1px);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 12px rgba(255, 71, 87, 0.2);
+        }
+
+        .compact-player-row:hover::before {
+            transform: scaleY(1);
         }
 
         .compact-player-row.active {
             border-color: var(--accent-green);
-            background: rgba(46, 213, 115, 0.1);
+            background: rgba(46, 213, 115, 0.15);
+            box-shadow: 0 4px 12px rgba(46, 213, 115, 0.2);
+        }
+
+        .compact-player-row.active::before {
+            background: linear-gradient(to bottom, var(--accent-green), #00cc00);
+            transform: scaleY(1);
         }
 
         .compact-rank {
-            width: 28px;
-            height: 28px;
+            width: 36px;
+            height: 36px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             font-weight: 800;
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 6px;
-            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            border: 2px solid var(--border-color);
             flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .compact-player-row:hover .compact-rank {
+            transform: scale(1.1) rotate(5deg);
         }
 
         .rank-1 {
             background: linear-gradient(135deg, #ffd700, #ffa500);
             color: white;
             border-color: #ffd700;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
         }
 
         .rank-2 {
             background: linear-gradient(135deg, #c0c0c0, #a0a0a0);
             color: white;
             border-color: #c0c0c0;
+            box-shadow: 0 0 15px rgba(192, 192, 192, 0.3);
         }
 
         .rank-3 {
             background: linear-gradient(135deg, #cd7f32, #b56a24);
             color: white;
             border-color: #cd7f32;
+            box-shadow: 0 0 15px rgba(205, 127, 50, 0.3);
         }
 
         .compact-player-icon {
-            width: 28px;
-            height: 28px;
-            border-radius: 6px;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            border: 1px solid var(--border-color);
+            border: 2px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
         }
 
         .compact-player-icon img {
-            width: 20px;
-            height: 20px;
+            width: 24px;
+            height: 24px;
             object-fit: contain;
+            transition: all 0.3s ease;
+        }
+
+        .compact-player-row:hover .compact-player-icon {
+            border-color: var(--accent-red);
+            transform: scale(1.05);
+        }
+
+        .compact-player-row:hover .compact-player-icon img {
+            transform: scale(1.1);
         }
 
         /* Скрываем иконки у игроков ниже 3 места */
@@ -955,67 +1028,141 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.8rem;
         }
 
         .compact-player-name {
-            font-size: 0.85rem;
+            font-size: 0.95rem;
             font-weight: 700;
             color: var(--text-primary);
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
             flex: 1;
+            letter-spacing: 0.3px;
         }
 
         .compact-player-points {
-            font-size: 0.75rem;
-            font-weight: 700;
+            font-size: 0.85rem;
+            font-weight: 800;
             color: var(--accent-green);
             text-align: right;
-            min-width: 50px;
+            min-width: 60px;
+            padding: 0.3rem 0.6rem;
+            background: rgba(46, 213, 115, 0.15);
+            border-radius: 8px;
+            border: 1px solid rgba(46, 213, 115, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .compact-player-row:hover .compact-player-points {
+            background: var(--accent-green);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* Кнопки навигации слайдера */
+        .slider-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .slider-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--text-primary);
+            font-size: 1.2rem;
+        }
+
+        .slider-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: var(--accent-red);
+            transform: translateY(-2px);
+        }
+
+        .slider-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .slider-info {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 600;
         }
 
         /* Right Panel - Player Details Widget */
         .details-widget {
-            background: rgba(26, 26, 46, 0.7);
-            backdrop-filter: blur(10px);
-            border-radius: 16px;
-            border: 1px solid var(--border-color);
-            padding: 1rem;
-            box-shadow: var(--card-shadow);
+            background: rgba(26, 26, 46, 0.85);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            box-shadow: 
+                0 12px 40px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
             display: flex;
             flex-direction: column;
-            max-height: 600px;
+            height: 100%;
+            position: relative;
             overflow: hidden;
         }
 
+        .details-widget::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-green), #00cc00, var(--accent-blue));
+            border-radius: 20px 20px 0 0;
+        }
+
         [data-theme="light"] .details-widget {
-            background: rgba(248, 249, 255, 0.7);
+            background: rgba(248, 249, 255, 0.85);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 
+                0 12px 40px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
         }
 
         .player-header {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid var(--border-color);
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border-color);
         }
 
         .player-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 10px;
-            background: var(--accent-red);
+            width: 70px;
+            height: 70px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--accent-red), var(--accent-purple));
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            font-size: 1.8rem;
             font-weight: 800;
             color: white;
-            border: 2px solid var(--border-color);
+            border: 3px solid var(--border-color);
             flex-shrink: 0;
+            box-shadow: 0 8px 20px rgba(255, 71, 87, 0.3);
         }
 
         .player-title {
@@ -1024,71 +1171,114 @@
         }
 
         .player-title h2 {
-            font-size: 1.1rem;
+            font-size: 1.5rem;
             font-weight: 800;
             color: var(--text-primary);
-            margin-bottom: 0.2rem;
+            margin-bottom: 0.4rem;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
 
         .player-title .rank {
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             color: var(--text-secondary);
             font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .rank-badge {
+            background: var(--accent-purple);
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 700;
         }
 
         /* Stats Grid */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 0.6rem;
-            margin-bottom: 1rem;
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
         }
 
         .stat-item {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 0.6rem;
+            border-radius: 12px;
+            padding: 1rem;
             text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-item:hover {
+            border-color: var(--accent-purple);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(138, 107, 255, 0.2);
+        }
+
+        .stat-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-purple), var(--accent-blue));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item:hover::before {
+            transform: scaleX(1);
         }
 
         .stat-value {
-            font-size: 1rem;
+            font-size: 1.4rem;
             font-weight: 800;
             color: var(--accent-green);
-            margin-bottom: 0.2rem;
+            margin-bottom: 0.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
         }
 
         .stat-label {
-            font-size: 0.7rem;
+            font-size: 0.8rem;
             color: var(--text-secondary);
             font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         /* Demons List */
         .demons-section {
             flex: 1;
-            overflow-y: auto;
             display: flex;
             flex-direction: column;
+            overflow: hidden;
         }
 
         .demons-section h3 {
-            font-size: 0.9rem;
-            margin-bottom: 0.8rem;
+            font-size: 1rem;
+            margin-bottom: 1rem;
             color: var(--text-primary);
             font-weight: 800;
             display: flex;
             align-items: center;
-            gap: 0.3rem;
+            gap: 0.5rem;
         }
 
         .demons-section h3::before {
             content: "🎯";
-            font-size: 0.9rem;
+            font-size: 1rem;
         }
 
         .demons-list {
@@ -1096,53 +1286,117 @@
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-            gap: 0.4rem;
+            gap: 0.6rem;
+            padding-right: 0.5rem;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-green) transparent;
+        }
+
+        .demons-list::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .demons-list::-webkit-scrollbar-track {
+            background: transparent;
+            border-radius: 10px;
+        }
+
+        .demons-list::-webkit-scrollbar-thumb {
+            background: var(--accent-green);
+            border-radius: 10px;
+            border: 2px solid transparent;
+            background-clip: padding-box;
+        }
+
+        .demons-list::-webkit-scrollbar-thumb:hover {
+            background: #00cc00;
         }
 
         .demon-item {
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 0.5rem;
-            transition: all 0.2s ease;
+            border-radius: 12px;
+            padding: 0.8rem 1rem;
+            transition: all 0.3s ease;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .demon-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--accent-red), var(--accent-purple));
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
         }
 
         .demon-item:hover {
             border-color: var(--accent-red);
-            transform: translateX(2px);
+            transform: translateX(4px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .demon-item:hover::before {
+            transform: scaleY(1);
         }
 
         .demon-info {
             flex: 1;
             min-width: 0;
+            margin-right: 1rem;
         }
 
         .demon-name {
-            font-size: 0.8rem;
+            font-size: 0.95rem;
             font-weight: 700;
             color: var(--text-primary);
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            margin-bottom: 0.2rem;
+            margin-bottom: 0.3rem;
         }
 
         .demon-rank {
-            font-size: 0.7rem;
+            font-size: 0.8rem;
             color: var(--text-secondary);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .rank-indicator {
+            width: 6px;
+            height: 6px;
+            background: var(--accent-purple);
+            border-radius: 50%;
         }
 
         .demon-points {
-            font-size: 0.75rem;
+            font-size: 0.9rem;
             font-weight: 800;
             color: var(--accent-green);
             text-align: right;
-            min-width: 40px;
-            margin-left: 0.5rem;
+            min-width: 50px;
+            padding: 0.3rem 0.6rem;
+            background: rgba(46, 213, 115, 0.15);
+            border-radius: 8px;
+            border: 1px solid rgba(46, 213, 115, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .demon-item:hover .demon-points {
+            background: var(--accent-green);
+            color: white;
+            transform: scale(1.05);
         }
 
         /* No Player Selected */
@@ -1152,33 +1406,37 @@
             align-items: center;
             justify-content: center;
             height: 100%;
-            padding: 2rem;
+            padding: 3rem;
             text-align: center;
             color: var(--text-secondary);
         }
 
         .no-player-icon {
-            font-size: 2rem;
-            margin-bottom: 0.8rem;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
         }
 
         .no-player h3 {
-            font-size: 1rem;
-            margin-bottom: 0.4rem;
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
             color: var(--text-primary);
+            font-weight: 700;
         }
 
         .no-player p {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
+            max-width: 300px;
+            line-height: 1.5;
         }
 
         /* Footer */
         footer {
-            background: var(--bg-secondary);
+            background: linear-gradient(135deg, rgba(17, 17, 34, 0.95) 0%, rgba(26, 26, 46, 0.95) 100%);
             border-top: 1px solid var(--border-color);
             padding: 1.5rem 0;
             margin-top: 1rem;
-            background: linear-gradient(135deg, rgba(17, 17, 34, 0.9) 0%, rgba(26, 26, 46, 0.9) 100%);
+            backdrop-filter: blur(10px);
         }
 
         .footer-content {
@@ -1221,18 +1479,18 @@
         /* Loading */
         .loading {
             text-align: center;
-            padding: 1.5rem;
+            padding: 2rem;
             color: var(--text-secondary);
         }
 
         .loading-spinner {
-            border: 2px solid var(--bg-tertiary);
-            border-top: 2px solid var(--accent-red);
+            border: 3px solid var(--bg-tertiary);
+            border-top: 3px solid var(--accent-red);
             border-radius: 50%;
-            width: 24px;
-            height: 24px;
+            width: 30px;
+            height: 30px;
             animation: spin 1s linear infinite;
-            margin: 0 auto 0.6rem;
+            margin: 0 auto 1rem;
         }
 
         @keyframes spin {
@@ -1241,28 +1499,67 @@
         }
 
         /* Responsive */
+        @media (max-width: 992px) {
+            .widget-container {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .players-widget, .details-widget {
+                max-height: 500px;
+            }
+
+            .players-widget {
+                order: 1;
+            }
+
+            .details-widget {
+                order: 2;
+            }
+        }
+
         @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
             .header-controls nav {
                 display: none;
             }
 
-            .hero {
-                padding: 1.5rem 0;
+            .header-controls .social-buttons {
+                display: none;
             }
 
-            .hero h1 {
-                font-size: 1.5rem;
+            .header-content {
+                flex-wrap: nowrap;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .container {
+                padding: 0 15px;
             }
 
             .widget-container {
                 gap: 1rem;
-                padding: 1rem 0;
             }
 
-            .players-widget,
-            .details-widget {
-                max-height: none;
-                height: auto;
+            .players-widget, .details-widget {
+                padding: 1rem;
+                max-height: 400px;
+            }
+
+            .player-avatar {
+                width: 50px;
+                height: 50px;
+                font-size: 1.4rem;
+            }
+
+            .player-title h2 {
+                font-size: 1.2rem;
             }
 
             .stats-grid {
@@ -1270,58 +1567,113 @@
             }
 
             .compact-player-row {
-                padding: 0.4rem;
-                gap: 0.4rem;
+                padding: 0.6rem;
+                gap: 0.6rem;
+                min-height: 50px;
             }
 
             .compact-rank {
-                width: 24px;
-                height: 24px;
-                font-size: 0.7rem;
+                width: 32px;
+                height: 32px;
+                font-size: 0.8rem;
             }
 
             .compact-player-icon {
-                width: 24px;
-                height: 24px;
+                width: 32px;
+                height: 32px;
             }
 
             .compact-player-icon img {
-                width: 16px;
-                height: 16px;
+                width: 20px;
+                height: 20px;
+            }
+
+            .slider-nav {
+                margin-top: 0.8rem;
+                padding-top: 0.8rem;
             }
         }
 
         @media (max-width: 480px) {
             .container {
-                padding: 0 15px;
+                padding: 0 12px;
             }
 
-            .widget-container {
-                grid-template-columns: 1fr;
+            .players-widget, .details-widget {
+                padding: 0.8rem;
             }
 
-            .players-widget {
-                order: 2;
+            .widget-header h2 {
+                font-size: 1.2rem;
             }
 
-            .details-widget {
-                order: 1;
-                margin-bottom: 1rem;
+            .players-count {
+                font-size: 0.7rem;
+                padding: 0.2rem 0.6rem;
+            }
+
+            .compact-player-row {
+                padding: 0.5rem;
+                gap: 0.5rem;
+                margin-bottom: 0.6rem;
+            }
+
+            .compact-player-name {
+                font-size: 0.85rem;
+            }
+
+            .compact-player-points {
+                font-size: 0.75rem;
+                min-width: 50px;
             }
 
             .player-avatar {
                 width: 40px;
                 height: 40px;
-                font-size: 1rem;
+                font-size: 1.2rem;
             }
 
             .player-title h2 {
                 font-size: 1rem;
             }
 
+            .stat-value {
+                font-size: 1.2rem;
+            }
+
+            .stat-label {
+                font-size: 0.75rem;
+            }
+
             .footer-content {
                 grid-template-columns: 1fr;
                 gap: 1rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .compact-player-row {
+                flex-wrap: wrap;
+                min-height: auto;
+            }
+
+            .compact-player-info {
+                width: 100%;
+                margin-top: 0.3rem;
+            }
+
+            .slider-nav {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .slider-info {
+                order: 1;
+            }
+
+            .slider-btn {
+                order: 2;
+                width: 100%;
             }
         }
     </style>
@@ -1387,17 +1739,14 @@
                                     <a href="news.html">
                                         <img src="assets/news-icon.png" alt="📰" class="dropdown-menu-icon">
                                         <span data-lang="ru">Новости</span>
-                                        <span data-lang="en" style="display: none;">News</span>
                                     </a>
                                     <a href="contacts.html">
                                         <img src="assets/contacts-icon.png" alt="📞" class="dropdown-menu-icon">
                                         <span data-lang="ru">Контакты</span>
-                                        <span data-lang="en" style="display: none;">Contacts</span>
                                     </a>
                                     <a href="rules.html">
                                         <img src="assets/rules-icon.png" alt="📜" class="dropdown-menu-icon">
                                         <span data-lang="ru">Правила</span>
-                                        <span data-lang="en" style="display: none;">Rules</span>
                                     </a>
                                 </div>
                             </li>
@@ -1519,49 +1868,62 @@
     </div>
     <div class="menu-overlay" id="menuOverlay" onclick="closeMobileMenu()"></div>
 
-    <section class="hero">
-        <div class="container">
-            <h1 data-lang="ru">Топ игроков</h1>
-            <h1 data-lang="en" style="display: none;">Top Players</h1>
-            <p data-lang="ru">Рейтинг лучших игроков Geometry Dash Demon List</p>
-            <p data-lang="en" style="display: none;">Rating of the best Geometry Dash Demon List players</p>
-        </div>
-    </section>
-
+    <!-- Основной контент -->
     <div class="container">
-        <div class="widget-container">
-            <!-- Left Widget - Ultra Compact Players List -->
-            <div class="players-widget">
-                <div class="widget-header">
-                    <h2 data-lang="ru">Игроки</h2>
-                    <h2 data-lang="en" style="display: none;">Players</h2>
-                </div>
-                
-                <div class="search-container">
-                    <img src="assets/search.png" alt="🔍" class="search-icon">
-                    <input type="text" id="searchInput" class="search-input" 
-                           data-placeholder-ru="Поиск..."
-                           data-placeholder-en="Search..."
-                           placeholder="Поиск...">
-                </div>
-                
-                <div class="compact-players-list" id="playersList">
-                    <div class="loading">
-                        <div class="loading-spinner"></div>
-                        <p data-lang="ru">Загрузка...</p>
-                        <p data-lang="en" style="display: none;">Loading...</p>
+        <div class="main-content">
+            <div class="widget-container">
+                <!-- Left Widget - Players List with Slider -->
+                <div class="players-widget">
+                    <div class="widget-header">
+                        <h2 data-lang="ru">Игроки</h2>
+                        <h2 data-lang="en" style="display: none;">Players</h2>
+                        <div class="players-count" id="playersCount">
+                            <span data-lang="ru">0 игроков</span>
+                            <span data-lang="en" style="display: none;">0 players</span>
+                        </div>
+                    </div>
+                    
+                    <div class="search-container">
+                        <img src="assets/search.png" alt="🔍" class="search-icon">
+                        <input type="text" id="searchInput" class="search-input" 
+                               data-placeholder-ru="Поиск игроков..."
+                               data-placeholder-en="Search players..."
+                               placeholder="Поиск игроков...">
+                    </div>
+                    
+                    <div class="slider-container">
+                        <div class="compact-players-list" id="playersList">
+                            <div class="loading">
+                                <div class="loading-spinner"></div>
+                                <p data-lang="ru">Загрузка игроков...</p>
+                                <p data-lang="en" style="display: none;">Loading players...</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="slider-nav">
+                        <button class="slider-btn" id="prevBtn" onclick="scrollPlayers('prev')" disabled>
+                            ◀
+                        </button>
+                        <div class="slider-info" id="sliderInfo">
+                            <span data-lang="ru">1-10</span>
+                            <span data-lang="en" style="display: none;">1-10</span>
+                        </div>
+                        <button class="slider-btn" id="nextBtn" onclick="scrollPlayers('next')" disabled>
+                            ▶
+                        </button>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Right Widget - Player Details -->
-            <div class="details-widget" id="playerDetails">
-                <div class="no-player">
-                    <div class="no-player-icon">👤</div>
-                    <h3 data-lang="ru">Выберите игрока</h3>
-                    <h3 data-lang="en" style="display: none;">Select a player</h3>
-                    <p data-lang="ru">Нажмите на игрока в списке слева, чтобы увидеть информацию</p>
-                    <p data-lang="en" style="display: none;">Click on a player in the list on the left to see information</p>
+                
+                <!-- Right Widget - Player Details -->
+                <div class="details-widget" id="playerDetails">
+                    <div class="no-player">
+                        <div class="no-player-icon">👤</div>
+                        <h3 data-lang="ru">Выберите игрока</h3>
+                        <h3 data-lang="en" style="display: none;">Select a player</h3>
+                        <p data-lang="ru">Нажмите на игрока в списке слева, чтобы увидеть подробную информацию</p>
+                        <p data-lang="en" style="display: none;">Click on a player in the list on the left to see detailed information</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1834,6 +2196,8 @@
         let filteredPlayers = [];
         let demons = [];
         let selectedPlayerId = null;
+        let currentScrollIndex = 0;
+        const playersPerPage = 10;
 
         // Система очков
         function calculatePointsByRank(rank) {
@@ -1884,7 +2248,9 @@
                 
                 if (searchTerm.length === 0) {
                     filteredPlayers = [...players];
+                    currentScrollIndex = 0;
                     renderPlayersList();
+                    updateSliderControls();
                     return;
                 }
                 
@@ -1892,8 +2258,63 @@
                     player.name.toLowerCase().includes(searchTerm)
                 );
                 
+                currentScrollIndex = 0;
                 renderPlayersList();
+                updateSliderControls();
             });
+        }
+
+        // Слайдер
+        function scrollPlayers(direction) {
+            const playersList = document.getElementById('playersList');
+            const maxScrollIndex = Math.max(0, filteredPlayers.length - playersPerPage);
+            
+            if (direction === 'prev') {
+                currentScrollIndex = Math.max(0, currentScrollIndex - playersPerPage);
+            } else {
+                currentScrollIndex = Math.min(maxScrollIndex, currentScrollIndex + playersPerPage);
+            }
+            
+            playersList.scrollTop = 0;
+            renderPlayersList();
+            updateSliderControls();
+        }
+
+        function updateSliderControls() {
+            const maxScrollIndex = Math.max(0, filteredPlayers.length - playersPerPage);
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const sliderInfo = document.getElementById('sliderInfo');
+            
+            // Обновляем состояние кнопок
+            prevBtn.disabled = currentScrollIndex === 0;
+            nextBtn.disabled = currentScrollIndex >= maxScrollIndex || filteredPlayers.length <= playersPerPage;
+            
+            // Обновляем информацию о слайдере
+            const start = currentScrollIndex + 1;
+            const end = Math.min(currentScrollIndex + playersPerPage, filteredPlayers.length);
+            const total = filteredPlayers.length;
+            
+            sliderInfo.innerHTML = `
+                <span data-lang="ru">${start}-${end} из ${total}</span>
+                <span data-lang="en" style="display: none;">${start}-${end} of ${total}</span>
+            `;
+            
+            // Обновляем счетчик игроков
+            const playersCount = document.getElementById('playersCount');
+            const currentLang = localStorage.getItem('language') || 'ru';
+            
+            if (currentLang === 'ru') {
+                playersCount.innerHTML = `${total} ${getPluralForm(total, 'игрок', 'игрока', 'игроков')}`;
+            } else {
+                playersCount.innerHTML = `${total} ${total === 1 ? 'player' : 'players'}`;
+            }
+        }
+
+        function getPluralForm(number, one, few, many) {
+            if (number % 10 === 1 && number % 100 !== 11) return one;
+            if (number % 10 >= 2 && number % 10 <= 4 && (number % 100 < 10 || number % 100 >= 20)) return few;
+            return many;
         }
 
         // Загрузка данных
@@ -1937,7 +2358,9 @@
                     filteredPlayers = [...players];
                     
                     console.log('✅ Загружено игроков:', players.length);
+                    
                     renderPlayersList();
+                    updateSliderControls();
                     
                     // Выбираем первого игрока по умолчанию
                     if (players.length > 0) {
@@ -1968,7 +2391,7 @@
             return allDemons.findIndex(d => d.id === demonId) + 1;
         }
 
-        // Отображение ультра-компактного списка игроков
+        // Отображение списка игроков
         function renderPlayersList() {
             const playersList = document.getElementById('playersList');
             
@@ -1978,22 +2401,42 @@
             
             if (filteredPlayers.length === 0) {
                 playersList.innerHTML = `
-                    <div style="text-align: center; padding: 1rem; color: var(--text-secondary);">
-                        <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🔍</div>
-                        <div style="font-size: 0.85rem; font-weight: 600;">
+                    <div style="text-align: center; padding: 2rem; color: var(--text-secondary);">
+                        <div style="font-size: 2rem; margin-bottom: 0.8rem;">🔍</div>
+                        <div style="font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem;">
                             <span data-lang="ru">Игроки не найдены</span>
                             <span data-lang="en" style="display: none;">Players not found</span>
+                        </div>
+                        <div style="font-size: 0.9rem;">
+                            <span data-lang="ru">Попробуйте изменить поисковый запрос</span>
+                            <span data-lang="en" style="display: none;">Try changing your search query</span>
                         </div>
                     </div>
                 `;
                 return;
             }
             
-            filteredPlayers.forEach(player => {
+            // Получаем игроков для текущей страницы
+            const visiblePlayers = filteredPlayers.slice(
+                currentScrollIndex, 
+                currentScrollIndex + playersPerPage
+            );
+            
+            visiblePlayers.forEach((player, index) => {
                 const playerRow = document.createElement('div');
                 playerRow.className = `compact-player-row ${selectedPlayerId === player.id ? 'active' : ''}`;
                 playerRow.setAttribute('data-player-id', player.id);
                 playerRow.onclick = () => selectPlayer(player.id);
+                
+                // Добавляем анимацию появления
+                playerRow.style.opacity = '0';
+                playerRow.style.transform = 'translateY(10px)';
+                
+                setTimeout(() => {
+                    playerRow.style.transition = 'opacity 0.3s, transform 0.3s';
+                    playerRow.style.opacity = '1';
+                    playerRow.style.transform = 'translateY(0)';
+                }, index * 50);
                 
                 const rankClass = player.rank === 1 ? 'rank-1' : 
                                 player.rank === 2 ? 'rank-2' : 
@@ -2030,6 +2473,14 @@
             if (player) {
                 renderPlayerDetails(player);
                 updateSelectedPlayerInList();
+                
+                // Плавная анимация при выборе
+                const playerDetails = document.getElementById('playerDetails');
+                playerDetails.style.opacity = '0';
+                setTimeout(() => {
+                    playerDetails.style.transition = 'opacity 0.3s';
+                    playerDetails.style.opacity = '1';
+                }, 10);
             }
         }
 
@@ -2055,8 +2506,9 @@
                     <div class="player-title">
                         <h2>${player.name}</h2>
                         <div class="rank">
-                            <span data-lang="ru">Ранг: #${playerStats.rank}</span>
-                            <span data-lang="en" style="display: none;">Rank: #${playerStats.rank}</span>
+                            <span data-lang="ru">Ранг: </span>
+                            <span data-lang="en" style="display: none;">Rank: </span>
+                            <span class="rank-badge">#${playerStats.rank}</span>
                         </div>
                     </div>
                 </div>
@@ -2099,29 +2551,47 @@
                     </h3>
                     <div class="demons-list">
                         ${playerStats.completedDemons.length > 0 ? 
-                            playerStats.completedDemons.map(completion => `
-                                <div class="demon-item" onclick="openDemonPage('${completion.demon.id}')">
-                                    <div class="demon-info">
-                                        <div class="demon-name">${completion.demon.name}</div>
-                                        <div class="demon-rank">
-                                            <span data-lang="ru">Ранг: #${completion.rank}</span>
-                                            <span data-lang="en" style="display: none;">Rank: #${completion.rank}</span>
+                            playerStats.completedDemons.map((completion, index) => {
+                                // Добавляем анимацию появления для демонов
+                                const animationDelay = index * 50;
+                                return `
+                                    <div class="demon-item" onclick="openDemonPage('${completion.demon.id}')" 
+                                         style="opacity: 0; transform: translateX(10px); transition: opacity 0.3s ${animationDelay}ms, transform 0.3s ${animationDelay}ms">
+                                        <div class="demon-info">
+                                            <div class="demon-name">${completion.demon.name}</div>
+                                            <div class="demon-rank">
+                                                <span class="rank-indicator"></span>
+                                                <span data-lang="ru">Ранг: #${completion.rank}</span>
+                                                <span data-lang="en" style="display: none;">Rank: #${completion.rank}</span>
+                                            </div>
                                         </div>
+                                        <div class="demon-points">${completion.points}</div>
                                     </div>
-                                    <div class="demon-points">${completion.points}</div>
-                                </div>
-                            `).join('') :
-                            `<div style="text-align: center; padding: 1rem; color: var(--text-secondary);">
-                                <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">😔</div>
-                                <div style="font-size: 0.85rem; font-weight: 600;">
+                                `;
+                            }).join('') :
+                            `<div style="text-align: center; padding: 2rem; color: var(--text-secondary);">
+                                <div style="font-size: 2rem; margin-bottom: 0.8rem;">😔</div>
+                                <div style="font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem;">
                                     <span data-lang="ru">Нет пройденных демонов</span>
                                     <span data-lang="en" style="display: none;">No completed demons</span>
+                                </div>
+                                <div style="font-size: 0.9rem;">
+                                    <span data-lang="ru">Этот игрок еще не прошел ни одного демона</span>
+                                    <span data-lang="en" style="display: none;">This player hasn't completed any demons yet</span>
                                 </div>
                             </div>`
                         }
                     </div>
                 </div>
             `;
+            
+            // Запускаем анимацию появления для демонов
+            setTimeout(() => {
+                document.querySelectorAll('.demon-item').forEach(item => {
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateX(0)';
+                });
+            }, 100);
         }
 
         function calculatePlayerStats(player, allPlayers, allDemons) {
@@ -2216,6 +2686,7 @@
         window.toggleMobileMenu = toggleMobileMenu;
         window.closeMobileMenu = closeMobileMenu;
         window.openDemonPage = openDemonPage;
+        window.scrollPlayers = scrollPlayers;
 
         document.addEventListener('DOMContentLoaded', initialize);
     </script>
