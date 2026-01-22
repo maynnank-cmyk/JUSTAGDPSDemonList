@@ -16,6 +16,10 @@
             --border-color: #dee2e6;
             --card-shadow: 0 2px 8px rgba(0,0,0,0.1);
             --header-red: #dc3545;
+            --tab-active: #dc3545;
+            --tab-hover: #ff6b6b;
+            --tab-bg: #f8f9fa;
+            --tab-border: #dee2e6;
         }
         
         [data-theme="dark"] {
@@ -29,6 +33,10 @@
             --border-color: #404040;
             --card-shadow: 0 2px 8px rgba(0,0,0,0.3);
             --header-red: #c82333;
+            --tab-active: #ff6b6b;
+            --tab-hover: #ff8a8a;
+            --tab-bg: #2d2d2d;
+            --tab-border: #404040;
         }
         
         * {
@@ -357,6 +365,99 @@
             font-size: 0.9rem;
         }
         
+        /* Tabs Section */
+        .tabs-section {
+            padding: 1.5rem 0;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .tabs-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .tabs-header {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            justify-content: center;
+        }
+        
+        .tab-btn {
+            padding: 0.6rem 1.2rem;
+            background: var(--tab-bg);
+            border: 1px solid var(--tab-border);
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .tab-btn:hover {
+            background: var(--bg-tertiary);
+            color: var(--tab-hover);
+            border-color: var(--tab-hover);
+            transform: translateY(-1px);
+        }
+        
+        .tab-btn.active {
+            background: var(--tab-active);
+            color: white;
+            border-color: var(--tab-active);
+        }
+        
+        .tab-btn.active:hover {
+            background: var(--tab-hover);
+            border-color: var(--tab-hover);
+        }
+        
+        .tab-icon {
+            font-size: 1rem;
+        }
+        
+        .tab-content {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .tab-pane {
+            display: none;
+            padding: 1.5rem;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .tab-pane.active {
+            display: block;
+        }
+        
+        .tab-pane h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            font-weight: 800;
+        }
+        
+        .tab-pane p {
+            color: var(--text-secondary);
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
         /* Demon List */
         .demon-list {
             padding: 1.5rem 0;
@@ -643,6 +744,19 @@
                 transform: translateY(-2px) !important;
                 box-shadow: 0 4px 12px rgba(220,53,69,0.15) !important;
             }
+
+            .tabs-header {
+                gap: 0.8rem;
+            }
+            
+            .tab-btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+            }
+            
+            .tab-pane {
+                padding: 2rem;
+            }
         }
 
         /* Еще больше для очень больших экранов */
@@ -716,6 +830,16 @@
                 background: var(--bg-tertiary) !important;
                 color: var(--accent-red) !important;
             }
+
+            .tabs-header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .tab-btn {
+                text-align: center;
+                justify-content: center;
+            }
         }
 
         @media (max-width: 480px) {
@@ -777,6 +901,10 @@
                 font-size: 1.1rem;
                 padding: 0.7rem 1.2rem;
             }
+            
+            .tab-pane {
+                padding: 1rem;
+            }
         }
 
         @media (max-width: 360px) {
@@ -808,6 +936,14 @@
             
             .demon-row:active {
                 border-color: var(--accent-red);
+                transform: scale(0.98);
+            }
+            
+            .tab-btn:hover {
+                transform: none;
+            }
+            
+            .tab-btn:active {
                 transform: scale(0.98);
             }
         }
@@ -885,6 +1021,73 @@
         </div>
     </section>
     
+    <!-- Добавляем секцию с вкладками -->
+    <section class="tabs-section">
+        <div class="container">
+            <div class="tabs-container">
+                <div class="tabs-header">
+                    <button class="tab-btn active" data-tab="classic">
+                        <span class="tab-icon">⭐</span>
+                        <span>Classic List</span>
+                    </button>
+                    <button class="tab-btn" data-tab="future">
+                        <span class="tab-icon">🚀</span>
+                        <span>Future List</span>
+                    </button>
+                    <button class="tab-btn" data-tab="legacy">
+                        <span class="tab-icon">📜</span>
+                        <span>Legacy</span>
+                    </button>
+                    <button class="tab-btn" data-tab="extended">
+                        <span class="tab-icon">🔬</span>
+                        <span>Extended</span>
+                    </button>
+                    <button class="tab-btn" data-tab="challenge">
+                        <span class="tab-icon">⚡</span>
+                        <span>Challenge</span>
+                    </button>
+                </div>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="classic-tab">
+                        <h3>Classic Demon List</h3>
+                        <p>Основной список самых сложных уровней Geometry Dash, проверенных временем и сообществом.</p>
+                        <p><strong>Количество демонов:</strong> <span id="classic-count">Загрузка...</span></p>
+                        <p><strong>Последнее обновление:</strong> Сегодня</p>
+                        <p><strong>Описание:</strong> Этот список включает в себя классические демоны, которые считаются эталоном сложности в игре.</p>
+                    </div>
+                    <div class="tab-pane" id="future-tab">
+                        <h3>Future List</h3>
+                        <p>Список перспективных демонов, которые могут войти в основной список в будущем.</p>
+                        <p><strong>Количество демонов:</strong> <span id="future-count">Загрузка...</span></p>
+                        <p><strong>Статус:</strong> Активный набор</p>
+                        <p><strong>Описание:</strong> Здесь находятся уровни, которые проходят проверку сообщества и могут быть добавлены в основной список.</p>
+                    </div>
+                    <div class="tab-pane" id="legacy-tab">
+                        <h3>Legacy Demon List</h3>
+                        <p>Исторические демоны, которые когда-то были в топе, но были вытеснены новыми уровнями.</p>
+                        <p><strong>Количество демонов:</strong> <span id="legacy-count">Загрузка...</span></p>
+                        <p><strong>Период:</strong> 2014-2020</p>
+                        <p><strong>Описание:</strong> Коллекция демонов, которые были актуальны в прошлые годы и представляют историческую ценность.</p>
+                    </div>
+                    <div class="tab-pane" id="extended-tab">
+                        <h3>Extended List</h3>
+                        <p>Расширенный список, включающий больше демонов за пределами основного топа.</p>
+                        <p><strong>Количество демонов:</strong> <span id="extended-count">Загрузка...</span></p>
+                        <p><strong>Лимит:</strong> 150+ демонов</p>
+                        <p><strong>Описание:</strong> Для тех, кто хочет увидеть больше сложных уровней за пределами основного топа.</p>
+                    </div>
+                    <div class="tab-pane" id="challenge-tab">
+                        <h3>Challenge List</h3>
+                        <p>Особые челлендж-демоны с уникальной механикой или ограничениями.</p>
+                        <p><strong>Количество демонов:</strong> <span id="challenge-count">Загрузка...</span></p>
+                        <p><strong>Типы:</strong> Memory, Wave, Ship, Mixed</p>
+                        <p><strong>Описание:</strong> Уровни, которые бросают вызов определенным навыкам игрока.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <section class="search-section">
         <div class="container">
             <div class="search-container">
@@ -933,6 +1136,47 @@
     </footer>
 
     <script>
+        // ========== СИСТЕМА ВКЛАДОК ==========
+        function initializeTabs() {
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabPanes = document.querySelectorAll('.tab-pane');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // Убираем активный класс у всех кнопок
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    // Добавляем активный класс текущей кнопке
+                    this.classList.add('active');
+                    
+                    // Скрываем все вкладки
+                    tabPanes.forEach(pane => pane.classList.remove('active'));
+                    // Показываем выбранную вкладку
+                    document.getElementById(`${tabId}-tab`).classList.add('active');
+                    
+                    // Обновляем счетчики для вкладки
+                    updateTabCounters(tabId);
+                });
+            });
+            
+            // Инициализируем первую вкладку
+            updateTabCounters('classic');
+        }
+        
+        function updateTabCounters(activeTab) {
+            // Здесь можно обновлять счетчики демонов для каждой вкладки
+            const counters = {
+                'classic': demons.filter(d => d.category === 'classic').length || 75,
+                'future': demons.filter(d => d.category === 'future').length || 25,
+                'legacy': demons.filter(d => d.category === 'legacy').length || 50,
+                'extended': demons.filter(d => d.category === 'extended').length || 150,
+                'challenge': demons.filter(d => d.category === 'challenge').length || 30
+            };
+            
+            document.getElementById(`${activeTab}-count`).textContent = counters[activeTab];
+        }
+        
         // ========== ПРОСТОЕ МОБИЛЬНОЕ МЕНЮ ==========
         function toggleMobileMenu() {
             const mobileMenu = document.getElementById('mobileMenu');
@@ -1109,9 +1353,12 @@
                 if (data.demons && Array.isArray(data.demons)) {
                     demons = [];
                     
+                    // Добавляем категории к демонам для фильтрации по вкладкам
                     demons = data.demons.map((demon, index) => ({
                         ...demon,
-                        rank: index + 1
+                        rank: index + 1,
+                        // Распределяем демоны по категориям для примера
+                        category: getCategoryForDemon(index)
                     }));
                     
                     filteredDemons = [...demons];
@@ -1133,6 +1380,16 @@
                 updateSyncStatus('Ошибка загрузки данных');
                 return false;
             }
+        }
+        
+        // Функция для определения категории демона (примерная логика)
+        function getCategoryForDemon(index) {
+            const categories = ['classic', 'future', 'legacy', 'extended', 'challenge'];
+            if (index < 75) return 'classic';
+            if (index < 100) return 'future';
+            if (index < 150) return 'legacy';
+            if (index < 300) return 'extended';
+            return 'challenge';
         }
 
         // Асинхронная загрузка изображений после рендера
@@ -1271,12 +1528,17 @@
                     row.style.transform = 'translateX(0)';
                 }, index * 30);
             });
+            
+            // Обновляем счетчики для активной вкладки
+            const activeTab = document.querySelector('.tab-btn.active').getAttribute('data-tab');
+            updateTabCounters(activeTab);
         }
 
         // ========== ИНИЦИАЛИЗАЦИЯ ==========
 
         async function initializeData() {
             loadTheme();
+            initializeTabs();
             
             const dataPromise = loadDataFromJSON();
             
@@ -1311,4 +1573,3 @@
     </script>
 </body>
 </html>
-
