@@ -275,7 +275,7 @@
             transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             overflow: hidden;
             backdrop-filter: blur(20px);
-            background: rgba(26, 26, 46, 0.9);
+            background: rgba(26, 26, 46, 0.95);
         }
 
         [data-theme="light"] .dropdown-menu {
@@ -375,32 +375,90 @@
             filter: brightness(0) invert(1);
         }
 
-        .request-btn {
-            background: white !important;
-            color: var(--accent-red) !important;
-            border: none !important;
-            font-weight: 700 !important;
-            font-size: 0.95rem;
-            padding: 0.7rem 1.5rem !important;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(255, 71, 87, 0.3);
-            transition: all 0.3s ease !important;
-            display: flex !important;
+        /* Кнопки социальных сетей */
+        .social-buttons {
+            display: flex;
             align-items: center;
             gap: 0.5rem;
+        }
+
+        .social-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .social-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.15);
+        }
+
+        .social-btn img {
+            width: 22px;
+            height: 22px;
+            filter: brightness(0) invert(1);
+        }
+
+        /* Кнопка Отправить реквест в меню */
+        .nav-request-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 0.7rem 1.5rem;
+            color: white;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-request-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.15);
+        }
+
+        .nav-request-btn img {
+            width: 16px;
+            height: 16px;
+            filter: brightness(0) invert(1);
+        }
+
+        /* Кнопка в выпадающем меню */
+        .dropdown-request-btn {
+            background: linear-gradient(135deg, var(--accent-red), var(--accent-purple)) !important;
+            color: white !important;
+            border: none !important;
+            border-radius: 8px !important;
+            margin: 0.8rem !important;
+            padding: 1rem 1.5rem !important;
+            font-weight: 700 !important;
+            box-shadow: 0 4px 15px rgba(255, 71, 87, 0.3);
+            transition: all 0.3s ease !important;
             animation: pulse 2s infinite;
         }
 
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 4px 20px rgba(255, 71, 87, 0.3); }
-            50% { box-shadow: 0 4px 30px rgba(255, 71, 87, 0.5); }
+        .dropdown-request-btn:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 6px 20px rgba(255, 71, 87, 0.4) !important;
+            animation: none;
         }
 
-        .request-btn:hover {
-            background: white !important;
-            transform: translateY(-2px) !important;
-            box-shadow: 0 6px 25px rgba(255, 71, 87, 0.4) !important;
-            animation: none;
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 4px 15px rgba(255, 71, 87, 0.3); }
+            50% { box-shadow: 0 4px 25px rgba(255, 71, 87, 0.5); }
         }
 
         .btn-icon {
@@ -602,7 +660,7 @@
             width: 16px;
             height: 16px;
             transition: transform 0.4s ease;
-            filter: brightness(0) saturate(100%) invert(100%);
+            filter: brightness(0) invert(1);
         }
 
         [data-theme="light"] .mobile-menu nav ul li a .dropdown-arrow {
@@ -709,7 +767,7 @@
         }
         
         [data-theme="light"] .search-icon {
-            filter: none;
+            filter: brightness(0) saturate(100%) invert(24%) sepia(9%) saturate(1200%) hue-rotate(170deg) brightness(92%) contrast(87%);
         }
         
         .search-input {
@@ -1262,6 +1320,10 @@
                 display: none;
             }
 
+            .header-controls .social-buttons {
+                display: none;
+            }
+
             .header-content {
                 flex-wrap: nowrap;
             }
@@ -1270,25 +1332,57 @@
                 font-size: 1.2rem;
             }
 
-            .mobile-menu .request-btn {
+            /* Кнопки в мобильном меню */
+            .mobile-menu .nav-request-btn {
                 background: rgba(255, 255, 255, 0.1) !important;
-                color: var(--text-primary) !important;
-                border: 2px solid var(--border-color) !important;
+                color: white !important;
+                border: 1px solid rgba(255, 255, 255, 0.2) !important;
                 margin: 1rem 1.5rem;
                 text-align: center;
                 border-radius: 8px;
-                font-weight: 700 !important;
+                font-weight: 600 !important;
                 padding: 1rem !important;
-                box-shadow: var(--card-shadow);
                 display: flex !important;
                 justify-content: center;
                 gap: 0.5rem;
             }
 
-            .mobile-menu .request-btn:hover {
+            .mobile-menu .nav-request-btn:hover {
                 background: rgba(255, 255, 255, 0.2) !important;
-                color: var(--accent-red) !important;
                 transform: translateY(-1px);
+            }
+
+            /* Социальные кнопки в мобильном меню */
+            .mobile-social-buttons {
+                display: flex;
+                justify-content: center;
+                gap: 1rem;
+                padding: 1rem 1.5rem;
+                border-top: 1px solid var(--border-color);
+                margin-top: auto;
+            }
+
+            .mobile-social-btn {
+                background: rgba(255, 255, 255, 0.1);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                border-radius: 8px;
+                width: 44px;
+                height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.3s ease;
+            }
+
+            .mobile-social-btn:hover {
+                background: rgba(255, 255, 255, 0.2);
+                transform: translateY(-2px);
+            }
+
+            .mobile-social-btn img {
+                width: 22px;
+                height: 22px;
+                filter: brightness(0) invert(1);
             }
 
             .refresh-btn {
@@ -1455,17 +1549,23 @@
             text-size-adjust: 100%;
         }
 
-        [data-theme="light"] .request-btn {
-            background: var(--accent-red) !important;
-            color: white !important;
-            border: 2px solid var(--accent-red) !important;
-            box-shadow: var(--card-shadow) !important;
+        [data-theme="light"] .nav-request-btn {
+            background: rgba(0, 0, 0, 0.1) !important;
+            color: var(--text-primary) !important;
+            border: 1px solid rgba(0, 0, 0, 0.2) !important;
         }
 
-        [data-theme="light"] .request-btn:hover {
-            background: var(--accent-purple) !important;
-            color: white !important;
-            border-color: var(--accent-purple) !important;
+        [data-theme="light"] .nav-request-btn:hover {
+            background: rgba(0, 0, 0, 0.2) !important;
+        }
+
+        [data-theme="light"] .social-btn {
+            background: rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.2);
+        }
+
+        [data-theme="light"] .social-btn img {
+            filter: none;
         }
     </style>
 </head>
@@ -1478,6 +1578,23 @@
                     <a href="index.html" class="logo">Just a GDPS</a>
                 </div>
                 <div class="header-controls">
+                    <!-- Кнопки социальных сетей -->
+                    <div class="social-buttons">
+                        <a href="#" class="social-btn" title="Discord">
+                            <img src="assets/discord.png" alt="Discord">
+                        </a>
+                        <a href="#" class="social-btn" title="YouTube">
+                            <img src="assets/youtube.png" alt="YouTube">
+                        </a>
+                    </div>
+                    
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSceFzm37tUw0B5t6h3L3U5alQJ5P41F1uZEeC3DaVdDXbNmrQ/viewform?usp=dialog" 
+                       class="nav-request-btn">
+                        <img src="assets/request-icon.png" alt="📝">
+                        <span data-lang="ru">Отправить реквест</span>
+                        <span data-lang="en" style="display: none;">Submit Request</span>
+                    </a>
+                    
                     <button class="language-toggle" onclick="toggleLanguage()" id="languageToggle">
                         EN
                     </button>
@@ -1521,11 +1638,6 @@
                                         <img src="assets/players-icon.png" alt="👥" class="dropdown-menu-icon">
                                         <span data-lang="ru">Топ игроков</span>
                                         <span data-lang="en" style="display: none;">Top Players</span>
-                                    </a>
-                                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSceFzm37tUw0B5t6h3L3U5alQJ5P41F1uZEeC3DaVdDXbNmrQ/viewform?usp=dialog" class="request-btn">
-                                        <img src="assets/request-icon.png" alt="📝" class="btn-icon">
-                                        <span data-lang="ru">Отправить реквест</span>
-                                        <span data-lang="en" style="display: none;">Submit Request</span>
                                     </a>
                                 </div>
                             </li>
@@ -1601,11 +1713,6 @@
                             <span data-lang="ru">Топ игроков</span>
                             <span data-lang="en" style="display: none;">Top Players</span>
                         </a>
-                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSceFzm37tUw0B5t6h3L3U5alQJ5P41F1uZEeC3DaVdDXbNmrQ/viewform?usp=dialog" class="request-btn" onclick="closeMobileMenu()">
-                            <img src="assets/request-icon.png" alt="📝" class="btn-icon">
-                            <span data-lang="ru">Отправить реквест</span>
-                            <span data-lang="en" style="display: none;">Submit Request</span>
-                        </a>
                     </div>
                 </li>
                 <li>
@@ -1632,7 +1739,25 @@
                         </a>
                     </div>
                 </li>
+                <!-- Кнопка Отправить реквест в мобильном меню -->
+                <li>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSceFzm37tUw0B5t6h3L3U5alQJ5P41F1uZEeC3DaVdDXbNmrQ/viewform?usp=dialog" 
+                       class="nav-request-btn" onclick="closeMobileMenu()">
+                        <img src="assets/request-icon.png" alt="📝">
+                        <span data-lang="ru">Отправить реквест</span>
+                        <span data-lang="en" style="display: none;">Submit Request</span>
+                    </a>
+                </li>
             </ul>
+            <!-- Социальные кнопки в мобильном меню -->
+            <div class="mobile-social-buttons">
+                <a href="#" class="mobile-social-btn" title="Discord">
+                    <img src="assets/discord.png" alt="Discord">
+                </a>
+                <a href="#" class="mobile-social-btn" title="YouTube">
+                    <img src="assets/youtube.png" alt="YouTube">
+                </a>
+            </div>
         </nav>
     </div>
     <div class="menu-overlay" id="menuOverlay" onclick="closeMobileMenu()"></div>
@@ -1790,7 +1915,7 @@
                 searchInput.placeholder = searchInput.getAttribute(`data-placeholder-${lang}`);
             }
             
-            // Обновляем иконки в зависимости от языка
+            // Обновляем иконки в зависимости от темы
             updateIconColors(document.documentElement.getAttribute('data-theme') || 'dark');
         }
 
@@ -1920,7 +2045,7 @@
         }
 
         document.querySelectorAll('.mobile-menu a').forEach(link => {
-            if (!link.classList.contains('dropdown-toggle') && !link.classList.contains('request-btn')) {
+            if (!link.classList.contains('dropdown-toggle') && !link.classList.contains('nav-request-btn')) {
                 link.addEventListener('click', closeMobileMenu);
             }
         });
@@ -1951,12 +2076,17 @@
         }
         
         function updateIconColors(theme) {
-            const icons = document.querySelectorAll('.dropdown-menu-icon, .btn-icon');
+            const icons = document.querySelectorAll('.dropdown-menu-icon, .search-icon');
             icons.forEach(icon => {
                 if (theme === 'dark') {
                     icon.style.filter = 'brightness(0) invert(1)';
                 } else {
-                    icon.style.filter = 'none';
+                    // Для поиска используем оригинальный фильтр для светлой темы
+                    if (icon.classList.contains('search-icon')) {
+                        icon.style.filter = 'brightness(0) saturate(100%) invert(24%) sepia(9%) saturate(1200%) hue-rotate(170deg) brightness(92%) contrast(87%)';
+                    } else {
+                        icon.style.filter = 'none';
+                    }
                 }
             });
         }
