@@ -242,10 +242,15 @@
         .header-controls nav ul li a:hover,
         .header-controls nav ul li a.active {
             background: rgba(255, 255, 255, 0.2);
-            color: white;
+            color: white; /* Цвет текста активной страницы такой же как у других */
             transform: translateY(-2px);
             box-shadow: 0 4px 20px rgba(255, 255, 255, 0.15);
             border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Убираем красный цвет для активной страницы в основном меню */
+        .header-controls nav ul li a.active {
+            color: white !important;
         }
 
         .header-controls nav ul li a .dropdown-arrow {
@@ -345,14 +350,20 @@
             padding-left: 2rem !important;
         }
 
+        /* Убираем градиентный фон для активной страницы в выпадающем меню */
         .dropdown-menu a.active {
-            background: linear-gradient(135deg, var(--accent-red), var(--accent-purple));
-            color: white !important;
+            background: rgba(255, 255, 255, 0.05) !important; /* Тот же фон что и у обычных */
+            color: var(--text-primary) !important; /* Тот же цвет текста что и у других */
+            border-left: 4px solid var(--accent-red); /* Только левая граница для индикации */
         }
 
         .dropdown-menu a.active:hover {
-            background: linear-gradient(135deg, var(--accent-red), var(--accent-purple));
-            opacity: 0.95;
+            background: rgba(255, 255, 255, 0.1) !important;
+            color: var(--accent-red) !important;
+        }
+
+        .dropdown-menu a.active .dropdown-menu-icon {
+            filter: none !important; /* Иконки остаются обычными */
         }
 
         .dropdown-menu-icon {
@@ -371,8 +382,10 @@
             transform: scale(1.1) rotate(10deg);
         }
 
+        /* Убираем инвертацию для активной иконки */
         .dropdown-menu a.active .dropdown-menu-icon {
-            filter: brightness(0) invert(1);
+            filter: none;
+            opacity: 1;
         }
 
         /* Кнопки социальных сетей - перенесены вправо */
@@ -596,6 +609,12 @@
             padding-left: 2rem;
         }
 
+        /* Цвет текста активной страницы в мобильном меню */
+        .mobile-menu nav ul li a.active {
+            color: var(--text-primary) !important; /* Тот же цвет что и у других */
+            border-left: 4px solid var(--accent-red); /* Только левая граница для индикации */
+        }
+
         .mobile-dropdown {
             display: none;
             background: rgba(255, 255, 255, 0.03);
@@ -631,6 +650,13 @@
         .mobile-dropdown a:hover {
             color: var(--accent-red) !important;
             background: rgba(255, 255, 255, 0.05) !important;
+        }
+
+        /* Активная страница в мобильном выпадающем меню */
+        .mobile-dropdown a.active {
+            color: var(--text-primary) !important;
+            background: rgba(255, 255, 255, 0.05) !important;
+            border-left: 4px solid var(--accent-red);
         }
 
         .mobile-menu nav ul li a .dropdown-arrow {
@@ -1667,7 +1693,7 @@
                         <img src="assets/arrow.png" alt="▼" class="dropdown-arrow">
                     </a>
                     <div class="mobile-dropdown" id="mobileDropdownMain">
-                        <a href="index.html" onclick="closeMobileMenu()">
+                        <a href="index.html" class="active" onclick="closeMobileMenu()">
                             <img src="assets/classic-icon.png" alt="📜" class="dropdown-menu-icon">
                             <span data-lang="ru">Классический</span>
                             <span data-lang="en" style="display: none;">Classic</span>
