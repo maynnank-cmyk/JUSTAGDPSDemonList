@@ -1,15 +1,5 @@
 {
   "players": [
-    {
-      "id": "azimut",
-      "name": "Azimut",
-      "avatar": "A",
-      "icon": "assets/gold-icon.png",
-      "completedDemons": ["theredrealm"],
-      "progress": {
-        "theredrealm": 100
-      }
-    },
         {
       "id": "ho4",
       "name": "Ho4",
@@ -102,7 +92,7 @@
      {
       "id": "vladgdmj",
       "name": "Vladgdmj",
-      "avatar": "V",
+      "avatar": "images/vladgmd.png",
       "completedDemons": ["badabum", "sigareta2", "turnthelightsoff", "insomnia", "anathema", "atomiccannonmkiii"],
       "progress": {
         "badabum": 100,
