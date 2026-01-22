@@ -4,7 +4,7 @@
       "id": "azimut",
       "name": "Azimut",
       "avatar": "A",
-      "icon": "gold-icon.png",
+      "icon": "assets/gold-icon.png",
       "completedDemons": ["theredrealm"],
       "progress": {
         "theredrealm": 100
