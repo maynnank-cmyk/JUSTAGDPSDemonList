@@ -799,12 +799,13 @@
             height: 20px;
            filter: brightness(0) invert(1);
             pointer-events: none;
-            backdrop-filter: none !important;
+         /*   backdrop-filter: none !important; */
         }
         
-        [data-theme="light"] .search-icon {
-            filter: brightness(0) saturate(100%) invert(24%) sepia(9%) saturate(1200%) hue-rotate(170deg) brightness(92%) contrast(87%);
-        }
+            [data-theme="light"] .search-icon {
+            filter: none;
+           /* backdrop-filter: none !important;*/
+    }
         
         .search-input {
             width: 100%;
@@ -817,7 +818,7 @@
             font-weight: 500;
             transition: all 0.3s ease;
             box-shadow: var(--card-shadow);
-            backdrop-filter: blur(10px);
+         /*   backdrop-filter: blur(10px); */
         }
         
         .search-input:focus {
@@ -2452,4 +2453,5 @@
     </script>
 </body>
 </html>
+
 
