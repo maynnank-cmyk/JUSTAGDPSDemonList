@@ -6,35 +6,37 @@
     <title>Just a GDPS</title>
     <style>
         :root {
-            --bg-primary: #ffffff;
-            --bg-secondary: #f5f7fa;
-            --bg-tertiary: #eef2f7;
-            --text-primary: #1a1a2e;
-            --text-secondary: #6c757d;
-            --accent-red: #dc3545;
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #111122;
+            --bg-tertiary: #1a1a2e;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0cc;
+            --accent-red: #ff4757;
             --accent-blue: #4a6fa5;
-            --accent-purple: #6d5acf;
-            --accent-green: #28a745;
-            --border-color: #dee2e6;
-            --card-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            --header-gradient: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
-            --dropdown-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            --accent-purple: #8a6bff;
+            --accent-green: #2ed573;
+            --border-color: #2d2d4d;
+            --card-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            --header-gradient: linear-gradient(135deg, #ff4757 0%, #8a6bff 100%);
+            --dropdown-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            --gradient-bg: linear-gradient(135deg, #0a0a0f 0%, #111122 50%, #1a1a2e 100%);
         }
         
-        [data-theme="dark"] {
-            --bg-primary: #121212;
-            --bg-secondary: #1e1e1e;
-            --bg-tertiary: #2d2d2d;
-            --text-primary: #ffffff;
-            --text-secondary: #a0a0a0;
+        [data-theme="light"] {
+            --bg-primary: #f8f9ff;
+            --bg-secondary: #eef2ff;
+            --bg-tertiary: #e0e5ff;
+            --text-primary: #1a1a2e;
+            --text-secondary: #6c757d;
             --accent-red: #ff6b6b;
-            --accent-blue: #64b5f6;
-            --accent-purple: #9575cd;
+            --accent-blue: #4a6fa5;
+            --accent-purple: #6d5acf;
             --accent-green: #34c759;
-            --border-color: #404040;
-            --card-shadow: 0 4px 12px rgba(0,0,0,0.25);
-            --header-gradient: linear-gradient(135deg, #ff6b6b 0%, #ff4757 100%);
-            --dropdown-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            --border-color: #d0d5ff;
+            --card-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            --header-gradient: linear-gradient(135deg, #ff6b6b 0%, #6d5acf 100%);
+            --dropdown-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            --gradient-bg: linear-gradient(135deg, #f8f9ff 0%, #eef2ff 50%, #e0e5ff 100%);
         }
         
         * {
@@ -45,12 +47,29 @@
         }
         
         body {
-            background-color: var(--bg-primary);
+            background: var(--gradient-bg);
             color: var(--text-primary);
             line-height: 1.7;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             font-weight: 500;
             min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(138, 107, 255, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(255, 71, 87, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 50% 50%, rgba(74, 111, 165, 0.05) 0%, transparent 30%);
+            pointer-events: none;
+            z-index: -1;
         }
         
         .container {
@@ -62,18 +81,20 @@
         header {
             background: var(--header-gradient);
             border-bottom: none;
-            padding: 0.5rem 0 0 0;
+            padding: 0;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
         
         .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-bottom: 0.5rem;
+            padding: 0.8rem 0;
         }
         
         .logo-container {
@@ -93,17 +114,26 @@
             padding: 0.5rem;
             border-radius: 8px;
             transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
         }
         
         .logo:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-1px);
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
         }
         
         .cube-icon {
             width: 32px;
             height: 32px;
             filter: brightness(0) invert(1);
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-5px) rotate(5deg); }
         }
         
         .header-controls {
@@ -127,11 +157,13 @@
             font-weight: 700;
             color: white;
             font-size: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
         
         .language-toggle:hover {
             background: rgba(255, 255, 255, 0.3);
-            transform: scale(1.1);
+            transform: scale(1.1) rotate(15deg);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
         }
         
         .theme-toggle {
@@ -146,11 +178,13 @@
             justify-content: center;
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
         
         .theme-toggle:hover {
             background: rgba(255, 255, 255, 0.3);
             transform: scale(1.1) rotate(15deg);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
         }
         
         .theme-toggle img {
@@ -185,6 +219,9 @@
             gap: 0.5rem;
             position: relative;
             overflow: hidden;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .header-controls nav ul li a::before {
@@ -204,9 +241,11 @@
 
         .header-controls nav ul li a:hover,
         .header-controls nav ul li a.active {
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.2);
             color: white;
-            transform: translateY(-1px);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
         }
 
         .header-controls nav ul li a .dropdown-arrow {
@@ -235,6 +274,12 @@
             transform: translateY(-15px) scale(0.95);
             transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             overflow: hidden;
+            backdrop-filter: blur(20px);
+            background: rgba(26, 26, 46, 0.9);
+        }
+
+        [data-theme="light"] .dropdown-menu {
+            background: rgba(248, 249, 255, 0.95);
         }
 
         .dropdown-menu::before {
@@ -249,7 +294,7 @@
             border-bottom: 8px solid var(--bg-primary);
         }
 
-        [data-theme="dark"] .dropdown-menu::before {
+        [data-theme="light"] .dropdown-menu::before {
             border-bottom-color: var(--bg-primary);
         }
 
@@ -295,7 +340,7 @@
         }
 
         .dropdown-menu a:hover {
-            background: var(--bg-secondary);
+            background: rgba(255, 255, 255, 0.05);
             color: var(--accent-red) !important;
             padding-left: 2rem !important;
         }
@@ -306,7 +351,7 @@
         }
 
         .dropdown-menu a.active:hover {
-            background: linear-gradient(135deg, #ff6b6b, #8a6bff);
+            background: linear-gradient(135deg, var(--accent-red), var(--accent-purple));
             opacity: 0.95;
         }
 
@@ -314,15 +359,16 @@
             width: 18px;
             height: 18px;
             opacity: 0.7;
+            transition: all 0.3s ease;
         }
 
-        [data-theme="dark"] .dropdown-menu-icon {
-            filter: brightness(0) invert(1);
+        [data-theme="light"] .dropdown-menu-icon {
+            filter: none;
         }
 
         .dropdown-menu a:hover .dropdown-menu-icon {
             opacity: 1;
-            transform: scale(1.1);
+            transform: scale(1.1) rotate(10deg);
         }
 
         .dropdown-menu a.active .dropdown-menu-icon {
@@ -337,17 +383,24 @@
             font-size: 0.95rem;
             padding: 0.7rem 1.5rem !important;
             border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(220, 53, 69, 0.2);
+            box-shadow: 0 4px 20px rgba(255, 71, 87, 0.3);
             transition: all 0.3s ease !important;
             display: flex !important;
             align-items: center;
             gap: 0.5rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 4px 20px rgba(255, 71, 87, 0.3); }
+            50% { box-shadow: 0 4px 30px rgba(255, 71, 87, 0.5); }
         }
 
         .request-btn:hover {
             background: white !important;
             transform: translateY(-2px) !important;
-            box-shadow: 0 6px 16px rgba(220, 53, 69, 0.3) !important;
+            box-shadow: 0 6px 25px rgba(255, 71, 87, 0.4) !important;
+            animation: none;
         }
 
         .btn-icon {
@@ -378,11 +431,13 @@
             z-index: 1001;
             border-radius: 8px;
             transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .menu-toggle:hover {
             background: rgba(255, 255, 255, 0.3);
             transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
         }
 
         .menu-toggle span {
@@ -404,11 +459,13 @@
             background: var(--bg-primary);
             z-index: 999;
             flex-direction: column;
-            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.15);
+            box-shadow: -5px 0 30px rgba(0, 0, 0, 0.3);
             transition: right 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             border-left: 1px solid var(--border-color);
             display: flex;
             flex-direction: column;
+            backdrop-filter: blur(20px);
+            background: rgba(26, 26, 46, 0.95);
         }
 
         .mobile-menu.active {
@@ -441,6 +498,7 @@
             width: 28px;
             height: 28px;
             filter: brightness(0) invert(1);
+            animation: float 3s ease-in-out infinite;
         }
 
         .mobile-close {
@@ -456,10 +514,11 @@
             justify-content: center;
             border-radius: 8px;
             transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
         }
 
         .mobile-close:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.2);
             transform: rotate(90deg);
         }
 
@@ -497,14 +556,14 @@
 
         .mobile-menu nav ul li a:hover,
         .mobile-menu nav ul li a.active {
-            background: var(--bg-secondary);
+            background: rgba(255, 255, 255, 0.05);
             color: var(--accent-red);
             padding-left: 2rem;
         }
 
         .mobile-dropdown {
             display: none;
-            background: var(--bg-tertiary);
+            background: rgba(255, 255, 255, 0.03);
             border-top: 1px solid var(--border-color);
             border-bottom: 1px solid var(--border-color);
         }
@@ -536,18 +595,18 @@
 
         .mobile-dropdown a:hover {
             color: var(--accent-red) !important;
-            background: var(--bg-secondary) !important;
+            background: rgba(255, 255, 255, 0.05) !important;
         }
 
         .mobile-menu nav ul li a .dropdown-arrow {
             width: 16px;
             height: 16px;
             transition: transform 0.4s ease;
-            filter: brightness(0) saturate(100%) invert(24%) sepia(9%) saturate(1200%) hue-rotate(170deg) brightness(92%) contrast(87%);
+            filter: brightness(0) saturate(100%) invert(100%);
         }
 
-        [data-theme="dark"] .mobile-menu nav ul li a .dropdown-arrow {
-            filter: brightness(0) invert(1);
+        [data-theme="light"] .mobile-menu nav ul li a .dropdown-arrow {
+            filter: none;
         }
 
         .mobile-menu nav ul li a.active .dropdown-arrow {
@@ -560,7 +619,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.7);
             z-index: 998;
             opacity: 0;
             visibility: hidden;
@@ -574,12 +633,13 @@
         }
         
         .hero {
-            padding: 3rem 0;
+            padding: 4rem 0;
             text-align: center;
             background: var(--bg-secondary);
             border-bottom: 1px solid var(--border-color);
             position: relative;
             overflow: hidden;
+            background: linear-gradient(135deg, rgba(17, 17, 34, 0.9) 0%, rgba(26, 26, 46, 0.9) 100%);
         }
 
         .hero::before {
@@ -590,21 +650,31 @@
             right: 0;
             height: 4px;
             background: linear-gradient(90deg, var(--accent-red), var(--accent-purple), var(--accent-blue));
+            animation: gradient 3s ease infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
         
         .hero h1 {
-            font-size: 2.5rem;
+            font-size: 3.5rem;
             margin-bottom: 1rem;
             color: var(--text-primary);
             font-weight: 800;
-            background: linear-gradient(135deg, var(--accent-red), var(--accent-purple));
+            background: linear-gradient(135deg, var(--accent-red), var(--accent-purple), var(--accent-blue));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            background-size: 200% 200%;
+            animation: gradient 3s ease infinite;
         }
         
         .hero p {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: var(--text-secondary);
             max-width: 600px;
             margin: 0 auto;
@@ -614,7 +684,7 @@
         
         .search-section {
             padding: 2rem 0;
-            background: var(--bg-primary);
+            background: transparent;
         }
         
         .search-container {
@@ -634,12 +704,12 @@
             transform: translateY(-50%);
             width: 20px;
             height: 20px;
-            filter: brightness(0) saturate(100%) invert(24%) sepia(9%) saturate(1200%) hue-rotate(170deg) brightness(92%) contrast(87%);
+            filter: brightness(0) saturate(100%) invert(100%);
             pointer-events: none;
         }
         
-        [data-theme="dark"] .search-icon {
-            filter: brightness(0) invert(1);
+        [data-theme="light"] .search-icon {
+            filter: none;
         }
         
         .search-input {
@@ -648,18 +718,20 @@
             font-size: 1rem;
             border: 2px solid var(--border-color);
             border-radius: 12px;
-            background: var(--bg-primary);
+            background: rgba(255, 255, 255, 0.05);
             color: var(--text-primary);
             font-weight: 500;
             transition: all 0.3s ease;
             box-shadow: var(--card-shadow);
+            backdrop-filter: blur(10px);
         }
         
         .search-input:focus {
             outline: none;
             border-color: var(--accent-red);
-            box-shadow: 0 0 0 3px rgba(220,53,69,0.15);
+            box-shadow: 0 0 0 3px rgba(255, 71, 87, 0.25);
             transform: translateY(-1px);
+            background: rgba(255, 255, 255, 0.1);
         }
         
         .search-results {
@@ -676,6 +748,8 @@
             z-index: 1000;
             display: none;
             box-shadow: var(--dropdown-shadow);
+            backdrop-filter: blur(20px);
+            background: rgba(26, 26, 46, 0.95);
         }
         
         .search-result-item {
@@ -686,7 +760,7 @@
         }
         
         .search-result-item:hover {
-            background-color: var(--bg-secondary);
+            background-color: rgba(255, 255, 255, 0.05);
             padding-left: 1.8rem;
         }
         
@@ -725,7 +799,7 @@
         }
         
         .list-header h2 {
-            font-size: 2rem;
+            font-size: 2.5rem;
             margin-bottom: 0.8rem;
             color: var(--text-primary);
             font-weight: 800;
@@ -739,10 +813,12 @@
             bottom: -8px;
             left: 50%;
             transform: translateX(-50%);
-            width: 60px;
+            width: 80px;
             height: 4px;
             background: linear-gradient(90deg, var(--accent-red), var(--accent-purple));
             border-radius: 2px;
+            animation: gradient 3s ease infinite;
+            background-size: 200% 200%;
         }
         
         .list-header p {
@@ -760,9 +836,9 @@
         }
         
         .demon-row {
-            background: var(--bg-primary);
+            background: rgba(255, 255, 255, 0.03);
             border: 2px solid var(--border-color);
-            border-radius: 12px;
+            border-radius: 16px;
             padding: 1.2rem;
             display: flex;
             align-items: center;
@@ -772,6 +848,7 @@
             box-shadow: var(--card-shadow);
             position: relative;
             overflow: hidden;
+            backdrop-filter: blur(10px);
         }
 
         .demon-row::before {
@@ -788,8 +865,9 @@
         
         .demon-row:hover {
             border-color: var(--accent-red);
-            box-shadow: 0 8px 25px rgba(220,53,69,0.15);
-            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(255, 71, 87, 0.2);
+            transform: translateY(-4px);
+            background: rgba(255, 255, 255, 0.05);
         }
 
         .demon-row:hover::before {
@@ -805,39 +883,44 @@
             line-height: 50px;
             color: var(--text-secondary);
             flex-shrink: 0;
-            background: var(--bg-tertiary);
-            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
             transition: all 0.3s ease;
+            border: 2px solid var(--border-color);
         }
 
         .demon-row:hover .demon-rank {
             background: var(--accent-red);
             color: white;
             transform: scale(1.1) rotate(5deg);
+            border-color: var(--accent-red);
         }
         
         .rank.top-1 {
             background: linear-gradient(135deg, #ffd700, #ffa500);
             color: white;
+            border-color: #ffd700;
         }
         
         .rank.top-3 {
             background: linear-gradient(135deg, #c0c0c0, #a0a0a0);
             color: white;
+            border-color: #c0c0c0;
         }
         
         .rank.top-10 {
             background: linear-gradient(135deg, #cd7f32, #b56a24);
             color: white;
+            border-color: #cd7f32;
         }
         
         .demon-image {
             width: 120px;
             height: 68px;
-            border-radius: 8px;
+            border-radius: 12px;
             overflow: hidden;
             flex-shrink: 0;
-            background: var(--bg-tertiary);
+            background: rgba(255, 255, 255, 0.05);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -849,6 +932,7 @@
         .demon-row:hover .demon-image {
             border-color: var(--accent-red);
             transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(255, 71, 87, 0.2);
         }
         
         .demon-image img {
@@ -868,7 +952,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: var(--bg-tertiary);
+            background: rgba(255, 255, 255, 0.05);
             color: var(--text-secondary);
             font-size: 1.4rem;
             font-weight: 800;
@@ -926,16 +1010,18 @@
             min-width: 80px;
             text-align: right;
             flex-shrink: 0;
-            background: rgba(40, 167, 69, 0.1);
+            background: rgba(46, 213, 115, 0.1);
             padding: 0.5rem 1rem;
             border-radius: 8px;
             transition: all 0.3s ease;
+            border: 2px solid rgba(46, 213, 115, 0.2);
         }
 
         .demon-row:hover .demon-points {
             background: var(--accent-green);
             color: white;
             transform: scale(1.05);
+            border-color: var(--accent-green);
         }
         
         .refresh-btn {
@@ -945,14 +1031,16 @@
             background: linear-gradient(135deg, var(--accent-red), var(--accent-purple));
             color: white;
             border: none;
-            border-radius: 10px;
+            border-radius: 12px;
             cursor: pointer;
             font-size: 1rem;
             font-weight: 700;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(220, 53, 69, 0.2);
+            box-shadow: 0 4px 20px rgba(255, 71, 87, 0.3);
             position: relative;
             overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            animation: pulse 2s infinite;
         }
 
         .refresh-btn::before {
@@ -968,7 +1056,8 @@
         
         .refresh-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(220, 53, 69, 0.3);
+            box-shadow: 0 6px 25px rgba(255, 71, 87, 0.4);
+            animation: none;
         }
 
         .refresh-btn:hover::before {
@@ -997,40 +1086,41 @@
         .sync-status {
             text-align: center;
             padding: 1rem;
-            background: var(--bg-secondary);
-            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
             margin: 1rem 0;
             color: var(--text-secondary);
             border: 2px solid var(--border-color);
             font-weight: 600;
             font-size: 0.95rem;
             transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
         }
         
         .sync-status.synced {
             color: var(--accent-green);
             border-color: var(--accent-green);
-            background: var(--bg-primary);
-            box-shadow: 0 4px 15px rgba(52, 199, 89, 0.15);
+            background: rgba(46, 213, 115, 0.1);
+            box-shadow: 0 4px 20px rgba(46, 213, 115, 0.15);
         }
         
         .error-message {
             text-align: center;
             padding: 1rem;
-            background: linear-gradient(135deg, #f8d7da, #f5c6cb);
-            border: 2px solid #f5c6cb;
-            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(255, 71, 87, 0.1), rgba(255, 71, 87, 0.2));
+            border: 2px solid rgba(255, 71, 87, 0.3);
+            border-radius: 12px;
             margin: 1rem 0;
-            color: #721c24;
+            color: var(--accent-red);
             font-weight: 600;
             font-size: 0.95rem;
-            box-shadow: 0 4px 15px rgba(245, 198, 203, 0.2);
+            box-shadow: 0 4px 20px rgba(255, 71, 87, 0.2);
         }
         
-        [data-theme="dark"] .error-message {
-            background: linear-gradient(135deg, #5c2a2a, #7a3a3a);
-            border-color: #7a3a3a;
-            color: #ffb3b3;
+        [data-theme="light"] .error-message {
+            background: linear-gradient(135deg, rgba(255, 71, 87, 0.1), rgba(255, 71, 87, 0.2));
+            border-color: rgba(255, 71, 87, 0.3);
+            color: var(--accent-red);
         }
         
         footer {
@@ -1038,6 +1128,7 @@
             border-top: 1px solid var(--border-color);
             padding: 2.5rem 0 1.5rem;
             margin-top: 3rem;
+            background: linear-gradient(135deg, rgba(17, 17, 34, 0.9) 0%, rgba(26, 26, 46, 0.9) 100%);
         }
         
         .footer-content {
@@ -1097,7 +1188,7 @@
             .demon-row {
                 padding: 1.5rem !important;
                 gap: 1.5rem !important;
-                border-radius: 14px !important;
+                border-radius: 18px !important;
                 margin-bottom: 1rem !important;
             }
             
@@ -1106,13 +1197,13 @@
                 width: 60px !important;
                 height: 60px !important;
                 line-height: 60px !important;
-                border-radius: 12px !important;
+                border-radius: 14px !important;
             }
             
             .demon-image {
                 width: 200px !important;
                 height: 112px !important;
-                border-radius: 10px !important;
+                border-radius: 14px !important;
             }
             
             .demon-name {
@@ -1180,7 +1271,7 @@
             }
 
             .mobile-menu .request-btn {
-                background: var(--bg-secondary) !important;
+                background: rgba(255, 255, 255, 0.1) !important;
                 color: var(--text-primary) !important;
                 border: 2px solid var(--border-color) !important;
                 margin: 1rem 1.5rem;
@@ -1195,7 +1286,7 @@
             }
 
             .mobile-menu .request-btn:hover {
-                background: var(--bg-tertiary) !important;
+                background: rgba(255, 255, 255, 0.2) !important;
                 color: var(--accent-red) !important;
                 transform: translateY(-1px);
             }
@@ -1245,7 +1336,7 @@
             }
             
             .hero h1 {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
             
             .hero p {
@@ -1364,16 +1455,17 @@
             text-size-adjust: 100%;
         }
 
-        [data-theme="dark"] .request-btn {
-            background: var(--bg-primary) !important;
-            color: var(--text-primary) !important;
-            border: 2px solid var(--border-color) !important;
+        [data-theme="light"] .request-btn {
+            background: var(--accent-red) !important;
+            color: white !important;
+            border: 2px solid var(--accent-red) !important;
             box-shadow: var(--card-shadow) !important;
         }
 
-        [data-theme="dark"] .request-btn:hover {
-            background: var(--bg-secondary) !important;
-            color: var(--accent-red) !important;
+        [data-theme="light"] .request-btn:hover {
+            background: var(--accent-purple) !important;
+            color: white !important;
+            border-color: var(--accent-purple) !important;
         }
     </style>
 </head>
@@ -1401,12 +1493,12 @@
                         <ul>
                             <li class="dropdown">
                                 <a href="index.html" class="active dropdown-toggle" onclick="toggleDropdown(event)">
-                                    <span data-lang="ru">Главная</span>
-                                    <span data-lang="en" style="display: none;">Home</span>
+                                    <span data-lang="ru">Классический</span>
+                                    <span data-lang="en" style="display: none;">Classic</span>
                                     <img src="assets/arrow.png" alt="▼" class="dropdown-arrow">
                                 </a>
                                 <div class="dropdown-menu">
-                                    <a href="classic.html">
+                                    <a href="index.html" class="active">
                                         <img src="assets/classic-icon.png" alt="📜" class="dropdown-menu-icon">
                                         <span data-lang="ru">Классический</span>
                                         <span data-lang="en" style="display: none;">Classic</span>
@@ -1420,11 +1512,16 @@
                             </li>
                             <li class="dropdown">
                                 <a href="players.html" class="dropdown-toggle" onclick="toggleDropdown(event)">
-                                    <span data-lang="ru">Топ игроков</span>
-                                    <span data-lang="en" style="display: none;">Top Players</span>
+                                    <span data-lang="ru">Лидерборды</span>
+                                    <span data-lang="en" style="display: none;">Leaderboards</span>
                                     <img src="assets/arrow.png" alt="▼" class="dropdown-arrow">
                                 </a>
                                 <div class="dropdown-menu players-dropdown-menu">
+                                    <a href="players.html">
+                                        <img src="assets/players-icon.png" alt="👥" class="dropdown-menu-icon">
+                                        <span data-lang="ru">Топ игроков</span>
+                                        <span data-lang="en" style="display: none;">Top Players</span>
+                                    </a>
                                     <a href="https://docs.google.com/forms/d/e/1FAIpQLSceFzm37tUw0B5t6h3L3U5alQJ5P41F1uZEeC3DaVdDXbNmrQ/viewform?usp=dialog" class="request-btn">
                                         <img src="assets/request-icon.png" alt="📝" class="btn-icon">
                                         <span data-lang="ru">Отправить реквест</span>
@@ -1475,12 +1572,12 @@
             <ul>
                 <li>
                     <a href="index.html" class="active dropdown-toggle" onclick="toggleMobileDropdown(event, 'main')">
-                        <span data-lang="ru">Главная</span>
-                        <span data-lang="en" style="display: none;">Home</span>
+                        <span data-lang="ru">Классический</span>
+                        <span data-lang="en" style="display: none;">Classic</span>
                         <img src="assets/arrow.png" alt="▼" class="dropdown-arrow">
                     </a>
                     <div class="mobile-dropdown" id="mobileDropdownMain">
-                        <a href="classic.html" onclick="closeMobileMenu()">
+                        <a href="index.html" onclick="closeMobileMenu()">
                             <img src="assets/classic-icon.png" alt="📜" class="dropdown-menu-icon">
                             <span data-lang="ru">Классический</span>
                             <span data-lang="en" style="display: none;">Classic</span>
@@ -1494,11 +1591,16 @@
                 </li>
                 <li>
                     <a href="players.html" class="dropdown-toggle" onclick="toggleMobileDropdown(event, 'players')">
-                        <span data-lang="ru">Топ игроков</span>
-                        <span data-lang="en" style="display: none;">Top Players</span>
+                        <span data-lang="ru">Лидерборды</span>
+                        <span data-lang="en" style="display: none;">Leaderboards</span>
                         <img src="assets/arrow.png" alt="▼" class="dropdown-arrow">
                     </a>
                     <div class="mobile-dropdown" id="mobileDropdownPlayers">
+                        <a href="players.html" onclick="closeMobileMenu()">
+                            <img src="assets/players-icon.png" alt="👥" class="dropdown-menu-icon">
+                            <span data-lang="ru">Топ игроков</span>
+                            <span data-lang="en" style="display: none;">Top Players</span>
+                        </a>
                         <a href="https://docs.google.com/forms/d/e/1FAIpQLSceFzm37tUw0B5t6h3L3U5alQJ5P41F1uZEeC3DaVdDXbNmrQ/viewform?usp=dialog" class="request-btn" onclick="closeMobileMenu()">
                             <img src="assets/request-icon.png" alt="📝" class="btn-icon">
                             <span data-lang="ru">Отправить реквест</span>
@@ -1596,7 +1698,7 @@
                 <div class="footer-section">
                     <h3 data-lang="ru">Списки</h3>
                     <h3 data-lang="en" style="display: none;">Lists</h3>
-                    <a href="classic.html">
+                    <a href="index.html">
                         <span data-lang="ru">Классический список</span>
                         <span data-lang="en" style="display: none;">Classic List</span>
                     </a>
@@ -1605,8 +1707,8 @@
                         <span data-lang="en" style="display: none;">Impossible List</span>
                     </a>
                     <a href="players.html">
-                        <span data-lang="ru">Топ игроков</span>
-                        <span data-lang="en" style="display: none;">Top Players</span>
+                        <span data-lang="ru">Лидерборды</span>
+                        <span data-lang="en" style="display: none;">Leaderboards</span>
                     </a>
                 </div>
                 <div class="footer-section">
@@ -1689,7 +1791,7 @@
             }
             
             // Обновляем иконки в зависимости от языка
-            updateIconColors(document.documentElement.getAttribute('data-theme') || 'light');
+            updateIconColors(document.documentElement.getAttribute('data-theme') || 'dark');
         }
 
         // ========== ВЫПАДАЮЩИЕ МЕНЮ ==========
@@ -1826,7 +1928,7 @@
         // ========== СМЕНА ТЕМЫ ==========
         function toggleTheme() {
             const currentTheme = document.documentElement.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
             
             document.documentElement.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
@@ -1838,7 +1940,7 @@
         }
         
         function loadTheme() {
-            const savedTheme = localStorage.getItem('theme') || 'light';
+            const savedTheme = localStorage.getItem('theme') || 'dark';
             document.documentElement.setAttribute('data-theme', savedTheme);
             
             const themeIcon = document.getElementById('theme-icon');
