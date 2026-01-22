@@ -7,60 +7,66 @@
     <style>
         :root {
             --bg-primary: #ffffff;
-            --bg-secondary: #f8f9fa;
-            --bg-tertiary: #e9ecef;
-            --text-primary: #212529;
+            --bg-secondary: #f5f7fa;
+            --bg-tertiary: #eef2f7;
+            --text-primary: #1a1a2e;
             --text-secondary: #6c757d;
             --accent-red: #dc3545;
+            --accent-blue: #4a6fa5;
+            --accent-purple: #6d5acf;
             --accent-green: #28a745;
             --border-color: #dee2e6;
-            --card-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            --header-red: #dc3545;
+            --card-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            --header-gradient: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            --dropdown-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
         
         [data-theme="dark"] {
-            --bg-primary: #1a1a1a;
-            --bg-secondary: #2d2d2d;
-            --bg-tertiary: #3d3d3d;
+            --bg-primary: #121212;
+            --bg-secondary: #1e1e1e;
+            --bg-tertiary: #2d2d2d;
             --text-primary: #ffffff;
-            --text-secondary: #b0b0b0;
+            --text-secondary: #a0a0a0;
             --accent-red: #ff6b6b;
+            --accent-blue: #64b5f6;
+            --accent-purple: #9575cd;
             --accent-green: #34c759;
             --border-color: #404040;
-            --card-shadow: 0 2px 8px rgba(0,0,0,0.3);
-            --header-red: #c82333;
+            --card-shadow: 0 4px 12px rgba(0,0,0,0.25);
+            --header-gradient: linear-gradient(135deg, #ff6b6b 0%, #ff4757 100%);
+            --dropdown-shadow: 0 10px 25px rgba(0,0,0,0.3);
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
         }
         
         body {
             background-color: var(--bg-primary);
             color: var(--text-primary);
-            line-height: 1.6;
-            transition: all 0.3s ease;
-            font-weight: 600;
+            line-height: 1.7;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 500;
+            min-height: 100vh;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 15px;
+            padding: 0 20px;
         }
         
-        /* Header */
         header {
-            background: var(--header-red);
-            border-bottom: 1px solid var(--header-red);
+            background: var(--header-gradient);
+            border-bottom: none;
             padding: 0.5rem 0 0 0;
             position: sticky;
             top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
         }
         
         .header-content {
@@ -71,41 +77,66 @@
         }
         
         .logo {
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             font-weight: 800;
             color: white;
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .logo:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-1px);
         }
         
         .logo span {
-            color: white;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
         }
         
         .header-controls {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 1rem;
         }
         
         .theme-toggle {
-            background: none;
+            background: rgba(255, 255, 255, 0.2);
             border: none;
-            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
             cursor: pointer;
-            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             transition: all 0.3s ease;
-            padding: 0.3rem;
+            backdrop-filter: blur(10px);
         }
         
         .theme-toggle:hover {
-            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1) rotate(15deg);
         }
         
-        /* Обычная навигация для ПК */
+        .theme-toggle img {
+            width: 22px;
+            height: 22px;
+            filter: brightness(0) invert(1);
+            transition: all 0.3s ease;
+        }
+        
         .header-controls nav ul {
             display: flex;
             list-style: none;
-            gap: 1rem;
+            gap: 0.8rem;
             margin: 0;
             padding: 0;
         }
@@ -117,65 +148,119 @@
         .header-controls nav ul li a {
             color: white;
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             font-weight: 600;
-            padding: 0.5rem 0.8rem;
-            border-radius: 4px;
-            transition: all 0.2s ease;
+            padding: 0.7rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
             display: flex;
             align-items: center;
-            gap: 0.3rem;
+            gap: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-controls nav ul li a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .header-controls nav ul li a:hover::before {
+            left: 100%;
         }
 
         .header-controls nav ul li a:hover,
         .header-controls nav ul li a.active {
             background: rgba(255, 255, 255, 0.15);
             color: white;
+            transform: translateY(-1px);
         }
 
-        /* Стрелка для выпадающего меню */
         .header-controls nav ul li a .dropdown-arrow {
-            font-size: 0.8rem;
-            transition: transform 0.3s ease;
+            width: 12px;
+            height: 12px;
+            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            filter: brightness(0) invert(1);
         }
 
         .header-controls nav ul li a.active .dropdown-arrow {
             transform: rotate(180deg);
         }
 
-        /* Выпадающее меню */
         .dropdown-menu {
             position: absolute;
-            top: 100%;
+            top: calc(100% + 8px);
             left: 0;
             background: var(--bg-primary);
             border: 1px solid var(--border-color);
-            border-radius: 6px;
-            min-width: 180px;
-            box-shadow: var(--card-shadow);
+            border-radius: 12px;
+            min-width: 220px;
+            box-shadow: var(--dropdown-shadow);
             z-index: 1000;
             opacity: 0;
             visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-            margin-top: 0.5rem;
+            transform: translateY(-15px) scale(0.95);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            overflow: hidden;
+        }
+
+        .dropdown-menu::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 20px;
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 8px solid var(--bg-primary);
+        }
+
+        [data-theme="dark"] .dropdown-menu::before {
+            border-bottom-color: var(--bg-primary);
         }
 
         .dropdown-menu.active {
             opacity: 1;
             visibility: visible;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
         }
 
         .dropdown-menu a {
             color: var(--text-primary) !important;
-            padding: 0.8rem 1rem !important;
-            display: block !important;
+            padding: 1rem 1.5rem !important;
+            display: flex !important;
+            align-items: center;
+            gap: 0.8rem;
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             font-weight: 600;
             border-bottom: 1px solid var(--border-color);
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dropdown-menu a::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: var(--accent-red);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown-menu a:hover::before {
+            transform: scaleY(1);
         }
 
         .dropdown-menu a:last-child {
@@ -185,81 +270,151 @@
         .dropdown-menu a:hover {
             background: var(--bg-secondary);
             color: var(--accent-red) !important;
+            padding-left: 2rem !important;
         }
 
         .dropdown-menu a.active {
-            background: var(--accent-red);
+            background: linear-gradient(135deg, var(--accent-red), var(--accent-purple));
             color: white !important;
         }
 
         .dropdown-menu a.active:hover {
-            background: var(--accent-red);
-            opacity: 0.9;
+            background: linear-gradient(135deg, #ff6b6b, #8a6bff);
+            opacity: 0.95;
         }
 
-        /* Кнопка "Отправить реквест" для ПК */
+        .dropdown-menu-icon {
+            width: 18px;
+            height: 18px;
+            opacity: 0.7;
+        }
+
+        .dropdown-menu a:hover .dropdown-menu-icon {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .dropdown-menu a.active .dropdown-menu-icon {
+            filter: brightness(0) invert(1);
+        }
+
         .request-btn {
             background: white !important;
-            color: var(--text-primary) !important;
-            border: 1px solid white !important;
+            color: var(--accent-red) !important;
+            border: none !important;
             margin-left: 0.5rem;
-            font-weight: 800 !important;
-            font-size: 0.9rem;
+            font-weight: 700 !important;
+            font-size: 0.95rem;
+            padding: 0.7rem 1.5rem !important;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(220, 53, 69, 0.2);
+            transition: all 0.3s ease !important;
         }
 
         .request-btn:hover {
-            background: rgba(255, 255, 255, 0.9) !important;
-            transform: translateY(-1px);
+            background: white !important;
+            transform: translateY(-2px) !important;
+            box-shadow: 0 6px 16px rgba(220, 53, 69, 0.3) !important;
         }
 
-        /* Простое гамбургер меню без анимации полосок */
         .menu-toggle {
             display: none;
-            background: none;
+            background: rgba(255, 255, 255, 0.2);
             border: none;
             cursor: pointer;
             padding: 0.5rem;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             position: relative;
             z-index: 1001;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
         }
 
         .menu-toggle span {
             display: block;
-            height: 3px;
-            width: 24px;
+            height: 2px;
+            width: 20px;
             background-color: white;
             border-radius: 1px;
-            margin: 2px 0;
+            margin: 2.5px 0;
+            transition: all 0.3s ease;
         }
 
-        /* Мобильное меню выезжающее справа */
         .mobile-menu {
             position: fixed;
             top: 0;
             right: -100%;
-            width: 300px;
+            width: 320px;
             height: 100%;
             background: var(--bg-primary);
             z-index: 999;
             flex-direction: column;
-            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-            transition: right 0.3s ease;
+            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.15);
+            transition: right 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             border-left: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
         }
 
         .mobile-menu.active {
             right: 0;
         }
 
+        .mobile-header {
+            background: var(--header-gradient);
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-logo {
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        .mobile-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-close:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(90deg);
+        }
+
+        .mobile-menu nav {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem 0;
+        }
+
         .mobile-menu nav ul {
             flex-direction: column;
             gap: 0;
-            padding: 80px 0 0 0;
+            padding: 0;
         }
 
         .mobile-menu nav ul li {
@@ -271,12 +426,14 @@
         }
 
         .mobile-menu nav ul li a {
-            font-size: 1rem;
-            padding: 1rem 1.5rem;
+            font-size: 1.1rem;
+            padding: 1.2rem 1.5rem;
             color: var(--text-primary);
             text-decoration: none;
-            display: block;
-            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s ease;
             font-weight: 600;
         }
 
@@ -284,52 +441,51 @@
         .mobile-menu nav ul li a.active {
             background: var(--bg-secondary);
             color: var(--accent-red);
+            padding-left: 2rem;
         }
 
-        /* Выпадающее меню в мобильной версии */
         .mobile-dropdown {
             display: none;
-            background: var(--bg-secondary);
+            background: var(--bg-tertiary);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
         }
 
         .mobile-dropdown.active {
             display: block;
+            animation: slideDown 0.4s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .mobile-dropdown a {
             padding-left: 2.5rem !important;
-            font-size: 0.9rem !important;
+            font-size: 1rem !important;
+            color: var(--text-secondary) !important;
+        }
+
+        .mobile-dropdown a:hover {
+            color: var(--accent-red) !important;
+            background: var(--bg-secondary) !important;
         }
 
         .mobile-menu nav ul li a .dropdown-arrow {
-            float: right;
-            transition: transform 0.3s ease;
+            transition: transform 0.4s ease;
         }
 
         .mobile-menu nav ul li a.active .dropdown-arrow {
             transform: rotate(180deg);
         }
 
-        /* Кнопка закрытия */
-        .close-menu {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 0.5rem;
-            z-index: 1000;
-            transition: color 0.2s ease;
-        }
-
-        .close-menu:hover {
-            color: var(--accent-red);
-        }
-
-        /* Затемнение фона */
         .menu-overlay {
             position: fixed;
             top: 0;
@@ -340,7 +496,8 @@
             z-index: 998;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(4px);
         }
 
         .menu-overlay.active {
@@ -348,32 +505,47 @@
             visibility: visible;
         }
         
-        /* Hero Section */
         .hero {
-            padding: 2rem 0;
+            padding: 3rem 0;
             text-align: center;
             background: var(--bg-secondary);
             border-bottom: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-red), var(--accent-purple), var(--accent-blue));
         }
         
         .hero h1 {
-            font-size: 1.8rem;
-            margin-bottom: 0.8rem;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
             color: var(--text-primary);
             font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-red), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
         .hero p {
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: var(--text-secondary);
             max-width: 600px;
             margin: 0 auto;
-            font-weight: 600;
+            font-weight: 500;
+            line-height: 1.8;
         }
         
-        /* Search Section */
         .search-section {
-            padding: 1.5rem 0;
+            padding: 2rem 0;
             background: var(--bg-primary);
         }
         
@@ -385,46 +557,50 @@
         
         .search-input {
             width: 100%;
-            padding: 0.6rem 0.8rem;
-            font-size: 0.9rem;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
+            padding: 1rem 1.5rem;
+            font-size: 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
             background: var(--bg-primary);
             color: var(--text-primary);
-            font-weight: 600;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: var(--card-shadow);
         }
         
         .search-input:focus {
             outline: none;
             border-color: var(--accent-red);
-            box-shadow: 0 0 0 2px rgba(220,53,69,0.25);
+            box-shadow: 0 0 0 3px rgba(220,53,69,0.15);
+            transform: translateY(-1px);
         }
         
         .search-results {
             position: absolute;
-            top: 100%;
+            top: calc(100% + 8px);
             left: 0;
             right: 0;
             background: var(--bg-primary);
             border: 1px solid var(--border-color);
-            border-radius: 6px;
+            border-radius: 12px;
             margin-top: 0.3rem;
-            max-height: 200px;
+            max-height: 300px;
             overflow-y: auto;
             z-index: 1000;
             display: none;
-            box-shadow: var(--card-shadow);
+            box-shadow: var(--dropdown-shadow);
         }
         
         .search-result-item {
-            padding: 0.6rem 0.8rem;
+            padding: 1rem 1.5rem;
             cursor: pointer;
             border-bottom: 1px solid var(--border-color);
-            transition: background-color 0.2s;
+            transition: all 0.3s ease;
         }
         
         .search-result-item:hover {
             background-color: var(--bg-secondary);
+            padding-left: 1.8rem;
         }
         
         .search-result-item:last-child {
@@ -434,112 +610,169 @@
         .search-result-name {
             font-weight: 700;
             color: var(--text-primary);
-            font-size: 0.9rem;
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
         }
         
         .search-result-creator {
-            font-size: 0.75rem;
+            font-size: 0.85rem;
             color: var(--text-secondary);
-            margin-top: 0.2rem;
-            font-weight: 600;
+            font-weight: 500;
         }
         
         .no-results {
-            padding: 0.8rem;
+            padding: 1.5rem;
             text-align: center;
             color: var(--text-secondary);
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
         }
         
-        /* Demon List */
         .demon-list {
-            padding: 1.5rem 0;
+            padding: 2rem 0 3rem;
         }
         
         .list-header {
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
             text-align: center;
         }
         
         .list-header h2 {
-            font-size: 1.5rem;
-            margin-bottom: 0.4rem;
+            font-size: 2rem;
+            margin-bottom: 0.8rem;
             color: var(--text-primary);
             font-weight: 800;
+            position: relative;
+            display: inline-block;
+        }
+
+        .list-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-red), var(--accent-purple));
+            border-radius: 2px;
         }
         
         .list-header p {
             color: var(--text-secondary);
-            font-weight: 600;
-            font-size: 0.9rem;
+            font-weight: 500;
+            font-size: 1rem;
+            max-width: 500px;
+            margin: 1rem auto 0;
         }
         
         .list-container {
             display: flex;
             flex-direction: column;
-            gap: 0.8rem;
+            gap: 1rem;
         }
         
         .demon-row {
             background: var(--bg-primary);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.2rem;
             display: flex;
             align-items: center;
-            gap: 1rem;
-            transition: all 0.2s;
+            gap: 1.2rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
             box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .demon-row::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--accent-red), var(--accent-purple));
+            transform: scaleY(0);
+            transition: transform 0.4s ease;
         }
         
         .demon-row:hover {
             border-color: var(--accent-red);
-            box-shadow: 0 2px 8px rgba(220,53,69,0.15);
-            transform: translateY(-1px);
+            box-shadow: 0 8px 25px rgba(220,53,69,0.15);
+            transform: translateY(-3px);
+        }
+
+        .demon-row:hover::before {
+            transform: scaleY(1);
         }
         
         .demon-rank {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: 800;
-            width: 40px;
+            width: 50px;
+            height: 50px;
             text-align: center;
+            line-height: 50px;
             color: var(--text-secondary);
             flex-shrink: 0;
+            background: var(--bg-tertiary);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .demon-row:hover .demon-rank {
+            background: var(--accent-red);
+            color: white;
+            transform: scale(1.1) rotate(5deg);
         }
         
         .rank.top-1 {
-            color: #ffd700;
+            background: linear-gradient(135deg, #ffd700, #ffa500);
+            color: white;
         }
         
         .rank.top-3 {
-            color: #c0c0c0;
+            background: linear-gradient(135deg, #c0c0c0, #a0a0a0);
+            color: white;
         }
         
         .rank.top-10 {
-            color: #cd7f32;
+            background: linear-gradient(135deg, #cd7f32, #b56a24);
+            color: white;
         }
         
         .demon-image {
-            width: 100px;
-            height: 56px;
-            border-radius: 4px;
+            width: 120px;
+            height: 68px;
+            border-radius: 8px;
             overflow: hidden;
             flex-shrink: 0;
             background: var(--bg-tertiary);
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 1px solid var(--border-color);
+            border: 2px solid var(--border-color);
             position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .demon-row:hover .demon-image {
+            border-color: var(--accent-red);
+            transform: scale(1.05);
         }
         
         .demon-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: opacity 0.3s ease;
+            transition: all 0.5s ease;
+        }
+
+        .demon-row:hover .demon-image img {
+            transform: scale(1.1);
         }
         
         .image-placeholder {
@@ -550,8 +783,14 @@
             justify-content: center;
             background: var(--bg-tertiary);
             color: var(--text-secondary);
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             font-weight: 800;
+            transition: all 0.3s ease;
+        }
+
+        .demon-row:hover .image-placeholder {
+            background: var(--accent-red);
+            color: white;
         }
         
         .demon-info {
@@ -560,6 +799,7 @@
             align-items: center;
             justify-content: space-between;
             min-width: 0;
+            gap: 1rem;
         }
         
         .demon-details {
@@ -569,123 +809,176 @@
         }
         
         .demon-name {
-            font-size: 1rem;
-            font-weight: 800;
+            font-size: 1.2rem;
+            font-weight: 700;
             color: var(--text-primary);
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.5rem;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            transition: color 0.3s ease;
+        }
+
+        .demon-row:hover .demon-name {
+            color: var(--accent-red);
         }
         
         .demon-creator {
             color: var(--text-secondary);
-            font-size: 0.8rem;
-            font-weight: 600;
+            font-size: 0.9rem;
+            font-weight: 500;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
         
         .demon-points {
-            font-size: 0.9rem;
+            font-size: 1.1rem;
             font-weight: 800;
             color: var(--accent-green);
-            min-width: 60px;
+            min-width: 80px;
             text-align: right;
             flex-shrink: 0;
+            background: rgba(40, 167, 69, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .demon-row:hover .demon-points {
+            background: var(--accent-green);
+            color: white;
+            transform: scale(1.05);
         }
         
-        /* Refresh Button */
         .refresh-btn {
             display: block;
-            margin: 1.5rem auto;
-            padding: 0.6rem 1.5rem;
-            background: var(--accent-red);
+            margin: 2rem auto;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(135deg, var(--accent-red), var(--accent-purple));
             color: white;
             border: none;
-            border-radius: 6px;
+            border-radius: 10px;
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: 1rem;
             font-weight: 700;
-            transition: all 0.2s;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(220, 53, 69, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .refresh-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s ease;
         }
         
         .refresh-btn:hover {
-            background: #c82333;
-            transform: translateY(-1px);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(220, 53, 69, 0.3);
+        }
+
+        .refresh-btn:hover::before {
+            left: 100%;
+        }
+
+        .refresh-btn:active {
+            transform: translateY(0);
         }
         
-        /* Status */
         .sync-status {
             text-align: center;
-            padding: 0.8rem;
+            padding: 1rem;
             background: var(--bg-secondary);
-            border-radius: 6px;
-            margin: 0.8rem 0;
+            border-radius: 10px;
+            margin: 1rem 0;
             color: var(--text-secondary);
-            border: 1px solid var(--border-color);
+            border: 2px solid var(--border-color);
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
         }
         
         .sync-status.synced {
             color: var(--accent-green);
             border-color: var(--accent-green);
             background: var(--bg-primary);
+            box-shadow: 0 4px 15px rgba(52, 199, 89, 0.15);
         }
         
         .error-message {
             text-align: center;
-            padding: 0.8rem;
-            background: #f8d7da;
-            border: 1px solid #f5c6cb;
-            border-radius: 6px;
-            margin: 0.8rem 0;
+            padding: 1rem;
+            background: linear-gradient(135deg, #f8d7da, #f5c6cb);
+            border: 2px solid #f5c6cb;
+            border-radius: 10px;
+            margin: 1rem 0;
             color: #721c24;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 15px rgba(245, 198, 203, 0.2);
         }
         
         [data-theme="dark"] .error-message {
-            background: #5c2a2a;
+            background: linear-gradient(135deg, #5c2a2a, #7a3a3a);
             border-color: #7a3a3a;
             color: #ffb3b3;
         }
         
-        /* Footer */
         footer {
             background: var(--bg-secondary);
             border-top: 1px solid var(--border-color);
-            padding: 1.5rem 0;
-            margin-top: 2rem;
+            padding: 2.5rem 0 1.5rem;
+            margin-top: 3rem;
         }
         
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
         }
         
         .footer-section h3 {
-            font-size: 1rem;
-            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
             color: var(--text-primary);
-            font-weight: 800;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background: var(--accent-red);
+            border-radius: 1px;
         }
         
         .footer-section p, .footer-section a {
             color: var(--text-secondary);
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.8rem;
             display: block;
             text-decoration: none;
-            transition: color 0.2s;
-            font-weight: 600;
-            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 0.9rem;
+            line-height: 1.6;
         }
         
         .footer-section a:hover {
             color: var(--accent-red);
+            padding-left: 0.5rem;
         }
         
         .copyright {
@@ -694,56 +987,51 @@
             border-top: 1px solid var(--border-color);
             color: var(--text-secondary);
             margin-top: 1.5rem;
-            font-size: 0.75rem;
-            font-weight: 600;
+            font-size: 0.8rem;
+            font-weight: 500;
         }
 
-        /* Большие плашки демонов для ПК */
         @media (min-width: 1024px) {
             .demon-row {
-                padding: 1.25rem !important;
-                gap: 1.25rem !important;
-                border-radius: 8px !important;
-                margin-bottom: 0.8rem !important;
+                padding: 1.5rem !important;
+                gap: 1.5rem !important;
+                border-radius: 14px !important;
+                margin-bottom: 1rem !important;
             }
             
             .demon-rank {
-                font-size: 1.3rem !important;
-                width: 50px !important;
+                font-size: 1.4rem !important;
+                width: 60px !important;
+                height: 60px !important;
+                line-height: 60px !important;
+                border-radius: 12px !important;
             }
             
             .demon-image {
                 width: 200px !important;
                 height: 112px !important;
-                border-radius: 6px !important;
+                border-radius: 10px !important;
             }
             
             .demon-name {
-                font-size: 1.2rem !important;
-                margin-bottom: 0.4rem !important;
+                font-size: 1.4rem !important;
+                margin-bottom: 0.6rem !important;
             }
             
             .demon-creator {
-                font-size: 0.9rem !important;
+                font-size: 1rem !important;
             }
             
             .demon-points {
-                font-size: 1.1rem !important;
-                min-width: 70px !important;
-                text-align: right !important;
-            }
-            
-            /* Улучшенные эффекты при наведении для больших плашек */
-            .demon-row:hover {
-                transform: translateY(-2px) !important;
-                box-shadow: 0 4px 12px rgba(220,53,69,0.15) !important;
+                font-size: 1.2rem !important;
+                min-width: 90px !important;
+                padding: 0.6rem 1.2rem !important;
             }
         }
 
-        /* Еще больше для очень больших экранов */
         @media (min-width: 1440px) {
             .demon-row {
-                padding: 1.5rem !important;
+                padding: 1.8rem !important;
             }
             
             .demon-image {
@@ -752,11 +1040,10 @@
             }
             
             .demon-name {
-                font-size: 1.3rem !important;
+                font-size: 1.5rem !important;
             }
         }
 
-        /* Сохраняем мобильные стили */
         @media (max-width: 1023px) {
             .demon-row {
                 padding: 1rem;
@@ -771,19 +1058,13 @@
             .demon-name {
                 font-size: 1rem;
             }
-            
-            .demon-points {
-                text-align: right !important;
-            }
         }
 
-        /* Адаптивность для мобильных устройств */
         @media (max-width: 768px) {
             .menu-toggle {
                 display: flex;
             }
 
-            /* Скрываем обычную навигацию на мобильных */
             .header-controls nav {
                 display: none;
             }
@@ -793,29 +1074,31 @@
             }
 
             .logo {
-                font-size: 1.1rem;
+                font-size: 1.2rem;
             }
 
-            /* Кнопка "Отправить реквест" для мобильных */
             .mobile-menu .request-btn {
                 background: var(--bg-secondary) !important;
                 color: var(--text-primary) !important;
-                border: 1px solid var(--border-color) !important;
-                margin: 0.5rem 1.5rem;
+                border: 2px solid var(--border-color) !important;
+                margin: 1rem 1.5rem;
                 text-align: center;
-                border-radius: 4px;
-                font-weight: 800 !important;
+                border-radius: 8px;
+                font-weight: 700 !important;
+                padding: 1rem !important;
+                box-shadow: var(--card-shadow);
             }
 
             .mobile-menu .request-btn:hover {
                 background: var(--bg-tertiary) !important;
                 color: var(--accent-red) !important;
+                transform: translateY(-1px);
             }
         }
 
         @media (max-width: 480px) {
             .container {
-                padding: 0 10px;
+                padding: 0 15px;
             }
             
             .header-content {
@@ -828,20 +1111,21 @@
             }
             
             .hero {
-                padding: 1.5rem 0;
+                padding: 2rem 0;
             }
             
             .hero h1 {
-                font-size: 1.5rem;
+                font-size: 2rem;
             }
             
             .hero p {
-                font-size: 0.9rem;
+                font-size: 1rem;
             }
             
             .demon-row {
-                padding: 0.8rem;
-                gap: 0.8rem;
+                padding: 0.9rem;
+                gap: 0.9rem;
+                flex-wrap: wrap;
             }
             
             .demon-image {
@@ -850,27 +1134,27 @@
             }
             
             .demon-name {
-                font-size: 0.9rem;
+                font-size: 0.95rem;
             }
             
             .demon-creator {
-                font-size: 0.75rem;
+                font-size: 0.8rem;
             }
             
             .demon-points {
-                font-size: 0.8rem;
-                min-width: 50px;
-                text-align: right !important;
+                font-size: 0.9rem;
+                min-width: 70px;
+                padding: 0.4rem 0.8rem;
             }
             
             .footer-content {
                 grid-template-columns: 1fr;
-                gap: 1rem;
+                gap: 1.5rem;
             }
 
             .mobile-menu nav ul li a {
-                font-size: 1.1rem;
-                padding: 0.7rem 1.2rem;
+                font-size: 1rem;
+                padding: 1rem 1.2rem;
             }
         }
 
@@ -881,20 +1165,17 @@
             }
             
             .demon-rank {
-                width: 30px;
+                width: 40px;
+                height: 40px;
+                line-height: 40px;
                 font-size: 1rem;
             }
             
             .demon-name {
-                font-size: 0.85rem;
-            }
-            
-            .demon-points {
-                text-align: right !important;
+                font-size: 0.9rem;
             }
         }
 
-        /* Улучшения для touch-устройств */
         @media (hover: none) {
             .demon-row:hover {
                 transform: none;
@@ -906,7 +1187,6 @@
                 transform: scale(0.98);
             }
             
-            /* Для выпадающего меню на touch-устройствах */
             .header-controls nav ul li:hover .dropdown-menu {
                 opacity: 0;
                 visibility: hidden;
@@ -918,21 +1198,21 @@
             }
         }
 
-        /* Убираем text-size-adjust на iOS */
         html {
             -webkit-text-size-adjust: 100%;
             text-size-adjust: 100%;
         }
 
-        /* Темная тема для кнопки запроса */
         [data-theme="dark"] .request-btn {
             background: var(--bg-primary) !important;
             color: var(--text-primary) !important;
-            border: 1px solid var(--border-color) !important;
+            border: 2px solid var(--border-color) !important;
+            box-shadow: var(--card-shadow) !important;
         }
 
         [data-theme="dark"] .request-btn:hover {
             background: var(--bg-secondary) !important;
+            color: var(--accent-red) !important;
         }
     </style>
 </head>
@@ -943,31 +1223,34 @@
                 <a href="index.html" class="logo">Just a GDPS <span>DemonList</span></a>
                 <div class="header-controls">
                     <button class="theme-toggle" onclick="toggleTheme()">
-                        🌙
+                        <img src="assets/day-and-night.png" alt="Сменить тему" id="theme-icon">
                     </button>
-                    <!-- Гамбургер меню для мобильных -->
                     <button class="menu-toggle" onclick="toggleMobileMenu()">
                         <span></span>
                         <span></span>
                         <span></span>
                     </button>
-                    <!-- Обычная навигация -->
                     <nav>
                         <ul>
                             <li class="dropdown">
                                 <a href="index.html" class="active dropdown-toggle" onclick="toggleDropdown(event)">
-                                    Главная <span class="dropdown-arrow">▼</span>
+                                    Главная <img src="assets/arrow.png" alt="▼" class="dropdown-arrow">
                                 </a>
                                 <div class="dropdown-menu">
-                                    <a href="classic.html">Классический</a>
-                                    <a href="impossible.html">Импассбл</a>
+                                    <a href="classic.html">
+                                        <img src="assets/classic-icon.png" alt="📜" class="dropdown-menu-icon">
+                                        Классический
+                                    </a>
+                                    <a href="impossible.html">
+                                        <img src="assets/impossible-icon.png" alt="🔥" class="dropdown-menu-icon">
+                                        Импассбл
+                                    </a>
                                 </div>
                             </li>
                             <li><a href="players.html">Топ игроков</a></li>
                             <li><a href="news.html">Новости</a></li>
                             <li><a href="contacts.html">Контакты</a></li>
                             <li><a href="rules.html">Правила</a></li>
-                            <!-- Кнопка "Отправить реквест" для ПК -->
                             <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSceFzm37tUw0B5t6h3L3U5alQJ5P41F1uZEeC3DaVdDXbNmrQ/viewform?usp=dialog" class="request-btn">Отправить реквест</a></li>
                         </ul>
                     </nav>
@@ -976,14 +1259,16 @@
         </div>
     </header>
 
-    <!-- Мобильное меню -->
     <div class="mobile-menu" id="mobileMenu">
-        <button class="close-menu" onclick="toggleMobileMenu()">×</button>
+        <div class="mobile-header">
+            <a href="index.html" class="mobile-logo">Just a GDPS</a>
+            <button class="mobile-close" onclick="toggleMobileMenu()">×</button>
+        </div>
         <nav>
             <ul>
                 <li>
                     <a href="index.html" class="active dropdown-toggle" onclick="toggleMobileDropdown(event)">
-                        Главная <span class="dropdown-arrow">▼</span>
+                        Главная <img src="assets/arrow.png" alt="▼" class="dropdown-arrow">
                     </a>
                     <div class="mobile-dropdown" id="mobileDropdown">
                         <a href="classic.html" onclick="closeMobileMenu()">Классический</a>
@@ -994,23 +1279,23 @@
                 <li><a href="news.html" onclick="closeMobileMenu()">Новости</a></li>
                 <li><a href="contacts.html" onclick="closeMobileMenu()">Контакты</a></li>
                 <li><a href="rules.html" onclick="closeMobileMenu()">Правила</a></li>
-                <!-- Кнопка "Отправить реквест" для мобильных -->
                 <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSceFzm37tUw0B5t6h3L3U5alQJ5P41F1uZEeC3DaVdDXbNmrQ/viewform?usp=dialog" class="request-btn" onclick="closeMobileMenu()">Отправить реквест</a></li>
             </ul>
         </nav>
     </div>
+    <div class="menu-overlay" id="menuOverlay" onclick="closeMobileMenu()"></div>
     
     <section class="hero">
         <div class="container">
             <h1>Demon List</h1>
-            <p>Рейтинг самых сложных уровней в Geometry Dash</p>
+            <p>Рейтинг самых сложных уровней в Geometry Dash. Откройте для себя самые безумные демоны, которые когда-либо были созданы.</p>
         </div>
     </section>
     
     <section class="search-section">
         <div class="container">
             <div class="search-container">
-                <input type="text" id="searchInput" class="search-input" placeholder="Поиск демонов по названию или создателю...">
+                <input type="text" id="searchInput" class="search-input" placeholder="🔍 Поиск демонов по названию или создателю...">
                 <div class="search-results" id="searchResults"></div>
             </div>
         </div>
@@ -1020,7 +1305,7 @@
         <div class="container">
             <div class="list-header">
                 <h2>Топ Демонов</h2>
-                <p>Самые сложные уровни, отсортированные по рейтингу</p>
+                <p>Самые сложные уровни, отсортированные по рейтингу сложности. Нажмите на демона для подробной информации.</p>
             </div>
 
             <button class="refresh-btn" onclick="refreshData()">
@@ -1034,7 +1319,6 @@
             <div id="errorContainer"></div>
             
             <div class="list-container" id="demonList">
-                <!-- Демоны будут добавлены автоматически через JavaScript -->
             </div>
         </div>
     </section>
@@ -1044,18 +1328,34 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>Geometry Dash Demon List</h3>
-                    <p>Неофициальный рейтинг самых сложных уровней в Geometry Dash.</p>
+                    <p>Неофициальный рейтинг самых сложных уровней в Geometry Dash. Поддерживается сообществом игроков.</p>
                 </div>
-               
+                <div class="footer-section">
+                    <h3>Списки</h3>
+                    <a href="classic.html">Классический список</a>
+                    <a href="impossible.html">Импассбл список</a>
+                    <a href="players.html">Топ игроков</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Информация</h3>
+                    <a href="rules.html">Правила списка</a>
+                    <a href="news.html">Новости и обновления</a>
+                    <a href="contacts.html">Контакты</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Сообщество</h3>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSceFzm37tUw0B5t6h3L3U5alQJ5P41F1uZEeC3DaVdDXbNmrQ/viewform?usp=dialog">Отправить реквест</a>
+                    <a href="#">Discord сервер</a>
+                    <a href="#">Группа VK</a>
+                </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2025 Geometry Dash Demon List. Неофициальный фанатский проект.</p>
+                <p>&copy; 2025 Geometry Dash Demon List. Неофициальный фанатский проект. Все права на Geometry Dash принадлежат RobTop Games.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // ========== ВЫПАДАЮЩЕЕ МЕНЮ ==========
         function toggleDropdown(event) {
             event.preventDefault();
             event.stopPropagation();
@@ -1064,7 +1364,6 @@
             const dropdownMenu = dropdown.querySelector('.dropdown-menu');
             const isActive = dropdownMenu.classList.contains('active');
             
-            // Закрываем все другие выпадающие меню
             document.querySelectorAll('.dropdown-menu').forEach(menu => {
                 menu.classList.remove('active');
             });
@@ -1072,7 +1371,6 @@
                 btn.classList.remove('active');
             });
             
-            // Открываем/закрываем текущее меню
             if (!isActive) {
                 dropdownMenu.classList.add('active');
                 event.currentTarget.classList.add('active');
@@ -1098,7 +1396,6 @@
             }
         }
 
-        // Закрываем выпадающее меню при клике вне его
         document.addEventListener('click', function(event) {
             if (!event.target.closest('.dropdown')) {
                 document.querySelectorAll('.dropdown-menu').forEach(menu => {
@@ -1121,7 +1418,6 @@
             }
         });
 
-        // Закрываем выпадающее меню при нажатии Escape
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 document.querySelectorAll('.dropdown-menu').forEach(menu => {
@@ -1142,7 +1438,6 @@
             }
         });
 
-        // ========== ПРОСТОЕ МОБИЛЬНОЕ МЕНЮ ==========
         function toggleMobileMenu() {
             const mobileMenu = document.getElementById('mobileMenu');
             const menuOverlay = document.getElementById('menuOverlay');
@@ -1161,12 +1456,9 @@
             document.body.style.overflow = '';
         }
 
-        // Закрываем меню при клике на ссылку
         document.querySelectorAll('.mobile-menu a').forEach(link => {
             link.addEventListener('click', closeMobileMenu);
         });
-
-        // ========== THEME TOGGLE ==========
         
         function toggleTheme() {
             const currentTheme = document.documentElement.getAttribute('data-theme');
@@ -1175,39 +1467,32 @@
             document.documentElement.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
             
-            const themeButton = document.querySelector('.theme-toggle');
-            themeButton.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+            const themeIcon = document.getElementById('theme-icon');
+            themeIcon.style.transform = newTheme === 'dark' ? 'rotate(180deg)' : 'rotate(0deg)';
         }
         
         function loadTheme() {
             const savedTheme = localStorage.getItem('theme') || 'light';
             document.documentElement.setAttribute('data-theme', savedTheme);
             
-            const themeButton = document.querySelector('.theme-toggle');
-            themeButton.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+            const themeIcon = document.getElementById('theme-icon');
+            themeIcon.style.transition = 'transform 0.5s ease';
+            themeIcon.style.transform = savedTheme === 'dark' ? 'rotate(180deg)' : 'rotate(0deg)';
         }
-
-        // ========== ОПТИМИЗИРОВАННАЯ ЗАГРУЗКА ДАННЫХ ==========
 
         let demons = [];
         let filteredDemons = [];
         let imageCache = new Map();
 
-        // ========== ОБНОВЛЕННАЯ СИСТЕМА ОЧКОВ ==========
-
         function calculatePointsByRank(rank) {
             const basePoints = 1000;
             if (rank === 1) return basePoints;
             
-            // Уменьшаем на 5% за каждую позицию после первого места
-            const reduction = 0.05; // 5%
+            const reduction = 0.05;
             const points = basePoints * Math.pow(1 - reduction, rank - 1);
             
-            // Минимальное количество очков - 1
             return Math.max(Math.round(points), 1);
         }
-
-        // ========== СИСТЕМА ПОИСКА ==========
 
         function initializeSearch() {
             const searchInput = document.getElementById('searchInput');
@@ -1268,8 +1553,6 @@
             searchResults.style.display = 'block';
         }
 
-        // ========== ОПТИМИЗИРОВАННОЕ УПРАВЛЕНИЕ ДАННЫМИ ==========
-
         function showError(message) {
             const errorContainer = document.getElementById('errorContainer');
             errorContainer.innerHTML = `
@@ -1279,7 +1562,6 @@
             `;
         }
 
-        // Оптимизированная функция проверки изображений с кэшированием
         async function getAvailableImage(demonId) {
             if (imageCache.has(demonId)) {
                 return imageCache.get(demonId);
@@ -1298,7 +1580,6 @@
             }
         }
 
-        // Оптимизированная загрузка данных
         async function loadDataFromJSON() {
             try {
                 console.log('📥 Загружаем демонов из demons.json...');
@@ -1337,7 +1618,6 @@
             }
         }
 
-        // Асинхронная загрузка изображений после рендера
         async function loadImagesAsync() {
             if (demons.length === 0) return;
             
@@ -1362,7 +1642,7 @@
                                     imgElement.style.opacity = '0';
                                     setTimeout(() => {
                                         imgElement.style.opacity = '1';
-                                        imgElement.style.transition = 'opacity 0.3s ease';
+                                        imgElement.style.transition = 'opacity 0.5s ease';
                                     }, 10);
                                 }
                             }
@@ -1386,8 +1666,6 @@
             }
         }
 
-        // ========== ОПТИМИЗИРОВАННЫЙ РЕНДЕРИНГ ==========
-
         function renderDemons() {
             const demonList = document.getElementById('demonList');
             
@@ -1397,10 +1675,10 @@
             
             if (filteredDemons.length === 0) {
                 demonList.innerHTML = `
-                    <div style="text-align: center; padding: 2rem; color: var(--text-secondary);">
-                        <div style="font-size: 2rem; margin-bottom: 0.8rem;">🔍</div>
-                        <div style="font-size: 1rem; margin-bottom: 0.4rem; font-weight: 700;">Демоны не найдены</div>
-                        <div style="font-weight: 600; font-size: 0.9rem;">Попробуйте изменить поисковый запрос</div>
+                    <div style="text-align: center; padding: 3rem; color: var(--text-secondary);">
+                        <div style="font-size: 2.5rem; margin-bottom: 1rem;">🔍</div>
+                        <div style="font-size: 1.2rem; margin-bottom: 0.8rem; font-weight: 700;">Демоны не найдены</div>
+                        <div style="font-weight: 500; font-size: 1rem;">Попробуйте изменить поисковый запрос</div>
                     </div>
                 `;
                 return;
@@ -1449,8 +1727,6 @@
             parent.innerHTML = `<div class="image-placeholder">${demonName.charAt(0)}</div>`;
         }
 
-        // ========== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ==========
-
         function openDemonPage(demonId) {
             window.location.href = `demon.html?id=${demonId}`;
         }
@@ -1465,17 +1741,15 @@
             
             document.querySelectorAll('.demon-row').forEach((row, index) => {
                 row.style.opacity = '0';
-                row.style.transform = 'translateX(-10px)';
+                row.style.transform = 'translateX(-15px)';
                 
                 setTimeout(() => {
-                    row.style.transition = 'opacity 0.3s, transform 0.3s';
+                    row.style.transition = 'opacity 0.5s, transform 0.5s';
                     row.style.opacity = '1';
                     row.style.transform = 'translateX(0)';
-                }, index * 30);
+                }, index * 50);
             });
         }
-
-        // ========== ИНИЦИАЛИЗАЦИЯ ==========
 
         async function initializeData() {
             loadTheme();
@@ -1484,7 +1758,6 @@
             
             initializeSearch();
             
-            // Настраиваем выпадающее меню для ПК при наведении
             if (window.innerWidth > 768) {
                 const dropdownItems = document.querySelectorAll('.dropdown');
                 dropdownItems.forEach(item => {
@@ -1511,13 +1784,13 @@
             setTimeout(() => {
                 document.querySelectorAll('.demon-row').forEach((row, index) => {
                     row.style.opacity = '0';
-                    row.style.transform = 'translateX(-10px)';
+                    row.style.transform = 'translateX(-15px)';
                     
                     setTimeout(() => {
-                        row.style.transition = 'opacity 0.3s, transform 0.3s';
+                        row.style.transition = 'opacity 0.5s, transform 0.5s';
                         row.style.opacity = '1';
                         row.style.transform = 'translateX(0)';
-                    }, index * 30);
+                    }, index * 50);
                 });
             }, 100);
             
