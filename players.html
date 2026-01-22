@@ -144,58 +144,7 @@
             gap: 1rem;
         }
 
-        .language-toggle {
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            font-weight: 700;
-            color: white;
-            font-size: 0.9rem;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .language-toggle:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: scale(1.1) rotate(15deg);
-            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
-        }
-
-        .theme-toggle {
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .theme-toggle:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: scale(1.1) rotate(15deg);
-            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
-        }
-
-        .theme-toggle img {
-            width: 22px;
-            height: 22px;
-            filter: brightness(0) invert(1);
-            transition: all 0.3s ease;
-        }
-
+        /* Выпадающее меню как в index.html */
         .header-controls nav ul {
             display: flex;
             list-style: none;
@@ -254,7 +203,58 @@
             color: var(--text-primary) !important;
         }
 
-        /* Social buttons */
+        .language-toggle {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            font-weight: 700;
+            color: white;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .language-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1) rotate(15deg);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+        }
+
+        .theme-toggle {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1) rotate(15deg);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+        }
+
+        .theme-toggle img {
+            width: 22px;
+            height: 22px;
+            filter: brightness(0) invert(1);
+            transition: all 0.3s ease;
+        }
+
         .social-buttons {
             display: flex;
             align-items: center;
@@ -287,15 +287,65 @@
             filter: brightness(0) invert(1) !important;
         }
 
+        /* Hero Section */
+        .hero {
+            padding: 3rem 0;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(17, 17, 34, 0.9) 0%, rgba(26, 26, 46, 0.9) 100%);
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-red), var(--accent-purple), var(--accent-blue));
+            animation: gradient 3s ease infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-red), var(--accent-purple), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% 200%;
+            animation: gradient 3s ease infinite;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 500;
+            line-height: 1.8;
+        }
+
         /* Main Content - Two Panel Layout */
         .main-content {
             display: flex;
             gap: 1.5rem;
             padding: 2rem 0;
-            min-height: calc(100vh - 200px);
+            min-height: calc(100vh - 300px);
         }
 
-        /* Left Panel - Players List */
+        /* Left Panel - Compact Players List */
         .left-panel {
             flex: 1;
             min-width: 0;
@@ -315,17 +365,14 @@
 
         .list-header {
             margin-bottom: 1.5rem;
+            text-align: center;
         }
 
-        .list-header h1 {
-            font-size: 1.8rem;
+        .list-header h2 {
+            font-size: 1.5rem;
             margin-bottom: 0.5rem;
             color: var(--text-primary);
             font-weight: 800;
-            background: linear-gradient(135deg, var(--accent-red), var(--accent-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
 
         .list-header p {
@@ -380,7 +427,7 @@
             background: var(--bg-tertiary);
         }
 
-        /* Players List */
+        /* Compact Players List */
         .players-list-container {
             flex: 1;
             overflow-y: auto;
@@ -389,13 +436,13 @@
 
         .player-row {
             background: rgba(255, 255, 255, 0.03);
-            border: 2px solid var(--border-color);
-            border-radius: 12px;
-            padding: 1rem;
-            margin-bottom: 0.8rem;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 0.8rem;
+            margin-bottom: 0.6rem;
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 0.8rem;
             transition: all 0.3s ease;
             cursor: pointer;
             position: relative;
@@ -405,7 +452,7 @@
 
         .player-row:hover {
             border-color: var(--accent-red);
-            transform: translateX(5px);
+            transform: translateX(3px);
             background: rgba(255, 255, 255, 0.05);
         }
 
@@ -415,16 +462,16 @@
         }
 
         .player-rank {
-            width: 50px;
-            height: 50px;
+            width: 35px;
+            height: 35px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            font-size: 0.9rem;
             font-weight: 800;
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
             flex-shrink: 0;
         }
 
@@ -447,46 +494,43 @@
         }
 
         .player-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            border-radius: 8px;
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            border: 2px solid var(--border-color);
+            border: 1px solid var(--border-color);
         }
 
         .player-icon img {
-            width: 28px;
-            height: 28px;
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
         }
 
         .player-info {
             flex: 1;
             min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
         }
 
         .player-name {
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 700;
             color: var(--text-primary);
-            margin-bottom: 0.3rem;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
 
-        .player-stats {
-            display: flex;
-            gap: 1rem;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-        }
-
         .player-points {
-            font-weight: 700;
+            font-size: 0.8rem;
+            font-weight: 600;
             color: var(--accent-green);
         }
 
@@ -510,46 +554,65 @@
 
         .player-details-header {
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             padding-bottom: 1.5rem;
             border-bottom: 2px solid var(--border-color);
         }
 
         .player-details-header h2 {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             margin-bottom: 1rem;
             color: var(--text-primary);
             font-weight: 800;
         }
 
+        .selected-player-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
         .selected-player-avatar {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            margin: 0 auto 1rem;
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
             background: var(--accent-red);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.5rem;
+            font-size: 1.5rem;
             font-weight: 800;
             color: white;
-            border: 3px solid var(--border-color);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            border: 2px solid var(--border-color);
+            flex-shrink: 0;
+        }
+
+        .selected-player-name {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .selected-player-rank {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-weight: 600;
         }
 
         .player-stats-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-            margin-bottom: 2rem;
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
         }
 
         .stat-card {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--border-color);
-            border-radius: 10px;
-            padding: 1rem;
+            border-radius: 8px;
+            padding: 0.8rem;
             text-align: center;
             transition: all 0.3s ease;
         }
@@ -560,14 +623,14 @@
         }
 
         .stat-value {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 800;
             color: var(--accent-green);
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.2rem;
         }
 
         .stat-label {
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             color: var(--text-secondary);
             font-weight: 600;
         }
@@ -578,7 +641,7 @@
         }
 
         .completions-section h3 {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             margin-bottom: 1rem;
             color: var(--text-primary);
             font-weight: 800;
@@ -594,7 +657,7 @@
         .completions-list {
             display: flex;
             flex-direction: column;
-            gap: 0.8rem;
+            gap: 0.6rem;
         }
 
         .completion-item {
@@ -611,23 +674,33 @@
             transform: translateX(3px);
         }
 
-        .demon-info {
-            margin-bottom: 0.5rem;
-        }
-
         .demon-name {
             font-weight: 700;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: var(--text-primary);
-            margin-bottom: 0.2rem;
+            margin-bottom: 0.3rem;
         }
 
-        .demon-creator {
+        .demon-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             font-size: 0.8rem;
             color: var(--text-secondary);
         }
 
+        .demon-rank {
+            color: var(--accent-green);
+            font-weight: 600;
+        }
+
+        .demon-points {
+            color: var(--accent-green);
+            font-weight: 700;
+        }
+
         .progress-container {
+            margin-top: 0.5rem;
             display: flex;
             align-items: center;
             gap: 0.8rem;
@@ -635,15 +708,15 @@
 
         .progress-bar {
             flex: 1;
-            height: 6px;
+            height: 4px;
             background: var(--bg-tertiary);
-            border-radius: 3px;
+            border-radius: 2px;
             overflow: hidden;
         }
 
         .progress-fill {
             height: 100%;
-            border-radius: 3px;
+            border-radius: 2px;
             transition: width 0.3s ease;
         }
 
@@ -656,9 +729,9 @@
         }
 
         .progress-text {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: var(--text-secondary);
-            min-width: 40px;
+            min-width: 35px;
             text-align: right;
             font-weight: 700;
         }
@@ -678,7 +751,7 @@
         footer {
             background: var(--bg-secondary);
             border-top: 1px solid var(--border-color);
-            padding: 2.5rem 0 1.5rem;
+            padding: 2rem 0 1.5rem;
             margin-top: 2rem;
             background: linear-gradient(135deg, rgba(17, 17, 34, 0.9) 0%, rgba(26, 26, 46, 0.9) 100%);
         }
@@ -736,57 +809,6 @@
             font-weight: 500;
         }
 
-        /* Mobile Menu Styles */
-        .menu-toggle {
-            display: none;
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            cursor: pointer;
-            padding: 0.5rem;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            width: 44px;
-            height: 44px;
-            position: relative;
-            z-index: 1001;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 320px;
-            height: 100%;
-            background: var(--bg-primary);
-            z-index: 999;
-            flex-direction: column;
-            box-shadow: -5px 0 30px rgba(0, 0, 0, 0.3);
-            transition: right 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            border-left: 1px solid var(--border-color);
-            display: flex;
-            flex-direction: column;
-            backdrop-filter: blur(20px);
-            background: rgba(26, 26, 46, 0.95);
-        }
-
-        .menu-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 998;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.4s ease;
-            backdrop-filter: blur(4px);
-        }
-
         /* Responsive */
         @media (max-width: 1200px) {
             .right-panel {
@@ -811,10 +833,6 @@
         }
 
         @media (max-width: 768px) {
-            .menu-toggle {
-                display: flex;
-            }
-
             .header-controls nav {
                 display: none;
             }
@@ -832,23 +850,26 @@
                 padding: 1.2rem;
             }
 
+            .hero {
+                padding: 2rem 0;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
             .player-stats-grid {
                 grid-template-columns: 1fr;
             }
 
             .selected-player-avatar {
-                width: 80px;
-                height: 80px;
-                font-size: 2rem;
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
             }
 
-            .mobile-menu.active {
-                right: 0;
-            }
-
-            .menu-overlay.active {
-                opacity: 1;
-                visibility: visible;
+            .selected-player-name {
+                font-size: 1.1rem;
             }
         }
 
@@ -863,32 +884,55 @@
             }
 
             .player-row {
-                padding: 0.8rem;
+                padding: 0.6rem;
+                gap: 0.6rem;
             }
 
             .player-rank {
-                width: 40px;
-                height: 40px;
-                font-size: 1rem;
+                width: 30px;
+                height: 30px;
+                font-size: 0.8rem;
             }
 
             .player-icon {
-                width: 35px;
-                height: 35px;
+                width: 30px;
+                height: 30px;
             }
 
             .player-name {
-                font-size: 0.9rem;
+                font-size: 0.85rem;
             }
 
-            .player-stats {
-                font-size: 0.75rem;
+            .player-points {
+                font-size: 0.7rem;
             }
 
             .footer-content {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
             }
+        }
+
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-secondary);
+        }
+
+        .loading-spinner {
+            border: 3px solid var(--bg-tertiary);
+            border-top: 3px solid var(--accent-red);
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 0.8rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
@@ -920,56 +964,31 @@
                         </a>
                     </div>
                     
+                    <button class="language-toggle" onclick="toggleLanguage()" id="languageToggle">
+                        EN
+                    </button>
                     <button class="theme-toggle" onclick="toggleTheme()">
                         <img src="assets/day-and-night.png" alt="Сменить тему" id="theme-icon">
-                    </button>
-                    <button class="menu-toggle" onclick="toggleMobileMenu()">
-                        <span></span>
-                        <span></span>
-                        <span></span>
                     </button>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobileMenu">
-        <div style="padding: 1.5rem; border-bottom: 1px solid var(--border-color);">
-            <div class="logo-container">
-                <img src="assets/cube.png" alt="Cube" class="cube-icon">
-                <a href="index.html" class="logo" style="background: none; backdrop-filter: none;">Just a GDPS</a>
-            </div>
+    <section class="hero">
+        <div class="container">
+            <h1>Топ игроков</h1>
+            <p>Рейтинг лучших игроков Geometry Dash Demon List. Откройте для себя самых опытных игроков.</p>
         </div>
-        <nav style="padding: 1rem;">
-            <ul style="flex-direction: column; gap: 0.5rem;">
-                <li><a href="index.html">Классический</a></li>
-                <li><a href="players.html" class="active">Топ игроков</a></li>
-                <li><a href="news.html">Новости</a></li>
-                <li><a href="contacts.html">Контакты</a></li>
-                <li><a href="rules.html">Правила</a></li>
-                <li style="margin-top: 1rem;">
-                    <div style="display: flex; gap: 0.5rem;">
-                        <a href="#" class="social-btn" title="Discord" style="flex: 1; justify-content: center;">
-                            <img src="assets/discord.png" alt="Discord">
-                        </a>
-                        <a href="#" class="social-btn" title="YouTube" style="flex: 1; justify-content: center;">
-                            <img src="assets/youtube.png" alt="YouTube">
-                        </a>
-                    </div>
-                </li>
-            </ul>
-        </nav>
-    </div>
-    <div class="menu-overlay" id="menuOverlay" onclick="toggleMobileMenu()"></div>
-    
+    </section>
+
     <div class="container">
         <div class="main-content">
-            <!-- Left Panel - Players List -->
+            <!-- Left Panel - Compact Players List -->
             <div class="left-panel">
                 <div class="list-header">
-                    <h1>Топ игроков</h1>
-                    <p>Рейтинг лучших игроков Geometry Dash Demon List</p>
+                    <h2>Рейтинг игроков</h2>
+                    <p>Игроки отсортированы по количеству набранных очков</p>
                 </div>
                 
                 <div class="search-container">
@@ -980,7 +999,10 @@
                 </div>
                 
                 <div class="players-list-container" id="playersList">
-                    <!-- Players will be loaded here -->
+                    <div class="loading">
+                        <div class="loading-spinner"></div>
+                        <p>Загрузка игроков...</p>
+                    </div>
                 </div>
             </div>
             
@@ -990,7 +1012,6 @@
                     <h2>Выберите игрока</h2>
                     <div class="no-player-selected">
                         <div class="icon">👤</div>
-                        <h3>Информация об игроке</h3>
                         <p>Нажмите на игрока в списке слева, чтобы увидеть детальную информацию</p>
                     </div>
                 </div>
@@ -1027,23 +1048,43 @@
     </footer>
 
     <script>
-        // ========== МОБИЛЬНОЕ МЕНЮ ==========
-        function toggleMobileMenu() {
-            const mobileMenu = document.getElementById('mobileMenu');
-            const menuOverlay = document.getElementById('menuOverlay');
+        // ========== СМЕНА ЯЗЫКА ==========
+        function toggleLanguage() {
+            const currentLang = localStorage.getItem('language') || 'ru';
+            const newLang = currentLang === 'ru' ? 'en' : 'ru';
             
-            mobileMenu.classList.toggle('active');
-            menuOverlay.classList.toggle('active');
-            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+            localStorage.setItem('language', newLang);
+            updateLanguage(newLang);
+            
+            const langButton = document.getElementById('languageToggle');
+            langButton.textContent = newLang === 'ru' ? 'EN' : 'RU';
         }
-
-        function closeMobileMenu() {
-            const mobileMenu = document.getElementById('mobileMenu');
-            const menuOverlay = document.getElementById('menuOverlay');
+        
+        function loadLanguage() {
+            const savedLang = localStorage.getItem('language') || 'ru';
+            updateLanguage(savedLang);
             
-            mobileMenu.classList.remove('active');
-            menuOverlay.classList.remove('active');
-            document.body.style.overflow = '';
+            const langButton = document.getElementById('languageToggle');
+            langButton.textContent = savedLang === 'ru' ? 'EN' : 'RU';
+        }
+        
+        function updateLanguage(lang) {
+            // Обновляем тексты на странице
+            document.querySelectorAll('[data-lang]').forEach(element => {
+                if (element.getAttribute('data-lang') === lang) {
+                    element.style.display = '';
+                } else {
+                    element.style.display = 'none';
+                }
+            });
+            
+            // Обновляем плейсхолдер поиска
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.placeholder = lang === 'ru' ? 
+                    'Поиск игроков по имени...' : 
+                    'Search players by name...';
+            }
         }
 
         // ========== СМЕНА ТЕМЫ ==========
@@ -1111,8 +1152,14 @@
             }
         }
 
-        // Получить значок для игрока
-        function getPlayerIcon(rank) {
+        // Получить значок для игрока (поддержка уникальных ассетов)
+        function getPlayerIcon(player, rank) {
+            // Проверяем, есть ли у игрока уникальный ассет
+            if (player.icon && player.icon.trim() !== '') {
+                return player.icon;
+            }
+            
+            // Если нет уникального ассета, используем стандартные по рангу
             if (rank === 1) return 'assets/gold-icon.png';
             if (rank === 2) return 'assets/silver-icon.png';
             if (rank === 3) return 'assets/bronze-icon.png';
@@ -1212,7 +1259,7 @@
             return allDemons.findIndex(d => d.id === demonId) + 1;
         }
 
-        // Отображение списка игроков
+        // Отображение компактного списка игроков
         function renderPlayersList() {
             const playersList = document.getElementById('playersList');
             
@@ -1241,19 +1288,17 @@
                                 player.rank === 2 ? 'rank-2' : 
                                 player.rank === 3 ? 'rank-3' : '';
                 
-                const playerIcon = getPlayerIcon(player.rank);
+                const playerIcon = getPlayerIcon(player, player.rank);
                 
                 playerRow.innerHTML = `
                     <div class="player-rank ${rankClass}">${player.rank}</div>
                     <div class="player-icon">
-                        <img src="${playerIcon}" alt="Игрок" onerror="this.src='assets/player-icon.png'">
+                        <img src="${playerIcon}" alt="${player.name}" 
+                             onerror="this.onerror=null; this.src='assets/player-icon.png'">
                     </div>
                     <div class="player-info">
                         <div class="player-name">${player.name}</div>
-                        <div class="player-stats">
-                            <span class="player-points">${player.totalPoints} pts</span>
-                            <span>${player.completedCount} демонов</span>
-                        </div>
+                        <div class="player-points">${player.totalPoints} pts</div>
                     </div>
                 `;
                 fragment.appendChild(playerRow);
@@ -1292,15 +1337,17 @@
             
             playerDetailsPanel.innerHTML = `
                 <div class="player-details-header">
-                    <h2>${player.name}</h2>
-                    <div class="selected-player-avatar">${player.avatar}</div>
+                    <h2>Информация об игроке</h2>
+                    <div class="selected-player-info">
+                        <div class="selected-player-avatar">${player.avatar || player.name.charAt(0)}</div>
+                        <div>
+                            <div class="selected-player-name">${player.name}</div>
+                            <div class="selected-player-rank">Ранг: #${playerStats.rank}</div>
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="player-stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-value">#${playerStats.rank}</div>
-                        <div class="stat-label">Ранг</div>
-                    </div>
                     <div class="stat-card">
                         <div class="stat-value">${playerStats.totalPoints}</div>
                         <div class="stat-label">Всего очков</div>
@@ -1312,6 +1359,10 @@
                     <div class="stat-card">
                         <div class="stat-value">${playerStats.averageRank.toFixed(1)}</div>
                         <div class="stat-label">Средний ранг</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">${playerStats.hardestDemonRank || '—'}</div>
+                        <div class="stat-label">Сложнейший демон</div>
                     </div>
                 </div>
                 
@@ -1325,9 +1376,10 @@
                                 
                                 return `
                                     <div class="completion-item" onclick="openDemonPage('${completion.demon.id}')">
-                                        <div class="demon-info">
-                                            <div class="demon-name">${completion.demon.name}</div>
-                                            <div class="demon-creator">by ${completion.demon.creator}</div>
+                                        <div class="demon-name">${completion.demon.name}</div>
+                                        <div class="demon-details">
+                                            <span class="demon-rank">Ранг: #${completion.rank}</span>
+                                            <span class="demon-points">${completion.points} pts</span>
                                         </div>
                                         <div class="progress-container">
                                             <div class="progress-bar">
@@ -1335,15 +1387,12 @@
                                             </div>
                                             <div class="progress-text">${progressText}</div>
                                         </div>
-                                        <div style="margin-top: 0.3rem; font-size: 0.8rem; color: var(--accent-green);">
-                                            ${completion.points} pts • Ранг: #${completion.rank}
-                                        </div>
                                     </div>
                                 `;
                             }).join('') :
-                            `<div class="no-player-selected" style="padding: 1rem;">
-                                <div class="icon">😔</div>
-                                <p>Нет пройденных демонов</p>
+                            `<div style="text-align: center; padding: 2rem; color: var(--text-secondary);">
+                                <div style="font-size: 2rem; margin-bottom: 0.8rem;">😔</div>
+                                <div style="font-weight: 600; font-size: 0.9rem;">Нет пройденных демонов</div>
                             </div>`
                         }
                     </div>
@@ -1356,7 +1405,7 @@
                 totalPoints: 0,
                 completedCount: 0,
                 averageRank: 0,
-                hardestDemon: null,
+                hardestDemonRank: null,
                 completedDemons: [],
                 rank: 1
             };
@@ -1393,7 +1442,11 @@
             // Подсчитываем статистику
             stats.totalPoints = stats.completedDemons.reduce((sum, comp) => sum + comp.points, 0);
             stats.completedCount = stats.completedDemons.length;
-            stats.hardestDemon = stats.completedDemons[0] || null;
+            
+            // Находим ранг сложнейшего демона
+            if (stats.completedDemons.length > 0) {
+                stats.hardestDemonRank = stats.completedDemons[0].rank;
+            }
             
             // Рассчитываем средний ранг
             if (stats.completedCount > 0) {
@@ -1423,23 +1476,14 @@
         // Инициализация
         async function initialize() {
             loadTheme();
+            loadLanguage();
             initializeSearch();
             await loadData();
-            
-            // Обработчики для мобильного меню
-            document.querySelectorAll('.mobile-menu a').forEach(link => {
-                link.addEventListener('click', closeMobileMenu);
-            });
-            
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
-                    closeMobileMenu();
-                }
-            });
         }
 
+        // Глобальные функции
         window.toggleTheme = toggleTheme;
-        window.toggleMobileMenu = toggleMobileMenu;
+        window.toggleLanguage = toggleLanguage;
         window.openDemonPage = openDemonPage;
 
         document.addEventListener('DOMContentLoaded', initialize);
