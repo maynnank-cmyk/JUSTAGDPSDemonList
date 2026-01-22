@@ -49,7 +49,7 @@
         body {
             background: var(--gradient-bg);
             color: var(--text-primary);
-            line-height: 1.7;
+            line-height: 1.6;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             font-weight: 500;
             min-height: 100vh;
@@ -727,16 +727,16 @@
         /* Удалена hero section и расширен основной контент */
         .main-content {
             padding: 1.5rem 0;
-            min-height: calc(100vh - 180px);
+            min-height: calc(100vh - 160px);
             display: flex;
             flex-direction: column;
         }
 
-        /* Widget Layout - NO SCROLLING */
+        /* Widget Layout - Компактный */
         .widget-container {
             display: grid;
-            grid-template-columns: 380px 1fr;
-            gap: 1.5rem;
+            grid-template-columns: 350px 1fr;
+            gap: 1.2rem;
             flex: 1;
             max-height: none;
             height: auto;
@@ -749,19 +749,20 @@
             }
         }
 
-        /* Left Panel - Расширенный Players List со слайдером */
+        /* Left Panel - Компактный Players List */
         .players-widget {
-            background: rgba(26, 26, 46, 0.85);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
+            background: rgba(26, 26, 46, 0.9);
+            backdrop-filter: blur(15px);
+            border-radius: 16px;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 1.5rem;
+            padding: 1rem;
             box-shadow: 
-                0 12px 40px rgba(0, 0, 0, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+                0 8px 25px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
             display: flex;
             flex-direction: column;
             height: 100%;
+            max-height: 650px;
             position: relative;
             overflow: hidden;
         }
@@ -772,38 +773,38 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 3px;
+            height: 2px;
             background: linear-gradient(90deg, var(--accent-red), var(--accent-purple), var(--accent-blue));
-            border-radius: 20px 20px 0 0;
+            border-radius: 16px 16px 0 0;
         }
 
         [data-theme="light"] .players-widget {
-            background: rgba(248, 249, 255, 0.85);
+            background: rgba(248, 249, 255, 0.9);
             border: 1px solid rgba(0, 0, 0, 0.1);
             box-shadow: 
-                0 12px 40px rgba(0, 0, 0, 0.1),
-                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+                0 8px 25px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
         }
 
         .widget-header {
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 2px solid var(--border-color);
+            margin-bottom: 1rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid var(--border-color);
             position: relative;
         }
 
         .widget-header h2 {
-            font-size: 1.4rem;
+            font-size: 1.1rem;
             color: var(--text-primary);
             font-weight: 800;
             display: flex;
             align-items: center;
-            gap: 0.8rem;
+            gap: 0.6rem;
         }
 
         .widget-header h2::before {
             content: '👑';
-            font-size: 1.2rem;
+            font-size: 1rem;
         }
 
         .players-count {
@@ -812,28 +813,28 @@
             top: 0;
             background: var(--accent-purple);
             color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
             font-weight: 700;
         }
 
         .search-container {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             position: relative;
         }
 
         .search-input {
             width: 100%;
-            padding: 0.8rem 1rem 0.8rem 3rem;
-            font-size: 0.95rem;
-            border: 2px solid transparent;
-            border-radius: 12px;
+            padding: 0.6rem 0.8rem 0.6rem 2.5rem;
+            font-size: 0.85rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
             background: rgba(255, 255, 255, 0.08);
             color: var(--text-primary);
             font-weight: 500;
-            transition: all 0.3s ease;
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s ease;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
         }
 
         .search-input:focus {
@@ -841,17 +842,17 @@
             border-color: var(--accent-red);
             background: rgba(255, 255, 255, 0.12);
             box-shadow: 
-                inset 0 2px 4px rgba(0, 0, 0, 0.1),
-                0 0 0 3px rgba(255, 71, 87, 0.2);
+                inset 0 1px 2px rgba(0, 0, 0, 0.1),
+                0 0 0 2px rgba(255, 71, 87, 0.2);
         }
 
         .search-icon {
             position: absolute;
-            left: 1rem;
+            left: 0.8rem;
             top: 50%;
             transform: translateY(-50%);
-            width: 18px;
-            height: 18px;
+            width: 16px;
+            height: 16px;
             filter: brightness(0) invert(1);
             opacity: 0.7;
             pointer-events: none;
@@ -861,35 +862,27 @@
             filter: brightness(0) saturate(100%) invert(24%) sepia(9%) saturate(1200%) hue-rotate(170deg) brightness(92%) contrast(87%);
         }
 
-        /* Слайдер для прокрутки */
-        .slider-container {
-            position: relative;
-            flex: 1;
-            overflow: hidden;
-        }
-
+        /* Компактный список игроков */
         .compact-players-list {
-            height: 100%;
+            flex: 1;
             overflow-y: auto;
-            padding-right: 0.5rem;
+            padding-right: 0.3rem;
             scrollbar-width: thin;
             scrollbar-color: var(--accent-purple) transparent;
         }
 
         .compact-players-list::-webkit-scrollbar {
-            width: 8px;
+            width: 6px;
         }
 
         .compact-players-list::-webkit-scrollbar-track {
             background: transparent;
-            border-radius: 10px;
+            border-radius: 3px;
         }
 
         .compact-players-list::-webkit-scrollbar-thumb {
             background: var(--accent-purple);
-            border-radius: 10px;
-            border: 2px solid transparent;
-            background-clip: padding-box;
+            border-radius: 3px;
         }
 
         .compact-players-list::-webkit-scrollbar-thumb:hover {
@@ -898,19 +891,18 @@
 
         /* Стили для строк игроков */
         .compact-player-row {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 0.8rem 1rem;
-            margin-bottom: 0.8rem;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            padding: 0.6rem 0.8rem;
+            margin-bottom: 0.5rem;
             display: flex;
             align-items: center;
-            gap: 0.8rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            gap: 0.6rem;
+            transition: all 0.2s ease;
             cursor: pointer;
-            min-height: 60px;
+            min-height: 50px;
             position: relative;
-            overflow: hidden;
         }
 
         .compact-player-row::before {
@@ -918,18 +910,18 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 4px;
+            width: 3px;
             height: 100%;
             background: linear-gradient(to bottom, var(--accent-red), var(--accent-purple));
             transform: scaleY(0);
-            transition: transform 0.3s ease;
+            transition: transform 0.2s ease;
         }
 
         .compact-player-row:hover {
             border-color: var(--accent-red);
-            transform: translateX(4px) translateY(-1px);
-            background: rgba(255, 255, 255, 0.08);
-            box-shadow: 0 4px 12px rgba(255, 71, 87, 0.2);
+            transform: translateX(2px);
+            background: rgba(255, 255, 255, 0.06);
+            box-shadow: 0 2px 8px rgba(255, 71, 87, 0.15);
         }
 
         .compact-player-row:hover::before {
@@ -938,8 +930,8 @@
 
         .compact-player-row.active {
             border-color: var(--accent-green);
-            background: rgba(46, 213, 115, 0.15);
-            box-shadow: 0 4px 12px rgba(46, 213, 115, 0.2);
+            background: rgba(46, 213, 115, 0.12);
+            box-shadow: 0 2px 8px rgba(46, 213, 115, 0.15);
         }
 
         .compact-player-row.active::before {
@@ -948,73 +940,65 @@
         }
 
         .compact-rank {
-            width: 36px;
-            height: 36px;
+            width: 30px;
+            height: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             font-weight: 800;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            border: 2px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
             flex-shrink: 0;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
         }
 
         .compact-player-row:hover .compact-rank {
-            transform: scale(1.1) rotate(5deg);
+            transform: scale(1.05);
         }
 
         .rank-1 {
             background: linear-gradient(135deg, #ffd700, #ffa500);
             color: white;
             border-color: #ffd700;
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
         }
 
         .rank-2 {
             background: linear-gradient(135deg, #c0c0c0, #a0a0a0);
             color: white;
             border-color: #c0c0c0;
-            box-shadow: 0 0 15px rgba(192, 192, 192, 0.3);
         }
 
         .rank-3 {
             background: linear-gradient(135deg, #cd7f32, #b56a24);
             color: white;
             border-color: #cd7f32;
-            box-shadow: 0 0 15px rgba(205, 127, 50, 0.3);
         }
 
         .compact-player-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 10px;
+            width: 30px;
+            height: 30px;
+            border-radius: 8px;
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            border: 2px solid var(--border-color);
-            background: rgba(255, 255, 255, 0.05);
-            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.04);
+            transition: all 0.2s ease;
         }
 
         .compact-player-icon img {
-            width: 24px;
-            height: 24px;
+            width: 20px;
+            height: 20px;
             object-fit: contain;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
         }
 
         .compact-player-row:hover .compact-player-icon {
             border-color: var(--accent-red);
-            transform: scale(1.05);
-        }
-
-        .compact-player-row:hover .compact-player-icon img {
-            transform: scale(1.1);
         }
 
         /* Скрываем иконки у игроков ниже 3 места */
@@ -1028,95 +1012,51 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 0.8rem;
+            gap: 0.6rem;
         }
 
         .compact-player-name {
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             font-weight: 700;
             color: var(--text-primary);
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
             flex: 1;
-            letter-spacing: 0.3px;
         }
 
         .compact-player-points {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 800;
             color: var(--accent-green);
             text-align: right;
-            min-width: 60px;
-            padding: 0.3rem 0.6rem;
-            background: rgba(46, 213, 115, 0.15);
-            border-radius: 8px;
-            border: 1px solid rgba(46, 213, 115, 0.3);
-            transition: all 0.3s ease;
+            min-width: 50px;
+            padding: 0.2rem 0.5rem;
+            background: rgba(46, 213, 115, 0.12);
+            border-radius: 6px;
+            border: 1px solid rgba(46, 213, 115, 0.2);
+            transition: all 0.2s ease;
         }
 
         .compact-player-row:hover .compact-player-points {
             background: var(--accent-green);
             color: white;
-            transform: scale(1.05);
-        }
-
-        /* Кнопки навигации слайдера */
-        .slider-nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .slider-btn {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            width: 36px;
-            height: 36px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            color: var(--text-primary);
-            font-size: 1.2rem;
-        }
-
-        .slider-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-            border-color: var(--accent-red);
-            transform: translateY(-2px);
-        }
-
-        .slider-btn:disabled {
-            opacity: 0.3;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .slider-info {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            font-weight: 600;
         }
 
         /* Right Panel - Player Details Widget */
         .details-widget {
-            background: rgba(26, 26, 46, 0.85);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
+            background: rgba(26, 26, 46, 0.9);
+            backdrop-filter: blur(15px);
+            border-radius: 16px;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 1.5rem;
+            padding: 1rem;
             box-shadow: 
-                0 12px 40px rgba(0, 0, 0, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+                0 8px 25px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
             display: flex;
             flex-direction: column;
             height: 100%;
+            max-height: 650px;
             position: relative;
             overflow: hidden;
         }
@@ -1127,42 +1067,52 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 3px;
+            height: 2px;
             background: linear-gradient(90deg, var(--accent-green), #00cc00, var(--accent-blue));
-            border-radius: 20px 20px 0 0;
+            border-radius: 16px 16px 0 0;
         }
 
         [data-theme="light"] .details-widget {
-            background: rgba(248, 249, 255, 0.85);
+            background: rgba(248, 249, 255, 0.9);
             border: 1px solid rgba(0, 0, 0, 0.1);
             box-shadow: 
-                0 12px 40px rgba(0, 0, 0, 0.1),
-                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+                0 8px 25px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
         }
 
         .player-header {
             display: flex;
             align-items: center;
-            gap: 1.2rem;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 2px solid var(--border-color);
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .player-avatar {
-            width: 70px;
-            height: 70px;
-            border-radius: 16px;
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
             background: linear-gradient(135deg, var(--accent-red), var(--accent-purple));
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 800;
             color: white;
-            border: 3px solid var(--border-color);
+            border: 2px solid var(--border-color);
             flex-shrink: 0;
-            box-shadow: 0 8px 20px rgba(255, 71, 87, 0.3);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .player-avatar-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
         }
 
         .player-title {
@@ -1171,30 +1121,30 @@
         }
 
         .player-title h2 {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: 800;
             color: var(--text-primary);
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.3rem;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
 
         .player-title .rank {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--text-secondary);
             font-weight: 600;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.4rem;
         }
 
         .rank-badge {
             background: var(--accent-purple);
             color: white;
-            padding: 0.2rem 0.6rem;
-            border-radius: 12px;
-            font-size: 0.8rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 10px;
+            font-size: 0.75rem;
             font-weight: 700;
         }
 
@@ -1202,63 +1152,128 @@
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 0.8rem;
-            margin-bottom: 1.5rem;
+            gap: 0.6rem;
+            margin-bottom: 1rem;
         }
 
         .stat-item {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.04);
             border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 1rem;
+            border-radius: 10px;
+            padding: 0.8rem;
             text-align: center;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
+            transition: all 0.2s ease;
         }
 
         .stat-item:hover {
             border-color: var(--accent-purple);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(138, 107, 255, 0.2);
-        }
-
-        .stat-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent-purple), var(--accent-blue));
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-
-        .stat-item:hover::before {
-            transform: scaleX(1);
+            transform: translateY(-1px);
+            box-shadow: 0 2px 6px rgba(138, 107, 255, 0.15);
         }
 
         .stat-value {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             font-weight: 800;
             color: var(--accent-green);
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.2rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.5rem;
+            gap: 0.4rem;
         }
 
         .stat-label {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: var(--text-secondary);
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
         }
 
-        /* Demons List */
+        /* Hardest Demon Section */
+        .hardest-demon-section {
+            margin-bottom: 1rem;
+        }
+
+        .hardest-demon-section h3 {
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+            color: var(--text-primary);
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .hardest-demon-section h3::before {
+            content: "🏆";
+            font-size: 0.9rem;
+        }
+
+        .hardest-demon-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 0.8rem;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hardest-demon-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(to bottom, #ffd700, #ffa500);
+            transform: scaleY(0);
+            transition: transform 0.2s ease;
+        }
+
+        .hardest-demon-card:hover {
+            border-color: #ffd700;
+            background: rgba(255, 215, 0, 0.08);
+            transform: translateX(2px);
+        }
+
+        .hardest-demon-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .hardest-demon-name {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.3rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .hardest-demon-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+        }
+
+        .hardest-demon-creator {
+            color: var(--text-secondary);
+        }
+
+        .hardest-demon-points {
+            font-weight: 800;
+            color: var(--accent-green);
+            padding: 0.2rem 0.5rem;
+            background: rgba(46, 213, 115, 0.12);
+            border-radius: 6px;
+            border: 1px solid rgba(46, 213, 115, 0.2);
+        }
+
+        /* Demons List - Компактный построчный */
         .demons-section {
             flex: 1;
             display: flex;
@@ -1267,18 +1282,18 @@
         }
 
         .demons-section h3 {
-            font-size: 1rem;
-            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
             color: var(--text-primary);
             font-weight: 800;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.4rem;
         }
 
         .demons-section h3::before {
             content: "🎯";
-            font-size: 1rem;
+            font-size: 0.9rem;
         }
 
         .demons-list {
@@ -1286,117 +1301,115 @@
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-            gap: 0.6rem;
-            padding-right: 0.5rem;
+            gap: 0.4rem;
+            padding-right: 0.3rem;
             scrollbar-width: thin;
             scrollbar-color: var(--accent-green) transparent;
         }
 
         .demons-list::-webkit-scrollbar {
-            width: 8px;
+            width: 6px;
         }
 
         .demons-list::-webkit-scrollbar-track {
             background: transparent;
-            border-radius: 10px;
+            border-radius: 3px;
         }
 
         .demons-list::-webkit-scrollbar-thumb {
             background: var(--accent-green);
-            border-radius: 10px;
-            border: 2px solid transparent;
-            background-clip: padding-box;
+            border-radius: 3px;
         }
 
         .demons-list::-webkit-scrollbar-thumb:hover {
             background: #00cc00;
         }
 
-        .demon-item {
-            background: rgba(255, 255, 255, 0.05);
+        /* Супер компактные демоны построчно */
+        .compact-demon-item {
+            background: rgba(255, 255, 255, 0.03);
             border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 0.8rem 1rem;
-            transition: all 0.3s ease;
+            border-radius: 8px;
+            padding: 0.6rem 0.8rem;
+            transition: all 0.2s ease;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
             position: relative;
-            overflow: hidden;
+            min-height: 40px;
         }
 
-        .demon-item::before {
+        .compact-demon-item::before {
             content: '';
             position: absolute;
             left: 0;
             top: 0;
+            width: 2px;
             height: 100%;
-            width: 3px;
-            background: linear-gradient(to bottom, var(--accent-red), var(--accent-purple));
+            background: var(--accent-red);
             transform: scaleY(0);
-            transition: transform 0.3s ease;
+            transition: transform 0.2s ease;
         }
 
-        .demon-item:hover {
+        .compact-demon-item:hover {
             border-color: var(--accent-red);
-            transform: translateX(4px);
-            background: rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateX(2px);
         }
 
-        .demon-item:hover::before {
+        .compact-demon-item:hover::before {
             transform: scaleY(1);
         }
 
-        .demon-info {
+        .compact-demon-info {
             flex: 1;
             min-width: 0;
-            margin-right: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
         }
 
-        .demon-name {
-            font-size: 0.95rem;
+        .compact-demon-rank {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 800;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            flex-shrink: 0;
+        }
+
+        .compact-demon-name {
+            font-size: 0.85rem;
             font-weight: 700;
             color: var(--text-primary);
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            margin-bottom: 0.3rem;
+            flex: 1;
         }
 
-        .demon-rank {
+        .compact-demon-points {
             font-size: 0.8rem;
-            color: var(--text-secondary);
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .rank-indicator {
-            width: 6px;
-            height: 6px;
-            background: var(--accent-purple);
-            border-radius: 50%;
-        }
-
-        .demon-points {
-            font-size: 0.9rem;
             font-weight: 800;
             color: var(--accent-green);
             text-align: right;
-            min-width: 50px;
-            padding: 0.3rem 0.6rem;
-            background: rgba(46, 213, 115, 0.15);
-            border-radius: 8px;
-            border: 1px solid rgba(46, 213, 115, 0.3);
-            transition: all 0.3s ease;
+            min-width: 45px;
+            padding: 0.2rem 0.4rem;
+            background: rgba(46, 213, 115, 0.12);
+            border-radius: 6px;
+            border: 1px solid rgba(46, 213, 115, 0.2);
+            transition: all 0.2s ease;
         }
 
-        .demon-item:hover .demon-points {
+        .compact-demon-item:hover .compact-demon-points {
             background: var(--accent-green);
             color: white;
-            transform: scale(1.05);
         }
 
         /* No Player Selected */
@@ -1406,28 +1419,28 @@
             align-items: center;
             justify-content: center;
             height: 100%;
-            padding: 3rem;
+            padding: 2rem;
             text-align: center;
             color: var(--text-secondary);
         }
 
         .no-player-icon {
-            font-size: 3rem;
+            font-size: 2.5rem;
             margin-bottom: 1rem;
             opacity: 0.5;
         }
 
         .no-player h3 {
-            font-size: 1.2rem;
-            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+            margin-bottom: 0.6rem;
             color: var(--text-primary);
             font-weight: 700;
         }
 
         .no-player p {
-            font-size: 0.9rem;
-            max-width: 300px;
-            line-height: 1.5;
+            font-size: 0.85rem;
+            max-width: 250px;
+            line-height: 1.4;
         }
 
         /* Footer */
@@ -1479,18 +1492,18 @@
         /* Loading */
         .loading {
             text-align: center;
-            padding: 2rem;
+            padding: 1.5rem;
             color: var(--text-secondary);
         }
 
         .loading-spinner {
-            border: 3px solid var(--bg-tertiary);
-            border-top: 3px solid var(--accent-red);
+            border: 2px solid var(--bg-tertiary);
+            border-top: 2px solid var(--accent-red);
             border-radius: 50%;
-            width: 30px;
-            height: 30px;
+            width: 25px;
+            height: 25px;
             animation: spin 1s linear infinite;
-            margin: 0 auto 1rem;
+            margin: 0 auto 0.8rem;
         }
 
         @keyframes spin {
@@ -1502,11 +1515,11 @@
         @media (max-width: 992px) {
             .widget-container {
                 grid-template-columns: 1fr;
-                gap: 1.5rem;
+                gap: 1rem;
             }
 
             .players-widget, .details-widget {
-                max-height: 500px;
+                max-height: 450px;
             }
 
             .players-widget {
@@ -1548,18 +1561,18 @@
             }
 
             .players-widget, .details-widget {
-                padding: 1rem;
+                padding: 0.8rem;
                 max-height: 400px;
             }
 
             .player-avatar {
                 width: 50px;
                 height: 50px;
-                font-size: 1.4rem;
+                font-size: 1.3rem;
             }
 
             .player-title h2 {
-                font-size: 1.2rem;
+                font-size: 1.1rem;
             }
 
             .stats-grid {
@@ -1567,30 +1580,40 @@
             }
 
             .compact-player-row {
-                padding: 0.6rem;
-                gap: 0.6rem;
-                min-height: 50px;
+                padding: 0.5rem;
+                gap: 0.5rem;
+                min-height: 45px;
             }
 
             .compact-rank {
-                width: 32px;
-                height: 32px;
-                font-size: 0.8rem;
+                width: 28px;
+                height: 28px;
+                font-size: 0.75rem;
             }
 
             .compact-player-icon {
-                width: 32px;
-                height: 32px;
+                width: 28px;
+                height: 28px;
             }
 
             .compact-player-icon img {
-                width: 20px;
-                height: 20px;
+                width: 18px;
+                height: 18px;
             }
 
-            .slider-nav {
-                margin-top: 0.8rem;
-                padding-top: 0.8rem;
+            .compact-demon-item {
+                padding: 0.5rem 0.6rem;
+                min-height: 35px;
+            }
+
+            .compact-demon-rank {
+                width: 22px;
+                height: 22px;
+                font-size: 0.65rem;
+            }
+
+            .compact-demon-name {
+                font-size: 0.8rem;
             }
         }
 
@@ -1604,32 +1627,32 @@
             }
 
             .widget-header h2 {
-                font-size: 1.2rem;
+                font-size: 1rem;
             }
 
             .players-count {
                 font-size: 0.7rem;
-                padding: 0.2rem 0.6rem;
+                padding: 0.2rem 0.5rem;
             }
 
             .compact-player-row {
-                padding: 0.5rem;
-                gap: 0.5rem;
-                margin-bottom: 0.6rem;
+                padding: 0.4rem;
+                gap: 0.4rem;
+                margin-bottom: 0.4rem;
             }
 
             .compact-player-name {
-                font-size: 0.85rem;
+                font-size: 0.8rem;
             }
 
             .compact-player-points {
                 font-size: 0.75rem;
-                min-width: 50px;
+                min-width: 45px;
             }
 
             .player-avatar {
-                width: 40px;
-                height: 40px;
+                width: 45px;
+                height: 45px;
                 font-size: 1.2rem;
             }
 
@@ -1638,42 +1661,24 @@
             }
 
             .stat-value {
-                font-size: 1.2rem;
+                font-size: 1.1rem;
             }
 
             .stat-label {
+                font-size: 0.7rem;
+            }
+
+            .hardest-demon-name {
+                font-size: 0.9rem;
+            }
+
+            .compact-demon-name {
                 font-size: 0.75rem;
             }
 
             .footer-content {
                 grid-template-columns: 1fr;
                 gap: 1rem;
-            }
-        }
-
-        @media (max-width: 360px) {
-            .compact-player-row {
-                flex-wrap: wrap;
-                min-height: auto;
-            }
-
-            .compact-player-info {
-                width: 100%;
-                margin-top: 0.3rem;
-            }
-
-            .slider-nav {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-
-            .slider-info {
-                order: 1;
-            }
-
-            .slider-btn {
-                order: 2;
-                width: 100%;
             }
         }
     </style>
@@ -1872,7 +1877,7 @@
     <div class="container">
         <div class="main-content">
             <div class="widget-container">
-                <!-- Left Widget - Players List with Slider -->
+                <!-- Left Widget - Players List -->
                 <div class="players-widget">
                     <div class="widget-header">
                         <h2 data-lang="ru">Игроки</h2>
@@ -1891,27 +1896,12 @@
                                placeholder="Поиск игроков...">
                     </div>
                     
-                    <div class="slider-container">
-                        <div class="compact-players-list" id="playersList">
-                            <div class="loading">
-                                <div class="loading-spinner"></div>
-                                <p data-lang="ru">Загрузка игроков...</p>
-                                <p data-lang="en" style="display: none;">Loading players...</p>
-                            </div>
+                    <div class="compact-players-list" id="playersList">
+                        <div class="loading">
+                            <div class="loading-spinner"></div>
+                            <p data-lang="ru">Загрузка игроков...</p>
+                            <p data-lang="en" style="display: none;">Loading players...</p>
                         </div>
-                    </div>
-                    
-                    <div class="slider-nav">
-                        <button class="slider-btn" id="prevBtn" onclick="scrollPlayers('prev')" disabled>
-                            ◀
-                        </button>
-                        <div class="slider-info" id="sliderInfo">
-                            <span data-lang="ru">1-10</span>
-                            <span data-lang="en" style="display: none;">1-10</span>
-                        </div>
-                        <button class="slider-btn" id="nextBtn" onclick="scrollPlayers('next')" disabled>
-                            ▶
-                        </button>
                     </div>
                 </div>
                 
@@ -2196,8 +2186,6 @@
         let filteredPlayers = [];
         let demons = [];
         let selectedPlayerId = null;
-        let currentScrollIndex = 0;
-        const playersPerPage = 10;
 
         // Система очков
         function calculatePointsByRank(rank) {
@@ -2219,6 +2207,22 @@
                 return Math.floor(basePoints / 4);
             } else {
                 return 0;
+            }
+        }
+
+        // Функция для загрузки аватара игрока (поддержка фото из JSON)
+        function getPlayerAvatar(player) {
+            // Проверяем, есть ли ссылка на фото в player.avatar
+            if (player.avatar && player.avatar.startsWith('http')) {
+                return player.avatar;
+            }
+            // Проверяем, есть ли локальный файл аватара
+            else if (player.avatar && player.avatar.includes('.')) {
+                return `assets/avatars/${player.avatar}`;
+            }
+            // Если нет фото, используем первую букву имени
+            else {
+                return player.avatar || player.name.charAt(0);
             }
         }
 
@@ -2248,9 +2252,8 @@
                 
                 if (searchTerm.length === 0) {
                     filteredPlayers = [...players];
-                    currentScrollIndex = 0;
                     renderPlayersList();
-                    updateSliderControls();
+                    updatePlayersCount();
                     return;
                 }
                 
@@ -2258,50 +2261,14 @@
                     player.name.toLowerCase().includes(searchTerm)
                 );
                 
-                currentScrollIndex = 0;
                 renderPlayersList();
-                updateSliderControls();
+                updatePlayersCount();
             });
         }
 
-        // Слайдер
-        function scrollPlayers(direction) {
-            const playersList = document.getElementById('playersList');
-            const maxScrollIndex = Math.max(0, filteredPlayers.length - playersPerPage);
-            
-            if (direction === 'prev') {
-                currentScrollIndex = Math.max(0, currentScrollIndex - playersPerPage);
-            } else {
-                currentScrollIndex = Math.min(maxScrollIndex, currentScrollIndex + playersPerPage);
-            }
-            
-            playersList.scrollTop = 0;
-            renderPlayersList();
-            updateSliderControls();
-        }
-
-        function updateSliderControls() {
-            const maxScrollIndex = Math.max(0, filteredPlayers.length - playersPerPage);
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
-            const sliderInfo = document.getElementById('sliderInfo');
-            
-            // Обновляем состояние кнопок
-            prevBtn.disabled = currentScrollIndex === 0;
-            nextBtn.disabled = currentScrollIndex >= maxScrollIndex || filteredPlayers.length <= playersPerPage;
-            
-            // Обновляем информацию о слайдере
-            const start = currentScrollIndex + 1;
-            const end = Math.min(currentScrollIndex + playersPerPage, filteredPlayers.length);
-            const total = filteredPlayers.length;
-            
-            sliderInfo.innerHTML = `
-                <span data-lang="ru">${start}-${end} из ${total}</span>
-                <span data-lang="en" style="display: none;">${start}-${end} of ${total}</span>
-            `;
-            
-            // Обновляем счетчик игроков
+        function updatePlayersCount() {
             const playersCount = document.getElementById('playersCount');
+            const total = filteredPlayers.length;
             const currentLang = localStorage.getItem('language') || 'ru';
             
             if (currentLang === 'ru') {
@@ -2360,7 +2327,7 @@
                     console.log('✅ Загружено игроков:', players.length);
                     
                     renderPlayersList();
-                    updateSliderControls();
+                    updatePlayersCount();
                     
                     // Выбираем первого игрока по умолчанию
                     if (players.length > 0) {
@@ -2402,12 +2369,12 @@
             if (filteredPlayers.length === 0) {
                 playersList.innerHTML = `
                     <div style="text-align: center; padding: 2rem; color: var(--text-secondary);">
-                        <div style="font-size: 2rem; margin-bottom: 0.8rem;">🔍</div>
-                        <div style="font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem;">
+                        <div style="font-size: 1.8rem; margin-bottom: 0.6rem;">🔍</div>
+                        <div style="font-size: 0.9rem; font-weight: 700; margin-bottom: 0.3rem;">
                             <span data-lang="ru">Игроки не найдены</span>
                             <span data-lang="en" style="display: none;">Players not found</span>
                         </div>
-                        <div style="font-size: 0.9rem;">
+                        <div style="font-size: 0.8rem;">
                             <span data-lang="ru">Попробуйте изменить поисковый запрос</span>
                             <span data-lang="en" style="display: none;">Try changing your search query</span>
                         </div>
@@ -2416,13 +2383,7 @@
                 return;
             }
             
-            // Получаем игроков для текущей страницы
-            const visiblePlayers = filteredPlayers.slice(
-                currentScrollIndex, 
-                currentScrollIndex + playersPerPage
-            );
-            
-            visiblePlayers.forEach((player, index) => {
+            filteredPlayers.forEach((player, index) => {
                 const playerRow = document.createElement('div');
                 playerRow.className = `compact-player-row ${selectedPlayerId === player.id ? 'active' : ''}`;
                 playerRow.setAttribute('data-player-id', player.id);
@@ -2430,13 +2391,13 @@
                 
                 // Добавляем анимацию появления
                 playerRow.style.opacity = '0';
-                playerRow.style.transform = 'translateY(10px)';
+                playerRow.style.transform = 'translateY(5px)';
                 
                 setTimeout(() => {
-                    playerRow.style.transition = 'opacity 0.3s, transform 0.3s';
+                    playerRow.style.transition = 'opacity 0.2s, transform 0.2s';
                     playerRow.style.opacity = '1';
                     playerRow.style.transform = 'translateY(0)';
-                }, index * 50);
+                }, index * 20);
                 
                 const rankClass = player.rank === 1 ? 'rank-1' : 
                                 player.rank === 2 ? 'rank-2' : 
@@ -2478,7 +2439,7 @@
                 const playerDetails = document.getElementById('playerDetails');
                 playerDetails.style.opacity = '0';
                 setTimeout(() => {
-                    playerDetails.style.transition = 'opacity 0.3s';
+                    playerDetails.style.transition = 'opacity 0.2s';
                     playerDetails.style.opacity = '1';
                 }, 10);
             }
@@ -2499,10 +2460,16 @@
         function renderPlayerDetails(player) {
             const playerDetails = document.getElementById('playerDetails');
             const playerStats = calculatePlayerStats(player, players, demons);
+            const playerAvatar = getPlayerAvatar(player);
             
             playerDetails.innerHTML = `
                 <div class="player-header">
-                    <div class="player-avatar">${player.avatar || player.name.charAt(0)}</div>
+                    <div class="player-avatar">
+                        ${playerAvatar.includes('http') || playerAvatar.includes('.') ? 
+                            `<img src="${playerAvatar}" alt="${player.name}" class="player-avatar-img" 
+                                 onerror="this.style.display='none'; this.parentElement.textContent='${player.name.charAt(0)}';">` : 
+                            playerAvatar}
+                    </div>
                     <div class="player-title">
                         <h2>${player.name}</h2>
                         <div class="rank">
@@ -2544,6 +2511,22 @@
                     </div>
                 </div>
                 
+                ${playerStats.hardestDemon ? `
+                    <div class="hardest-demon-section">
+                        <h3>
+                            <span data-lang="ru">Сложнейший демон</span>
+                            <span data-lang="en" style="display: none;">Hardest Demon</span>
+                        </h3>
+                        <div class="hardest-demon-card" onclick="openDemonPage('${playerStats.hardestDemon.demon.id}')">
+                            <div class="hardest-demon-name">${playerStats.hardestDemon.demon.name}</div>
+                            <div class="hardest-demon-meta">
+                                <span class="hardest-demon-creator">by ${playerStats.hardestDemon.demon.creator}</span>
+                                <span class="hardest-demon-points">${playerStats.hardestDemon.points}</span>
+                            </div>
+                        </div>
+                    </div>
+                ` : ''}
+                
                 <div class="demons-section">
                     <h3>
                         <span data-lang="ru">Пройденные демоны</span>
@@ -2553,29 +2536,25 @@
                         ${playerStats.completedDemons.length > 0 ? 
                             playerStats.completedDemons.map((completion, index) => {
                                 // Добавляем анимацию появления для демонов
-                                const animationDelay = index * 50;
+                                const animationDelay = index * 20;
                                 return `
-                                    <div class="demon-item" onclick="openDemonPage('${completion.demon.id}')" 
-                                         style="opacity: 0; transform: translateX(10px); transition: opacity 0.3s ${animationDelay}ms, transform 0.3s ${animationDelay}ms">
-                                        <div class="demon-info">
-                                            <div class="demon-name">${completion.demon.name}</div>
-                                            <div class="demon-rank">
-                                                <span class="rank-indicator"></span>
-                                                <span data-lang="ru">Ранг: #${completion.rank}</span>
-                                                <span data-lang="en" style="display: none;">Rank: #${completion.rank}</span>
-                                            </div>
+                                    <div class="compact-demon-item" onclick="openDemonPage('${completion.demon.id}')" 
+                                         style="opacity: 0; transform: translateX(5px); transition: opacity 0.2s ${animationDelay}ms, transform 0.2s ${animationDelay}ms">
+                                        <div class="compact-demon-info">
+                                            <div class="compact-demon-rank">#${completion.rank}</div>
+                                            <div class="compact-demon-name">${completion.demon.name}</div>
                                         </div>
-                                        <div class="demon-points">${completion.points}</div>
+                                        <div class="compact-demon-points">${completion.points}</div>
                                     </div>
                                 `;
                             }).join('') :
-                            `<div style="text-align: center; padding: 2rem; color: var(--text-secondary);">
-                                <div style="font-size: 2rem; margin-bottom: 0.8rem;">😔</div>
-                                <div style="font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem;">
+                            `<div style="text-align: center; padding: 1.5rem; color: var(--text-secondary);">
+                                <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">😔</div>
+                                <div style="font-size: 0.9rem; font-weight: 700; margin-bottom: 0.3rem;">
                                     <span data-lang="ru">Нет пройденных демонов</span>
                                     <span data-lang="en" style="display: none;">No completed demons</span>
                                 </div>
-                                <div style="font-size: 0.9rem;">
+                                <div style="font-size: 0.8rem;">
                                     <span data-lang="ru">Этот игрок еще не прошел ни одного демона</span>
                                     <span data-lang="en" style="display: none;">This player hasn't completed any demons yet</span>
                                 </div>
@@ -2587,11 +2566,11 @@
             
             // Запускаем анимацию появления для демонов
             setTimeout(() => {
-                document.querySelectorAll('.demon-item').forEach(item => {
+                document.querySelectorAll('.compact-demon-item').forEach(item => {
                     item.style.opacity = '1';
                     item.style.transform = 'translateX(0)';
                 });
-            }, 100);
+            }, 50);
         }
 
         function calculatePlayerStats(player, allPlayers, allDemons) {
@@ -2599,6 +2578,7 @@
                 totalPoints: 0,
                 completedCount: 0,
                 averageRank: 0,
+                hardestDemon: null,
                 hardestDemonRank: null,
                 completedDemons: [],
                 rank: 1
@@ -2637,9 +2617,10 @@
             stats.totalPoints = stats.completedDemons.reduce((sum, comp) => sum + comp.points, 0);
             stats.completedCount = stats.completedDemons.length;
             
-            // Находим ранг сложнейшего демона
+            // Находим сложнейший демон
             if (stats.completedDemons.length > 0) {
-                stats.hardestDemonRank = stats.completedDemons[0].rank;
+                stats.hardestDemon = stats.completedDemons[0];
+                stats.hardestDemonRank = stats.hardestDemon.rank;
             }
             
             // Рассчитываем средний ранг
@@ -2660,11 +2641,11 @@
             if (playersList) {
                 playersList.innerHTML = `
                     <div style="text-align: center; padding: 1rem; color: var(--accent-red);">
-                        <div style="font-size: 1rem; margin-bottom: 0.5rem; font-weight: 700;">❌ 
+                        <div style="font-size: 0.9rem; margin-bottom: 0.4rem; font-weight: 700;">❌ 
                             <span data-lang="ru">Ошибка</span>
                             <span data-lang="en" style="display: none;">Error</span>
                         </div>
-                        <div style="font-size: 0.85rem;">${message}</div>
+                        <div style="font-size: 0.8rem;">${message}</div>
                     </div>
                 `;
             }
@@ -2686,7 +2667,6 @@
         window.toggleMobileMenu = toggleMobileMenu;
         window.closeMobileMenu = closeMobileMenu;
         window.openDemonPage = openDemonPage;
-        window.scrollPlayers = scrollPlayers;
 
         document.addEventListener('DOMContentLoaded', initialize);
     </script>
