@@ -112,6 +112,28 @@
             gap: 1rem;
         }
         
+        .language-toggle {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            font-weight: 700;
+            color: white;
+            font-size: 0.9rem;
+        }
+        
+        .language-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+        
         .theme-toggle {
             background: rgba(255, 255, 255, 0.2);
             border: none;
@@ -317,6 +339,9 @@
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(220, 53, 69, 0.2);
             transition: all 0.3s ease !important;
+            display: flex !important;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .request-btn:hover {
@@ -325,8 +350,13 @@
             box-shadow: 0 6px 16px rgba(220, 53, 69, 0.3) !important;
         }
 
+        .btn-icon {
+            width: 16px;
+            height: 16px;
+        }
+
         .players-dropdown-menu {
-            min-width: 180px;
+            min-width: 200px;
         }
 
         .others-dropdown-menu {
@@ -1159,6 +1189,9 @@
                 font-weight: 700 !important;
                 padding: 1rem !important;
                 box-shadow: var(--card-shadow);
+                display: flex !important;
+                justify-content: center;
+                gap: 0.5rem;
             }
 
             .mobile-menu .request-btn:hover {
@@ -1274,6 +1307,11 @@
                 width: 16px;
                 height: 16px;
             }
+
+            .language-toggle, .theme-toggle {
+                width: 36px;
+                height: 36px;
+            }
         }
 
         @media (max-width: 360px) {
@@ -1348,6 +1386,9 @@
                     <a href="index.html" class="logo">Just a GDPS</a>
                 </div>
                 <div class="header-controls">
+                    <button class="language-toggle" onclick="toggleLanguage()" id="languageToggle">
+                        EN
+                    </button>
                     <button class="theme-toggle" onclick="toggleTheme()">
                         <img src="assets/day-and-night.png" alt="Сменить тему" id="theme-icon">
                     </button>
@@ -1360,37 +1401,59 @@
                         <ul>
                             <li class="dropdown">
                                 <a href="index.html" class="active dropdown-toggle" onclick="toggleDropdown(event)">
-                                    Главная <img src="assets/arrow.png" alt="▼" class="dropdown-arrow">
+                                    <span data-lang="ru">Главная</span>
+                                    <span data-lang="en" style="display: none;">Home</span>
+                                    <img src="assets/arrow.png" alt="▼" class="dropdown-arrow">
                                 </a>
                                 <div class="dropdown-menu">
                                     <a href="classic.html">
                                         <img src="assets/classic-icon.png" alt="📜" class="dropdown-menu-icon">
-                                        Классический
+                                        <span data-lang="ru">Классический</span>
+                                        <span data-lang="en" style="display: none;">Classic</span>
                                     </a>
                                     <a href="impossible.html">
                                         <img src="assets/impossible-icon.png" alt="🔥" class="dropdown-menu-icon">
-                                        Импассбл
+                                        <span data-lang="ru">Невозможный</span>
+                                        <span data-lang="en" style="display: none;">Impossible</span>
                                     </a>
                                 </div>
                             </li>
                             <li class="dropdown">
                                 <a href="players.html" class="dropdown-toggle" onclick="toggleDropdown(event)">
-                                    Топ игроков <img src="assets/arrow.png" alt="▼" class="dropdown-arrow">
+                                    <span data-lang="ru">Топ игроков</span>
+                                    <span data-lang="en" style="display: none;">Top Players</span>
+                                    <img src="assets/arrow.png" alt="▼" class="dropdown-arrow">
                                 </a>
                                 <div class="dropdown-menu players-dropdown-menu">
                                     <a href="https://docs.google.com/forms/d/e/1FAIpQLSceFzm37tUw0B5t6h3L3U5alQJ5P41F1uZEeC3DaVdDXbNmrQ/viewform?usp=dialog" class="request-btn">
-                                        Отправить реквест
+                                        <img src="assets/request-icon.png" alt="📝" class="btn-icon">
+                                        <span data-lang="ru">Отправить реквест</span>
+                                        <span data-lang="en" style="display: none;">Submit Request</span>
                                     </a>
                                 </div>
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" onclick="toggleDropdown(event)">
-                                    Прочее <img src="assets/arrow.png" alt="▼" class="dropdown-arrow">
+                                    <span data-lang="ru">Прочее</span>
+                                    <span data-lang="en" style="display: none;">Other</span>
+                                    <img src="assets/arrow.png" alt="▼" class="dropdown-arrow">
                                 </a>
                                 <div class="dropdown-menu others-dropdown-menu">
-                                    <a href="news.html">Новости</a>
-                                    <a href="contacts.html">Контакты</a>
-                                    <a href="rules.html">Правила</a>
+                                    <a href="news.html">
+                                        <img src="assets/news-icon.png" alt="📰" class="dropdown-menu-icon">
+                                        <span data-lang="ru">Новости</span>
+                                        <span data-lang="en" style="display: none;">News</span>
+                                    </a>
+                                    <a href="contacts.html">
+                                        <img src="assets/contacts-icon.png" alt="📞" class="dropdown-menu-icon">
+                                        <span data-lang="ru">Контакты</span>
+                                        <span data-lang="en" style="display: none;">Contacts</span>
+                                    </a>
+                                    <a href="rules.html">
+                                        <img src="assets/rules-icon.png" alt="📜" class="dropdown-menu-icon">
+                                        <span data-lang="ru">Правила</span>
+                                        <span data-lang="en" style="display: none;">Rules</span>
+                                    </a>
                                 </div>
                             </li>
                         </ul>
@@ -1412,37 +1475,59 @@
             <ul>
                 <li>
                     <a href="index.html" class="active dropdown-toggle" onclick="toggleMobileDropdown(event, 'main')">
-                        Главная <img src="assets/arrow.png" alt="▼" class="dropdown-arrow">
+                        <span data-lang="ru">Главная</span>
+                        <span data-lang="en" style="display: none;">Home</span>
+                        <img src="assets/arrow.png" alt="▼" class="dropdown-arrow">
                     </a>
                     <div class="mobile-dropdown" id="mobileDropdownMain">
                         <a href="classic.html" onclick="closeMobileMenu()">
                             <img src="assets/classic-icon.png" alt="📜" class="dropdown-menu-icon">
-                            Классический
+                            <span data-lang="ru">Классический</span>
+                            <span data-lang="en" style="display: none;">Classic</span>
                         </a>
                         <a href="impossible.html" onclick="closeMobileMenu()">
                             <img src="assets/impossible-icon.png" alt="🔥" class="dropdown-menu-icon">
-                            Импассбл
+                            <span data-lang="ru">Невозможный</span>
+                            <span data-lang="en" style="display: none;">Impossible</span>
                         </a>
                     </div>
                 </li>
                 <li>
                     <a href="players.html" class="dropdown-toggle" onclick="toggleMobileDropdown(event, 'players')">
-                        Топ игроков <img src="assets/arrow.png" alt="▼" class="dropdown-arrow">
+                        <span data-lang="ru">Топ игроков</span>
+                        <span data-lang="en" style="display: none;">Top Players</span>
+                        <img src="assets/arrow.png" alt="▼" class="dropdown-arrow">
                     </a>
                     <div class="mobile-dropdown" id="mobileDropdownPlayers">
                         <a href="https://docs.google.com/forms/d/e/1FAIpQLSceFzm37tUw0B5t6h3L3U5alQJ5P41F1uZEeC3DaVdDXbNmrQ/viewform?usp=dialog" class="request-btn" onclick="closeMobileMenu()">
-                            Отправить реквест
+                            <img src="assets/request-icon.png" alt="📝" class="btn-icon">
+                            <span data-lang="ru">Отправить реквест</span>
+                            <span data-lang="en" style="display: none;">Submit Request</span>
                         </a>
                     </div>
                 </li>
                 <li>
                     <a href="#" class="dropdown-toggle" onclick="toggleMobileDropdown(event, 'others')">
-                        Прочее <img src="assets/arrow.png" alt="▼" class="dropdown-arrow">
+                        <span data-lang="ru">Прочее</span>
+                        <span data-lang="en" style="display: none;">Other</span>
+                        <img src="assets/arrow.png" alt="▼" class="dropdown-arrow">
                     </a>
                     <div class="mobile-dropdown" id="mobileDropdownOthers">
-                        <a href="news.html" onclick="closeMobileMenu()">Новости</a>
-                        <a href="contacts.html" onclick="closeMobileMenu()">Контакты</a>
-                        <a href="rules.html" onclick="closeMobileMenu()">Правила</a>
+                        <a href="news.html" onclick="closeMobileMenu()">
+                            <img src="assets/news-icon.png" alt="📰" class="dropdown-menu-icon">
+                            <span data-lang="ru">Новости</span>
+                            <span data-lang="en" style="display: none;">News</span>
+                        </a>
+                        <a href="contacts.html" onclick="closeMobileMenu()">
+                            <img src="assets/contacts-icon.png" alt="📞" class="dropdown-menu-icon">
+                            <span data-lang="ru">Контакты</span>
+                            <span data-lang="en" style="display: none;">Contacts</span>
+                        </a>
+                        <a href="rules.html" onclick="closeMobileMenu()">
+                            <img src="assets/rules-icon.png" alt="📜" class="dropdown-menu-icon">
+                            <span data-lang="ru">Правила</span>
+                            <span data-lang="en" style="display: none;">Rules</span>
+                        </a>
                     </div>
                 </li>
             </ul>
@@ -1453,7 +1538,8 @@
     <section class="hero">
         <div class="container">
             <h1>Demon List</h1>
-            <p>Рейтинг самых сложных уровней в Geometry Dash. Откройте для себя самые безумные демоны, которые когда-либо были созданы.</p>
+            <p data-lang="ru">Рейтинг самых сложных уровней в Geometry Dash. Откройте для себя самые безумные демоны, которые когда-либо были созданы.</p>
+            <p data-lang="en" style="display: none;">Rating of the most difficult levels in Geometry Dash. Discover the craziest demons ever created.</p>
         </div>
     </section>
     
@@ -1462,7 +1548,10 @@
             <div class="search-container">
                 <div class="search-input-container">
                     <img src="assets/search.png" alt="🔍" class="search-icon">
-                    <input type="text" id="searchInput" class="search-input" placeholder="Поиск демонов по названию или создателю...">
+                    <input type="text" id="searchInput" class="search-input" 
+                           data-placeholder-ru="Поиск демонов по названию или создателю..."
+                           data-placeholder-en="Search demons by name or creator..."
+                           placeholder="Поиск демонов по названию или создателю...">
                 </div>
                 <div class="search-results" id="searchResults"></div>
             </div>
@@ -1472,17 +1561,21 @@
     <section class="demon-list">
         <div class="container">
             <div class="list-header">
-                <h2>Топ Демонов</h2>
-                <p>Самые сложные уровни, отсортированные по рейтингу сложности. Нажмите на демона для подробной информации.</p>
+                <h2 data-lang="ru">Топ Демонов</h2>
+                <h2 data-lang="en" style="display: none;">Top Demons</h2>
+                <p data-lang="ru">Самые сложные уровни, отсортированные по рейтингу сложности. Нажмите на демона для подробной информации.</p>
+                <p data-lang="en" style="display: none;">The most difficult levels, sorted by difficulty rating. Click on a demon for detailed information.</p>
             </div>
 
             <button class="refresh-btn" onclick="refreshData()">
                 <img src="assets/update.png" alt="🔄">
-                Обновить список
+                <span data-lang="ru">Обновить список</span>
+                <span data-lang="en" style="display: none;">Refresh List</span>
             </button>
             
             <div id="syncStatus" class="sync-status">
-                Загрузка данных...
+                <span data-lang="ru">Загрузка данных...</span>
+                <span data-lang="en" style="display: none;">Loading data...</span>
             </div>
 
             <div id="errorContainer"></div>
@@ -1497,34 +1590,109 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>Geometry Dash Demon List</h3>
-                    <p>Неофициальный рейтинг самых сложных уровней в Geometry Dash. Поддерживается сообществом игроков.</p>
+                    <p data-lang="ru">Неофициальный рейтинг самых сложных уровней в Geometry Dash. Поддерживается сообществом игроков.</p>
+                    <p data-lang="en" style="display: none;">Unofficial rating of the most difficult levels in Geometry Dash. Supported by the player community.</p>
                 </div>
                 <div class="footer-section">
-                    <h3>Списки</h3>
-                    <a href="classic.html">Классический список</a>
-                    <a href="impossible.html">Импассбл список</a>
-                    <a href="players.html">Топ игроков</a>
+                    <h3 data-lang="ru">Списки</h3>
+                    <h3 data-lang="en" style="display: none;">Lists</h3>
+                    <a href="classic.html">
+                        <span data-lang="ru">Классический список</span>
+                        <span data-lang="en" style="display: none;">Classic List</span>
+                    </a>
+                    <a href="impossible.html">
+                        <span data-lang="ru">Невозможный список</span>
+                        <span data-lang="en" style="display: none;">Impossible List</span>
+                    </a>
+                    <a href="players.html">
+                        <span data-lang="ru">Топ игроков</span>
+                        <span data-lang="en" style="display: none;">Top Players</span>
+                    </a>
                 </div>
                 <div class="footer-section">
-                    <h3>Информация</h3>
-                    <a href="rules.html">Правила списка</a>
-                    <a href="news.html">Новости и обновления</a>
-                    <a href="contacts.html">Контакты</a>
+                    <h3 data-lang="ru">Информация</h3>
+                    <h3 data-lang="en" style="display: none;">Information</h3>
+                    <a href="rules.html">
+                        <span data-lang="ru">Правила списка</span>
+                        <span data-lang="en" style="display: none;">List Rules</span>
+                    </a>
+                    <a href="news.html">
+                        <span data-lang="ru">Новости и обновления</span>
+                        <span data-lang="en" style="display: none;">News & Updates</span>
+                    </a>
+                    <a href="contacts.html">
+                        <span data-lang="ru">Контакты</span>
+                        <span data-lang="en" style="display: none;">Contacts</span>
+                    </a>
                 </div>
                 <div class="footer-section">
-                    <h3>Сообщество</h3>
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSceFzm37tUw0B5t6h3L3U5alQJ5P41F1uZEeC3DaVdDXbNmrQ/viewform?usp=dialog">Отправить реквест</a>
-                    <a href="#">Discord сервер</a>
-                    <a href="#">Группа VK</a>
+                    <h3 data-lang="ru">Сообщество</h3>
+                    <h3 data-lang="en" style="display: none;">Community</h3>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSceFzm37tUw0B5t6h3L3U5alQJ5P41F1uZEeC3DaVdDXbNmrQ/viewform?usp=dialog">
+                        <span data-lang="ru">Отправить реквест</span>
+                        <span data-lang="en" style="display: none;">Submit Request</span>
+                    </a>
+                    <a href="#">
+                        <span data-lang="ru">Discord сервер</span>
+                        <span data-lang="en" style="display: none;">Discord Server</span>
+                    </a>
+                    <a href="#">
+                        <span data-lang="ru">Группа VK</span>
+                        <span data-lang="en" style="display: none;">VK Group</span>
+                    </a>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2025 Geometry Dash Demon List. Неофициальный фанатский проект. Все права на Geometry Dash принадлежат RobTop Games.</p>
+                <p>&copy; 2025 Geometry Dash Demon List. 
+                   <span data-lang="ru">Неофициальный фанатский проект. Все права на Geometry Dash принадлежат RobTop Games.</span>
+                   <span data-lang="en" style="display: none;">Unofficial fan project. All rights to Geometry Dash belong to RobTop Games.</span>
+                </p>
             </div>
         </div>
     </footer>
 
     <script>
+        // ========== ПЕРЕКЛЮЧЕНИЕ ЯЗЫКА ==========
+        function toggleLanguage() {
+            const currentLang = localStorage.getItem('language') || 'ru';
+            const newLang = currentLang === 'ru' ? 'en' : 'ru';
+            
+            localStorage.setItem('language', newLang);
+            updateLanguage(newLang);
+            
+            const langButton = document.getElementById('languageToggle');
+            langButton.textContent = newLang === 'ru' ? 'EN' : 'RU';
+        }
+        
+        function loadLanguage() {
+            const savedLang = localStorage.getItem('language') || 'ru';
+            updateLanguage(savedLang);
+            
+            const langButton = document.getElementById('languageToggle');
+            langButton.textContent = savedLang === 'ru' ? 'EN' : 'RU';
+        }
+        
+        function updateLanguage(lang) {
+            // Показываем/скрываем элементы по языку
+            document.querySelectorAll('[data-lang]').forEach(element => {
+                if (element.getAttribute('data-lang') === lang) {
+                    element.style.display = '';
+                } else {
+                    element.style.display = 'none';
+                }
+            });
+            
+            // Обновляем плейсхолдеры
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.placeholder = searchInput.getAttribute(`data-placeholder-${lang}`);
+            }
+            
+            // Обновляем иконки в зависимости от языка
+            updateIconColors(document.documentElement.getAttribute('data-theme') || 'light');
+        }
+
+        // ========== ВЫПАДАЮЩИЕ МЕНЮ ==========
         function toggleDropdown(event) {
             event.preventDefault();
             event.stopPropagation();
@@ -1621,6 +1789,7 @@
             }
         });
 
+        // ========== МОБИЛЬНОЕ МЕНЮ ==========
         function toggleMobileMenu() {
             const mobileMenu = document.getElementById('mobileMenu');
             const menuOverlay = document.getElementById('menuOverlay');
@@ -1654,6 +1823,7 @@
             }
         });
         
+        // ========== СМЕНА ТЕМЫ ==========
         function toggleTheme() {
             const currentTheme = document.documentElement.getAttribute('data-theme');
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
@@ -1679,7 +1849,7 @@
         }
         
         function updateIconColors(theme) {
-            const icons = document.querySelectorAll('.dropdown-menu-icon');
+            const icons = document.querySelectorAll('.dropdown-menu-icon, .btn-icon');
             icons.forEach(icon => {
                 if (theme === 'dark') {
                     icon.style.filter = 'brightness(0) invert(1)';
@@ -1689,6 +1859,7 @@
             });
         }
 
+        // ========== ДАННЫЕ ДЕМОНОВ ==========
         let demons = [];
         let filteredDemons = [];
         let imageCache = new Map();
@@ -1736,9 +1907,11 @@
         
         function displaySearchResults(results) {
             const searchResults = document.getElementById('searchResults');
+            const currentLang = localStorage.getItem('language') || 'ru';
+            const noResultsText = currentLang === 'ru' ? 'Демоны не найдены' : 'Demons not found';
             
             if (results.length === 0) {
-                searchResults.innerHTML = '<div class="no-results">Демоны не найдены</div>';
+                searchResults.innerHTML = `<div class="no-results">${noResultsText}</div>`;
                 searchResults.style.display = 'block';
                 return;
             }
@@ -1809,7 +1982,10 @@
                     filteredDemons = [...demons];
                     
                     console.log('✅ Демоны загружены:', demons.length);
-                    updateSyncStatus(`Список демонов загружен`);
+                    
+                    const currentLang = localStorage.getItem('language') || 'ru';
+                    const statusText = currentLang === 'ru' ? 'Список демонов загружен' : 'Demon list loaded';
+                    updateSyncStatus(statusText);
                     
                     renderDemons();
                     loadImagesAsync();
@@ -1822,7 +1998,11 @@
             } catch (error) {
                 console.error('❌ Ошибка загрузки демонов:', error);
                 showError(error.message);
-                updateSyncStatus('Ошибка загрузки данных');
+                
+                const currentLang = localStorage.getItem('language') || 'ru';
+                const statusText = currentLang === 'ru' ? 'Ошибка загрузки данных' : 'Error loading data';
+                updateSyncStatus(statusText);
+                
                 return false;
             }
         }
@@ -1871,23 +2051,27 @@
             const statusElement = document.getElementById('syncStatus');
             if (statusElement) {
                 statusElement.textContent = message;
-                statusElement.className = 'sync-status ' + (message.includes('загружен') ? 'synced' : '');
+                statusElement.className = 'sync-status ' + (message.includes('загружен') || message.includes('loaded') ? 'synced' : '');
             }
         }
 
         function renderDemons() {
             const demonList = document.getElementById('demonList');
+            const currentLang = localStorage.getItem('language') || 'ru';
             
             if (!demonList) return;
             
             const fragment = document.createDocumentFragment();
             
             if (filteredDemons.length === 0) {
+                const noResultsTitle = currentLang === 'ru' ? 'Демоны не найдены' : 'Demons not found';
+                const noResultsDesc = currentLang === 'ru' ? 'Попробуйте изменить поисковый запрос' : 'Try changing your search query';
+                
                 demonList.innerHTML = `
                     <div style="text-align: center; padding: 3rem; color: var(--text-secondary);">
                         <div style="font-size: 2.5rem; margin-bottom: 1rem;">🔍</div>
-                        <div style="font-size: 1.2rem; margin-bottom: 0.8rem; font-weight: 700;">Демоны не найдены</div>
-                        <div style="font-weight: 500; font-size: 1rem;">Попробуйте изменить поисковый запрос</div>
+                        <div style="font-size: 1.2rem; margin-bottom: 0.8rem; font-weight: 700;">${noResultsTitle}</div>
+                        <div style="font-weight: 500; font-size: 1rem;">${noResultsDesc}</div>
                     </div>
                 `;
                 return;
@@ -1960,8 +2144,10 @@
             });
         }
 
+        // ========== ИНИЦИАЛИЗАЦИЯ ==========
         async function initializeData() {
             loadTheme();
+            loadLanguage();
             
             const dataPromise = loadDataFromJSON();
             
@@ -2009,6 +2195,7 @@
         window.refreshData = refreshData;
         window.openDemonPage = openDemonPage;
         window.toggleTheme = toggleTheme;
+        window.toggleLanguage = toggleLanguage;
         window.toggleMobileMenu = toggleMobileMenu;
         window.closeMobileMenu = closeMobileMenu;
         window.handleImageError = handleImageError;
