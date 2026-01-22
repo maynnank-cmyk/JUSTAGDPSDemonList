@@ -76,6 +76,12 @@
             padding-bottom: 0.5rem;
         }
         
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        
         .logo {
             font-size: 1.4rem;
             font-weight: 800;
@@ -92,6 +98,12 @@
         .logo:hover {
             background: rgba(255, 255, 255, 0.1);
             transform: translateY(-1px);
+        }
+        
+        .cube-icon {
+            width: 32px;
+            height: 32px;
+            filter: brightness(0) invert(1);
         }
         
         .header-controls {
@@ -282,6 +294,10 @@
             opacity: 0.7;
         }
 
+        [data-theme="dark"] .dropdown-menu-icon {
+            filter: brightness(0) invert(1);
+        }
+
         .dropdown-menu a:hover .dropdown-menu-icon {
             opacity: 1;
             transform: scale(1.1);
@@ -311,6 +327,10 @@
 
         .players-dropdown-menu {
             min-width: 180px;
+        }
+
+        .others-dropdown-menu {
+            min-width: 200px;
         }
 
         .menu-toggle {
@@ -374,11 +394,23 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
+        .mobile-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
         .mobile-logo {
             color: white;
             font-size: 1.3rem;
             font-weight: 800;
             text-decoration: none;
+        }
+
+        .mobile-cube-icon {
+            width: 28px;
+            height: 28px;
+            filter: brightness(0) invert(1);
         }
 
         .mobile-close {
@@ -467,6 +499,9 @@
             padding-left: 2.5rem !important;
             font-size: 1rem !important;
             color: var(--text-secondary) !important;
+            display: flex !important;
+            align-items: center;
+            gap: 0.8rem;
         }
 
         .mobile-dropdown a:hover {
@@ -558,9 +593,28 @@
             position: relative;
         }
         
+        .search-input-container {
+            position: relative;
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 1.2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            filter: brightness(0) saturate(100%) invert(24%) sepia(9%) saturate(1200%) hue-rotate(170deg) brightness(92%) contrast(87%);
+            pointer-events: none;
+        }
+        
+        [data-theme="dark"] .search-icon {
+            filter: brightness(0) invert(1);
+        }
+        
         .search-input {
             width: 100%;
-            padding: 1rem 1.5rem;
+            padding: 1rem 1.5rem 1rem 3.5rem;
             font-size: 1rem;
             border: 2px solid var(--border-color);
             border-radius: 12px;
@@ -1122,6 +1176,16 @@
                 height: 18px;
                 left: 0.8rem;
             }
+
+            .search-input {
+                padding: 1rem 1.5rem 1rem 3rem;
+            }
+
+            .search-icon {
+                left: 1rem;
+                width: 18px;
+                height: 18px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1136,6 +1200,11 @@
             
             .logo {
                 font-size: 1.1rem;
+            }
+            
+            .cube-icon {
+                width: 28px;
+                height: 28px;
             }
             
             .hero {
@@ -1195,6 +1264,16 @@
                 height: 16px;
                 left: 0.7rem;
             }
+
+            .search-input {
+                padding: 0.9rem 1.2rem 0.9rem 2.8rem;
+            }
+
+            .search-icon {
+                left: 0.9rem;
+                width: 16px;
+                height: 16px;
+            }
         }
 
         @media (max-width: 360px) {
@@ -1212,6 +1291,11 @@
             
             .demon-name {
                 font-size: 0.9rem;
+            }
+            
+            .cube-icon {
+                width: 24px;
+                height: 24px;
             }
         }
 
@@ -1259,7 +1343,10 @@
     <header>
         <div class="container">
             <div class="header-content">
-                <a href="index.html" class="logo">Just a GDPS</a>
+                <div class="logo-container">
+                    <img src="assets/cube.png" alt="Cube" class="cube-icon">
+                    <a href="index.html" class="logo">Just a GDPS</a>
+                </div>
                 <div class="header-controls">
                     <button class="theme-toggle" onclick="toggleTheme()">
                         <img src="assets/day-and-night.png" alt="Сменить тему" id="theme-icon">
@@ -1296,9 +1383,16 @@
                                     </a>
                                 </div>
                             </li>
-                            <li><a href="news.html">Новости</a></li>
-                            <li><a href="contacts.html">Контакты</a></li>
-                            <li><a href="rules.html">Правила</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" onclick="toggleDropdown(event)">
+                                    Прочее <img src="assets/arrow.png" alt="▼" class="dropdown-arrow">
+                                </a>
+                                <div class="dropdown-menu others-dropdown-menu">
+                                    <a href="news.html">Новости</a>
+                                    <a href="contacts.html">Контакты</a>
+                                    <a href="rules.html">Правила</a>
+                                </div>
+                            </li>
                         </ul>
                     </nav>
                 </div>
@@ -1308,22 +1402,31 @@
 
     <div class="mobile-menu" id="mobileMenu">
         <div class="mobile-header">
-            <a href="index.html" class="mobile-logo">Just a GDPS</a>
+            <div class="mobile-logo-container">
+                <img src="assets/cube.png" alt="Cube" class="mobile-cube-icon">
+                <a href="index.html" class="mobile-logo">Just a GDPS</a>
+            </div>
             <button class="mobile-close" onclick="toggleMobileMenu()">×</button>
         </div>
         <nav>
             <ul>
                 <li>
-                    <a href="index.html" class="active dropdown-toggle" onclick="toggleMobileDropdown(event)">
+                    <a href="index.html" class="active dropdown-toggle" onclick="toggleMobileDropdown(event, 'main')">
                         Главная <img src="assets/arrow.png" alt="▼" class="dropdown-arrow">
                     </a>
-                    <div class="mobile-dropdown" id="mobileDropdown">
-                        <a href="classic.html" onclick="closeMobileMenu()">Классический</a>
-                        <a href="impossible.html" onclick="closeMobileMenu()">Импассбл</a>
+                    <div class="mobile-dropdown" id="mobileDropdownMain">
+                        <a href="classic.html" onclick="closeMobileMenu()">
+                            <img src="assets/classic-icon.png" alt="📜" class="dropdown-menu-icon">
+                            Классический
+                        </a>
+                        <a href="impossible.html" onclick="closeMobileMenu()">
+                            <img src="assets/impossible-icon.png" alt="🔥" class="dropdown-menu-icon">
+                            Импассбл
+                        </a>
                     </div>
                 </li>
                 <li>
-                    <a href="players.html" class="dropdown-toggle" onclick="toggleMobileDropdownPlayers(event)">
+                    <a href="players.html" class="dropdown-toggle" onclick="toggleMobileDropdown(event, 'players')">
                         Топ игроков <img src="assets/arrow.png" alt="▼" class="dropdown-arrow">
                     </a>
                     <div class="mobile-dropdown" id="mobileDropdownPlayers">
@@ -1332,9 +1435,16 @@
                         </a>
                     </div>
                 </li>
-                <li><a href="news.html" onclick="closeMobileMenu()">Новости</a></li>
-                <li><a href="contacts.html" onclick="closeMobileMenu()">Контакты</a></li>
-                <li><a href="rules.html" onclick="closeMobileMenu()">Правила</a></li>
+                <li>
+                    <a href="#" class="dropdown-toggle" onclick="toggleMobileDropdown(event, 'others')">
+                        Прочее <img src="assets/arrow.png" alt="▼" class="dropdown-arrow">
+                    </a>
+                    <div class="mobile-dropdown" id="mobileDropdownOthers">
+                        <a href="news.html" onclick="closeMobileMenu()">Новости</a>
+                        <a href="contacts.html" onclick="closeMobileMenu()">Контакты</a>
+                        <a href="rules.html" onclick="closeMobileMenu()">Правила</a>
+                    </div>
+                </li>
             </ul>
         </nav>
     </div>
@@ -1350,7 +1460,10 @@
     <section class="search-section">
         <div class="container">
             <div class="search-container">
-                <input type="text" id="searchInput" class="search-input" placeholder="🔍 Поиск демонов по названию или создателю...">
+                <div class="search-input-container">
+                    <img src="assets/search.png" alt="🔍" class="search-icon">
+                    <input type="text" id="searchInput" class="search-input" placeholder="Поиск демонов по названию или создателю...">
+                </div>
                 <div class="search-results" id="searchResults"></div>
             </div>
         </div>
@@ -1433,32 +1546,27 @@
             }
         }
 
-        function toggleMobileDropdown(event) {
+        function toggleMobileDropdown(event, type) {
             event.preventDefault();
             event.stopPropagation();
             
-            const mobileDropdown = document.getElementById('mobileDropdown');
+            const mobileDropdown = document.getElementById(`mobileDropdown${type.charAt(0).toUpperCase() + type.slice(1)}`);
             const isActive = mobileDropdown.classList.contains('active');
             const arrow = event.currentTarget.querySelector('.dropdown-arrow');
             
-            if (!isActive) {
-                mobileDropdown.classList.add('active');
-                arrow.style.transform = 'rotate(180deg)';
-                event.currentTarget.classList.add('active');
-            } else {
-                mobileDropdown.classList.remove('active');
-                arrow.style.transform = 'rotate(0deg)';
-                event.currentTarget.classList.remove('active');
-            }
-        }
-
-        function toggleMobileDropdownPlayers(event) {
-            event.preventDefault();
-            event.stopPropagation();
+            document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
+                if (dropdown.id !== mobileDropdown.id) {
+                    dropdown.classList.remove('active');
+                }
+            });
             
-            const mobileDropdown = document.getElementById('mobileDropdownPlayers');
-            const isActive = mobileDropdown.classList.contains('active');
-            const arrow = event.currentTarget.querySelector('.dropdown-arrow');
+            document.querySelectorAll('.mobile-menu .dropdown-toggle').forEach(btn => {
+                if (btn !== event.currentTarget) {
+                    btn.classList.remove('active');
+                    const otherArrow = btn.querySelector('.dropdown-arrow');
+                    if (otherArrow) otherArrow.style.transform = 'rotate(0deg)';
+                }
+            });
             
             if (!isActive) {
                 mobileDropdown.classList.add('active');
@@ -1529,6 +1637,15 @@
             mobileMenu.classList.remove('active');
             menuOverlay.classList.remove('active');
             document.body.style.overflow = '';
+            
+            document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
+                dropdown.classList.remove('active');
+            });
+            document.querySelectorAll('.mobile-menu .dropdown-toggle').forEach(btn => {
+                btn.classList.remove('active');
+                const arrow = btn.querySelector('.dropdown-arrow');
+                if (arrow) arrow.style.transform = 'rotate(0deg)';
+            });
         }
 
         document.querySelectorAll('.mobile-menu a').forEach(link => {
@@ -1546,6 +1663,8 @@
             
             const themeIcon = document.getElementById('theme-icon');
             themeIcon.style.transform = newTheme === 'dark' ? 'rotate(180deg)' : 'rotate(0deg)';
+            
+            updateIconColors(newTheme);
         }
         
         function loadTheme() {
@@ -1555,6 +1674,19 @@
             const themeIcon = document.getElementById('theme-icon');
             themeIcon.style.transition = 'transform 0.5s ease';
             themeIcon.style.transform = savedTheme === 'dark' ? 'rotate(180deg)' : 'rotate(0deg)';
+            
+            updateIconColors(savedTheme);
+        }
+        
+        function updateIconColors(theme) {
+            const icons = document.querySelectorAll('.dropdown-menu-icon');
+            icons.forEach(icon => {
+                if (theme === 'dark') {
+                    icon.style.filter = 'brightness(0) invert(1)';
+                } else {
+                    icon.style.filter = 'none';
+                }
+            });
         }
 
         let demons = [];
@@ -1677,7 +1809,7 @@
                     filteredDemons = [...demons];
                     
                     console.log('✅ Демоны загружены:', demons.length);
-                    updateSyncStatus(`Загружено ${demons.length} демонов`);
+                    updateSyncStatus(`Список демонов загружен`);
                     
                     renderDemons();
                     loadImagesAsync();
@@ -1739,7 +1871,7 @@
             const statusElement = document.getElementById('syncStatus');
             if (statusElement) {
                 statusElement.textContent = message;
-                statusElement.className = 'sync-status ' + (message.includes('Загружено') ? 'synced' : '');
+                statusElement.className = 'sync-status ' + (message.includes('загружен') ? 'synced' : '');
             }
         }
 
@@ -1882,7 +2014,6 @@
         window.handleImageError = handleImageError;
         window.toggleDropdown = toggleDropdown;
         window.toggleMobileDropdown = toggleMobileDropdown;
-        window.toggleMobileDropdownPlayers = toggleMobileDropdownPlayers;
 
         document.addEventListener('DOMContentLoaded', function() {
             initializeData();
