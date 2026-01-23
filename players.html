@@ -726,8 +726,8 @@
 
         /* Удалена hero section и расширен основной контент */
         .main-content {
-            padding: 1.5rem 0;
-            min-height: calc(100vh - 160px);
+            padding: 1rem 0; /* Уменьшил отступ сверху */
+            min-height: calc(100vh - 140px); /* Уменьшил высоту для более компактного вида */
             display: flex;
             flex-direction: column;
         }
@@ -740,6 +740,7 @@
             flex: 1;
             max-height: none;
             height: auto;
+            min-height: 600px; /* Добавил минимальную высоту */
         }
 
         @media (max-width: 992px) {
@@ -762,7 +763,7 @@
             display: flex;
             flex-direction: column;
             height: 100%;
-            max-height: 650px;
+            max-height: 680px; /* Увеличил высоту */
             position: relative;
             overflow: hidden;
         }
@@ -1056,7 +1057,7 @@
             display: flex;
             flex-direction: column;
             height: 100%;
-            max-height: 650px;
+            max-height: 680px; /* Увеличил высоту */
             position: relative;
             overflow: hidden;
         }
@@ -1516,6 +1517,7 @@
             .widget-container {
                 grid-template-columns: 1fr;
                 gap: 1rem;
+                min-height: auto;
             }
 
             .players-widget, .details-widget {
@@ -1744,14 +1746,17 @@
                                     <a href="news.html">
                                         <img src="assets/news-icon.png" alt="📰" class="dropdown-menu-icon">
                                         <span data-lang="ru">Новости</span>
+                                        <span data-lang="en" style="display: none;">News</span>
                                     </a>
                                     <a href="contacts.html">
                                         <img src="assets/contacts-icon.png" alt="📞" class="dropdown-menu-icon">
                                         <span data-lang="ru">Контакты</span>
+                                        <span data-lang="en" style="display: none;">Contacts</span>
                                     </a>
                                     <a href="rules.html">
                                         <img src="assets/rules-icon.png" alt="📜" class="dropdown-menu-icon">
                                         <span data-lang="ru">Правила</span>
+                                        <span data-lang="en" style="display: none;">Rules</span>
                                     </a>
                                 </div>
                             </li>
