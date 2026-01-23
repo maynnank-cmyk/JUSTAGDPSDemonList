@@ -7,6 +7,14 @@
       "avatarImage": "images/vladgmd.png", 
       "role": "Создатель листа",
       "roleClass": "role-leader"
+    },
+    {
+      "id": "piglen7",
+      "name": "Piglen7",
+      "avatar": "P",
+      "avatarImage": "", 
+      "role": "Модератор Листа",
+      "roleClass": "role-leader"
     }
   ]
 }
