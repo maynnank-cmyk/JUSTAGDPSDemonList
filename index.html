@@ -391,8 +391,18 @@ header {
     filter: brightness(0) invert(1);
 }
 
+/* Классическая иконка на темной теме - белая */
+.dropdown-menu a img[src="assets/classic-icon.png"] {
+    filter: brightness(0) invert(1);
+}
+
 /* Иконки в выпадающем меню для светлой темы - темные */
 [data-theme="light"] .dropdown-menu-icon {
+    filter: none;
+}
+
+/* Классическая иконка на светлой теме - темная (оставляем как есть) */
+[data-theme="light"] .dropdown-menu a img[src="assets/classic-icon.png"] {
     filter: none;
 }
 
@@ -778,8 +788,9 @@ header {
     line-height: 1.8;
 }
 
-.search-section {
-    padding: 2rem 0;
+/* УДАЛЕН section.search-section */
+.search-container-wrapper {
+    padding: 1.5rem 0;
     background: transparent;
 }
 
@@ -787,10 +798,13 @@ header {
     max-width: 600px;
     margin: 0 auto;
     position: relative;
+    display: flex;
+    gap: 0.8rem;
 }
 
 .search-input-container {
     position: relative;
+    flex: 1;
 }
 
 /* ИСПРАВЛЕННАЯ ИКОНКА ПОИСКА */
@@ -829,6 +843,37 @@ header {
     box-shadow: 0 0 0 3px rgba(255, 71, 87, 0.25);
     transform: translateY(-1px);
     background: var(--bg-tertiary);
+}
+
+/* КНОПКА ПОИСКА */
+.search-btn {
+    background: linear-gradient(135deg, var(--accent-red), var(--accent-purple));
+    border: none;
+    border-radius: 12px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--card-shadow);
+    flex-shrink: 0;
+}
+
+.search-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 71, 87, 0.3);
+}
+
+.search-btn:active {
+    transform: translateY(0);
+}
+
+.search-btn img {
+    width: 22px;
+    height: 22px;
+    filter: brightness(0) invert(1);
 }
 
 .search-results {
@@ -1424,6 +1469,16 @@ footer {
         width: 18px;
         height: 18px;
     }
+    
+    .search-container {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+    
+    .search-btn {
+        width: 100%;
+        height: 50px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1795,7 +1850,8 @@ html {
         </div>
     </section>
     
-    <section class="search-section">
+    <!-- УДАЛЕН section.search-section и заменен на div -->
+    <div class="search-container-wrapper">
         <div class="container">
             <div class="search-container">
                 <div class="search-input-container">
@@ -1805,10 +1861,13 @@ html {
                            data-placeholder-en="Search demons by name or creator..."
                            placeholder="Поиск демонов по названию или создателю...">
                 </div>
+                <button class="search-btn" onclick="performSearch()">
+                    <img src="assets/search.png" alt="Поиск">
+                </button>
                 <div class="search-results" id="searchResults"></div>
             </div>
         </div>
-    </section>
+    </div>
     
     <section class="demon-list">
         <div class="container">
@@ -1951,18 +2010,32 @@ html {
             
             const dropdown = event.currentTarget.parentElement;
             const dropdownMenu = dropdown.querySelector('.dropdown-menu');
+            const arrow = event.currentTarget.querySelector('.dropdown-arrow');
             const isActive = dropdownMenu.classList.contains('active');
             
+            // Закрываем все другие выпадающие меню
             document.querySelectorAll('.dropdown-menu').forEach(menu => {
-                menu.classList.remove('active');
+                if (menu !== dropdownMenu) {
+                    menu.classList.remove('active');
+                }
             });
+            
             document.querySelectorAll('.dropdown-toggle').forEach(btn => {
-                btn.classList.remove('active');
+                if (btn !== event.currentTarget) {
+                    btn.classList.remove('active');
+                    const otherArrow = btn.querySelector('.dropdown-arrow');
+                    if (otherArrow) otherArrow.style.transform = 'rotate(0deg)';
+                }
             });
             
             if (!isActive) {
                 dropdownMenu.classList.add('active');
                 event.currentTarget.classList.add('active');
+                if (arrow) arrow.style.transform = 'rotate(180deg)';
+            } else {
+                dropdownMenu.classList.remove('active');
+                event.currentTarget.classList.remove('active');
+                if (arrow) arrow.style.transform = 'rotate(0deg)';
             }
         }
 
@@ -2006,6 +2079,8 @@ html {
                 });
                 document.querySelectorAll('.dropdown-toggle').forEach(btn => {
                     btn.classList.remove('active');
+                    const arrow = btn.querySelector('.dropdown-arrow');
+                    if (arrow) arrow.style.transform = 'rotate(0deg)';
                 });
             }
             
@@ -2028,6 +2103,8 @@ html {
                 });
                 document.querySelectorAll('.dropdown-toggle').forEach(btn => {
                     btn.classList.remove('active');
+                    const arrow = btn.querySelector('.dropdown-arrow');
+                    if (arrow) arrow.style.transform = 'rotate(0deg)';
                 });
                 
                 document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
@@ -2112,6 +2189,27 @@ html {
             });
         }
 
+        // ========== ПОИСК ==========
+        function performSearch() {
+            const searchInput = document.getElementById('searchInput');
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            
+            if (searchTerm.length === 0) {
+                filteredDemons = [...demons];
+                renderDemons();
+                return;
+            }
+            
+            const results = demons.filter(demon => 
+                demon.name.toLowerCase().includes(searchTerm) || 
+                demon.creator.toLowerCase().includes(searchTerm)
+            );
+            
+            displaySearchResults(results);
+            filteredDemons = results;
+            renderDemons();
+        }
+
         // ========== ДАННЫЕ ДЕМОНОВ ==========
         let demons = [];
         let filteredDemons = [];
@@ -2149,6 +2247,13 @@ html {
                 displaySearchResults(results);
                 filteredDemons = results;
                 renderDemons();
+            });
+            
+            // Добавляем обработчик Enter в поле поиска
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
             });
             
             document.addEventListener('click', function(e) {
@@ -2454,6 +2559,7 @@ html {
         window.handleImageError = handleImageError;
         window.toggleDropdown = toggleDropdown;
         window.toggleMobileDropdown = toggleMobileDropdown;
+        window.performSearch = performSearch;
 
         document.addEventListener('DOMContentLoaded', function() {
             initializeData();
@@ -2461,7 +2567,3 @@ html {
     </script>
 </body>
 </html>
-
-
-
-
