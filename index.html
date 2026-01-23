@@ -254,7 +254,7 @@ header {
 
 /* Цвет текста активной страницы */
 .header-controls nav ul li a.active {
-    color: var(--text-primary) !important; /* ИСПРАВЛЕНО */
+    color: var(--text-primary) !important;
 }
 
 .header-controls nav ul li a .dropdown-arrow {
@@ -788,7 +788,7 @@ header {
     line-height: 1.8;
 }
 
-/* УДАЛЕН section.search-section */
+/* УДАЛЕН section и заменен на div */
 .search-container-wrapper {
     padding: 1.5rem 0;
     background: transparent;
@@ -1608,6 +1608,7 @@ footer {
         transform: scale(0.98);
     }
     
+    /* УБРАНА hover логика для десктопа */
     .header-controls nav ul li:hover .dropdown-menu {
         opacity: 0;
         visibility: hidden;
@@ -1850,7 +1851,7 @@ html {
         </div>
     </section>
     
-    <!-- УДАЛЕН section.search-section и заменен на div -->
+    <!-- УДАЛЕН section и заменен на div -->
     <div class="search-container-wrapper">
         <div class="container">
             <div class="search-container">
@@ -2072,6 +2073,7 @@ html {
             }
         }
 
+        // Закрытие меню при клике вне его
         document.addEventListener('click', function(event) {
             if (!event.target.closest('.dropdown')) {
                 document.querySelectorAll('.dropdown-menu').forEach(menu => {
@@ -2096,6 +2098,7 @@ html {
             }
         });
 
+        // Закрытие меню при нажатии Escape
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 document.querySelectorAll('.dropdown-menu').forEach(menu => {
@@ -2178,7 +2181,6 @@ html {
         }
         
         function updateIconColors(theme) {
-            // Обновляем только поисковую иконку, остальные уже имеют нужные фильтры в CSS
             const searchIcons = document.querySelectorAll('.search-icon');
             searchIcons.forEach(icon => {
                 if (theme === 'dark') {
@@ -2511,28 +2513,8 @@ html {
             
             initializeSearch();
             
-            if (window.innerWidth > 768) {
-                const dropdownItems = document.querySelectorAll('.dropdown');
-                dropdownItems.forEach(item => {
-                    item.addEventListener('mouseenter', function() {
-                        const dropdownMenu = this.querySelector('.dropdown-menu');
-                        const dropdownToggle = this.querySelector('.dropdown-toggle');
-                        if (dropdownMenu) {
-                            dropdownMenu.classList.add('active');
-                            dropdownToggle.classList.add('active');
-                        }
-                    });
-                    
-                    item.addEventListener('mouseleave', function() {
-                        const dropdownMenu = this.querySelector('.dropdown-menu');
-                        const dropdownToggle = this.querySelector('.dropdown-toggle');
-                        if (dropdownMenu) {
-                            dropdownMenu.classList.remove('active');
-                            dropdownToggle.classList.remove('active');
-                        }
-                    });
-                });
-            }
+            // УДАЛЕНА логика открытия меню при наведении (hover)
+            // Теперь меню открывается ТОЛЬКО по клику через toggleDropdown
             
             setTimeout(() => {
                 document.querySelectorAll('.demon-row').forEach((row, index) => {
