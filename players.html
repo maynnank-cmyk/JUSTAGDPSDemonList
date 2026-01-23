@@ -724,7 +724,102 @@
             visibility: visible;
         }
 
-        /* Удалена hero section и расширен основной контент */
+        /* НОВАЯ СЕКЦИЯ НАД ВИДЖЕТАМИ */
+        .players-hero {
+            margin: 1.5rem 0 2rem;
+            padding: 2rem;
+            background: rgba(26, 26, 46, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        [data-theme="light"] .players-hero {
+            background: rgba(248, 249, 255, 0.7);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .players-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                rgba(255, 71, 87, 0.1) 0%, 
+                rgba(138, 107, 255, 0.1) 50%, 
+                rgba(46, 213, 115, 0.1) 100%);
+            z-index: -1;
+        }
+
+        .players-hero h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 0.8rem;
+            background: linear-gradient(90deg, var(--accent-red), var(--accent-purple), var(--accent-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .players-hero p {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        .stats-summary {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            min-width: 140px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="light"] .stat-card {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            border-color: var(--accent-purple);
+        }
+
+        .stat-card .number {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--accent-green);
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-card .label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        /* Main Content */
         .main-content {
             padding: 1rem 0;
             min-height: calc(100vh - 140px);
@@ -741,7 +836,7 @@
             max-height: none;
             height: auto;
             min-height: 600px;
-            align-items: start; /* Добавлено: выравнивание по верху */
+            align-items: start;
         }
 
         @media (max-width: 992px) {
@@ -1577,6 +1672,28 @@
                 padding: 0 15px;
             }
 
+            .players-hero {
+                padding: 1.5rem;
+                margin: 1rem 0 1.5rem;
+            }
+
+            .players-hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .stats-summary {
+                gap: 1rem;
+            }
+
+            .stat-card {
+                min-width: 120px;
+                padding: 0.8rem 1rem;
+            }
+
+            .stat-card .number {
+                font-size: 1.5rem;
+            }
+
             .widget-container {
                 gap: 1rem;
             }
@@ -1641,6 +1758,36 @@
         @media (max-width: 480px) {
             .container {
                 padding: 0 12px;
+            }
+
+            .players-hero {
+                padding: 1.2rem;
+                margin: 0.8rem 0 1.2rem;
+            }
+
+            .players-hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .players-hero p {
+                font-size: 0.9rem;
+            }
+
+            .stats-summary {
+                gap: 0.8rem;
+            }
+
+            .stat-card {
+                min-width: 100px;
+                padding: 0.6rem 0.8rem;
+            }
+
+            .stat-card .number {
+                font-size: 1.3rem;
+            }
+
+            .stat-card .label {
+                font-size: 0.75rem;
             }
 
             .players-widget, .details-widget {
@@ -1899,6 +2046,49 @@
 
     <!-- Основной контент -->
     <div class="container">
+        <!-- НОВАЯ СЕКЦИЯ НАД ВИДЖЕТАМИ -->
+        <section class="players-hero">
+            <h1>
+                <span data-lang="ru">Топ игроков</span>
+                <span data-lang="en" style="display: none;">Top Players</span>
+            </h1>
+            <p>
+                <span data-lang="ru">Рейтинг самых опытных игроков нашего сервера. Соревнуйтесь за место в топе, проходя самые сложные демоны!</span>
+                <span data-lang="en" style="display: none;">Ranking of the most experienced players on our server. Compete for a top spot by completing the most difficult demons!</span>
+            </p>
+            
+            <div class="stats-summary" id="statsSummary">
+                <div class="stat-card">
+                    <span class="number" id="totalPlayers">0</span>
+                    <span class="label">
+                        <span data-lang="ru">Игроков</span>
+                        <span data-lang="en" style="display: none;">Players</span>
+                    </span>
+                </div>
+                <div class="stat-card">
+                    <span class="number" id="totalDemons">0</span>
+                    <span class="label">
+                        <span data-lang="ru">Пройдено демонов</span>
+                        <span data-lang="en" style="display: none;">Demons completed</span>
+                    </span>
+                </div>
+                <div class="stat-card">
+                    <span class="number" id="totalPoints">0</span>
+                    <span class="label">
+                        <span data-lang="ru">Всего очков</span>
+                        <span data-lang="en" style="display: none;">Total points</span>
+                    </span>
+                </div>
+                <div class="stat-card">
+                    <span class="number" id="avgPoints">0</span>
+                    <span class="label">
+                        <span data-lang="ru">Среднее</span>
+                        <span data-lang="en" style="display: none;">Average</span>
+                    </span>
+                </div>
+            </div>
+        </section>
+        
         <div class="main-content">
             <div class="widget-container">
                 <!-- Left Widget - Players List -->
@@ -2262,6 +2452,21 @@
             return null;
         }
 
+        // Обновление статистики в верхней секции
+        function updateStatsSummary() {
+            if (players.length === 0) return;
+            
+            const totalPlayers = players.length;
+            const totalDemons = players.reduce((sum, player) => sum + (player.completedDemons ? player.completedDemons.length : 0), 0);
+            const totalPoints = players.reduce((sum, player) => sum + player.totalPoints, 0);
+            const avgPoints = Math.round(totalPoints / totalPlayers);
+            
+            document.getElementById('totalPlayers').textContent = totalPlayers;
+            document.getElementById('totalDemons').textContent = totalDemons;
+            document.getElementById('totalPoints').textContent = totalPoints;
+            document.getElementById('avgPoints').textContent = avgPoints;
+        }
+
         // Поиск
         function initializeSearch() {
             const searchInput = document.getElementById('searchInput');
@@ -2347,6 +2552,7 @@
                     
                     renderPlayersList();
                     updatePlayersCount();
+                    updateStatsSummary();
                     
                     // Выбираем первого игрока по умолчанию
                     if (players.length > 0) {
@@ -2691,8 +2897,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
