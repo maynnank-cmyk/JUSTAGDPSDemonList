@@ -6,39 +6,39 @@
     <title>Impossible List - Just a GDPS</title>
     <style>
 :root {
-    --bg-primary: #0f0a1a;
-    --bg-secondary: #1a1128;
-    --bg-tertiary: #261a38;
+    --bg-primary: #0a1a0a;
+    --bg-secondary: #112811;
+    --bg-tertiary: #1a2e1a;
     --text-primary: #ffffff;
-    --text-secondary: #ccb8ff;
-    --accent-red: #ff3366;
-    --accent-blue: #3366ff;
-    --accent-purple: #9d4eff;
-    --accent-green: #33ff99;
-    --accent-orange: #ff9933;
-    --border-color: #3d2e5a;
+    --text-secondary: #b8ffb8;
+    --accent-red: #ff4d4d;
+    --accent-blue: #4da6ff;
+    --accent-green: #33ff66;
+    --accent-lime: #aaff33;
+    --accent-cyan: #33ffff;
+    --border-color: #2d4d2d;
     --card-shadow: 0 8px 32px rgba(0,0,0,0.4);
-    --header-gradient: linear-gradient(135deg, #ff3366 0%, #9d4eff 50%, #3366ff 100%);
+    --header-gradient: linear-gradient(135deg, #33ff66 0%, #33ffff 100%);
     --dropdown-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    --gradient-bg: linear-gradient(135deg, #0f0a1a 0%, #1a1128 50%, #261a38 100%);
+    --gradient-bg: linear-gradient(135deg, #0a1a0a 0%, #112811 50%, #1a2e1a 100%);
 }
 
 [data-theme="light"] {
-    --bg-primary: #f5f0ff;
-    --bg-secondary: #eae2ff;
-    --bg-tertiary: #ddd4ff;
-    --text-primary: #1a1128;
-    --text-secondary: #5a4a8a;
-    --accent-red: #ff3366;
-    --accent-blue: #3366ff;
-    --accent-purple: #7a3dff;
-    --accent-green: #00cc66;
-    --accent-orange: #ff6600;
-    --border-color: #c5b3ff;
+    --bg-primary: #f0fff0;
+    --bg-secondary: #e0ffe0;
+    --bg-tertiary: #d0ffd0;
+    --text-primary: #1a2e1a;
+    --text-secondary: #5a8a5a;
+    --accent-red: #ff4d4d;
+    --accent-blue: #4da6ff;
+    --accent-green: #00cc44;
+    --accent-lime: #88cc00;
+    --accent-cyan: #00cccc;
+    --border-color: #a3d9a3;
     --card-shadow: 0 8px 32px rgba(0,0,0,0.15);
-    --header-gradient: linear-gradient(135deg, #ff3366 0%, #7a3dff 50%, #3366ff 100%);
+    --header-gradient: linear-gradient(135deg, #00cc44 0%, #00cccc 100%);
     --dropdown-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    --gradient-bg: linear-gradient(135deg, #f5f0ff 0%, #eae2ff 50%, #ddd4ff 100%);
+    --gradient-bg: linear-gradient(135deg, #f0fff0 0%, #e0ffe0 50%, #d0ffd0 100%);
 }
 
 * {
@@ -67,9 +67,9 @@ body::before {
     width: 100%;
     height: 100%;
     background: 
-        radial-gradient(circle at 10% 20%, rgba(157, 78, 255, 0.15) 0%, transparent 20%),
-        radial-gradient(circle at 90% 80%, rgba(255, 51, 102, 0.15) 0%, transparent 20%),
-        radial-gradient(circle at 50% 50%, rgba(51, 102, 255, 0.1) 0%, transparent 30%);
+        radial-gradient(circle at 10% 20%, rgba(51, 255, 102, 0.15) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(51, 255, 255, 0.15) 0%, transparent 20%),
+        radial-gradient(circle at 50% 50%, rgba(77, 166, 255, 0.1) 0%, transparent 30%);
     pointer-events: none;
     z-index: -1;
 }
@@ -227,6 +227,7 @@ header {
     height: auto;
     min-height: unset;
     line-height: normal;
+    cursor: pointer;
 }
 
 .header-controls nav ul li a::before {
@@ -284,11 +285,11 @@ header {
     transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     overflow: hidden;
     backdrop-filter: blur(20px);
-    background: rgba(26, 17, 40, 0.95);
+    background: rgba(10, 26, 10, 0.95);
 }
 
 [data-theme="light"] .dropdown-menu {
-    background: rgba(245, 240, 255, 0.95);
+    background: rgba(240, 255, 240, 0.95);
 }
 
 .dropdown-menu::before {
@@ -326,6 +327,7 @@ header {
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    cursor: pointer;
 }
 
 .dropdown-menu a::before {
@@ -335,7 +337,7 @@ header {
     top: 0;
     height: 100%;
     width: 4px;
-    background: var(--accent-red);
+    background: var(--accent-green);
     transform: scaleY(0);
     transition: transform 0.3s ease;
 }
@@ -350,14 +352,14 @@ header {
 
 .dropdown-menu a:hover {
     background: rgba(255, 255, 255, 0.08);
-    color: var(--accent-red) !important;
+    color: var(--accent-green) !important;
     padding-left: 2rem !important;
 }
 
 .dropdown-menu a.active {
     background: rgba(255, 255, 255, 0.08) !important;
     color: var(--text-primary) !important;
-    border-left: 4px solid var(--accent-red);
+    border-left: 4px solid var(--accent-green);
 }
 
 [data-theme="light"] .dropdown-menu a.active {
@@ -366,7 +368,7 @@ header {
 
 .dropdown-menu a.active:hover {
     background: rgba(255, 255, 255, 0.12) !important;
-    color: var(--accent-red) !important;
+    color: var(--accent-green) !important;
 }
 
 [data-theme="light"] .dropdown-menu a.active:hover {
@@ -431,27 +433,27 @@ header {
 }
 
 .dropdown-request-btn {
-    background: linear-gradient(135deg, var(--accent-red), var(--accent-purple)) !important;
+    background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan)) !important;
     color: white !important;
     border: none !important;
     border-radius: 8px !important;
     margin: 0.8rem !important;
     padding: 1rem 1.5rem !important;
     font-weight: 700 !important;
-    box-shadow: 0 4px 15px rgba(255, 51, 102, 0.4);
+    box-shadow: 0 4px 15px rgba(51, 255, 102, 0.4);
     transition: all 0.3s ease !important;
     animation: pulse 2s infinite;
 }
 
 .dropdown-request-btn:hover {
     transform: translateY(-2px) !important;
-    box-shadow: 0 6px 20px rgba(255, 51, 102, 0.5) !important;
+    box-shadow: 0 6px 20px rgba(51, 255, 102, 0.5) !important;
     animation: none;
 }
 
 @keyframes pulse {
-    0%, 100% { box-shadow: 0 4px 15px rgba(255, 51, 102, 0.4); }
-    50% { box-shadow: 0 4px 25px rgba(255, 51, 102, 0.6); }
+    0%, 100% { box-shadow: 0 4px 15px rgba(51, 255, 102, 0.4); }
+    50% { box-shadow: 0 4px 25px rgba(51, 255, 102, 0.6); }
 }
 
 .btn-icon {
@@ -516,11 +518,11 @@ header {
     display: flex;
     flex-direction: column;
     backdrop-filter: blur(20px);
-    background: rgba(26, 17, 40, 0.95);
+    background: rgba(10, 26, 10, 0.95);
 }
 
 [data-theme="light"] .mobile-menu {
-    background: rgba(245, 240, 255, 0.95);
+    background: rgba(240, 255, 240, 0.95);
 }
 
 .mobile-menu.active {
@@ -607,12 +609,13 @@ header {
     justify-content: space-between;
     transition: all 0.3s ease;
     font-weight: 600;
+    cursor: pointer;
 }
 
 .mobile-menu nav ul li a:hover,
 .mobile-menu nav ul li a.active {
     background: rgba(255, 255, 255, 0.08);
-    color: var(--accent-red);
+    color: var(--accent-green);
     padding-left: 2rem;
 }
 
@@ -623,7 +626,7 @@ header {
 
 .mobile-menu nav ul li a.active {
     color: var(--text-primary) !important;
-    border-left: 4px solid var(--accent-red);
+    border-left: 4px solid var(--accent-green);
 }
 
 .mobile-dropdown {
@@ -660,10 +663,11 @@ header {
     display: flex !important;
     align-items: center;
     gap: 0.8rem;
+    cursor: pointer;
 }
 
 .mobile-dropdown a:hover {
-    color: var(--accent-red) !important;
+    color: var(--accent-green) !important;
     background: rgba(255, 255, 255, 0.08) !important;
 }
 
@@ -674,7 +678,7 @@ header {
 .mobile-dropdown a.active {
     color: var(--text-primary) !important;
     background: rgba(255, 255, 255, 0.08) !important;
-    border-left: 4px solid var(--accent-red);
+    border-left: 4px solid var(--accent-green);
 }
 
 [data-theme="light"] .mobile-dropdown a.active {
@@ -689,7 +693,7 @@ header {
 }
 
 [data-theme="light"] .mobile-menu nav ul li a .dropdown-arrow {
-    filter: brightness(0) saturate(100%) invert(90%) sepia(9%) saturate(1500%) hue-rotate(200deg) brightness(102%) contrast(95%);
+    filter: brightness(0) saturate(100%) invert(90%) sepia(9%) saturate(1500%) hue-rotate(90deg) brightness(102%) contrast(95%);
 }
 
 .mobile-menu nav ul li a.active .dropdown-arrow {
@@ -722,7 +726,7 @@ header {
     border-bottom: 1px solid var(--border-color);
     position: relative;
     overflow: hidden;
-    background: linear-gradient(135deg, rgba(26, 17, 40, 0.95) 0%, rgba(38, 26, 56, 0.95) 100%);
+    background: linear-gradient(135deg, rgba(17, 40, 17, 0.95) 0%, rgba(26, 46, 26, 0.95) 100%);
 }
 
 .hero::before {
@@ -732,7 +736,7 @@ header {
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, var(--accent-red), var(--accent-purple), var(--accent-blue), var(--accent-orange));
+    background: linear-gradient(90deg, var(--accent-green), var(--accent-cyan), var(--accent-lime));
     animation: gradient 3s ease infinite;
     background-size: 200% 200%;
 }
@@ -748,7 +752,7 @@ header {
     margin-bottom: 1rem;
     color: var(--text-primary);
     font-weight: 800;
-    background: linear-gradient(135deg, var(--accent-red), var(--accent-purple), var(--accent-blue), var(--accent-orange));
+    background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan), var(--accent-lime));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -792,7 +796,7 @@ header {
 }
 
 [data-theme="light"] .search-icon {
-    filter: brightness(0) saturate(100%) invert(90%) sepia(9%) saturate(1500%) hue-rotate(200deg) brightness(102%) contrast(95%);
+    filter: brightness(0) saturate(100%) invert(90%) sepia(9%) saturate(1500%) hue-rotate(90deg) brightness(102%) contrast(95%);
 }
 
 .search-input {
@@ -810,8 +814,8 @@ header {
 
 .search-input:focus {
     outline: none;
-    border-color: var(--accent-red);
-    box-shadow: 0 0 0 3px rgba(255, 51, 102, 0.3);
+    border-color: var(--accent-green);
+    box-shadow: 0 0 0 3px rgba(51, 255, 102, 0.3);
     transform: translateY(-1px);
     background: var(--bg-tertiary);
 }
@@ -831,7 +835,7 @@ header {
     display: none;
     box-shadow: var(--dropdown-shadow);
     backdrop-filter: blur(20px);
-    background: rgba(26, 17, 40, 0.95);
+    background: rgba(10, 26, 10, 0.95);
 }
 
 .search-result-item {
@@ -897,7 +901,7 @@ header {
     transform: translateX(-50%);
     width: 80px;
     height: 4px;
-    background: linear-gradient(90deg, var(--accent-red), var(--accent-purple));
+    background: linear-gradient(90deg, var(--accent-green), var(--accent-cyan));
     border-radius: 2px;
     animation: gradient 3s ease infinite;
     background-size: 200% 200%;
@@ -940,14 +944,14 @@ header {
     left: 0;
     width: 4px;
     height: 100%;
-    background: linear-gradient(to bottom, var(--accent-red), var(--accent-purple), var(--accent-blue));
+    background: linear-gradient(to bottom, var(--accent-green), var(--accent-cyan), var(--accent-lime));
     transform: scaleY(0);
     transition: transform 0.4s ease;
 }
 
 .demon-row:hover {
-    border-color: var(--accent-red);
-    box-shadow: 0 12px 40px rgba(255, 51, 102, 0.25);
+    border-color: var(--accent-green);
+    box-shadow: 0 12px 40px rgba(51, 255, 102, 0.25);
     transform: translateY(-4px);
     background: rgba(255, 255, 255, 0.08);
 }
@@ -972,28 +976,28 @@ header {
 }
 
 .demon-row:hover .demon-rank {
-    background: var(--accent-red);
+    background: var(--accent-green);
     color: white;
     transform: scale(1.1) rotate(5deg);
-    border-color: var(--accent-red);
+    border-color: var(--accent-green);
 }
 
 .rank.top-1 {
-    background: linear-gradient(135deg, #ff3366, #ff6600);
+    background: linear-gradient(135deg, #33ff66, #00cc44);
     color: white;
-    border-color: #ff3366;
+    border-color: #33ff66;
 }
 
 .rank.top-3 {
-    background: linear-gradient(135deg, #9d4eff, #7a3dff);
+    background: linear-gradient(135deg, #33ffff, #00cccc);
     color: white;
-    border-color: #9d4eff;
+    border-color: #33ffff;
 }
 
 .rank.top-10 {
-    background: linear-gradient(135deg, #3366ff, #0066ff);
+    background: linear-gradient(135deg, #aaff33, #88cc00);
     color: white;
-    border-color: #3366ff;
+    border-color: #aaff33;
 }
 
 .demon-image {
@@ -1012,9 +1016,9 @@ header {
 }
 
 .demon-row:hover .demon-image {
-    border-color: var(--accent-red);
+    border-color: var(--accent-green);
     transform: scale(1.05);
-    box-shadow: 0 8px 25px rgba(255, 51, 102, 0.25);
+    box-shadow: 0 8px 25px rgba(51, 255, 102, 0.25);
 }
 
 .demon-image img {
@@ -1042,7 +1046,7 @@ header {
 }
 
 .demon-row:hover .image-placeholder {
-    background: var(--accent-red);
+    background: var(--accent-green);
     color: white;
 }
 
@@ -1073,7 +1077,7 @@ header {
 }
 
 .demon-row:hover .demon-name {
-    color: var(--accent-red);
+    color: var(--accent-green);
 }
 
 .demon-creator {
@@ -1088,29 +1092,29 @@ header {
 .demon-points {
     font-size: 1.1rem;
     font-weight: 800;
-    color: var(--accent-green);
+    color: var(--accent-lime);
     min-width: 80px;
     text-align: right;
     flex-shrink: 0;
-    background: rgba(51, 255, 153, 0.15);
+    background: rgba(170, 255, 51, 0.15);
     padding: 0.5rem 1rem;
     border-radius: 8px;
     transition: all 0.3s ease;
-    border: 2px solid rgba(51, 255, 153, 0.3);
+    border: 2px solid rgba(170, 255, 51, 0.3);
 }
 
 .demon-row:hover .demon-points {
-    background: var(--accent-green);
+    background: var(--accent-lime);
     color: white;
     transform: scale(1.05);
-    border-color: var(--accent-green);
+    border-color: var(--accent-lime);
 }
 
 .refresh-btn {
     display: block;
     margin: 2rem auto;
     padding: 0.8rem 2rem 0.8rem 3rem;
-    background: linear-gradient(135deg, var(--accent-red), var(--accent-purple));
+    background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan));
     color: white;
     border: none;
     border-radius: 12px;
@@ -1118,7 +1122,7 @@ header {
     font-size: 1rem;
     font-weight: 700;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 20px rgba(255, 51, 102, 0.4);
+    box-shadow: 0 4px 20px rgba(51, 255, 102, 0.4);
     position: relative;
     overflow: hidden;
     border: 2px solid rgba(255, 255, 255, 0.25);
@@ -1138,7 +1142,7 @@ header {
 
 .refresh-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 25px rgba(255, 51, 102, 0.5);
+    box-shadow: 0 6px 25px rgba(51, 255, 102, 0.5);
     animation: none;
 }
 
@@ -1182,26 +1186,26 @@ header {
 .sync-status.synced {
     color: var(--accent-green);
     border-color: var(--accent-green);
-    background: rgba(51, 255, 153, 0.15);
-    box-shadow: 0 4px 20px rgba(51, 255, 153, 0.2);
+    background: rgba(51, 255, 102, 0.15);
+    box-shadow: 0 4px 20px rgba(51, 255, 102, 0.2);
 }
 
 .error-message {
     text-align: center;
     padding: 1rem;
-    background: linear-gradient(135deg, rgba(255, 51, 102, 0.15), rgba(255, 51, 102, 0.25));
-    border: 2px solid rgba(255, 51, 102, 0.3);
+    background: linear-gradient(135deg, rgba(51, 255, 102, 0.15), rgba(51, 255, 102, 0.25));
+    border: 2px solid rgba(51, 255, 102, 0.3);
     border-radius: 12px;
     margin: 1rem 0;
     color: var(--accent-red);
     font-weight: 600;
     font-size: 0.95rem;
-    box-shadow: 0 4px 20px rgba(255, 51, 102, 0.25);
+    box-shadow: 0 4px 20px rgba(51, 255, 102, 0.25);
 }
 
 [data-theme="light"] .error-message {
-    background: linear-gradient(135deg, rgba(255, 51, 102, 0.1), rgba(255, 51, 102, 0.2));
-    border-color: rgba(255, 51, 102, 0.3);
+    background: linear-gradient(135deg, rgba(255, 77, 77, 0.1), rgba(255, 77, 77, 0.2));
+    border-color: rgba(255, 77, 77, 0.3);
     color: var(--accent-red);
 }
 
@@ -1210,7 +1214,7 @@ footer {
     border-top: 1px solid var(--border-color);
     padding: 2.5rem 0 1.5rem;
     margin-top: 3rem;
-    background: linear-gradient(135deg, rgba(26, 17, 40, 0.95) 0%, rgba(38, 26, 56, 0.95) 100%);
+    background: linear-gradient(135deg, rgba(17, 40, 17, 0.95) 0%, rgba(26, 46, 26, 0.95) 100%);
 }
 
 .footer-content {
@@ -1236,7 +1240,7 @@ footer {
     left: 0;
     width: 30px;
     height: 2px;
-    background: var(--accent-red);
+    background: var(--accent-green);
     border-radius: 1px;
 }
 
@@ -1252,7 +1256,7 @@ footer {
 }
 
 .footer-section a:hover {
-    color: var(--accent-red);
+    color: var(--accent-green);
     padding-left: 0.5rem;
 }
 
@@ -1532,18 +1536,8 @@ footer {
     }
     
     .demon-row:active {
-        border-color: var(--accent-red);
+        border-color: var(--accent-green);
         transform: scale(0.98);
-    }
-    
-    .header-controls nav ul li:hover .dropdown-menu {
-        opacity: 0;
-        visibility: hidden;
-    }
-    
-    .dropdown-menu.active {
-        opacity: 1;
-        visibility: visible;
     }
 }
 
@@ -1721,7 +1715,7 @@ html {
                             <span data-lang="en" style="display: none;">Top Records</span>
                         </a>
                         <a href="https://docs.google.com/forms/d/e/1FAIpQLSceFzm37tUw0B5t6h3L3U5alQJ5P41F1uZEeC3DaVdDXbNmrQ/viewform?usp=dialog" 
-                           onclick="closeMobileMenu()" style="background: linear-gradient(135deg, var(--accent-red), var(--accent-purple)) !important; color: white !important;">
+                           onclick="closeMobileMenu()" style="background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan)) !important; color: white !important;">
                             <img src="assets/request-icon.png" alt="📝" class="dropdown-menu-icon">
                             <span data-lang="ru">Отправить реквест</span>
                             <span data-lang="en" style="display: none;">Submit Request</span>
@@ -1765,13 +1759,7 @@ html {
     </div>
     <div class="menu-overlay" id="menuOverlay" onclick="closeMobileMenu()"></div>
     
-    <section class="hero">
-        <div class="container">
-            <h1>Impossible Demon List</h1>
-            <p data-lang="ru">Рейтинг невозможных уровней в Geometry Dash. Самые сложные демоны, которые бросают вызов лучшим игрокам.</p>
-            <p data-lang="en" style="display: none;">Rating of impossible levels in Geometry Dash. The most difficult demons that challenge the best players.</p>
-        </div>
-    </section>
+   
     
     <section class="search-section">
         <div class="container">
@@ -1919,7 +1907,9 @@ html {
             updateIconColors(document.documentElement.getAttribute('data-theme') || 'dark');
         }
 
-        // ========== ВЫПАДАЮЩИЕ МЕНЮ ==========
+        // ========== ВЫПАДАЮЩИЕ МЕНЮ (ТОЛЬКО ПО КЛИКУ) ==========
+        let activeDropdown = null;
+
         function toggleDropdown(event) {
             event.preventDefault();
             event.stopPropagation();
@@ -1928,16 +1918,28 @@ html {
             const dropdownMenu = dropdown.querySelector('.dropdown-menu');
             const isActive = dropdownMenu.classList.contains('active');
             
+            // Закрываем все другие dropdown
             document.querySelectorAll('.dropdown-menu').forEach(menu => {
-                menu.classList.remove('active');
-            });
-            document.querySelectorAll('.dropdown-toggle').forEach(btn => {
-                btn.classList.remove('active');
+                if (menu !== dropdownMenu) {
+                    menu.classList.remove('active');
+                }
             });
             
+            document.querySelectorAll('.dropdown-toggle').forEach(btn => {
+                if (btn !== event.currentTarget) {
+                    btn.classList.remove('active');
+                }
+            });
+            
+            // Переключаем текущий dropdown
             if (!isActive) {
                 dropdownMenu.classList.add('active');
                 event.currentTarget.classList.add('active');
+                activeDropdown = dropdown;
+            } else {
+                dropdownMenu.classList.remove('active');
+                event.currentTarget.classList.remove('active');
+                activeDropdown = null;
             }
         }
 
@@ -1949,6 +1951,7 @@ html {
             const isActive = mobileDropdown.classList.contains('active');
             const arrow = event.currentTarget.querySelector('.dropdown-arrow');
             
+            // Закрываем другие dropdown в мобильном меню
             document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
                 if (dropdown.id !== mobileDropdown.id) {
                     dropdown.classList.remove('active');
@@ -1963,6 +1966,7 @@ html {
                 }
             });
             
+            // Переключаем текущий dropdown
             if (!isActive) {
                 mobileDropdown.classList.add('active');
                 arrow.style.transform = 'rotate(180deg)';
@@ -1974,17 +1978,26 @@ html {
             }
         }
 
+        // Закрытие dropdown при клике вне
         document.addEventListener('click', function(event) {
-            if (!event.target.closest('.dropdown')) {
+            // Для десктопных dropdown
+            const isDropdownClick = event.target.closest('.dropdown');
+            const isDropdownToggle = event.target.closest('.dropdown-toggle');
+            
+            if (!isDropdownClick && activeDropdown) {
                 document.querySelectorAll('.dropdown-menu').forEach(menu => {
                     menu.classList.remove('active');
                 });
                 document.querySelectorAll('.dropdown-toggle').forEach(btn => {
                     btn.classList.remove('active');
                 });
+                activeDropdown = null;
             }
             
-            if (!event.target.closest('.mobile-menu nav ul li')) {
+            // Для мобильных dropdown
+            const isMobileDropdownClick = event.target.closest('.mobile-menu nav ul li');
+            
+            if (!isMobileDropdownClick) {
                 document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
                     dropdown.classList.remove('active');
                 });
@@ -1993,6 +2006,27 @@ html {
                     const arrow = btn.querySelector('.dropdown-arrow');
                     if (arrow) arrow.style.transform = 'rotate(0deg)';
                 });
+            }
+            
+            // Закрытие при клике на пункт меню
+            if (event.target.closest('.dropdown-menu a') || event.target.closest('.mobile-dropdown a')) {
+                setTimeout(() => {
+                    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                        menu.classList.remove('active');
+                    });
+                    document.querySelectorAll('.dropdown-toggle').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
+                        dropdown.classList.remove('active');
+                    });
+                    document.querySelectorAll('.mobile-menu .dropdown-toggle').forEach(btn => {
+                        btn.classList.remove('active');
+                        const arrow = btn.querySelector('.dropdown-arrow');
+                        if (arrow) arrow.style.transform = 'rotate(0deg)';
+                    });
+                    activeDropdown = null;
+                }, 100);
             }
         });
 
@@ -2013,6 +2047,7 @@ html {
                     const arrow = btn.querySelector('.dropdown-arrow');
                     if (arrow) arrow.style.transform = 'rotate(0deg)';
                 });
+                activeDropdown = null;
             }
         });
 
@@ -2024,6 +2059,18 @@ html {
             mobileMenu.classList.toggle('active');
             menuOverlay.classList.toggle('active');
             document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+            
+            // Закрываем все dropdown при открытии/закрытии мобильного меню
+            if (!mobileMenu.classList.contains('active')) {
+                document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                });
+                document.querySelectorAll('.mobile-menu .dropdown-toggle').forEach(btn => {
+                    btn.classList.remove('active');
+                    const arrow = btn.querySelector('.dropdown-arrow');
+                    if (arrow) arrow.style.transform = 'rotate(0deg)';
+                });
+            }
         }
 
         function closeMobileMenu() {
@@ -2081,7 +2128,7 @@ html {
                 if (theme === 'dark') {
                     icon.style.filter = 'brightness(0) invert(1)';
                 } else {
-                    icon.style.filter = 'brightness(0) saturate(100%) invert(90%) sepia(9%) saturate(1500%) hue-rotate(200deg) brightness(102%) contrast(95%)';
+                    icon.style.filter = 'brightness(0) saturate(100%) invert(90%) sepia(9%) saturate(1500%) hue-rotate(90deg) brightness(102%) contrast(95%)';
                 }
             });
         }
@@ -2380,28 +2427,8 @@ html {
             
             initializeSearch();
             
-            if (window.innerWidth > 768) {
-                const dropdownItems = document.querySelectorAll('.dropdown');
-                dropdownItems.forEach(item => {
-                    item.addEventListener('mouseenter', function() {
-                        const dropdownMenu = this.querySelector('.dropdown-menu');
-                        const dropdownToggle = this.querySelector('.dropdown-toggle');
-                        if (dropdownMenu) {
-                            dropdownMenu.classList.add('active');
-                            dropdownToggle.classList.add('active');
-                        }
-                    });
-                    
-                    item.addEventListener('mouseleave', function() {
-                        const dropdownMenu = this.querySelector('.dropdown-menu');
-                        const dropdownToggle = this.querySelector('.dropdown-toggle');
-                        if (dropdownMenu) {
-                            dropdownMenu.classList.remove('active');
-                            dropdownToggle.classList.remove('active');
-                        }
-                    });
-                });
-            }
+            // Убираем обработчики наведения для десктопа
+            // Теперь dropdown работают только по клику
             
             setTimeout(() => {
                 document.querySelectorAll('.demon-row').forEach((row, index) => {
