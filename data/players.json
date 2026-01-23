@@ -223,6 +223,15 @@
       }
     },
      {
+      "id": "piglen7",
+      "name": "Piglen7",
+      "avatar": "P7",
+      "completedDemons": ["easycorridor"],
+      "progress": {
+        "easycorridor": 100
+      }
+    },
+     {
       "id": "ster3o",
       "name": "ster3o",
       "avatar": "S",
