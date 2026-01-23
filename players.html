@@ -741,12 +741,14 @@
             max-height: none;
             height: auto;
             min-height: 600px;
+            align-items: start; /* Добавлено: выравнивание по верху */
         }
 
         @media (max-width: 992px) {
             .widget-container {
                 grid-template-columns: 1fr;
                 max-height: none;
+                gap: 1rem;
             }
         }
 
@@ -877,7 +879,6 @@
             padding-right: 0.3rem;
             scrollbar-width: thin;
             scrollbar-color: var(--accent-purple) transparent;
-            padding-top: 40px; /* Добавлено: сдвигаем список игроков ниже */
         }
 
         .compact-players-list::-webkit-scrollbar {
@@ -1078,7 +1079,6 @@
             max-height: 680px;
             position: relative;
             overflow: hidden;
-            margin-top: 40px; /* Добавлено: сдвигаем профиль ниже */
         }
 
         .details-widget::before {
@@ -1535,8 +1535,8 @@
         @media (max-width: 992px) {
             .widget-container {
                 grid-template-columns: 1fr;
+                max-height: none;
                 gap: 1rem;
-                min-height: auto;
             }
 
             .players-widget, .details-widget {
