@@ -878,6 +878,12 @@
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
+            /* Исправление для dark/light тем */
+            filter: brightness(0) invert(1);
+        }
+
+        [data-theme="light"] .video-section h2::before {
+            filter: none;
         }
 
         .video-container {
@@ -1986,8 +1992,9 @@
             return urlParams.get('id');
         }
 
+        // Измененная функция: открываем страницу players.html с параметром player
         function openPlayerProfile(playerId) {
-            window.location.href = `player.html?id=${playerId}`;
+            window.location.href = `players.html?player=${playerId}`;
         }
 
         function showError(message) {
@@ -2236,6 +2243,7 @@
             loadDemonData();
         }
 
+        // Экспорт функций в глобальную область видимости
         window.openPlayerProfile = openPlayerProfile;
         window.refreshData = refreshData;
         window.extractYouTubeId = extractYouTubeId;
