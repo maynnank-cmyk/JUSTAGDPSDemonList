@@ -12,9 +12,9 @@
       "id": "piglen7",
       "name": "Piglen7",
       "avatar": "P",
-      "avatarImage": "", 
+      "avatarImage": "images/piglen7.png", 
       "role": "Модератор Листа",
-      "roleClass": "role-leader"
+      "roleClass": "role-admin"
     }
   ]
 }
