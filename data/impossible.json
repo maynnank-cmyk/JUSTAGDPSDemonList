@@ -1,0 +1,54 @@
+{
+    "impossibleDemons": [
+        {
+            "id": 1,
+            "name": "Silent Clubstep",
+            "creator": "Sailent"
+        },
+        {
+            "id": 2,
+            "name": "Sakupen Circles",
+            "creator": "Noobas"
+        },
+        {
+            "id": 3,
+            "name": "The Golden",
+            "creator": "BoBoBoBoBoBoBo"
+        },
+        {
+            "id": 4,
+            "name": "Firework",
+            "creator": "Trick"
+        },
+        {
+            "id": 5,
+            "name": "Sonic Wave",
+            "creator": "Cyclic"
+        },
+        {
+            "id": 6,
+            "name": "Abyss of Darkness",
+            "creator": "Exen"
+        },
+        {
+            "id": 7,
+            "name": "Killbot",
+            "creator": "MrSpaghetti"
+        },
+        {
+            "id": 8,
+            "name": "Zodiac",
+            "creator": "Bianox"
+        },
+        {
+            "id": 9,
+            "name": "Bloodlust",
+            "creator": "Knobbelboy"
+        },
+        {
+            "id": 10,
+            "name": "Artificial Ascent",
+            "creator": "Cersia"
+        }
+    ]
+}
