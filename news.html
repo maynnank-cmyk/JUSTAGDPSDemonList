@@ -5,799 +5,1571 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Новости - Just a GDPS</title>
     <style>
-        :root {
-            --bg-primary: #ffffff;
-            --bg-secondary: #f8f9fa;
-            --bg-tertiary: #e9ecef;
-            --text-primary: #212529;
-            --text-secondary: #6c757d;
-            --accent-red: #dc3545;
-            --accent-green: #28a745;
-            --border-color: #dee2e6;
-            --card-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            --header-red: #dc3545;
-        }
-        
-        [data-theme="dark"] {
-            --bg-primary: #1a1a1a;
-            --bg-secondary: #2d2d2d;
-            --bg-tertiary: #3d3d3d;
-            --text-primary: #ffffff;
-            --text-secondary: #b0b0b0;
-            --accent-red: #ff6b6b;
-            --accent-green: #34c759;
-            --border-color: #404040;
-            --card-shadow: 0 2px 8px rgba(0,0,0,0.3);
-            --header-red: #c82333;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-            transition: all 0.3s ease;
-            font-weight: 600;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-        
-        /* Header */
-        header {
-            background: var(--header-red);
-            border-bottom: 1px solid var(--header-red);
-            padding: 0.5rem 0 0 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-        }
-        
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-bottom: 0.5rem;
-        }
-        
-        .logo {
-            font-size: 1.2rem;
-            font-weight: 800;
-            color: white;
-            text-decoration: none;
-        }
-        
-        .logo span {
-            color: white;
-        }
-        
-        .header-controls {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .theme-toggle {
-            background: none;
-            border: none;
-            color: white;
-            cursor: pointer;
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-            padding: 0.3rem;
-        }
-        
-        .theme-toggle:hover {
-            transform: scale(1.1);
-        }
-        
-        /* Обычная навигация для ПК */
-        .header-controls nav ul {
-            display: flex;
-            list-style: none;
-            gap: 1rem;
-            margin: 0;
-            padding: 0;
-        }
+:root {
+    --bg-primary: #0a0a0f;
+    --bg-secondary: #111122;
+    --bg-tertiary: #1a1a2e;
+    --text-primary: #ffffff;
+    --text-secondary: #b0b0cc;
+    --accent-red: #ff4757;
+    --accent-blue: #4a6fa5;
+    --accent-purple: #8a6bff;
+    --accent-green: #2ed573;
+    --border-color: #2d2d4d;
+    --card-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    --header-gradient: linear-gradient(135deg, #ff4757 0%, #8a6bff 100%);
+    --dropdown-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    --gradient-bg: linear-gradient(135deg, #0a0a0f 0%, #111122 50%, #1a1a2e 100%);
+}
 
-        .header-controls nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 600;
-            padding: 0.5rem 0.8rem;
-            border-radius: 4px;
-            transition: all 0.2s ease;
-        }
+[data-theme="light"] {
+    --bg-primary: #f8f9ff;
+    --bg-secondary: #eef2ff;
+    --bg-tertiary: #e0e5ff;
+    --text-primary: #1a1a2e;
+    --text-secondary: #6c757d;
+    --accent-red: #ff6b6b;
+    --accent-blue: #4a6fa5;
+    --accent-purple: #6d5acf;
+    --accent-green: #34c759;
+    --border-color: #d0d5ff;
+    --card-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    --header-gradient: linear-gradient(135deg, #ff6b6b 0%, #6d5acf 100%);
+    --dropdown-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    --gradient-bg: linear-gradient(135deg, #f8f9ff 0%, #eef2ff 50%, #e0e5ff 100%);
+}
 
-        .header-controls nav ul li a:hover,
-        .header-controls nav ul li a.active {
-            background: rgba(255, 255, 255, 0.15);
-            color: white;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+}
 
-        /* Кнопка "Отправить реквест" для ПК */
-        .request-btn {
-            background: white !important;
-            color: var(--text-primary) !important;
-            border: 1px solid white !important;
-            margin-left: 0.5rem;
-            font-weight: 800 !important;
-            font-size: 0.9rem;
-        }
+body {
+    background: var(--gradient-bg);
+    color: var(--text-primary);
+    line-height: 1.7;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: 500;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
 
-        .request-btn:hover {
-            background: rgba(255, 255, 255, 0.9) !important;
-            transform: translateY(-1px);
-        }
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 10% 20%, rgba(138, 107, 255, 0.1) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(255, 71, 87, 0.1) 0%, transparent 20%),
+        radial-gradient(circle at 50% 50%, rgba(74, 111, 165, 0.05) 0%, transparent 30%);
+    pointer-events: none;
+    z-index: -1;
+}
 
-        /* Простое гамбургер меню без анимации полосок */
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0.5rem;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            width: 40px;
-            height: 40px;
-            position: relative;
-            z-index: 1001;
-        }
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
 
-        .menu-toggle span {
-            display: block;
-            height: 3px;
-            width: 24px;
-            background-color: white;
-            border-radius: 1px;
-            margin: 2px 0;
-        }
+/* Header */
+header {
+    background: var(--header-gradient);
+    border-bottom: none;
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
 
-        /* Мобильное меню выезжающее справа */
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            right: -100%;
-            width: 300px;
-            height: 100%;
-            background: var(--bg-primary);
-            z-index: 999;
-            flex-direction: column;
-            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-            transition: right 0.3s ease;
-            border-left: 1px solid var(--border-color);
-        }
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 0;
+}
 
-        .mobile-menu.active {
-            right: 0;
-        }
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
 
-        .mobile-menu nav ul {
-            flex-direction: column;
-            gap: 0;
-            padding: 80px 0 0 0;
-        }
+.logo {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
 
-        .mobile-menu nav ul li {
-            border-bottom: 1px solid var(--border-color);
-        }
+.logo:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
+}
 
-        .mobile-menu nav ul li:last-child {
-            border-bottom: none;
-        }
+.cube-icon {
+    width: 32px;
+    height: 32px;
+    filter: brightness(0) invert(1);
+    animation: float 3s ease-in-out infinite;
+}
 
-        .mobile-menu nav ul li a {
-            font-size: 1rem;
-            padding: 1rem 1.5rem;
-            color: var(--text-primary);
-            text-decoration: none;
-            display: block;
-            transition: all 0.2s ease;
-            font-weight: 600;
-        }
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-5px) rotate(5deg); }
+}
 
-        .mobile-menu nav ul li a:hover,
-        .mobile-menu nav ul li a.active {
-            background: var(--bg-secondary);
-            color: var(--accent-red);
-        }
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
 
-        /* Кнопка закрытия */
-        .close-menu {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 0.5rem;
-            z-index: 1000;
-            transition: color 0.2s ease;
-        }
+.language-toggle {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    font-weight: 700;
+    color: white;
+    font-size: 0.9rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
 
-        .close-menu:hover {
-            color: var(--accent-red);
-        }
+.language-toggle:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1) rotate(15deg);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+}
 
-        /* Затемнение фона */
-        .menu-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 998;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
+.theme-toggle {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
 
-        .menu-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        /* Hero Section */
-        .hero {
-            padding: 2rem 0;
-            text-align: center;
-            background: var(--bg-secondary);
-            border-bottom: 1px solid var(--border-color);
-        }
-        
-        .hero h1 {
-            font-size: 1.8rem;
-            margin-bottom: 0.8rem;
-            color: var(--text-primary);
-            font-weight: 800;
-        }
-        
-        .hero p {
-            font-size: 1rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto;
-            font-weight: 600;
-        }
-        
-        /* Search Section */
-        .search-section {
-            padding: 1.5rem 0;
-            background: var(--bg-primary);
-        }
-        
-        .search-container {
-            max-width: 600px;
-            margin: 0 auto;
-            position: relative;
-        }
-        
-        .search-input {
-            width: 100%;
-            padding: 0.6rem 0.8rem;
-            font-size: 0.9rem;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            font-weight: 600;
-        }
-        
-        .search-input:focus {
-            outline: none;
-            border-color: var(--accent-red);
-            box-shadow: 0 0 0 2px rgba(220,53,69,0.25);
-        }
-        
-        .search-results {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: var(--bg-primary);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            margin-top: 0.3rem;
-            max-height: 200px;
-            overflow-y: auto;
-            z-index: 1000;
-            display: none;
-            box-shadow: var(--card-shadow);
-        }
-        
-        .search-result-item {
-            padding: 0.6rem 0.8rem;
-            cursor: pointer;
-            border-bottom: 1px solid var(--border-color);
-            transition: background-color 0.2s;
-        }
-        
-        .search-result-item:hover {
-            background-color: var(--bg-secondary);
-        }
-        
-        .search-result-item:last-child {
-            border-bottom: none;
-        }
-        
-        .search-result-title {
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 0.25rem;
-        }
-        
-        .search-result-date {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            font-weight: 600;
-        }
-        
-        .no-results {
-            padding: 0.8rem;
-            text-align: center;
-            color: var(--text-secondary);
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-        
-        /* News Section */
-        .news-section {
-            padding: 1.5rem 0;
-        }
-        
-        .section-header {
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-        
-        .section-header h2 {
-            font-size: 1.5rem;
-            margin-bottom: 0.4rem;
-            color: var(--text-primary);
-            font-weight: 800;
-        }
-        
-        .section-header p {
-            color: var(--text-secondary);
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-        
-        .news-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1rem;
-        }
-        
-        .news-card {
-            background: var(--bg-primary);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 1rem;
-            transition: all 0.2s;
-            cursor: pointer;
-            box-shadow: var(--card-shadow);
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-        
-        .news-card:hover {
-            border-color: var(--accent-red);
-            box-shadow: 0 2px 8px rgba(220,53,69,0.15);
-            transform: translateY(-1px);
-        }
-        
-        .news-date {
-            color: var(--accent-red);
-            font-size: 0.8rem;
-            font-weight: 700;
-            margin-bottom: 0.8rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .news-date::before {
-            content: "📅";
-            font-size: 0.9rem;
-        }
-        
-        .news-title {
-            font-size: 1.1rem;
-            font-weight: 800;
-            margin-bottom: 0.8rem;
-            color: var(--text-primary);
-            line-height: 1.4;
-        }
-        
-        .news-content {
-            color: var(--text-secondary);
-            line-height: 1.6;
-            flex: 1;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-        
-        .news-meta {
-            margin-top: 0.8rem;
-            padding-top: 0.8rem;
-            border-top: 1px solid var(--border-color);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-        }
-        
-        .news-meta::before {
-            content: "🏷️";
-            font-size: 0.8rem;
-        }
-        
-        /* Refresh Button */
-        .refresh-btn {
-            display: block;
-            margin: 1.5rem auto;
-            padding: 0.6rem 1.5rem;
-            background: var(--accent-red);
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            font-weight: 700;
-            transition: all 0.2s;
-        }
-        
-        .refresh-btn:hover {
-            background: #c82333;
-            transform: translateY(-1px);
-        }
-        
-        /* Status */
-        .sync-status {
-            text-align: center;
-            padding: 0.8rem;
-            background: var(--bg-secondary);
-            border-radius: 6px;
-            margin: 0.8rem 0;
-            color: var(--text-secondary);
-            border: 1px solid var(--border-color);
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-        
-        .sync-status.synced {
-            color: var(--accent-green);
-            border-color: var(--accent-green);
-            background: var(--bg-primary);
-        }
-        
-        .error-message {
-            text-align: center;
-            padding: 0.8rem;
-            background: #f8d7da;
-            border: 1px solid #f5c6cb;
-            border-radius: 6px;
-            margin: 0.8rem 0;
-            color: #721c24;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-        
-        [data-theme="dark"] .error-message {
-            background: #5c2a2a;
-            border-color: #7a3a3a;
-            color: #ffb3b3;
-        }
-        
-        .empty-state {
-            text-align: center;
-            padding: 2rem;
-            color: var(--text-secondary);
-            grid-column: 1 / -1;
-        }
-        
-        .empty-state .icon {
-            font-size: 3rem;
-            margin-bottom: 0.8rem;
-        }
-        
-        /* Footer */
-        footer {
-            background: var(--bg-secondary);
-            border-top: 1px solid var(--border-color);
-            padding: 1.5rem 0;
-            margin-top: 2rem;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-        }
-        
-        .footer-section h3 {
-            font-size: 1rem;
-            margin-bottom: 0.8rem;
-            color: var(--text-primary);
-            font-weight: 800;
-        }
-        
-        .footer-section p, .footer-section a {
-            color: var(--text-secondary);
-            margin-bottom: 0.4rem;
-            display: block;
-            text-decoration: none;
-            transition: color 0.2s;
-            font-weight: 600;
-            font-size: 0.85rem;
-        }
-        
-        .footer-section a:hover {
-            color: var(--accent-red);
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 1.5rem;
-            border-top: 1px solid var(--border-color);
-            color: var(--text-secondary);
-            margin-top: 1.5rem;
-            font-size: 0.75rem;
-            font-weight: 600;
-        }
+.theme-toggle:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1) rotate(15deg);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+}
 
-        /* Адаптивность для мобильных устройств */
-        @media (max-width: 768px) {
-            .menu-toggle {
-                display: flex;
-            }
+.theme-toggle img {
+    width: 22px;
+    height: 22px;
+    filter: brightness(0) invert(1);
+    transition: all 0.3s ease;
+}
 
-            /* Скрываем обычную навигацию на мобильных */
-            .header-controls nav {
-                display: none;
-            }
+.header-controls nav ul {
+    display: flex;
+    list-style: none;
+    gap: 0.8rem;
+    margin: 0;
+    padding: 0;
+}
 
-            .header-content {
-                flex-wrap: nowrap;
-            }
+.header-controls nav ul li {
+    position: relative;
+}
 
-            .logo {
-                font-size: 1.1rem;
-            }
+.header-controls nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    padding: 0.7rem 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    height: auto;
+    min-height: unset;
+    line-height: normal;
+}
 
-            /* Кнопка "Отправить реквест" для мобильных */
-            .mobile-menu .request-btn {
-                background: var(--bg-secondary) !important;
-                color: var(--text-primary) !important;
-                border: 1px solid var(--border-color) !important;
-                margin: 0.5rem 1.5rem;
-                text-align: center;
-                border-radius: 4px;
-                font-weight: 800 !important;
-            }
+.header-controls nav ul li a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transition: left 0.6s ease;
+}
 
-            .mobile-menu .request-btn:hover {
-                background: var(--bg-tertiary) !important;
-                color: var(--accent-red) !important;
-            }
+.header-controls nav ul li a:hover::before {
+    left: 100%;
+}
 
-            .hero {
-                padding: 1.5rem 0;
-            }
-            
-            .hero h1 {
-                font-size: 1.5rem;
-            }
-            
-            .hero p {
-                font-size: 0.9rem;
-            }
-            
-            .news-grid {
-                grid-template-columns: 1fr;
-                gap: 0.8rem;
-            }
-            
-            .news-card {
-                padding: 0.8rem;
-            }
-            
-            .news-title {
-                font-size: 1rem;
-            }
-            
-            .news-content {
-                font-size: 0.85rem;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-        }
+.header-controls nav ul li a:hover,
+.header-controls nav ul li a.active {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+}
 
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 10px;
-            }
-            
-            .header-content {
-                flex-wrap: wrap;
-                gap: 0.5rem;
-            }
-            
-            .logo {
-                font-size: 1.1rem;
-            }
-            
-            .hero {
-                padding: 1.5rem 0;
-            }
-            
-            .hero h1 {
-                font-size: 1.5rem;
-            }
-            
-            .section-header h2 {
-                font-size: 1.3rem;
-            }
-            
-            .search-result-item {
-                padding: 0.5rem;
-            }
-            
-            .mobile-menu nav ul li a {
-                font-size: 1.1rem;
-                padding: 0.7rem 1.2rem;
-            }
-        }
+/* Цвет текста активной страницы */
+.header-controls nav ul li a.active {
+    color: var(--text-primary) !important;
+}
 
-        @media (max-width: 360px) {
-            .hero h1 {
-                font-size: 1.3rem;
-            }
-            
-            .section-header h2 {
-                font-size: 1.2rem;
-            }
-            
-            .news-card {
-                padding: 0.7rem;
-            }
-            
-            .news-title {
-                font-size: 0.95rem;
-            }
-        }
+.header-controls nav ul li a .dropdown-arrow {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    filter: brightness(0) invert(1);
+}
 
-        /* Улучшения для touch-устройств */
-        @media (hover: none) {
-            .news-card:hover {
-                transform: none;
-                border-color: var(--border-color);
-            }
-            
-            .news-card:active {
-                border-color: var(--accent-red);
-                transform: scale(0.98);
-            }
-        }
+.header-controls nav ul li a.active .dropdown-arrow {
+    transform: rotate(180deg);
+}
 
-        /* Убираем text-size-adjust на iOS */
-        html {
-            -webkit-text-size-adjust: 100%;
-            text-size-adjust: 100%;
-        }
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    min-width: 220px;
+    box-shadow: var(--dropdown-shadow);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-15px) scale(0.95);
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    overflow: hidden;
+    backdrop-filter: blur(20px);
+    background: rgba(26, 26, 46, 0.95);
+}
 
-        /* Темная тема для кнопки запроса */
-        [data-theme="dark"] .request-btn {
-            background: var(--bg-primary) !important;
-            color: var(--text-primary) !important;
-            border: 1px solid var(--border-color) !important;
-        }
+[data-theme="light"] .dropdown-menu {
+    background: rgba(248, 249, 255, 0.95);
+}
 
-        [data-theme="dark"] .request-btn:hover {
-            background: var(--bg-secondary) !important;
-        }
+.dropdown-menu::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 20px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid var(--bg-primary);
+}
+
+[data-theme="light"] .dropdown-menu::before {
+    border-bottom-color: var(--bg-primary);
+}
+
+.dropdown-menu.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+.dropdown-menu a {
+    color: var(--text-primary) !important;
+    padding: 1rem 1.5rem !important;
+    display: flex !important;
+    align-items: center;
+    gap: 0.8rem;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-bottom: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.dropdown-menu a::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background: var(--accent-red);
+    transform: scaleY(0);
+    transition: transform 0.3s ease;
+}
+
+.dropdown-menu a:hover::before {
+    transform: scaleY(1);
+}
+
+.dropdown-menu a:last-child {
+    border-bottom: none;
+}
+
+.dropdown-menu a:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--accent-red) !important;
+    padding-left: 2rem !important;
+}
+
+/* Активная страница в выпадающем меню */
+.dropdown-menu a.active {
+    background: rgba(255, 255, 255, 0.05) !important;
+    color: var(--text-primary) !important;
+    border-left: 4px solid var(--accent-red);
+}
+
+[data-theme="light"] .dropdown-menu a.active {
+    background: rgba(0, 0, 0, 0.05) !important;
+}
+
+.dropdown-menu a.active:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: var(--accent-red) !important;
+}
+
+[data-theme="light"] .dropdown-menu a.active:hover {
+    background: rgba(0, 0, 0, 0.1) !important;
+}
+
+.dropdown-menu a.active .dropdown-menu-icon {
+    filter: none !important;
+    opacity: 1;
+}
+
+.dropdown-menu-icon {
+    width: 18px;
+    height: 18px;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+/* Иконки в выпадающем меню для темной темы - белые */
+.dropdown-menu-icon {
+    filter: brightness(0) invert(1);
+}
+
+/* Классическая иконка на темной теме - белая */
+.dropdown-menu a img[src="assets/classic-icon.png"] {
+    filter: brightness(0) invert(1);
+}
+
+/* Иконки в выпадающем меню для светлой темы - темные */
+[data-theme="light"] .dropdown-menu-icon {
+    filter: none;
+}
+
+/* Классическая иконка на светлой теме - темная */
+[data-theme="light"] .dropdown-menu a img[src="assets/classic-icon.png"] {
+    filter: none;
+}
+
+.dropdown-menu a:hover .dropdown-menu-icon {
+    opacity: 1;
+    transform: scale(1.1) rotate(10deg);
+}
+
+/* Кнопки социальных сетей */
+.social-buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: auto;
+}
+
+.social-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.social-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.15);
+}
+
+/* Значки Discord и YouTube ВСЕГДА белые */
+.social-btn img {
+    width: 22px;
+    height: 22px;
+    filter: brightness(0) invert(1) !important;
+}
+
+/* Кнопка Отправить реквест в меню Лидербордов */
+.dropdown-request-btn {
+    background: linear-gradient(135deg, var(--accent-red), var(--accent-purple)) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 8px !important;
+    margin: 0.8rem !important;
+    padding: 1rem 1.5rem !important;
+    font-weight: 700 !important;
+    box-shadow: 0 4px 15px rgba(255, 71, 87, 0.3);
+    transition: all 0.3s ease !important;
+    animation: pulse 2s infinite;
+}
+
+.dropdown-request-btn:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(255, 71, 87, 0.4) !important;
+    animation: none;
+}
+
+@keyframes pulse {
+    0%, 100% { box-shadow: 0 4px 15px rgba(255, 71, 87, 0.3); }
+    50% { box-shadow: 0 4px 25px rgba(255, 71, 87, 0.5); }
+}
+
+.btn-icon {
+    width: 16px;
+    height: 16px;
+}
+
+.players-dropdown-menu {
+    min-width: 220px;
+}
+
+.others-dropdown-menu {
+    min-width: 200px;
+}
+
+.menu-toggle {
+    display: none;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 44px;
+    height: 44px;
+    position: relative;
+    z-index: 1001;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.menu-toggle:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+}
+
+.menu-toggle span {
+    display: block;
+    height: 2px;
+    width: 20px;
+    background-color: white;
+    border-radius: 1px;
+    margin: 2.5px 0;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 320px;
+    height: 100%;
+    background: var(--bg-primary);
+    z-index: 999;
+    flex-direction: column;
+    box-shadow: -5px 0 30px rgba(0, 0, 0, 0.3);
+    transition: right 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    border-left: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    backdrop-filter: blur(20px);
+    background: rgba(26, 26, 46, 0.95);
+}
+
+[data-theme="light"] .mobile-menu {
+    background: rgba(248, 249, 255, 0.95);
+}
+
+.mobile-menu.active {
+    right: 0;
+}
+
+.mobile-header {
+    background: var(--header-gradient);
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.mobile-logo-container {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.mobile-logo {
+    color: white;
+    font-size: 1.3rem;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.mobile-cube-icon {
+    width: 28px;
+    height: 28px;
+    filter: brightness(0) invert(1);
+    animation: float 3s ease-in-out infinite;
+}
+
+.mobile-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.mobile-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(90deg);
+}
+
+.mobile-menu nav {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem 0;
+}
+
+.mobile-menu nav ul {
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+}
+
+.mobile-menu nav ul li {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.mobile-menu nav ul li:last-child {
+    border-bottom: none;
+}
+
+.mobile-menu nav ul li a {
+    font-size: 1.1rem;
+    padding: 1.2rem 1.5rem;
+    color: var(--text-primary);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.mobile-menu nav ul li a:hover,
+.mobile-menu nav ul li a.active {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--accent-red);
+    padding-left: 2rem;
+}
+
+[data-theme="light"] .mobile-menu nav ul li a:hover,
+[data-theme="light"] .mobile-menu nav ul li a.active {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+/* Цвет текста активной страницы в мобильном меню */
+.mobile-menu nav ul li a.active {
+    color: var(--text-primary) !important;
+    border-left: 4px solid var(--accent-red);
+}
+
+.mobile-dropdown {
+    display: none;
+    background: rgba(255, 255, 255, 0.03);
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+[data-theme="light"] .mobile-dropdown {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+.mobile-dropdown.active {
+    display: block;
+    animation: slideDown 0.4s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.mobile-dropdown a {
+    padding-left: 2.5rem !important;
+    font-size: 1rem !important;
+    color: var(--text-secondary) !important;
+    display: flex !important;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.mobile-dropdown a:hover {
+    color: var(--accent-red) !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+}
+
+[data-theme="light"] .mobile-dropdown a:hover {
+    background: rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Активная страница в мобильном выпадающем меню */
+.mobile-dropdown a.active {
+    color: var(--text-primary) !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-left: 4px solid var(--accent-red);
+}
+
+[data-theme="light"] .mobile-dropdown a.active {
+    background: rgba(0, 0, 0, 0.05) !important;
+}
+
+.mobile-menu nav ul li a .dropdown-arrow {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.4s ease;
+    filter: brightness(0) invert(1);
+}
+
+[data-theme="light"] .mobile-menu nav ul li a .dropdown-arrow {
+    filter: brightness(0) saturate(100%) invert(24%) sepia(9%) saturate(1200%) hue-rotate(170deg) brightness(92%) contrast(87%);
+}
+
+.mobile-menu nav ul li a.active .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 998;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease;
+    backdrop-filter: blur(4px);
+}
+
+.menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Hero Section */
+.hero {
+    padding: 4rem 0;
+    text-align: center;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(17, 17, 34, 0.9) 0%, rgba(26, 26, 46, 0.9) 100%);
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent-red), var(--accent-purple), var(--accent-blue));
+    animation: gradient 3s ease infinite;
+    background-size: 200% 200%;
+}
+
+@keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--accent-red), var(--accent-purple), var(--accent-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% 200%;
+    animation: gradient 3s ease infinite;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+    font-weight: 500;
+    line-height: 1.8;
+}
+
+/* News Section */
+.news-section {
+    padding: 2rem 0 3rem;
+}
+
+.section-header {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: 0.8rem;
+    color: var(--text-primary);
+    font-weight: 800;
+    position: relative;
+    display: inline-block;
+}
+
+.section-header h2::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent-red), var(--accent-purple));
+    border-radius: 2px;
+    animation: gradient 3s ease infinite;
+    background-size: 200% 200%;
+}
+
+.section-header p {
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 1rem;
+    max-width: 500px;
+    margin: 1rem auto 0;
+}
+
+/* News Grid */
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.news-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 2px solid var(--border-color);
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    box-shadow: var(--card-shadow);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.news-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--accent-red), var(--accent-purple));
+    transform: scaleY(0);
+    transition: transform 0.4s ease;
+}
+
+.news-card:hover {
+    border-color: var(--accent-red);
+    box-shadow: 0 12px 40px rgba(255, 71, 87, 0.2);
+    transform: translateY(-4px);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.news-card:hover::before {
+    transform: scaleY(1);
+}
+
+.news-date {
+    color: var(--accent-red);
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.news-date img {
+    width: 18px;
+    height: 18px;
+    filter: brightness(0) invert(1);
+}
+
+[data-theme="light"] .news-date img {
+    filter: none;
+}
+
+.news-title {
+    font-size: 1.3rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+    line-height: 1.4;
+    flex: 0 0 auto;
+}
+
+.news-content {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    flex: 1;
+    font-weight: 500;
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+}
+
+.news-meta {
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    flex: 0 0 auto;
+}
+
+.news-meta img {
+    width: 16px;
+    height: 16px;
+    opacity: 0.7;
+}
+
+/* Refresh Button */
+.refresh-btn {
+    display: block;
+    margin: 2rem auto;
+    padding: 0.8rem 2rem 0.8rem 3rem;
+    background: linear-gradient(135deg, var(--accent-red), var(--accent-purple));
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(255, 71, 87, 0.3);
+    position: relative;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    animation: pulse 2s infinite;
+}
+
+.refresh-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.6s ease;
+}
+
+.refresh-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(255, 71, 87, 0.4);
+    animation: none;
+}
+
+.refresh-btn:hover::before {
+    left: 100%;
+}
+
+.refresh-btn:active {
+    transform: translateY(0);
+}
+
+.refresh-btn img {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) invert(1);
+    transition: transform 0.3s ease;
+}
+
+.refresh-btn:hover img {
+    transform: translateY(-50%) rotate(180deg);
+}
+
+.sync-status {
+    text-align: center;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    margin: 1rem 0;
+    color: var(--text-secondary);
+    border: 2px solid var(--border-color);
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.sync-status.synced {
+    color: var(--accent-green);
+    border-color: var(--accent-green);
+    background: rgba(46, 213, 115, 0.1);
+    box-shadow: 0 4px 20px rgba(46, 213, 115, 0.15);
+}
+
+.error-message {
+    text-align: center;
+    padding: 1rem;
+    background: linear-gradient(135deg, rgba(255, 71, 87, 0.1), rgba(255, 71, 87, 0.2));
+    border: 2px solid rgba(255, 71, 87, 0.3);
+    border-radius: 12px;
+    margin: 1rem 0;
+    color: var(--accent-red);
+    font-weight: 600;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 20px rgba(255, 71, 87, 0.2);
+}
+
+[data-theme="light"] .error-message {
+    background: linear-gradient(135deg, rgba(255, 71, 87, 0.1), rgba(255, 71, 87, 0.2));
+    border-color: rgba(255, 71, 87, 0.3);
+    color: var(--accent-red);
+}
+
+.empty-state {
+    text-align: center;
+    padding: 3rem;
+    color: var(--text-secondary);
+    grid-column: 1 / -1;
+}
+
+.empty-state .icon {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+.empty-state h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 800;
+}
+
+.empty-state p {
+    font-weight: 500;
+}
+
+/* Footer */
+footer {
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border-color);
+    padding: 2.5rem 0 1.5rem;
+    margin-top: 3rem;
+    background: linear-gradient(135deg, rgba(17, 17, 34, 0.9) 0%, rgba(26, 26, 46, 0.9) 100%);
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-section h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+    font-weight: 700;
+    position: relative;
+    display: inline-block;
+}
+
+.footer-section h3::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background: var(--accent-red);
+    border-radius: 1px;
+}
+
+.footer-section p, .footer-section a {
+    color: var(--text-secondary);
+    margin-bottom: 0.8rem;
+    display: block;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.footer-section a:hover {
+    color: var(--accent-red);
+    padding-left: 0.5rem;
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    margin-top: 1.5rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+/* Социальные кнопки в мобильном меню */
+.mobile-social-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--border-color);
+    margin-top: auto;
+}
+
+.mobile-social-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.mobile-social-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Значки Discord и YouTube ВСЕГДА белые и в мобильном меню */
+.mobile-social-btn img {
+    width: 22px;
+    height: 22px;
+    filter: brightness(0) invert(1) !important;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+    }
+
+    .header-controls nav {
+        display: none;
+    }
+
+    .header-controls .social-buttons {
+        display: none;
+    }
+
+    .header-content {
+        flex-wrap: nowrap;
+    }
+
+    .logo {
+        font-size: 1.2rem;
+    }
+
+    .hero {
+        padding: 3rem 0;
+    }
+    
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero p {
+        font-size: 1.1rem;
+        padding: 0 1rem;
+    }
+    
+    .section-header h2 {
+        font-size: 2rem;
+    }
+    
+    .news-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .news-card {
+        padding: 1.2rem;
+    }
+    
+    .news-title {
+        font-size: 1.2rem;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .refresh-btn {
+        padding: 0.8rem 1.5rem 0.8rem 2.5rem;
+    }
+    
+    .refresh-btn img {
+        width: 18px;
+        height: 18px;
+        left: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .header-content {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    
+    .logo {
+        font-size: 1.1rem;
+    }
+    
+    .cube-icon {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .hero {
+        padding: 2rem 0;
+    }
+    
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+    }
+    
+    .section-header h2 {
+        font-size: 1.8rem;
+    }
+    
+    .news-card {
+        padding: 1rem;
+    }
+    
+    .news-title {
+        font-size: 1.1rem;
+    }
+    
+    .news-content {
+        font-size: 0.9rem;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .mobile-menu nav ul li a {
+        font-size: 1rem;
+        padding: 1rem 1.2rem;
+    }
+
+    .refresh-btn {
+        padding: 0.7rem 1.2rem 0.7rem 2rem;
+        font-size: 0.9rem;
+    }
+
+    .refresh-btn img {
+        width: 16px;
+        height: 16px;
+        left: 0.7rem;
+    }
+
+    .language-toggle, .theme-toggle {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+@media (max-width: 360px) {
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+    
+    .section-header h2 {
+        font-size: 1.6rem;
+    }
+    
+    .news-card {
+        padding: 0.9rem;
+    }
+    
+    .cube-icon {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+@media (hover: none) {
+    .news-card:hover {
+        transform: none;
+        border-color: var(--border-color);
+    }
+    
+    .news-card:active {
+        border-color: var(--accent-red);
+        transform: scale(0.98);
+    }
+    
+    .header-controls nav ul li:hover .dropdown-menu {
+        opacity: 0;
+        visibility: hidden;
+    }
+    
+    .dropdown-menu.active {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+[data-theme="light"] .social-btn {
+    background: rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="light"] .social-btn:hover {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+/* ФИКС ДЛЯ СВЕТЛОЙ ТЕМЫ - активная кнопка */
+[data-theme="light"] .header-controls nav ul li a.active {
+    color: var(--text-primary) !important;
+    background: rgba(0, 0, 0, 0.1) !important;
+}
     </style>
 </head>
 <body>
     <header>
         <div class="container">
             <div class="header-content">
-                <a href="index.html" class="logo">Just a GDPS <span>DemonList</span></a>
+                <div class="logo-container">
+                    <img src="assets/cube.png" alt="Cube" class="cube-icon">
+                    <a href="index.html" class="logo">Just a GDPS</a>
+                </div>
                 <div class="header-controls">
-                    <button class="theme-toggle" onclick="toggleTheme()">
-                        🌙
+                    <nav>
+                        <ul>
+                            <li class="dropdown">
+                                <a href="index.html" class="dropdown-toggle" onclick="toggleDropdown(event)">
+                                    <span data-lang="ru">Классический</span>
+                                    <span data-lang="en" style="display: none;">Classic</span>
+                                    <img src="assets/arrow.png" alt="▼" class="dropdown-arrow">
+                                </a>
+                                <div class="dropdown-menu">
+                                    <a href="index.html">
+                                        <img src="assets/classic-icon.png" alt="📜" class="dropdown-menu-icon">
+                                        <span data-lang="ru">Классический</span>
+                                        <span data-lang="en" style="display: none;">Classic</span>
+                                    </a>
+                                    <a href="impossible.html">
+                                        <img src="assets/impossible-icon.png" alt="🔥" class="dropdown-menu-icon">
+                                        <span data-lang="ru">Невозможный</span>
+                                        <span data-lang="en" style="display: none;">Impossible</span>
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="dropdown">
+                                <a href="players.html" class="dropdown-toggle" onclick="toggleDropdown(event)">
+                                    <span data-lang="ru">Лидерборды</span>
+                                    <span data-lang="en" style="display: none;">Leaderboards</span>
+                                    <img src="assets/arrow.png" alt="▼" class="dropdown-arrow">
+                                </a>
+                                <div class="dropdown-menu players-dropdown-menu">
+                                    <a href="players.html">
+                                        <img src="assets/players-icon.png" alt="👥" class="dropdown-menu-icon">
+                                        <span data-lang="ru">Топ игроков</span>
+                                        <span data-lang="en" style="display: none;">Top Players</span>
+                                    </a>
+                                    <!-- Кнопка Отправить реквест добавлена в меню Лидербордов -->
+                                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSceFzm37tUw0B5t6h3L3U5alQJ5P41F1uZEeC3DaVdDXbNmrQ/viewform?usp=dialog" 
+                                       class="dropdown-request-btn">
+                                        <img src="assets/request-icon.png" alt="📝" class="btn-icon">
+                                        <span data-lang="ru">Отправить реквест</span>
+                                        <span data-lang="en" style="display: none;">Submit Request</span>
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle active" onclick="toggleDropdown(event)">
+                                    <span data-lang="ru">Прочее</span>
+                                    <span data-lang="en" style="display: none;">Other</span>
+                                    <img src="assets/arrow.png" alt="▼" class="dropdown-arrow">
+                                </a>
+                                <div class="dropdown-menu others-dropdown-menu">
+                                    <a href="news.html" class="active">
+                                        <img src="assets/news-icon.png" alt="📰" class="dropdown-menu-icon">
+                                        <span data-lang="ru">Новости</span>
+                                        <span data-lang="en" style="display: none;">News</span>
+                                    </a>
+                                    <a href="contacts.html">
+                                        <img src="assets/contacts-icon.png" alt="📞" class="dropdown-menu-icon">
+                                        <span data-lang="ru">Контакты</span>
+                                        <span data-lang="en" style="display: none;">Contacts</span>
+                                    </a>
+                                    <a href="rules.html">
+                                        <img src="assets/rules-icon.png" alt="📜" class="dropdown-menu-icon">
+                                        <span data-lang="ru">Правила</span>
+                                        <span data-lang="en" style="display: none;">Rules</span>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                    
+                    <!-- Социальные кнопки перенесены вправо -->
+                    <div class="social-buttons">
+                        <a href="#" class="social-btn" title="Discord">
+                            <img src="assets/discord.png" alt="Discord">
+                        </a>
+                        <a href="#" class="social-btn" title="YouTube">
+                            <img src="assets/youtube.png" alt="YouTube">
+                        </a>
+                    </div>
+                    
+                    <button class="language-toggle" onclick="toggleLanguage()" id="languageToggle">
+                        EN
                     </button>
-                    <!-- Гамбургер меню для мобильных -->
+                    <button class="theme-toggle" onclick="toggleTheme()">
+                        <img src="assets/day-and-night.png" alt="Сменить тему" id="theme-icon">
+                    </button>
                     <button class="menu-toggle" onclick="toggleMobileMenu()">
                         <span></span>
                         <span></span>
                         <span></span>
                     </button>
-                    <!-- Обычная навигация -->
-                    <nav>
-                        <ul>
-                            <li><a href="index.html">Главная</a></li>
-                            <li><a href="players.html">Топ игроков</a></li>
-                            <li><a href="news.html" class="active">Новости</a></li>
-                            <li><a href="contacts.html">Контакты</a></li>
-                            <li><a href="rules.html">Правила</a></li>
-                            <!-- Кнопка "Отправить реквест" для ПК -->
-                            <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSceFzm37tUw0B5t6h3L3U5alQJ5P41F1uZEeC3DaVdDXbNmrQ/viewform?usp=dialog" class="request-btn">Отправить реквест</a></li>
-                        </ul>
-                    </nav>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Мобильное меню -->
     <div class="mobile-menu" id="mobileMenu">
-        <button class="close-menu" onclick="toggleMobileMenu()">×</button>
+        <div class="mobile-header">
+            <div class="mobile-logo-container">
+                <img src="assets/cube.png" alt="Cube" class="mobile-cube-icon">
+                <a href="index.html" class="mobile-logo">Just a GDPS</a>
+            </div>
+            <button class="mobile-close" onclick="toggleMobileMenu()">×</button>
+        </div>
         <nav>
             <ul>
-                <li><a href="index.html" onclick="closeMobileMenu()">Главная</a></li>
-                <li><a href="players.html" onclick="closeMobileMenu()">Топ игроков</a></li>
-                <li><a href="news.html" class="active" onclick="closeMobileMenu()">Новости</a></li>
-                <li><a href="contacts.html" onclick="closeMobileMenu()">Контакты</a></li>
-                <li><a href="rules.html" onclick="closeMobileMenu()">Правила</a></li>
-                <!-- Кнопка "Отправить реквест" для мобильных -->
-                <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSceFzm37tUw0B5t6h3L3U5alQJ5P41F1uZEeC3DaVdDXbNmrQ/viewform?usp=dialog" class="request-btn" onclick="closeMobileMenu()">Отправить реквест</a></li>
+                <li>
+                    <a href="index.html" class="dropdown-toggle" onclick="toggleMobileDropdown(event, 'main')">
+                        <span data-lang="ru">Классический</span>
+                        <span data-lang="en" style="display: none;">Classic</span>
+                        <img src="assets/arrow.png" alt="▼" class="dropdown-arrow">
+                    </a>
+                    <div class="mobile-dropdown" id="mobileDropdownMain">
+                        <a href="index.html" onclick="closeMobileMenu()">
+                            <img src="assets/classic-icon.png" alt="📜" class="dropdown-menu-icon">
+                            <span data-lang="ru">Классический</span>
+                            <span data-lang="en" style="display: none;">Classic</span>
+                        </a>
+                        <a href="impossible.html" onclick="closeMobileMenu()">
+                            <img src="assets/impossible-icon.png" alt="🔥" class="dropdown-menu-icon">
+                            <span data-lang="ru">Невозможный</span>
+                            <span data-lang="en" style="display: none;">Impossible</span>
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <a href="players.html" class="dropdown-toggle" onclick="toggleMobileDropdown(event, 'players')">
+                        <span data-lang="ru">Лидерборды</span>
+                        <span data-lang="en" style="display: none;">Leaderboards</span>
+                        <img src="assets/arrow.png" alt="▼" class="dropdown-arrow">
+                    </a>
+                    <div class="mobile-dropdown" id="mobileDropdownPlayers">
+                        <a href="players.html" onclick="closeMobileMenu()">
+                            <img src="assets/players-icon.png" alt="👥" class="dropdown-menu-icon">
+                            <span data-lang="ru">Топ игроков</span>
+                            <span data-lang="en" style="display: none;">Top Players</span>
+                        </a>
+                        <!-- Кнопка Отправить реквест в мобильном меню -->
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSceFzm37tUw0B5t6h3L3U5alQJ5P41F1uZEeC3DaVdDXbNmrQ/viewform?usp=dialog" 
+                           onclick="closeMobileMenu()" style="background: linear-gradient(135deg, var(--accent-red), var(--accent-purple)) !important; color: white !important;">
+                            <img src="assets/request-icon.png" alt="📝" class="dropdown-menu-icon">
+                            <span data-lang="ru">Отправить реквест</span>
+                            <span data-lang="en" style="display: none;">Submit Request</span>
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle active" onclick="toggleMobileDropdown(event, 'others')">
+                        <span data-lang="ru">Прочее</span>
+                        <span data-lang="en" style="display: none;">Other</span>
+                        <img src="assets/arrow.png" alt="▼" class="dropdown-arrow">
+                    </a>
+                    <div class="mobile-dropdown" id="mobileDropdownOthers">
+                        <a href="news.html" class="active" onclick="closeMobileMenu()">
+                            <img src="assets/news-icon.png" alt="📰" class="dropdown-menu-icon">
+                            <span data-lang="ru">Новости</span>
+                            <span data-lang="en" style="display: none;">News</span>
+                        </a>
+                        <a href="contacts.html" onclick="closeMobileMenu()">
+                            <img src="assets/contacts-icon.png" alt="📞" class="dropdown-menu-icon">
+                            <span data-lang="ru">Контакты</span>
+                            <span data-lang="en" style="display: none;">Contacts</span>
+                        </a>
+                        <a href="rules.html" onclick="closeMobileMenu()">
+                            <img src="assets/rules-icon.png" alt="📜" class="dropdown-menu-icon">
+                            <span data-lang="ru">Правила</span>
+                            <span data-lang="en" style="display: none;">Rules</span>
+                        </a>
+                    </div>
+                </li>
             </ul>
+            <!-- Социальные кнопки в мобильном меню -->
+            <div class="mobile-social-buttons">
+                <a href="#" class="mobile-social-btn" title="Discord">
+                    <img src="assets/discord.png" alt="Discord">
+                </a>
+                <a href="#" class="mobile-social-btn" title="YouTube">
+                    <img src="assets/youtube.png" alt="YouTube">
+                </a>
+            </div>
         </nav>
     </div>
+    <div class="menu-overlay" id="menuOverlay" onclick="closeMobileMenu()"></div>
     
     <section class="hero">
         <div class="container">
-            <h1>Новости</h1>
-            <p>Последние обновления и события DFPS Demon List</p>
-        </div>
-    </section>
-    
-    <!-- Поиск новостей -->
-    <section class="search-section">
-        <div class="container">
-            <div class="search-container">
-                <input type="text" id="searchInput" class="search-input" placeholder="Поиск новостей по заголовку или содержанию...">
-                <div class="search-results" id="searchResults"></div>
-            </div>
+            <h1 data-lang="ru">Новости</h1>
+            <h1 data-lang="en" style="display: none;">News</h1>
+            <p data-lang="ru">Последние обновления и события GDPS Demon List</p>
+            <p data-lang="en" style="display: none;">Latest updates and events of GDPS Demon List</p>
         </div>
     </section>
     
     <section class="news-section">
         <div class="container">
             <div class="section-header">
-                <h2>Последние новости</h2>
-                <p>Будьте в курсе всех обновлений и событий</p>
+                <h2 data-lang="ru">Последние новости</h2>
+                <h2 data-lang="en" style="display: none;">Latest News</h2>
+                <p data-lang="ru">Будьте в курсе всех обновлений и событий</p>
+                <p data-lang="en" style="display: none;">Stay updated with all news and events</p>
             </div>
 
             <button class="refresh-btn" onclick="refreshData()">
-                🔄 Обновить новости
+                <img src="assets/update.png" alt="🔄">
+                <span data-lang="ru">Обновить новости</span>
+                <span data-lang="en" style="display: none;">Refresh News</span>
             </button>
             
             <div id="syncStatus" class="sync-status">
-                Загрузка новостей...
+                <span data-lang="ru">Загрузка новостей...</span>
+                <span data-lang="en" style="display: none;">Loading news...</span>
             </div>
 
             <div id="errorContainer"></div>
@@ -813,31 +1585,215 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>Geometry Dash Demon List</h3>
-                    <p>Неофициальный рейтинг самых сложных уровней в Geometry Dash.</p>
+                    <p data-lang="ru">Неофициальный рейтинг самых сложных уровней в Geometry Dash. Поддерживается сообществом игроков.</p>
+                    <p data-lang="en" style="display: none;">Unofficial rating of the most difficult levels in Geometry Dash. Supported by the player community.</p>
                 </div>
                 <div class="footer-section">
-                    <h3>Навигация</h3>
-                    <a href="index.html">Главная</a>
-                    <a href="players.html">Топ игроков</a>
-                    <a href="news.html">Новости</a>
-                    <a href="contacts.html">Контакты</a>
-                    <a href="rules.html">Правила</a>
+                    <h3 data-lang="ru">Списки</h3>
+                    <h3 data-lang="en" style="display: none;">Lists</h3>
+                    <a href="index.html">
+                        <span data-lang="ru">Классический список</span>
+                        <span data-lang="en" style="display: none;">Classic List</span>
+                    </a>
+                    <a href="impossible.html">
+                        <span data-lang="ru">Невозможный список</span>
+                        <span data-lang="en" style="display: none;">Impossible List</span>
+                    </a>
+                    <a href="players.html">
+                        <span data-lang="ru">Лидерборды</span>
+                        <span data-lang="en" style="display: none;">Leaderboards</span>
+                    </a>
                 </div>
                 <div class="footer-section">
-                    <h3>Сообщество</h3>
-                    <a href="#">Discord</a>
-                    <a href="#">YouTube</a>
-                    <a href="#">Twitter</a>
+                    <h3 data-lang="ru">Информация</h3>
+                    <h3 data-lang="en" style="display: none;">Information</h3>
+                    <a href="rules.html">
+                        <span data-lang="ru">Правила списка</span>
+                        <span data-lang="en" style="display: none;">List Rules</span>
+                    </a>
+                    <a href="news.html">
+                        <span data-lang="ru">Новости и обновления</span>
+                        <span data-lang="en" style="display: none;">News & Updates</span>
+                    </a>
+                    <a href="contacts.html">
+                        <span data-lang="ru">Контакты</span>
+                        <span data-lang="en" style="display: none;">Contacts</span>
+                    </a>
+                </div>
+                <div class="footer-section">
+                    <h3 data-lang="ru">Сообщество</h3>
+                    <h3 data-lang="en" style="display: none;">Community</h3>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSceFzm37tUw0B5t6h3L3U5alQJ5P41F1uZEeC3DaVdDXbNmrQ/viewform?usp=dialog">
+                        <span data-lang="ru">Отправить реквест</span>
+                        <span data-lang="en" style="display: none;">Submit Request</span>
+                    </a>
+                    <a href="#">
+                        <span data-lang="ru">Discord сервер</span>
+                        <span data-lang="en" style="display: none;">Discord Server</span>
+                    </a>
+                    <a href="#">
+                        <span data-lang="ru">Группа VK</span>
+                        <span data-lang="en" style="display: none;">VK Group</span>
+                    </a>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2025 Geometry Dash Demon List. Неофициальный фанатский проект.</p>
+                <p>&copy; 2025 Geometry Dash Demon List. 
+                   <span data-lang="ru">Неофициальный фанатский проект. Все права на Geometry Dash принадлежат RobTop Games.</span>
+                   <span data-lang="en" style="display: none;">Unofficial fan project. All rights to Geometry Dash belong to RobTop Games.</span>
+                </p>
             </div>
         </div>
     </footer>
 
     <script>
-        // ========== ПРОСТОЕ МОБИЛЬНОЕ МЕНЮ ==========
+        // ========== ПЕРЕКЛЮЧЕНИЕ ЯЗЫКА ==========
+        function toggleLanguage() {
+            const currentLang = localStorage.getItem('language') || 'ru';
+            const newLang = currentLang === 'ru' ? 'en' : 'ru';
+            
+            localStorage.setItem('language', newLang);
+            updateLanguage(newLang);
+            
+            const langButton = document.getElementById('languageToggle');
+            langButton.textContent = newLang === 'ru' ? 'EN' : 'RU';
+        }
+        
+        function loadLanguage() {
+            const savedLang = localStorage.getItem('language') || 'ru';
+            updateLanguage(savedLang);
+            
+            const langButton = document.getElementById('languageToggle');
+            langButton.textContent = savedLang === 'ru' ? 'EN' : 'RU';
+        }
+        
+        function updateLanguage(lang) {
+            document.querySelectorAll('[data-lang]').forEach(element => {
+                if (element.getAttribute('data-lang') === lang) {
+                    element.style.display = '';
+                } else {
+                    element.style.display = 'none';
+                }
+            });
+            
+            updateIconColors(document.documentElement.getAttribute('data-theme') || 'dark');
+        }
+
+        // ========== ВЫПАДАЮЩИЕ МЕНЮ ==========
+        function toggleDropdown(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            
+            const dropdown = event.currentTarget.parentElement;
+            const dropdownMenu = dropdown.querySelector('.dropdown-menu');
+            const arrow = event.currentTarget.querySelector('.dropdown-arrow');
+            const isActive = dropdownMenu.classList.contains('active');
+            
+            document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                if (menu !== dropdownMenu) {
+                    menu.classList.remove('active');
+                }
+            });
+            
+            document.querySelectorAll('.dropdown-toggle').forEach(btn => {
+                if (btn !== event.currentTarget) {
+                    btn.classList.remove('active');
+                    const otherArrow = btn.querySelector('.dropdown-arrow');
+                    if (otherArrow) otherArrow.style.transform = 'rotate(0deg)';
+                }
+            });
+            
+            if (!isActive) {
+                dropdownMenu.classList.add('active');
+                event.currentTarget.classList.add('active');
+                if (arrow) arrow.style.transform = 'rotate(180deg)';
+            } else {
+                dropdownMenu.classList.remove('active');
+                event.currentTarget.classList.remove('active');
+                if (arrow) arrow.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        function toggleMobileDropdown(event, type) {
+            event.preventDefault();
+            event.stopPropagation();
+            
+            const mobileDropdown = document.getElementById(`mobileDropdown${type.charAt(0).toUpperCase() + type.slice(1)}`);
+            const isActive = mobileDropdown.classList.contains('active');
+            const arrow = event.currentTarget.querySelector('.dropdown-arrow');
+            
+            document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
+                if (dropdown.id !== mobileDropdown.id) {
+                    dropdown.classList.remove('active');
+                }
+            });
+            
+            document.querySelectorAll('.mobile-menu .dropdown-toggle').forEach(btn => {
+                if (btn !== event.currentTarget) {
+                    btn.classList.remove('active');
+                    const otherArrow = btn.querySelector('.dropdown-arrow');
+                    if (otherArrow) otherArrow.style.transform = 'rotate(0deg)';
+                }
+            });
+            
+            if (!isActive) {
+                mobileDropdown.classList.add('active');
+                arrow.style.transform = 'rotate(180deg)';
+                event.currentTarget.classList.add('active');
+            } else {
+                mobileDropdown.classList.remove('active');
+                arrow.style.transform = 'rotate(0deg)';
+                event.currentTarget.classList.remove('active');
+            }
+        }
+
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.dropdown')) {
+                document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                    menu.classList.remove('active');
+                });
+                document.querySelectorAll('.dropdown-toggle').forEach(btn => {
+                    btn.classList.remove('active');
+                    const arrow = btn.querySelector('.dropdown-arrow');
+                    if (arrow) arrow.style.transform = 'rotate(0deg)';
+                });
+            }
+            
+            if (!event.target.closest('.mobile-menu nav ul li')) {
+                document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                });
+                document.querySelectorAll('.mobile-menu .dropdown-toggle').forEach(btn => {
+                    btn.classList.remove('active');
+                    const arrow = btn.querySelector('.dropdown-arrow');
+                    if (arrow) arrow.style.transform = 'rotate(0deg)';
+                });
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                    menu.classList.remove('active');
+                });
+                document.querySelectorAll('.dropdown-toggle').forEach(btn => {
+                    btn.classList.remove('active');
+                    const arrow = btn.querySelector('.dropdown-arrow');
+                    if (arrow) arrow.style.transform = 'rotate(0deg)';
+                });
+                
+                document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                });
+                document.querySelectorAll('.mobile-menu .dropdown-toggle').forEach(btn => {
+                    btn.classList.remove('active');
+                    const arrow = btn.querySelector('.dropdown-arrow');
+                    if (arrow) arrow.style.transform = 'rotate(0deg)';
+                });
+            }
+        });
+
+        // ========== МОБИЛЬНОЕ МЕНЮ ==========
         function toggleMobileMenu() {
             const mobileMenu = document.getElementById('mobileMenu');
             const menuOverlay = document.getElementById('menuOverlay');
@@ -854,124 +1810,77 @@
             mobileMenu.classList.remove('active');
             menuOverlay.classList.remove('active');
             document.body.style.overflow = '';
+            
+            document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
+                dropdown.classList.remove('active');
+            });
+            document.querySelectorAll('.mobile-menu .dropdown-toggle').forEach(btn => {
+                btn.classList.remove('active');
+                const arrow = btn.querySelector('.dropdown-arrow');
+                if (arrow) arrow.style.transform = 'rotate(0deg)';
+            });
         }
 
-        // Закрываем меню при клике на ссылку
         document.querySelectorAll('.mobile-menu a').forEach(link => {
-            link.addEventListener('click', closeMobileMenu);
-        });
-
-        // Закрываем меню при нажатии Escape
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                closeMobileMenu();
+            if (!link.classList.contains('dropdown-toggle')) {
+                link.addEventListener('click', closeMobileMenu);
             }
         });
-
-        // ========== THEME TOGGLE ==========
         
+        // ========== СМЕНА ТЕМЫ ==========
         function toggleTheme() {
             const currentTheme = document.documentElement.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
             
             document.documentElement.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
             
-            const themeButton = document.querySelector('.theme-toggle');
-            themeButton.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+            const themeIcon = document.getElementById('theme-icon');
+            themeIcon.style.transform = newTheme === 'dark' ? 'rotate(180deg)' : 'rotate(0deg)';
+            
+            updateIconColors(newTheme);
         }
         
         function loadTheme() {
-            const savedTheme = localStorage.getItem('theme') || 'light';
+            const savedTheme = localStorage.getItem('theme') || 'dark';
             document.documentElement.setAttribute('data-theme', savedTheme);
             
-            const themeButton = document.querySelector('.theme-toggle');
-            themeButton.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+            const themeIcon = document.getElementById('theme-icon');
+            themeIcon.style.transition = 'transform 0.5s ease';
+            themeIcon.style.transform = savedTheme === 'dark' ? 'rotate(180deg)' : 'rotate(0deg)';
+            
+            updateIconColors(savedTheme);
+        }
+        
+        function updateIconColors(theme) {
+            const newsDateIcons = document.querySelectorAll('.news-date img');
+            newsDateIcons.forEach(icon => {
+                if (theme === 'dark') {
+                    icon.style.filter = 'brightness(0) invert(1)';
+                } else {
+                    icon.style.filter = 'none';
+                }
+            });
         }
 
-        // ========== NEWS DATA SYSTEM ==========
-        
+        // ========== ДАННЫЕ НОВОСТЕЙ ==========
         let news = [];
         let filteredNews = [];
-
-        // ========== SEARCH SYSTEM ==========
-
-        function initializeSearch() {
-            const searchInput = document.getElementById('searchInput');
-            const searchResults = document.getElementById('searchResults');
-            
-            searchInput.addEventListener('input', function() {
-                const searchTerm = this.value.toLowerCase().trim();
-                
-                if (searchTerm.length === 0) {
-                    searchResults.style.display = 'none';
-                    filteredNews = [...news];
-                    renderNews();
-                    return;
-                }
-                
-                const results = news.filter(newsItem => 
-                    newsItem.title.toLowerCase().includes(searchTerm) || 
-                    newsItem.content.toLowerCase().includes(searchTerm)
-                );
-                
-                displaySearchResults(results);
-                filteredNews = results;
-                renderNews();
-            });
-            
-            document.addEventListener('click', function(e) {
-                if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
-                    searchResults.style.display = 'none';
-                }
-            });
-        }
-        
-        function displaySearchResults(results) {
-            const searchResults = document.getElementById('searchResults');
-            
-            if (results.length === 0) {
-                searchResults.innerHTML = '<div class="no-results">Новости не найдены</div>';
-                searchResults.style.display = 'block';
-                return;
-            }
-            
-            searchResults.innerHTML = '';
-            
-            results.slice(0, 8).forEach(newsItem => {
-                const resultItem = document.createElement('div');
-                resultItem.className = 'search-result-item';
-                resultItem.innerHTML = `
-                    <div class="search-result-title">${newsItem.title}</div>
-                    <div class="search-result-date">${newsItem.date}</div>
-                `;
-                resultItem.addEventListener('click', function() {
-                    // Прокрутка к новости (можно реализовать якорями)
-                    searchResults.style.display = 'none';
-                    searchInput.value = '';
-                    filteredNews = [...news];
-                    renderNews();
-                });
-                searchResults.appendChild(resultItem);
-            });
-            
-            searchResults.style.display = 'block';
-        }
-
-        // ========== DATA MANAGEMENT ==========
 
         function showError(message) {
             const errorContainer = document.getElementById('errorContainer');
             errorContainer.innerHTML = `
                 <div class="error-message">
-                    <strong>Ошибка:</strong> ${message}
+                    <strong data-lang="ru">Ошибка:</strong>
+                    <strong data-lang="en" style="display: none;">Error:</strong>
+                    ${message}
                 </div>
             `;
         }
 
         async function loadNewsFromJSON() {
             try {
-                console.log('📥 Загрузка новостей из news.json...');
+                console.log('📥 Загружаем новости из news.json...');
                 
                 const response = await fetch('data/news.json');
                 if (!response.ok) throw new Error('Файл news.json не найден');
@@ -979,21 +1888,34 @@
                 const data = await response.json();
                 
                 if (data.news && Array.isArray(data.news)) {
-                    // Сортируем новости по дате (новые сверху)
+                    // Сортируем новости по ID (новые сверху)
                     news = data.news.sort((a, b) => {
                         return parseInt(b.id) - parseInt(a.id);
                     });
                     
                     filteredNews = [...news];
-                    console.log('✅ Новости загружены из news.json:', news.length);
+                    
+                    console.log('✅ Новости загружены:', news.length);
+                    
+                    const currentLang = localStorage.getItem('language') || 'ru';
+                    const statusText = currentLang === 'ru' ? 'Новости загружены' : 'News loaded';
+                    updateSyncStatus(statusText);
+                    
+                    renderNews();
+                    
                     return true;
                 } else {
-                    throw new Error('Неверный формат news.json - отсутствует массив news');
+                    throw new Error('Неверный формат news.json');
                 }
                 
             } catch (error) {
                 console.error('❌ Ошибка загрузки новостей:', error);
-                showError('Ошибка загрузки новостей: ' + error.message);
+                showError(error.message);
+                
+                const currentLang = localStorage.getItem('language') || 'ru';
+                const statusText = currentLang === 'ru' ? 'Ошибка загрузки данных' : 'Error loading data';
+                updateSyncStatus(statusText);
+                
                 return false;
             }
         }
@@ -1002,107 +1924,116 @@
             const statusElement = document.getElementById('syncStatus');
             if (statusElement) {
                 statusElement.textContent = message;
-                statusElement.className = 'sync-status ' + (message.includes('✅') || message.includes('Загружено') ? 'synced' : '');
+                statusElement.className = 'sync-status ' + (message.includes('загружены') || message.includes('loaded') ? 'synced' : '');
             }
         }
 
-        // ========== RENDERING ==========
-
         function renderNews() {
             const newsGrid = document.getElementById('newsGrid');
+            const currentLang = localStorage.getItem('language') || 'ru';
             
-            if (!newsGrid) {
-                console.error('❌ Element newsGrid not found');
-                return;
-            }
+            if (!newsGrid) return;
             
-            newsGrid.innerHTML = '';
+            const fragment = document.createDocumentFragment();
             
             if (filteredNews.length === 0) {
+                const noResultsTitle = currentLang === 'ru' ? 'Новости не найдены' : 'News not found';
+                const noResultsDesc = currentLang === 'ru' ? 'Проверьте файл news.json' : 'Check news.json file';
+                
                 newsGrid.innerHTML = `
                     <div class="empty-state">
-                        <div class="icon">📰</div>
-                        <div style="font-size: 1rem; margin-bottom: 0.4rem; font-weight: 700;">Новости не найдены</div>
-                        <div style="font-weight: 600; font-size: 0.9rem;">Попробуйте изменить поисковый запрос</div>
+                        <img src="assets/news-icon.png" alt="📰" class="icon">
+                        <h3>${noResultsTitle}</h3>
+                        <p>${noResultsDesc}</p>
                     </div>
                 `;
                 return;
             }
             
-            // Рендерим новости
             filteredNews.forEach(newsItem => {
                 const newsCard = document.createElement('div');
                 newsCard.className = 'news-card';
-                newsCard.innerHTML = `
-                    <div class="news-date">${newsItem.date}</div>
-                    <h3 class="news-title">${newsItem.title}</h3>
-                    <div class="news-content">${newsItem.content}</div>
-                    <div class="news-meta">Новость #${newsItem.id}</div>
+                
+                const newsDate = document.createElement('div');
+                newsDate.className = 'news-date';
+                newsDate.innerHTML = `
+                    <img src="assets/calendar-icon.png" alt="📅">
+                    <span>${newsItem.date}</span>
                 `;
-                newsGrid.appendChild(newsCard);
+                
+                const newsTitle = document.createElement('h3');
+                newsTitle.className = 'news-title';
+                newsTitle.textContent = newsItem.title;
+                
+                const newsContent = document.createElement('div');
+                newsContent.className = 'news-content';
+                newsContent.textContent = newsItem.content;
+                
+                const newsMeta = document.createElement('div');
+                newsMeta.className = 'news-meta';
+                newsMeta.innerHTML = `
+                    <img src="assets/tag-icon.png" alt="🏷️">
+                    <span>${currentLang === 'ru' ? 'Новость' : 'News'} #${newsItem.id}</span>
+                `;
+                
+                newsCard.appendChild(newsDate);
+                newsCard.appendChild(newsTitle);
+                newsCard.appendChild(newsContent);
+                newsCard.appendChild(newsMeta);
+                
+                fragment.appendChild(newsCard);
             });
+            
+            newsGrid.innerHTML = '';
+            newsGrid.appendChild(fragment);
         }
-
-        // ========== UTILITY FUNCTIONS ==========
 
         async function refreshData() {
             console.log('🔄 Обновление новостей...');
             await loadNewsFromJSON();
-            renderNews();
-            updateSyncStatus(`Загружено ${news.length} новостей`);
             
-            // Анимация обновления
             document.querySelectorAll('.news-card').forEach((card, index) => {
                 card.style.opacity = '0';
                 card.style.transform = 'translateY(20px)';
                 
                 setTimeout(() => {
-                    card.style.transition = 'opacity 0.3s, transform 0.3s';
+                    card.style.transition = 'opacity 0.5s, transform 0.5s';
                     card.style.opacity = '1';
                     card.style.transform = 'translateY(0)';
                 }, index * 50);
             });
         }
 
-        // ========== INITIALIZATION ==========
-
+        // ========== ИНИЦИАЛИЗАЦИЯ ==========
         async function initializeData() {
-            console.log('🎮 Инициализация страницы новостей...');
             loadTheme();
-            try {
-                await loadNewsFromJSON();
-                initializeSearch();
-                renderNews();
-                updateSyncStatus(`Загружено ${news.length} новостей`);
-                
-                // Анимация появления
-                setTimeout(() => {
-                    document.querySelectorAll('.news-card').forEach((card, index) => {
-                        card.style.opacity = '0';
-                        card.style.transform = 'translateY(20px)';
-                        
-                        setTimeout(() => {
-                            card.style.transition = 'opacity 0.3s, transform 0.3s';
-                            card.style.opacity = '1';
-                            card.style.transform = 'translateY(0)';
-                        }, index * 50);
-                    });
-                }, 100);
-            } catch (error) {
-                console.error('❌ Ошибка инициализации:', error);
-                showError('Ошибка загрузки данных: ' + error.message);
-            }
+            loadLanguage();
+            
+            await loadNewsFromJSON();
+            
+            setTimeout(() => {
+                document.querySelectorAll('.news-card').forEach((card, index) => {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    
+                    setTimeout(() => {
+                        card.style.transition = 'opacity 0.5s, transform 0.5s';
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, index * 50);
+                });
+            }, 100);
         }
 
-        // Глобальные функции
         window.refreshData = refreshData;
         window.toggleTheme = toggleTheme;
+        window.toggleLanguage = toggleLanguage;
         window.toggleMobileMenu = toggleMobileMenu;
         window.closeMobileMenu = closeMobileMenu;
+        window.toggleDropdown = toggleDropdown;
+        window.toggleMobileDropdown = toggleMobileDropdown;
 
-        // Запуск при загрузке страницы
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('🚀 News.html загружен, начинаем инициализацию...');
             initializeData();
         });
     </script>
