@@ -226,7 +226,7 @@
       "id": "piglen7",
       "name": "Piglen7",
       "avatar": "P7",
-      "completedDemons": ["easycorridor"],
+      "completedDemons": ["easycorridor", "gypers"],
       "progress": {
         "easycorridor": 100,
         "gypers": 72
