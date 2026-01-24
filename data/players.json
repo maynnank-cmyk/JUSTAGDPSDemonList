@@ -228,7 +228,8 @@
       "avatar": "P7",
       "completedDemons": ["easycorridor"],
       "progress": {
-        "easycorridor": 100
+        "easycorridor": 100,
+        "gypers": 72
       }
     },
      {
