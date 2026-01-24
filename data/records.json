@@ -5,7 +5,7 @@
       "name": "ProPlayer",
       "records": [
         {
-          "demonId": "1",
+          "demonId": 1,
           "progress": 1
         }
       ]
