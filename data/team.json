@@ -16,5 +16,13 @@
       "role": "Модератор Листа",
       "roleClass": "role-admin"
     }
+    {
+      "id": "terraria",
+      "name": "TheRealTerraria",
+      "avatar": "T",
+      "avatarImage": "", 
+      "role": "Плейтестер Листа",
+      "roleClass": "role-moder"
+    }
   ]
 }
