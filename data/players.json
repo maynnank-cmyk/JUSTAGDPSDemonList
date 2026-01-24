@@ -232,11 +232,12 @@
       "id": "piglen7",
       "name": "Piglen7",
       "avatar": "P7",
-      "completedDemons": ["easycorridor", "gypers", "unforcedvortrex"],
+      "completedDemons": ["easycorridor", "gypers", "unforcedvortrex" "fracture", ],
       "progress": {
         "easycorridor": 100,
         "gypers": 72,
-        "unforcedvortrex": 100
+        "unforcedvortrex": 100,
+        "fracture",
       }
     },
      {
