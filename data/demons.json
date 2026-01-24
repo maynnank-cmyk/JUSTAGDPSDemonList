@@ -167,7 +167,15 @@
       "videoUrl": "https://youtu.be/iyMbRr_tFaM?si=8xyZ99sSaw3Ye7yT",
       "image": "images/atomiccannonmkiii.png",
       "description": ""
-    },
+     },
+      {
+      "id": "fracture",
+      "name": "Fracture",
+      "creator": "Terraria",
+      "videoUrl": "https://youtu.be/CVv2Es7OGQU?si=QdNxIzl6q9ltI_Zf&t=10",
+      "image": "",
+      "description": ""
+      },
       {
       "id": "mango",
       "name": "Mango",
