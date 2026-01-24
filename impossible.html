@@ -2138,7 +2138,7 @@ html {
             });
         }
 
-        // ========== ДАННЫЕ НЕВОЗМОЖНЫХ ДЕМОНОВ ==========
+        // ========== ДАННЫЕ НЕВОЗМОЖНЫХ ДЕМОНОВ (ОБНОВЛЕННАЯ СТРУКТУРА) ==========
         let impossibleDemons = [];
         let filteredImpossibleDemons = [];
         let imageCache = new Map();
@@ -2223,22 +2223,71 @@ html {
             `;
         }
 
-        async function getAvailableImage(demonId) {
+        // Функция для получения изображения демона (поддержка нескольких источников)
+        async function getDemonImage(demon) {
+            const demonId = demon.id;
+            
+            // Проверяем кэш
             if (imageCache.has(demonId)) {
                 return imageCache.get(demonId);
             }
 
-            const imageUrl = `images/impossible/${demonId}.png`;
-            
-            try {
-                const response = await fetch(imageUrl, { method: 'HEAD' });
-                const isAvailable = response.ok;
-                imageCache.set(demonId, isAvailable ? imageUrl : null);
-                return isAvailable ? imageUrl : null;
-            } catch (error) {
-                imageCache.set(demonId, null);
-                return null;
+            // Пробуем разные источники изображений
+            const imageSources = [
+                // 1. Изображение из JSON (полный URL или относительный путь)
+                demon.images && demon.images.thumbnail,
+                demon.image, // Старый формат для обратной совместимости
+                // 2. Локальное изображение в папке images/impossible/
+                `images/impossible/${demonId}.jpg`,
+                `images/impossible/${demonId}.png`,
+                `images/impossible/${demonId}.webp`,
+                // 3. Локальное изображение в папке assets/demons/
+                `assets/demons/${demonId}.jpg`,
+                `assets/demons/${demonId}.png`,
+                `assets/demons/${demonId}.webp`
+            ].filter(Boolean);
+
+            // Пробуем каждый источник
+            for (const source of imageSources) {
+                try {
+                    // Если это полный URL
+                    if (source.startsWith('http')) {
+                        const response = await fetch(source, { method: 'HEAD' });
+                        if (response.ok) {
+                            imageCache.set(demonId, source);
+                            return source;
+                        }
+                    } 
+                    // Если это относительный путь
+                    else {
+                        const response = await fetch(source, { method: 'HEAD' });
+                        if (response.ok) {
+                            imageCache.set(demonId, source);
+                            return source;
+                        }
+                    }
+                } catch (error) {
+                    // Продолжаем пробовать следующий источник
+                    continue;
+                }
             }
+
+            // Если изображение не найдено
+            imageCache.set(demonId, null);
+            return null;
+        }
+
+        // Функция для получения видео демона (для будущего использования)
+        function getDemonVideo(demon) {
+            // Возвращаем первое доступное видео из массива
+            if (demon.videos && demon.videos.length > 0) {
+                return demon.videos[0];
+            }
+            // Или видео из старого формата
+            if (demon.video) {
+                return demon.video;
+            }
+            return null;
         }
 
         async function loadDataFromJSON() {
@@ -2255,7 +2304,18 @@ html {
                     
                     impossibleDemons = data.impossibleDemons.map((demon, index) => ({
                         ...demon,
-                        rank: index + 1
+                        rank: index + 1,
+                        // Добавляем поля по умолчанию для обратной совместимости
+                        images: demon.images || {},
+                        videos: demon.videos || [],
+                        description: demon.description || '',
+                        difficulty: demon.difficulty || 'Extreme Demon',
+                        length: demon.length || 'N/A',
+                        rating: demon.rating || 0,
+                        downloads: demon.downloads || 0,
+                        likes: demon.likes || 0,
+                        published: demon.published || 'N/A',
+                        originalID: demon.originalID || demon.id
                     }));
                     
                     filteredImpossibleDemons = [...impossibleDemons];
@@ -2298,7 +2358,7 @@ html {
                 
                 await Promise.all(
                     batch.map(async (demon) => {
-                        const imageUrl = await getAvailableImage(demon.id);
+                        const imageUrl = await getDemonImage(demon);
                         if (imageUrl) {
                             demon.image = imageUrl;
                             
@@ -2383,6 +2443,7 @@ html {
                         <div class="demon-details">
                             <div class="demon-name">${demon.name}</div>
                             <div class="demon-creator">by ${demon.creator}</div>
+                            ${demon.difficulty ? `<div class="demon-difficulty" style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.3rem;">${demon.difficulty}</div>` : ''}
                         </div>
                         <div class="demon-points">${points} pts</div>
                     </div>
@@ -2431,9 +2492,6 @@ html {
             const dataPromise = loadDataFromJSON();
             
             initializeSearch();
-            
-            // Убираем обработчики наведения для десктопа
-            // Теперь dropdown работают только по клику
             
             setTimeout(() => {
                 document.querySelectorAll('.demon-row').forEach((row, index) => {
