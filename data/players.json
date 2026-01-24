@@ -240,6 +240,16 @@
       "progress": {
         "cure": 100
       }
+    },
+      {
+      "id": "taleesman",
+      "name": "Taleesman",
+      "avatar": "TM",
+      "completedDemons": ["uauafactorial", "noviolence"],
+      "progress": {
+        "uauafactorial": 100,
+        "noviolence": 100
+      }
     }
   ]
 }
