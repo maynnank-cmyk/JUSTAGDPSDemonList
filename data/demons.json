@@ -32,6 +32,14 @@
       "image": "images/gypers.png",
       "description": "Бывший топ 1."
     },
+    {
+      "id": "unforcedvortrex",
+      "name": "Unforced Vortrex",
+      "creator": "TheRealMraz",
+      "videoUrl": "https://youtu.be/ltyXcJFSnrI",
+      "image": "images/gypers.png",
+      "description": "1 of first rated demons."
+    },
      {
       "id": "sapphireglow",
       "name": "Sapphire Glow",
