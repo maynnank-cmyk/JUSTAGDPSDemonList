@@ -13,9 +13,10 @@
       "id": "makaron4iki",
       "name": "Makaron4iki",
       "avatar": "M4",
-      "completedDemons": ["orbsuicide"],
+      "completedDemons": ["orbsuicide", "jag"],
       "progress": {
-        "orbsuicide": 100
+        "orbsuicide": 100,
+        "jag": 100
       }
     },
         {
