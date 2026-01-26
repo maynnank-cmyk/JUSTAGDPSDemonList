@@ -95,14 +95,15 @@
       "id": "vladgdmj",
       "name": "Vladgdmj",
       "avatar": "V",
-      "completedDemons": ["badabum", "sigareta2", "turnthelightsoff", "insomnia", "anathema", "atomiccannonmkiii"],
+      "completedDemons": ["badabum", "sigareta2", "turnthelightsoff", "insomnia", "anathema", "atomiccannonmkiii", "bloodinthesnow"],
       "progress": {
         "badabum": 100,
         "sigareta2": 100,
         "turnthelightsoff": 100,
         "insomnia": 100,
         "anathema": 100,
-        "atomiccannonmkiii": 100
+        "atomiccannonmkiii": 100,
+        "bloodinthesnow": 100
       }
     },
      {
