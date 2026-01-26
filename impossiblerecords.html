@@ -1133,7 +1133,8 @@ header {
     flex: 1;
 }
 
-.compact-player-points {
+/* ИЗМЕНЕНИЕ: Теперь показываем только проценты */
+.compact-player-percentage {
     font-size: 0.8rem;
     font-weight: 800;
     color: var(--accent-lime);
@@ -1146,7 +1147,7 @@ header {
     transition: all 0.2s ease;
 }
 
-.compact-player-row:hover .compact-player-points {
+.compact-player-row:hover .compact-player-percentage {
     background: var(--accent-lime);
     color: white;
 }
@@ -1771,6 +1772,12 @@ footer {
         height: 100%;
     }
 
+    /* ИЗМЕНЕНИЕ: Адаптив для процентов */
+    .compact-player-percentage {
+        font-size: 0.75rem;
+        min-width: 45px;
+    }
+
     .compact-record-item {
         padding: 0.5rem 0.6rem;
         min-height: 35px;
@@ -1845,9 +1852,11 @@ footer {
         font-size: 0.8rem;
     }
 
-    .compact-player-points {
-        font-size: 0.75rem;
-        min-width: 45px;
+    /* ИЗМЕНЕНИЕ: Адаптив для процентов */
+    .compact-player-percentage {
+        font-size: 0.7rem;
+        min-width: 40px;
+        padding: 0.15rem 0.4rem;
     }
 
     .player-avatar {
@@ -2494,6 +2503,14 @@ footer {
             return null;
         }
 
+        // Функция для расчета среднего процента игрока
+        function calculateAveragePercentage(player) {
+            if (!player.records || player.records.length === 0) return 0;
+            
+            const totalProgress = player.records.reduce((sum, record) => sum + (record.progress || 0), 0);
+            return Math.round(totalProgress / player.records.length);
+        }
+
         // Обновление статистики
         function updateStatsSummary() {
             if (players.length === 0) return;
@@ -2571,11 +2588,13 @@ footer {
                     players = recordsData.players.map(player => {
                         const totalPoints = calculatePlayerTotalPoints(player, impossibleDemons);
                         const recordsCount = player.records ? player.records.length : 0;
+                        const averagePercentage = calculateAveragePercentage(player);
                         
                         return {
                             ...player,
                             totalPoints,
                             recordsCount,
+                            averagePercentage,
                             rank: 0
                         };
                     }).filter(player => player.recordsCount > 0);
@@ -2674,6 +2693,7 @@ footer {
                 const playerIcon = getPlayerIcon(player.rank);
                 const showIcon = playerIcon !== null;
                 
+                // ИЗМЕНЕНИЕ: Теперь показываем только средний процент
                 playerRow.innerHTML = `
                     <div class="compact-rank ${rankClass}">${player.rank}</div>
                     ${showIcon ? `
@@ -2684,7 +2704,7 @@ footer {
                     ` : ''}
                     <div class="compact-player-info">
                         <div class="compact-player-name">${player.name}</div>
-                        <div class="compact-player-points">${player.totalPoints}</div>
+                        <div class="compact-player-percentage">${player.averagePercentage}%</div>
                     </div>
                 `;
                 fragment.appendChild(playerRow);
