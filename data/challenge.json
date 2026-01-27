@@ -1,1 +1,13 @@
+{
+  "challengeDemons": [
+    {
+      "id": "challenge",
+      "name": "Challenge",
+      "creator": "Iphone",
+      "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      "image": "images/challenge.jpg",
+      "description": "",
+    }
+  ]
+}
 
