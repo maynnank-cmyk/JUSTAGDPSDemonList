@@ -88,6 +88,14 @@
       "image": "images/unmaded.png",
       "description": "Баллистик вистфулли."
     },
+      {
+      "id": "terraesperafinale",
+      "name": "TerraEsperaFinale",
+      "creator": "Terraria",
+      "videoUrl": "https://youtu.be/g3mWWY0OpsI?si=0KgS8SU8ja8RE8bd",
+      "image": "images/terraesperafinale.png",
+      "description": ""
+    },
     {
       "id": "uauafactorial",
       "name": "UaUa Factorial",
@@ -110,6 +118,14 @@
       "creator": "Terraria",
       "videoUrl": "https://youtu.be/ABGLVISmq08?si=eqUUzoPX7HWKVj5w&t=11",
       "image": "images/lowdeathiii.png",
+      "description": ""
+    },
+     {
+      "id": "cure",
+      "name": "Cure",
+      "creator": "ppsha",
+      "videoUrl": "https://youtu.be/NbscfKll1Tg?si=uFeFx23x3MXAolQ-",
+      "image": "images/cure.png",
       "description": ""
     },
       {
