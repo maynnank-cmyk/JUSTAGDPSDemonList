@@ -15,6 +15,7 @@
             --accent-blue: #4a6fa5;
             --accent-purple: #8a6bff;
             --accent-green: #2ed573;
+            --accent-orange: #ffa726;
             --border-color: #2d2d4d;
             --card-shadow: 0 8px 32px rgba(0,0,0,0.3);
             --header-gradient: linear-gradient(135deg, #ff4757 0%, #8a6bff 100%);
@@ -32,6 +33,7 @@
             --accent-blue: #4a6fa5;
             --accent-purple: #6d5acf;
             --accent-green: #34c759;
+            --accent-orange: #ff9800;
             --border-color: #d0d5ff;
             --card-shadow: 0 8px 32px rgba(0,0,0,0.1);
             --header-gradient: linear-gradient(135deg, #ff6b6b 0%, #6d5acf 100%);
@@ -726,8 +728,8 @@
 
         /* НОВАЯ СЕКЦИЯ НАД ВИДЖЕТАМИ */
         .players-hero {
-            margin: 1.5rem 0 2rem;
-            padding: 2rem;
+            margin: 1.5rem 0 1rem;
+            padding: 1.5rem;
             background: rgba(26, 26, 46, 0.7);
             backdrop-filter: blur(10px);
             border-radius: 16px;
@@ -758,9 +760,9 @@
         }
 
         .players-hero h1 {
-            font-size: 2.2rem;
+            font-size: 2rem;
             font-weight: 800;
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.5rem;
             background: linear-gradient(90deg, var(--accent-red), var(--accent-purple), var(--accent-green));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -768,60 +770,16 @@
         }
 
         .players-hero p {
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: var(--text-secondary);
             max-width: 600px;
             margin: 0 auto;
-            line-height: 1.5;
-        }
-
-        .stats-summary {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .stat-card {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 1rem 1.5rem;
-            min-width: 140px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        [data-theme="light"] .stat-card {
-            background: rgba(0, 0, 0, 0.05);
-        }
-
-        .stat-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-            border-color: var(--accent-purple);
-        }
-
-        .stat-card .number {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--accent-green);
-            display: block;
-            margin-bottom: 0.3rem;
-        }
-
-        .stat-card .label {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-weight: 600;
+            line-height: 1.4;
         }
 
         /* Main Content */
         .main-content {
-            padding: 1rem 0;
+            padding: 0.5rem 0;
             min-height: calc(100vh - 140px);
             display: flex;
             flex-direction: column;
@@ -1213,7 +1171,7 @@
         .player-profile-container {
             flex: 1;
             overflow-y: auto;
-            padding: 1.5rem;
+            padding: 1.2rem;
             scrollbar-width: thin;
             scrollbar-color: var(--accent-green) transparent;
         }
@@ -1241,25 +1199,25 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-            padding-bottom: 1rem;
+            gap: 0.8rem;
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.8rem;
             border-bottom: 1px solid var(--border-color);
             width: 100%;
         }
 
         .player-avatar {
-            width: 70px;
-            height: 70px;
+            width: 65px;
+            height: 65px;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--accent-red), var(--accent-purple));
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 800;
             color: white;
-            border: 3px solid var(--border-color);
+            border: 2px solid var(--border-color);
             flex-shrink: 0;
             overflow: hidden;
             position: relative;
@@ -1282,10 +1240,10 @@
         }
 
         .player-title h2 {
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             font-weight: 800;
             color: var(--text-primary);
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.2rem;
             text-align: center;
         }
 
@@ -1293,9 +1251,9 @@
         .player-stats-row {
             display: flex;
             justify-content: center;
-            gap: 0.8rem;
+            gap: 0.6rem;
             width: 100%;
-            margin-bottom: 1.2rem;
+            margin-bottom: 1rem;
         }
 
         .stat-badge {
@@ -1303,13 +1261,13 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            border-radius: 10px;
-            padding: 0.5rem 0.8rem;
-            min-width: 140px;
+            border-radius: 8px;
+            padding: 0.4rem 0.6rem;
+            min-width: 130px;
             transition: all 0.2s ease;
             flex: 1;
-            max-width: 200px;
-            height: 60px;
+            max-width: 180px;
+            height: 55px;
         }
 
         /* Синяя плашка для места */
@@ -1340,14 +1298,14 @@
         }
 
         .stat-badge .value {
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             font-weight: 800;
             margin-bottom: 0.1rem;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 0.3rem;
-            height: 30px;
+            height: 28px;
         }
 
         .stat-badge.rank .value {
@@ -1359,7 +1317,7 @@
         }
 
         .stat-badge .label {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: var(--text-secondary);
             font-weight: 600;
             text-transform: uppercase;
@@ -1370,9 +1328,9 @@
         .demons-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
-            gap: 0.6rem;
+            gap: 0.5rem;
             width: 100%;
-            margin-bottom: 1.2rem;
+            margin-bottom: 1rem;
         }
 
         @media (max-width: 1200px) {
@@ -1403,8 +1361,8 @@
         .compact-demon-item {
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 0.7rem 0.6rem;
+            border-radius: 6px;
+            padding: 0.6rem 0.5rem;
             transition: all 0.2s ease;
             cursor: pointer;
             text-align: center;
@@ -1412,7 +1370,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 60px;
+            min-height: 55px;
             position: relative;
             overflow: hidden;
         }
@@ -1439,8 +1397,19 @@
             transform: scaleY(1);
         }
 
+        /* Верифицированные демоны с зеленой обводкой */
+        .verified-demon {
+            border-color: var(--accent-green) !important;
+            background: rgba(46, 213, 115, 0.08) !important;
+        }
+
+        .verified-demon:hover {
+            border-color: var(--accent-green) !important;
+            background: rgba(46, 213, 115, 0.12) !important;
+        }
+
         .compact-demon-name {
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             font-weight: 600;
             color: var(--text-primary);
             white-space: normal;
@@ -1455,78 +1424,83 @@
             width: 100%;
         }
 
-        /* Verified Badge */
-        .verified-badge {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 14px;
-            height: 14px;
-            background: var(--accent-green);
-            color: white;
-            border-radius: 50%;
-            font-size: 9px;
-            font-weight: 800;
-            flex-shrink: 0;
-            margin-left: 3px;
-        }
-
         /* Заголовки секций демонов */
         .demons-section {
             width: 100%;
-            margin-bottom: 1.2rem;
+            margin-bottom: 1rem;
         }
 
         .demons-section h3 {
-            font-size: 0.95rem;
-            margin-bottom: 0.8rem;
+            font-size: 0.9rem;
+            margin-bottom: 0.7rem;
             color: var(--text-primary);
             font-weight: 800;
             display: flex;
             align-items: center;
-            gap: 0.4rem;
-            justify-content: center;
+            gap: 0.5rem;
+            justify-content: flex-start;
         }
 
-        .demons-section h3::before {
-            font-size: 0.9rem;
+        /* Иконки в заголовках */
+        .section-icon {
+            width: 18px;
+            height: 18px;
+            display: inline-block;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            filter: brightness(0) invert(1);
         }
 
-        .hardest-demon-section h3::before {
-            content: "👑";
+        [data-theme="light"] .section-icon {
+            filter: none;
         }
 
-        .verified-demons-section h3::before {
-            content: "✓";
-            color: var(--accent-green);
-        }
-
-        .completed-demons-section h3::before {
-            content: "🎯";
-        }
-
-        /* Информация о сложнейшем демоне */
-        .hardest-demon-section {
+        /* Оранжевая плашка сложнейшего демона */
+        .hardest-demon-card {
             width: 100%;
-            margin-bottom: 1.2rem;
+            margin-bottom: 1rem;
             padding: 0.8rem;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
+            background: rgba(255, 167, 38, 0.15);
+            border: 1px solid rgba(255, 167, 38, 0.3);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .hardest-demon-card:hover {
+            border-color: var(--accent-orange);
+            background: rgba(255, 167, 38, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 167, 38, 0.15);
+        }
+
+        .hardest-demon-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hardest-demon-header h3 {
+            font-size: 0.9rem;
+            color: var(--accent-orange);
+            font-weight: 800;
+            margin: 0;
         }
 
         .hardest-demon-info {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            gap: 0.4rem;
+            align-items: flex-start;
+            gap: 0.3rem;
         }
 
         .hardest-demon-name {
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 800;
-            color: var(--accent-red);
-            text-align: center;
+            color: var(--accent-orange);
+            text-align: left;
             word-break: break-word;
             overflow-wrap: break-word;
             white-space: normal;
@@ -1534,7 +1508,7 @@
         }
 
         .hardest-demon-rank {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: var(--text-secondary);
             font-weight: 600;
         }
@@ -1542,11 +1516,7 @@
         /* Верифицированные демоны */
         .verified-demons-section {
             width: 100%;
-            margin-bottom: 1.2rem;
-            padding: 0.8rem;
-            background: rgba(46, 213, 115, 0.08);
-            border: 1px solid rgba(46, 213, 115, 0.2);
-            border-radius: 10px;
+            margin-bottom: 1rem;
         }
 
         /* Пройденные демоны */
@@ -1593,7 +1563,7 @@
         footer {
             background: linear-gradient(135deg, rgba(17, 17, 34, 0.95) 0%, rgba(26, 26, 46, 0.95) 100%);
             border-top: 1px solid var(--border-color);
-            padding: 1.5rem 0;
+            padding: 1.2rem 0;
             margin-top: 1rem;
             backdrop-filter: blur(10px);
         }
@@ -1601,8 +1571,8 @@
         .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
+            gap: 1.2rem;
+            margin-bottom: 1.2rem;
         }
 
         .footer-section h3 {
@@ -1704,25 +1674,16 @@
             }
 
             .players-hero {
-                padding: 1.5rem;
-                margin: 1rem 0 1.5rem;
+                padding: 1.2rem;
+                margin: 1rem 0 1rem;
             }
 
             .players-hero h1 {
-                font-size: 1.8rem;
+                font-size: 1.6rem;
             }
 
-            .stats-summary {
-                gap: 1rem;
-            }
-
-            .stat-card {
-                min-width: 120px;
-                padding: 0.8rem 1rem;
-            }
-
-            .stat-card .number {
-                font-size: 1.5rem;
+            .players-hero p {
+                font-size: 0.9rem;
             }
 
             .widget-container {
@@ -1739,41 +1700,41 @@
             }
 
             .player-avatar {
-                width: 60px;
-                height: 60px;
-                font-size: 1.6rem;
+                width: 55px;
+                height: 55px;
+                font-size: 1.4rem;
             }
 
             .player-title h2 {
-                font-size: 1.4rem;
+                font-size: 1.3rem;
             }
 
             .player-stats-row {
-                gap: 0.6rem;
+                gap: 0.5rem;
             }
 
             .stat-badge {
-                padding: 0.4rem 0.6rem;
+                padding: 0.3rem 0.5rem;
                 min-width: 110px;
-                height: 55px;
+                height: 50px;
             }
 
             .stat-badge .value {
-                font-size: 1.4rem;
+                font-size: 1.3rem;
                 height: 25px;
             }
 
             .stat-badge .label {
-                font-size: 0.7rem;
+                font-size: 0.65rem;
             }
 
             .demons-grid {
-                gap: 0.5rem;
+                gap: 0.4rem;
             }
 
             .compact-demon-item {
-                padding: 0.6rem 0.5rem;
-                min-height: 55px;
+                padding: 0.5rem 0.4rem;
+                min-height: 50px;
             }
 
             .compact-demon-name {
@@ -1781,11 +1742,11 @@
             }
 
             .hardest-demon-name {
-                font-size: 0.9rem;
+                font-size: 0.85rem;
             }
 
             .hardest-demon-rank {
-                font-size: 0.75rem;
+                font-size: 0.7rem;
             }
         }
 
@@ -1795,33 +1756,16 @@
             }
 
             .players-hero {
-                padding: 1.2rem;
-                margin: 0.8rem 0 1.2rem;
+                padding: 1rem;
+                margin: 0.8rem 0 0.8rem;
             }
 
             .players-hero h1 {
-                font-size: 1.5rem;
+                font-size: 1.4rem;
             }
 
             .players-hero p {
-                font-size: 0.9rem;
-            }
-
-            .stats-summary {
-                gap: 0.8rem;
-            }
-
-            .stat-card {
-                min-width: 100px;
-                padding: 0.6rem 0.8rem;
-            }
-
-            .stat-card .number {
-                font-size: 1.3rem;
-            }
-
-            .stat-card .label {
-                font-size: 0.75rem;
+                font-size: 0.85rem;
             }
 
             .players-widget, .details-widget {
@@ -1856,7 +1800,7 @@
             .player-avatar {
                 width: 50px;
                 height: 50px;
-                font-size: 1.4rem;
+                font-size: 1.3rem;
             }
 
             .player-title h2 {
@@ -1868,9 +1812,9 @@
             }
 
             .stat-badge {
-                padding: 0.3rem 0.5rem;
-                min-width: 90px;
-                height: 50px;
+                padding: 0.25rem 0.4rem;
+                min-width: 100px;
+                height: 45px;
             }
 
             .stat-badge .value {
@@ -1883,12 +1827,12 @@
             }
 
             .demons-grid {
-                gap: 0.4rem;
+                gap: 0.3rem;
             }
 
             .compact-demon-item {
-                padding: 0.5rem 0.4rem;
-                min-height: 50px;
+                padding: 0.4rem 0.3rem;
+                min-height: 45px;
             }
 
             .compact-demon-name {
@@ -1896,7 +1840,7 @@
             }
 
             .hardest-demon-name {
-                font-size: 0.85rem;
+                font-size: 0.8rem;
             }
 
             .footer-content {
@@ -2116,37 +2060,6 @@
                 <span data-lang="ru">Рейтинг самых опытных игроков нашего сервера. Соревнуйтесь за место в топе, проходя самые сложные демоны!</span>
                 <span data-lang="en" style="display: none;">Ranking of the most experienced players on our server. Compete for a top spot by completing the most difficult demons!</span>
             </p>
-            
-            <div class="stats-summary" id="statsSummary">
-                <div class="stat-card">
-                    <span class="number" id="totalPlayers">0</span>
-                    <span class="label">
-                        <span data-lang="ru">Игроков</span>
-                        <span data-lang="en" style="display: none;">Players</span>
-                    </span>
-                </div>
-                <div class="stat-card">
-                    <span class="number" id="totalDemons">0</span>
-                    <span class="label">
-                        <span data-lang="ru">Пройдено демонов</span>
-                        <span data-lang="en" style="display: none;">Demons completed</span>
-                    </span>
-                </div>
-                <div class="stat-card">
-                    <span class="number" id="totalPoints">0</span>
-                    <span class="label">
-                        <span data-lang="ru">Всего очков</span>
-                        <span data-lang="en" style="display: none;">Total points</span>
-                    </span>
-                </div>
-                <div class="stat-card">
-                    <span class="number" id="avgPoints">0</span>
-                    <span class="label">
-                        <span data-lang="ru">Среднее</span>
-                        <span data-lang="en" style="display: none;">Average</span>
-                    </span>
-                </div>
-            </div>
         </section>
         
         <div class="main-content">
@@ -2505,21 +2418,6 @@
             return null;
         }
 
-        // Обновление статистики в верхней секции
-        function updateStatsSummary() {
-            if (players.length === 0) return;
-            
-            const totalPlayers = players.length;
-            const totalDemons = players.reduce((sum, player) => sum + (player.completedDemons ? player.completedDemons.length : 0), 0);
-            const totalPoints = players.reduce((sum, player) => sum + player.totalPoints, 0);
-            const avgPoints = Math.round(totalPoints / totalPlayers);
-            
-            document.getElementById('totalPlayers').textContent = totalPlayers;
-            document.getElementById('totalDemons').textContent = totalDemons;
-            document.getElementById('totalPoints').textContent = totalPoints;
-            document.getElementById('avgPoints').textContent = avgPoints;
-        }
-
         // Поиск
         function initializeSearch() {
             const searchInput = document.getElementById('searchInput');
@@ -2620,7 +2518,6 @@
                     
                     renderPlayersList();
                     updatePlayersCount();
-                    updateStatsSummary();
                     
                     // Выбираем первого игрока по умолчанию
                     if (players.length > 0) {
@@ -2740,18 +2637,17 @@
             const playerAvatar = getPlayerAvatar(player);
             
             // Создаем HTML для демонов в сетке
-            const createDemonsGridHTML = (demonsList, showVerified = false) => {
+            const createDemonsGridHTML = (demonsList, isVerified = false) => {
                 if (!demonsList || demonsList.length === 0) return '';
                 
                 return `
                     <div class="demons-grid">
                         ${demonsList.map(demon => {
-                            const isVerified = showVerified && demon.verified;
                             return `
-                                <div class="compact-demon-item" onclick="openDemonPage('${demon.id}')">
+                                <div class="compact-demon-item ${isVerified ? 'verified-demon' : ''}" 
+                                     onclick="openDemonPage('${demon.id}')">
                                     <div class="compact-demon-name">
                                         ${demon.name}
-                                        ${isVerified ? '<span class="verified-badge">✓</span>' : ''}
                                     </div>
                                 </div>
                             `;
@@ -2792,11 +2688,14 @@
                     </div>
                     
                     ${playerStats.hardestDemon ? `
-                    <div class="demons-section hardest-demon-section">
-                        <h3>
-                            <span data-lang="ru">Сложнейший демон</span>
-                            <span data-lang="en" style="display: none;">Hardest Demon</span>
-                        </h3>
+                    <div class="hardest-demon-card" onclick="openDemonPage('${playerStats.hardestDemon.id}')">
+                        <div class="hardest-demon-header">
+                            <span class="section-icon" style="background-image: url('assets/gold-icon.png')"></span>
+                            <h3>
+                                <span data-lang="ru">Сложнейший демон</span>
+                                <span data-lang="en" style="display: none;">Hardest Demon</span>
+                            </h3>
+                        </div>
                         <div class="hardest-demon-info">
                             <div class="hardest-demon-name">
                                 ${playerStats.hardestDemon.name}
@@ -2812,6 +2711,7 @@
                     ${playerStats.verifiedDemons && playerStats.verifiedDemons.length > 0 ? `
                     <div class="demons-section verified-demons-section">
                         <h3>
+                            <span class="section-icon" style="background-image: url('assets/verified-icon.png')"></span>
                             <span data-lang="ru">Верифицированные демоны</span>
                             <span data-lang="en" style="display: none;">Verified Demons</span>
                         </h3>
@@ -2821,6 +2721,7 @@
                     
                     <div class="demons-section completed-demons-section">
                         <h3>
+                            <span class="section-icon" style="background-image: url('assets/complete-icon.png')"></span>
                             <span data-lang="ru">Пройденные демоны</span>
                             <span data-lang="en" style="display: none;">Completed Demons</span>
                         </h3>
@@ -2902,10 +2803,7 @@
                 stats.verifiedDemons = player.verifiedDemons.map(demonId => {
                     const demon = allDemons.find(d => d.id === demonId);
                     if (demon) {
-                        return {
-                            ...demon,
-                            verified: true
-                        };
+                        return demon;
                     }
                     return null;
                 }).filter(Boolean);
