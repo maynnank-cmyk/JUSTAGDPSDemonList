@@ -3,6 +3,7 @@
      {
       "id": "femboycircles67",
       "name": "Femboy Circles 67",
+      "verified": true,
       "creator": "weztT",
       "videoUrl": "https://youtu.be/NMvwmMV1uvQ",
       "image": "",
@@ -11,6 +12,7 @@
     {
       "id": "staru",
       "name": "Star U",
+            "verified": true,
       "creator": "VladGDMJ",
       "videoUrl": "https://youtu.be/yCUikSdgj_0",
       "image": "images/staru.png",
@@ -19,6 +21,7 @@
     {
       "id": "nameless",
       "name": "nameless",
+            "verified": true,
       "creator": "WeztT",
       "videoUrl": ".https://www.youtube.com/watch?v=7Spnke3cNLE",
       "image": "images/nameless.png",
@@ -27,6 +30,7 @@
      {
       "id": "bullet",
       "name": "Bullet",
+             "verified": true,
       "creator": "VladGDMJ",
       "videoUrl": "https://youtu.be/hQ_jJGBMxfY",
       "image": "images/bullet.png",
@@ -35,6 +39,7 @@
        {
       "id": "noviolence",
       "name": "No Violence",
+               "verified": true,
       "creator": "Dodjeman55",
       "videoUrl": "https://youtu.be/WBM2NoYwEa8?si=kUiMaXhBR3qJNvKg",
       "image": "",
@@ -43,6 +48,7 @@
       {
       "id": "gypers",
       "name": "Gypers",
+              "verified": true,
       "creator": "WeztT",
       "videoUrl": "https://youtu.be/-ZsZh7wsbjA",
       "image": "images/gypers.png",
@@ -51,6 +57,7 @@
      {
       "id": "leyckhemuya",
       "name": "Leyckhemuya",
+             "verified": true,
       "creator": "VoiDamage",
       "videoUrl": "https://youtu.be/8TpacQwDI0U?si=MFZth813EDAIrwlO",
       "image": "images/leyckhemuya.png",
@@ -59,6 +66,7 @@
       {
       "id": "sapphireglow",
       "name": "Sapphire Glow",
+              "verified": true,
       "creator": "wWanderer",
       "videoUrl": "https://youtu.be/D1K5v6kKAag",
       "image": "images/sapphireglow.png",
@@ -67,6 +75,7 @@
       {
       "id": "unforcedvortrex",
       "name": "Unforced Vortrex",
+              "verified": true,
       "creator": "TheRealMraz",
       "videoUrl": "https://youtu.be/ltyXcJFSnrI",
       "image": "images/file_0000000069887209901acf71436c8fc9.png",
@@ -75,6 +84,7 @@
     {
       "id": "insomnia",
       "name": "Insomnia",
+            "verified": true,
       "creator": "VladGDMJ",
       "videoUrl": "https://youtu.be/s_HhFXHf-vs",
       "image": "images/insomnia.png",
