@@ -286,6 +286,33 @@
         "poocubed": 100,
         "terraprocessing": 100
       }
+    },
+         {
+      "id": "lovepieckfinger",
+      "name": "LovePieckFinger",
+      "avatar": "LP",
+      "completedDemons": ["anathema"],
+      "progress": {
+        "anathema": 100
+      }
+    },
+      {
+      "id": "ilyakarabas",
+      "name": "Ilya karabas",
+      "avatar": "IK",
+      "completedDemons": ["anathema", "atomiccannonmkiii", "badabum", "bloodinthesnow", "bullet", "ccopakpectob", "cure", "gypers", "heliorobot", "hellmachine"],
+      "progress": {
+        "anathema": 100,
+        "atomiccannonmkiii": 100,
+        "badabum": 100,
+        "bloodinthesnow": 100,
+        "bullet": 100,
+        "ccopakpectob": 100,
+        "cure": 100,
+        "gypers": 100,
+        "heliorobot": 100,
+        "hellmachine": 100
+      }
     }
   ]
 }
