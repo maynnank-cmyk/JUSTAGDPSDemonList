@@ -1385,12 +1385,65 @@
             font-weight: 800;
             color: var(--accent-red);
             text-align: center;
+            word-break: break-word;
+            overflow-wrap: break-word;
+            white-space: normal;
+            line-height: 1.3;
         }
 
         .hardest-demon-rank {
             font-size: 0.9rem;
             color: var(--text-secondary);
             font-weight: 600;
+        }
+
+        /* НОВАЯ СЕКЦИЯ: Верифицированные демоны */
+        .verified-demons-section {
+            width: 100%;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: rgba(46, 213, 115, 0.08);
+            border: 1px solid rgba(46, 213, 115, 0.2);
+            border-radius: 12px;
+        }
+
+        .verified-demons-section h3 {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: var(--accent-green);
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+
+        .verified-demons-section h3::before {
+            content: "✓";
+            font-size: 1.2rem;
+        }
+
+        .verified-demons-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            max-height: 200px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        .verified-demons-list::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .verified-demons-list::-webkit-scrollbar-track {
+            background: transparent;
+            border-radius: 2px;
+        }
+
+        .verified-demons-list::-webkit-scrollbar-thumb {
+            background: var(--accent-green);
+            border-radius: 2px;
         }
 
         /* Completed Demons Section */
@@ -1419,27 +1472,39 @@
 
         .completed-demons-list {
             display: flex;
-            flex-wrap: wrap;
+            flex-direction: column;
             gap: 0.5rem;
+            max-height: 200px;
+            overflow-y: auto;
+            padding-right: 5px;
         }
 
-        /* Компактные пройденные демоны - ТОЛЬКО НАЗВАНИЕ, строятся в ряд */
+        .completed-demons-list::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .completed-demons-list::-webkit-scrollbar-track {
+            background: transparent;
+            border-radius: 2px;
+        }
+
+        .completed-demons-list::-webkit-scrollbar-thumb {
+            background: var(--accent-purple);
+            border-radius: 2px;
+        }
+
+        /* Компактные пройденные демоны */
         .compact-completed-item {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid var(--border-color);
             border-radius: 8px;
-            padding: 0.4rem 0.6rem;
+            padding: 0.7rem 0.8rem;
             transition: all 0.2s ease;
             cursor: pointer;
             position: relative;
-            text-align: center;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            white-space: nowrap;
-            flex: 1;
-            min-width: 0;
-            max-width: calc(33.333% - 0.5rem);
+            text-align: left;
+            display: block;
+            width: 100%;
         }
 
         .compact-completed-item::before {
@@ -1457,7 +1522,7 @@
         .compact-completed-item:hover {
             border-color: var(--accent-red);
             background: rgba(255, 255, 255, 0.05);
-            transform: translateY(-1px);
+            transform: translateX(2px);
         }
 
         .compact-completed-item:hover::before {
@@ -1465,19 +1530,31 @@
         }
 
         .compact-completed-name {
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            font-size: 0.75rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            white-space: normal;
+            overflow: visible;
+            text-overflow: unset;
+            word-break: break-word;
+            overflow-wrap: break-word;
+            line-height: 1.3;
         }
 
-        /* Verified Badge для верифицированных демонов */
+        /* Verified Badge */
         .verified-badge {
-            display: inline-block;
-            margin-left: 0.3rem;
-            color: var(--accent-green);
-            font-size: 0.7rem;
-            vertical-align: super;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 16px;
+            height: 16px;
+            background: var(--accent-green);
+            color: white;
+            border-radius: 50%;
+            font-size: 10px;
+            font-weight: 800;
+            flex-shrink: 0;
+            margin-left: 2px;
         }
 
         /* No Player Selected */
@@ -1599,10 +1676,6 @@
             .details-widget {
                 order: 2;
             }
-            
-            .compact-completed-item {
-                max-width: calc(50% - 0.5rem);
-            }
         }
 
         @media (max-width: 768px) {
@@ -1712,12 +1785,11 @@
             }
 
             .compact-completed-item {
-                padding: 0.3rem 0.5rem;
-                font-size: 0.75rem;
+                padding: 0.6rem 0.7rem;
             }
 
             .compact-completed-name {
-                font-size: 0.7rem;
+                font-size: 0.8rem;
             }
         }
 
@@ -1813,14 +1885,8 @@
                 font-size: 0.7rem;
             }
 
-            .compact-completed-item {
-                padding: 0.2rem 0.4rem;
-                font-size: 0.7rem;
-                max-width: calc(50% - 0.4rem);
-            }
-
             .compact-completed-name {
-                font-size: 0.65rem;
+                font-size: 0.75rem;
             }
 
             .hardest-demon-name {
@@ -1830,13 +1896,6 @@
             .footer-content {
                 grid-template-columns: 1fr;
                 gap: 1rem;
-            }
-        }
-
-        @media (max-width: 360px) {
-            .compact-completed-item {
-                max-width: 100%;
-                min-width: 100%;
             }
         }
     </style>
@@ -2505,12 +2564,27 @@
                 const demonsResponse = await fetch('data/demons.json');
                 if (!demonsResponse.ok) throw new Error('Файл demons.json не найден');
                 const demonsData = await demonsResponse.json();
-                demons = demonsData.demons || [];
+                
+                console.log('Демоны из JSON:', demonsData);
+                
+                // Поддерживаем оба формата
+                if (Array.isArray(demonsData)) {
+                    demons = demonsData;
+                } else if (demonsData.demons && Array.isArray(demonsData.demons)) {
+                    demons = demonsData.demons;
+                } else {
+                    console.error('Неверный формат demons.json:', demonsData);
+                    demons = [];
+                }
+                
+                console.log('✅ Загружено демонов:', demons.length);
                 
                 // Загружаем игроков
                 const playersResponse = await fetch('data/players.json');
                 if (!playersResponse.ok) throw new Error('Файл players.json не найден');
                 const playersData = await playersResponse.json();
+                
+                console.log('Игроки из JSON:', playersData);
                 
                 if (playersData.players && Array.isArray(playersData.players)) {
                     // Рассчитываем очки для каждого игрока
@@ -2522,7 +2596,7 @@
                             ...player,
                             totalPoints,
                             completedCount,
-                            rank: 0 // Будет установлено после сортировки
+                            rank: 0
                         };
                     }).filter(player => player.completedCount > 0);
                     
@@ -2548,6 +2622,7 @@
                     }
                     
                 } else {
+                    console.error('Неверный формат players.json:', playersData);
                     throw new Error('Неверный формат players.json');
                 }
                 
@@ -2568,7 +2643,8 @@
         }
 
         function calculateDemonRank(demonId, allDemons) {
-            return allDemons.findIndex(d => d.id === demonId) + 1;
+            const demonIndex = allDemons.findIndex(d => d.id === demonId);
+            return demonIndex !== -1 ? demonIndex + 1 : allDemons.length + 1;
         }
 
         // Отображение списка игроков
@@ -2697,12 +2773,31 @@
                         <div class="hardest-demon-info">
                             <div class="hardest-demon-name">
                                 ${playerStats.hardestDemon.name}
-                                ${playerStats.hardestDemon.verified ? '<span class="verified-badge">✓</span>' : ''}
                             </div>
                             <div class="hardest-demon-rank">
                                 <span data-lang="ru">Место в списке: #${playerStats.hardestDemon.rank}</span>
                                 <span data-lang="en" style="display: none;">List position: #${playerStats.hardestDemon.rank}</span>
                             </div>
+                        </div>
+                    </div>
+                    ` : ''}
+                    
+                    ${playerStats.verifiedDemons && playerStats.verifiedDemons.length > 0 ? `
+                    <div class="verified-demons-section">
+                        <h3>
+                            <span data-lang="ru">Верифицированные демоны</span>
+                            <span data-lang="en" style="display: none;">Verified Demons</span>
+                        </h3>
+                        <div class="verified-demons-list">
+                            ${playerStats.verifiedDemons.map((demon) => {
+                                return `
+                                    <div class="compact-completed-item" onclick="openDemonPage('${demon.id}')">
+                                        <div class="compact-completed-name">
+                                            ${demon.name}
+                                        </div>
+                                    </div>
+                                `;
+                            }).join('')}
                         </div>
                     </div>
                     ` : ''}
@@ -2719,7 +2814,6 @@
                                         <div class="compact-completed-item" onclick="openDemonPage('${completion.demon.id}')">
                                             <div class="compact-completed-name">
                                                 ${completion.demon.name}
-                                                ${completion.demon.verified ? '<span class="verified-badge">✓</span>' : ''}
                                             </div>
                                         </div>
                                     `;
@@ -2741,7 +2835,7 @@
                 </div>
             `;
             
-            // Анимация появления всей страницы профиля
+            // Анимация появления
             setTimeout(() => {
                 playerDetails.classList.add('loaded');
             }, 10);
@@ -2751,6 +2845,7 @@
             const stats = {
                 totalPoints: 0,
                 completedDemons: [],
+                verifiedDemons: [],
                 hardestDemon: null,
                 rank: 1
             };
@@ -2784,14 +2879,22 @@
                 // Подсчитываем статистику
                 stats.totalPoints = stats.completedDemons.reduce((sum, comp) => sum + comp.points, 0);
                 
-                // Находим сложнейший демон (первый в отсортированном списке)
+                // Находим сложнейший демон
                 if (stats.completedDemons.length > 0) {
+                    const hardest = stats.completedDemons[0];
                     stats.hardestDemon = {
-                        ...stats.completedDemons[0].demon,
-                        rank: stats.completedDemons[0].rank,
-                        points: stats.completedDemons[0].points
+                        ...hardest.demon,
+                        rank: hardest.rank,
+                        points: hardest.points
                     };
                 }
+            }
+            
+            // Получаем верифицированные демоны (если есть)
+            if (player.verifiedDemons && Array.isArray(player.verifiedDemons)) {
+                stats.verifiedDemons = player.verifiedDemons.map(demonId => {
+                    return allDemons.find(d => d.id === demonId);
+                }).filter(Boolean);
             }
             
             return stats;
