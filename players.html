@@ -1242,21 +1242,21 @@
             flex-direction: column;
             align-items: center;
             gap: 1rem;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
             border-bottom: 1px solid var(--border-color);
             width: 100%;
         }
 
         .player-avatar {
-            width: 80px;
-            height: 80px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--accent-red), var(--accent-purple));
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 800;
             color: white;
             border: 3px solid var(--border-color);
@@ -1282,10 +1282,10 @@
         }
 
         .player-title h2 {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 800;
             color: var(--text-primary);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
             text-align: center;
         }
 
@@ -1293,9 +1293,9 @@
         .player-stats-row {
             display: flex;
             justify-content: center;
-            gap: 1rem;
+            gap: 0.8rem;
             width: 100%;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
         }
 
         .stat-badge {
@@ -1303,211 +1303,121 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 0.8rem 1.2rem;
+            border-radius: 10px;
+            padding: 0.5rem 0.8rem;
             min-width: 140px;
             transition: all 0.2s ease;
             flex: 1;
             max-width: 200px;
+            height: 60px;
+        }
+
+        /* Синяя плашка для места */
+        .stat-badge.rank {
+            background: rgba(74, 111, 165, 0.15);
+            border: 1px solid rgba(74, 111, 165, 0.3);
+        }
+
+        /* Зеленая плашка для очков */
+        .stat-badge.points {
+            background: rgba(46, 213, 115, 0.15);
+            border: 1px solid rgba(46, 213, 115, 0.3);
         }
 
         .stat-badge:hover {
-            border-color: var(--accent-purple);
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(138, 107, 255, 0.15);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .stat-badge.rank:hover {
+            border-color: var(--accent-blue);
+            box-shadow: 0 4px 12px rgba(74, 111, 165, 0.2);
+        }
+
+        .stat-badge.points:hover {
+            border-color: var(--accent-green);
+            box-shadow: 0 4px 12px rgba(46, 213, 115, 0.2);
         }
 
         .stat-badge .value {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 800;
-            margin-bottom: 0.2rem;
+            margin-bottom: 0.1rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.4rem;
-            height: 40px;
+            gap: 0.3rem;
+            height: 30px;
         }
 
-        .stat-badge .rank .value {
-            color: var(--accent-purple);
+        .stat-badge.rank .value {
+            color: var(--accent-blue);
         }
 
-        .stat-badge .points .value {
+        .stat-badge.points .value {
             color: var(--accent-green);
         }
 
         .stat-badge .label {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: var(--text-secondary);
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            margin-top: 0.2rem;
         }
 
-        /* Секция сложнейшего демона */
-        .hardest-demon-section {
+        /* НОВАЯ СЕТКА ДЛЯ ДЕМОНОВ */
+        .demons-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0.6rem;
             width: 100%;
-            margin-bottom: 1.5rem;
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
+            margin-bottom: 1.2rem;
         }
 
-        .hardest-demon-section h3 {
-            font-size: 1rem;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-            font-weight: 800;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            justify-content: center;
+        @media (max-width: 1200px) {
+            .demons-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
         }
 
-        .hardest-demon-section h3::before {
-            content: "👑";
-            font-size: 1rem;
+        @media (max-width: 992px) {
+            .demons-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
 
-        .hardest-demon-info {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
+        @media (max-width: 768px) {
+            .demons-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
-        .hardest-demon-name {
-            font-size: 1.1rem;
-            font-weight: 800;
-            color: var(--accent-red);
-            text-align: center;
-            word-break: break-word;
-            overflow-wrap: break-word;
-            white-space: normal;
-            line-height: 1.3;
+        @media (max-width: 480px) {
+            .demons-grid {
+                grid-template-columns: repeat(1, 1fr);
+            }
         }
 
-        .hardest-demon-rank {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            font-weight: 600;
-        }
-
-        /* НОВАЯ СЕКЦИЯ: Верифицированные демоны */
-        .verified-demons-section {
-            width: 100%;
-            margin-bottom: 1.5rem;
-            padding: 1rem;
-            background: rgba(46, 213, 115, 0.08);
-            border: 1px solid rgba(46, 213, 115, 0.2);
-            border-radius: 12px;
-        }
-
-        .verified-demons-section h3 {
-            font-size: 1rem;
-            margin-bottom: 1rem;
-            color: var(--accent-green);
-            font-weight: 800;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            justify-content: center;
-        }
-
-        .verified-demons-section h3::before {
-            content: "✓";
-            font-size: 1.2rem;
-        }
-
-        .verified-demons-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            max-height: 200px;
-            overflow-y: auto;
-            padding-right: 5px;
-        }
-
-        .verified-demons-list::-webkit-scrollbar {
-            width: 4px;
-        }
-
-        .verified-demons-list::-webkit-scrollbar-track {
-            background: transparent;
-            border-radius: 2px;
-        }
-
-        .verified-demons-list::-webkit-scrollbar-thumb {
-            background: var(--accent-green);
-            border-radius: 2px;
-        }
-
-        /* Completed Demons Section */
-        .completed-demons-section {
-            width: 100%;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .completed-demons-section h3 {
-            font-size: 1rem;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-            font-weight: 800;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            justify-content: center;
-        }
-
-        .completed-demons-section h3::before {
-            content: "🎯";
-            font-size: 1rem;
-        }
-
-        .completed-demons-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            max-height: 200px;
-            overflow-y: auto;
-            padding-right: 5px;
-        }
-
-        .completed-demons-list::-webkit-scrollbar {
-            width: 4px;
-        }
-
-        .completed-demons-list::-webkit-scrollbar-track {
-            background: transparent;
-            border-radius: 2px;
-        }
-
-        .completed-demons-list::-webkit-scrollbar-thumb {
-            background: var(--accent-purple);
-            border-radius: 2px;
-        }
-
-        /* Компактные пройденные демоны */
-        .compact-completed-item {
-            background: rgba(255, 255, 255, 0.03);
+        /* Компактные демоны в сетке */
+        .compact-demon-item {
+            background: rgba(255, 255, 255, 0.04);
             border: 1px solid var(--border-color);
             border-radius: 8px;
-            padding: 0.7rem 0.8rem;
+            padding: 0.7rem 0.6rem;
             transition: all 0.2s ease;
             cursor: pointer;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 60px;
             position: relative;
-            text-align: left;
-            display: block;
-            width: 100%;
+            overflow: hidden;
         }
 
-        .compact-completed-item::before {
+        .compact-demon-item::before {
             content: '';
             position: absolute;
             left: 0;
@@ -1519,26 +1429,30 @@
             transition: transform 0.2s ease;
         }
 
-        .compact-completed-item:hover {
+        .compact-demon-item:hover {
             border-color: var(--accent-red);
-            background: rgba(255, 255, 255, 0.05);
-            transform: translateX(2px);
+            background: rgba(255, 255, 255, 0.06);
+            transform: translateY(-2px);
         }
 
-        .compact-completed-item:hover::before {
+        .compact-demon-item:hover::before {
             transform: scaleY(1);
         }
 
-        .compact-completed-name {
-            font-size: 0.85rem;
+        .compact-demon-name {
+            font-size: 0.8rem;
             font-weight: 600;
             color: var(--text-primary);
             white-space: normal;
-            overflow: visible;
-            text-overflow: unset;
-            word-break: break-word;
-            overflow-wrap: break-word;
-            line-height: 1.3;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            line-height: 1.2;
+            max-height: 2.4rem;
+            text-align: center;
+            width: 100%;
         }
 
         /* Verified Badge */
@@ -1546,15 +1460,101 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 16px;
-            height: 16px;
+            width: 14px;
+            height: 14px;
             background: var(--accent-green);
             color: white;
             border-radius: 50%;
-            font-size: 10px;
+            font-size: 9px;
             font-weight: 800;
             flex-shrink: 0;
-            margin-left: 2px;
+            margin-left: 3px;
+        }
+
+        /* Заголовки секций демонов */
+        .demons-section {
+            width: 100%;
+            margin-bottom: 1.2rem;
+        }
+
+        .demons-section h3 {
+            font-size: 0.95rem;
+            margin-bottom: 0.8rem;
+            color: var(--text-primary);
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            justify-content: center;
+        }
+
+        .demons-section h3::before {
+            font-size: 0.9rem;
+        }
+
+        .hardest-demon-section h3::before {
+            content: "👑";
+        }
+
+        .verified-demons-section h3::before {
+            content: "✓";
+            color: var(--accent-green);
+        }
+
+        .completed-demons-section h3::before {
+            content: "🎯";
+        }
+
+        /* Информация о сложнейшем демоне */
+        .hardest-demon-section {
+            width: 100%;
+            margin-bottom: 1.2rem;
+            padding: 0.8rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+        }
+
+        .hardest-demon-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .hardest-demon-name {
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--accent-red);
+            text-align: center;
+            word-break: break-word;
+            overflow-wrap: break-word;
+            white-space: normal;
+            line-height: 1.2;
+        }
+
+        .hardest-demon-rank {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        /* Верифицированные демоны */
+        .verified-demons-section {
+            width: 100%;
+            margin-bottom: 1.2rem;
+            padding: 0.8rem;
+            background: rgba(46, 213, 115, 0.08);
+            border: 1px solid rgba(46, 213, 115, 0.2);
+            border-radius: 10px;
+        }
+
+        /* Пройденные демоны */
+        .completed-demons-section {
+            width: 100%;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         /* No Player Selected */
@@ -1739,9 +1739,9 @@
             }
 
             .player-avatar {
-                width: 70px;
-                height: 70px;
-                font-size: 1.8rem;
+                width: 60px;
+                height: 60px;
+                font-size: 1.6rem;
             }
 
             .player-title h2 {
@@ -1749,47 +1749,43 @@
             }
 
             .player-stats-row {
-                gap: 0.8rem;
+                gap: 0.6rem;
             }
 
             .stat-badge {
-                padding: 0.7rem 1rem;
-                min-width: 120px;
+                padding: 0.4rem 0.6rem;
+                min-width: 110px;
+                height: 55px;
             }
 
             .stat-badge .value {
-                font-size: 1.6rem;
-                height: 35px;
+                font-size: 1.4rem;
+                height: 25px;
             }
 
-            .compact-player-row {
-                padding: 0.5rem;
+            .stat-badge .label {
+                font-size: 0.7rem;
+            }
+
+            .demons-grid {
                 gap: 0.5rem;
-                min-height: 45px;
             }
 
-            .compact-rank {
-                width: 28px;
-                height: 28px;
+            .compact-demon-item {
+                padding: 0.6rem 0.5rem;
+                min-height: 55px;
+            }
+
+            .compact-demon-name {
                 font-size: 0.75rem;
             }
 
-            .compact-player-icon {
-                width: 28px;
-                height: 28px;
+            .hardest-demon-name {
+                font-size: 0.9rem;
             }
 
-            .compact-player-icon img {
-                width: 100%;
-                height: 100%;
-            }
-
-            .compact-completed-item {
-                padding: 0.6rem 0.7rem;
-            }
-
-            .compact-completed-name {
-                font-size: 0.8rem;
+            .hardest-demon-rank {
+                font-size: 0.75rem;
             }
         }
 
@@ -1858,9 +1854,9 @@
             }
 
             .player-avatar {
-                width: 60px;
-                height: 60px;
-                font-size: 1.6rem;
+                width: 50px;
+                height: 50px;
+                font-size: 1.4rem;
             }
 
             .player-title h2 {
@@ -1868,29 +1864,39 @@
             }
 
             .player-stats-row {
-                gap: 0.6rem;
+                gap: 0.4rem;
             }
 
             .stat-badge {
-                padding: 0.6rem 0.8rem;
-                min-width: 110px;
+                padding: 0.3rem 0.5rem;
+                min-width: 90px;
+                height: 50px;
             }
 
             .stat-badge .value {
-                font-size: 1.4rem;
-                height: 30px;
+                font-size: 1.2rem;
+                height: 22px;
             }
 
             .stat-badge .label {
+                font-size: 0.65rem;
+            }
+
+            .demons-grid {
+                gap: 0.4rem;
+            }
+
+            .compact-demon-item {
+                padding: 0.5rem 0.4rem;
+                min-height: 50px;
+            }
+
+            .compact-demon-name {
                 font-size: 0.7rem;
             }
 
-            .compact-completed-name {
-                font-size: 0.75rem;
-            }
-
             .hardest-demon-name {
-                font-size: 1rem;
+                font-size: 0.85rem;
             }
 
             .footer-content {
@@ -2733,6 +2739,27 @@
             const playerStats = calculatePlayerStats(player, players, demons);
             const playerAvatar = getPlayerAvatar(player);
             
+            // Создаем HTML для демонов в сетке
+            const createDemonsGridHTML = (demonsList, showVerified = false) => {
+                if (!demonsList || demonsList.length === 0) return '';
+                
+                return `
+                    <div class="demons-grid">
+                        ${demonsList.map(demon => {
+                            const isVerified = showVerified && demon.verified;
+                            return `
+                                <div class="compact-demon-item" onclick="openDemonPage('${demon.id}')">
+                                    <div class="compact-demon-name">
+                                        ${demon.name}
+                                        ${isVerified ? '<span class="verified-badge">✓</span>' : ''}
+                                    </div>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                `;
+            };
+            
             playerDetails.innerHTML = `
                 <div class="player-profile-container">
                     <div class="player-header">
@@ -2765,7 +2792,7 @@
                     </div>
                     
                     ${playerStats.hardestDemon ? `
-                    <div class="hardest-demon-section">
+                    <div class="demons-section hardest-demon-section">
                         <h3>
                             <span data-lang="ru">Сложнейший демон</span>
                             <span data-lang="en" style="display: none;">Hardest Demon</span>
@@ -2783,54 +2810,34 @@
                     ` : ''}
                     
                     ${playerStats.verifiedDemons && playerStats.verifiedDemons.length > 0 ? `
-                    <div class="verified-demons-section">
+                    <div class="demons-section verified-demons-section">
                         <h3>
                             <span data-lang="ru">Верифицированные демоны</span>
                             <span data-lang="en" style="display: none;">Verified Demons</span>
                         </h3>
-                        <div class="verified-demons-list">
-                            ${playerStats.verifiedDemons.map((demon) => {
-                                return `
-                                    <div class="compact-completed-item" onclick="openDemonPage('${demon.id}')">
-                                        <div class="compact-completed-name">
-                                            ${demon.name}
-                                        </div>
-                                    </div>
-                                `;
-                            }).join('')}
-                        </div>
+                        ${createDemonsGridHTML(playerStats.verifiedDemons, true)}
                     </div>
                     ` : ''}
                     
-                    <div class="completed-demons-section">
+                    <div class="demons-section completed-demons-section">
                         <h3>
                             <span data-lang="ru">Пройденные демоны</span>
                             <span data-lang="en" style="display: none;">Completed Demons</span>
                         </h3>
-                        <div class="completed-demons-list">
-                            ${playerStats.completedDemons.length > 0 ? 
-                                playerStats.completedDemons.map((completion) => {
-                                    return `
-                                        <div class="compact-completed-item" onclick="openDemonPage('${completion.demon.id}')">
-                                            <div class="compact-completed-name">
-                                                ${completion.demon.name}
-                                            </div>
-                                        </div>
-                                    `;
-                                }).join('') :
-                                `<div style="text-align: center; padding: 1.5rem; color: var(--text-secondary);">
-                                    <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">😔</div>
-                                    <div style="font-size: 0.9rem; font-weight: 700; margin-bottom: 0.3rem;">
-                                        <span data-lang="ru">Нет пройденных демонов</span>
-                                        <span data-lang="en" style="display: none;">No completed demons</span>
-                                    </div>
-                                    <div style="font-size: 0.8rem;">
-                                        <span data-lang="ru">Этот игрок еще не прошел ни одного демона</span>
-                                        <span data-lang="en" style="display: none;">This player hasn't completed any demons yet</span>
-                                    </div>
-                                </div>`
-                            }
-                        </div>
+                        ${playerStats.completedDemons.length > 0 ? 
+                            createDemonsGridHTML(playerStats.completedDemons.map(c => c.demon)) :
+                            `<div style="text-align: center; padding: 1.5rem; color: var(--text-secondary);">
+                                <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">😔</div>
+                                <div style="font-size: 0.9rem; font-weight: 700; margin-bottom: 0.3rem;">
+                                    <span data-lang="ru">Нет пройденных демонов</span>
+                                    <span data-lang="en" style="display: none;">No completed demons</span>
+                                </div>
+                                <div style="font-size: 0.8rem;">
+                                    <span data-lang="ru">Этот игрок еще не прошел ни одного демона</span>
+                                    <span data-lang="en" style="display: none;">This player hasn't completed any demons yet</span>
+                                </div>
+                            </div>`
+                        }
                     </div>
                 </div>
             `;
@@ -2893,7 +2900,14 @@
             // Получаем верифицированные демоны (если есть)
             if (player.verifiedDemons && Array.isArray(player.verifiedDemons)) {
                 stats.verifiedDemons = player.verifiedDemons.map(demonId => {
-                    return allDemons.find(d => d.id === demonId);
+                    const demon = allDemons.find(d => d.id === demonId);
+                    if (demon) {
+                        return {
+                            ...demon,
+                            verified: true
+                        };
+                    }
+                    return null;
                 }).filter(Boolean);
             }
             
