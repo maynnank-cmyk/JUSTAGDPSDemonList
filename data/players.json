@@ -28,7 +28,8 @@
         "heliorobot": 100,
         "bloodinthesnow": 100,
         "unmaded": 100
-      }
+      },
+          "verifiedDemons": ["unmaded"]
     },
         {
       "id": "yoyka",
@@ -147,7 +148,8 @@
       "completedDemons": ["hellmachine"],
       "progress": {
         "hellmachine": 100
-        }
+        },
+         "verifiedDemons": ["hellmachine"]
       },
         {
       "id": "voidamage",
@@ -156,7 +158,8 @@
       "completedDemons": ["leyckhemuya"],
       "progress": {
         "leyckhemuya": 100
-        }
+        },
+          "verifiedDemons": ["leyckhemuya"]
       },
       {
       "id": "preh",
@@ -165,7 +168,8 @@
       "completedDemons": ["invisible"],
       "progress": {
         "invisible": 100
-        }
+        },
+        "verifiedDemons": ["invisible"]
       },
      {
       "id": "nzcir2",
@@ -216,7 +220,8 @@
       "completedDemons": ["ccopakpectob"],
       "progress": {
         "ccopakpectob": 100
-      }
+      },
+         "verifiedDemons": ["ccopakpectob"]
     },
       {
       "id": "asyouknow",
@@ -248,7 +253,8 @@
         "fracture": 100,
         "terraprocessing": 100,
         "sashamingvortex": 100
-      }
+      },
+       "verifiedDemons": ["easycorridor", "unforcedvortex"]
     },
      {
       "id": "ster3o",
@@ -267,7 +273,8 @@
       "progress": {
         "uauafactorial": 100,
         "noviolence": 100
-      }
+      },
+        "verifiedDemons": ["uauafactorial", "noviolence"]
     },
      {
       "id": "mwzqgd",
