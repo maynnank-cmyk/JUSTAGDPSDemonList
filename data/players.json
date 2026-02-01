@@ -63,7 +63,7 @@
         "staru": 100,
         "femboycircles67": 100
       },
-            "verifiedDemons": ["nameless", "femboycircles67", "staru", "bullet"]
+            "verifiedDemons": ["nameless", "femboycircles67", "staru", "bullet", "gypers"]
     },
      {
       "id": "sayori",
@@ -106,7 +106,8 @@
         "anathema": 100,
         "atomiccannonmkiii": 100,
         "bloodinthesnow": 100
-      }
+      },
+       "verifiedDemons": ["insomnia", "badabum", "sigareta2", "turnthelightsoff"]
     },
      {
       "id": "nizelix",
@@ -136,7 +137,8 @@
         "terraprocessing": 100,
         "poocubed": 100,
         "jag67": 100
-      }
+      },
+          "verifiedDemons": ["fuzeii", "anathema", "atomiccannonmkiii", "silentcycles", "sashamingvortex", "fracture", "terraespera", "terraesperafinale", "poocubed", "lowdeathiii", "terraprocessing"]
       },
        {
       "id": "vxmnc",
