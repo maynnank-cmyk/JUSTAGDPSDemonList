@@ -47,7 +47,6 @@
       "avatar": "W",
       "icon": "assets/gold-icon.png",
       "completedDemons": ["unmaded", "nameless", "gypers", "selfharm", "cure", "uauafactorial", "sapphireglow", "insomnia", "sigareta2", "turnthelightsoff", "bloodinthesnow", "bullet", "staru", "femboycircles67"],
-      "verifiedDemons": ["nameless", "femboycircles67", "staru", "bullet"],
       "progress": {
         "unmaded": 100,
         "nameless": 100,
@@ -63,7 +62,8 @@
         "bullet": 100,
         "staru": 100,
         "femboycircles67": 100
-      }
+      },
+            "verifiedDemons": ["nameless", "femboycircles67", "staru", "bullet"]
     },
      {
       "id": "sayori",
