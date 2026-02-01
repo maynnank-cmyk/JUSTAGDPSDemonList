@@ -1289,61 +1289,52 @@
             text-align: center;
         }
 
-        .player-title .rank {
-            font-size: 1rem;
-            color: var(--text-secondary);
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            justify-content: center;
-        }
-
-        .rank-badge {
-            background: var(--accent-purple);
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 12px;
-            font-size: 1rem;
-            font-weight: 700;
-        }
-
-        /* Stats Grid - Одна колонка с очками */
-        .stats-grid {
+        /* ИЗМЕНЕНО: место и очки на одной строке в плашках */
+        .player-stats-row {
             display: flex;
             justify-content: center;
+            gap: 1rem;
             width: 100%;
             margin-bottom: 1.5rem;
         }
 
-        .stat-item {
+        .stat-badge {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid var(--border-color);
             border-radius: 12px;
-            padding: 1rem 2rem;
-            text-align: center;
+            padding: 1rem 1.5rem;
+            min-width: 120px;
             transition: all 0.2s ease;
-            min-width: 150px;
         }
 
-        .stat-item:hover {
+        .stat-badge:hover {
             border-color: var(--accent-purple);
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(138, 107, 255, 0.15);
         }
 
-        .stat-value {
-            font-size: 2rem;
+        .stat-badge .value {
+            font-size: 1.8rem;
             font-weight: 800;
-            color: var(--accent-green);
             margin-bottom: 0.3rem;
             display: flex;
             align-items: center;
-            justify-content: center;
             gap: 0.4rem;
         }
 
-        .stat-label {
+        .stat-badge .rank .value {
+            color: var(--accent-purple);
+        }
+
+        .stat-badge .points .value {
+            color: var(--accent-green);
+        }
+
+        .stat-badge .label {
             font-size: 0.85rem;
             color: var(--text-secondary);
             font-weight: 600;
@@ -1618,13 +1609,17 @@
                 font-size: 1.4rem;
             }
 
-            .stat-item {
-                padding: 0.8rem 1.5rem;
-                min-width: 130px;
+            .player-stats-row {
+                gap: 0.8rem;
             }
 
-            .stat-value {
-                font-size: 1.8rem;
+            .stat-badge {
+                padding: 0.8rem 1.2rem;
+                min-width: 110px;
+            }
+
+            .stat-badge .value {
+                font-size: 1.6rem;
             }
 
             .compact-player-row {
@@ -1732,16 +1727,20 @@
                 font-size: 1.2rem;
             }
 
-            .stat-item {
-                padding: 0.7rem 1.2rem;
-                min-width: 120px;
+            .player-stats-row {
+                gap: 0.6rem;
             }
 
-            .stat-value {
-                font-size: 1.6rem;
+            .stat-badge {
+                padding: 0.7rem 1rem;
+                min-width: 100px;
             }
 
-            .stat-label {
+            .stat-badge .value {
+                font-size: 1.4rem;
+            }
+
+            .stat-badge .label {
                 font-size: 0.75rem;
             }
 
@@ -2583,18 +2582,20 @@
                         </div>
                         <div class="player-title">
                             <h2>${player.name}</h2>
-                            <div class="rank">
-                                <span data-lang="ru">Ранг: </span>
-                                <span data-lang="en" style="display: none;">Rank: </span>
-                                <span class="rank-badge">#${playerStats.rank}</span>
-                            </div>
                         </div>
                     </div>
                     
-                    <div class="stats-grid">
-                        <div class="stat-item">
-                            <div class="stat-value">${playerStats.totalPoints}</div>
-                            <div class="stat-label">
+                    <div class="player-stats-row">
+                        <div class="stat-badge rank">
+                            <div class="value">#${playerStats.rank}</div>
+                            <div class="label">
+                                <span data-lang="ru">Место</span>
+                                <span data-lang="en" style="display: none;">Rank</span>
+                            </div>
+                        </div>
+                        <div class="stat-badge points">
+                            <div class="value">${playerStats.totalPoints}</div>
+                            <div class="label">
                                 <span data-lang="ru">Очки</span>
                                 <span data-lang="en" style="display: none;">Points</span>
                             </div>
