@@ -1023,7 +1023,7 @@
             left: 0;
             width: 3px;
             height: 100%;
-            background: linear-gradient(to bottom, var(--accent-red), var(--accent-purple));
+            background: linear-gradient(to bottom, var(--accent-red), var(--accent-purple);
             transform: scaleY(0);
             transition: transform 0.2s ease;
         }
@@ -1385,6 +1385,10 @@
             font-weight: 800;
             color: var(--accent-red);
             text-align: center;
+            word-break: break-word;
+            overflow-wrap: break-word;
+            white-space: normal;
+            line-height: 1.3;
         }
 
         .hardest-demon-rank {
@@ -1419,27 +1423,39 @@
 
         .completed-demons-list {
             display: flex;
-            flex-wrap: wrap;
+            flex-direction: column;
             gap: 0.5rem;
+            max-height: 300px;
+            overflow-y: auto;
+            padding-right: 5px;
         }
 
-        /* Компактные пройденные демоны - ТОЛЬКО НАЗВАНИЕ, строятся в ряд */
+        .completed-demons-list::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .completed-demons-list::-webkit-scrollbar-track {
+            background: transparent;
+            border-radius: 2px;
+        }
+
+        .completed-demons-list::-webkit-scrollbar-thumb {
+            background: var(--accent-purple);
+            border-radius: 2px;
+        }
+
+        /* Компактные пройденные демоны - полное название, вертикальный список */
         .compact-completed-item {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid var(--border-color);
             border-radius: 8px;
-            padding: 0.4rem 0.6rem;
+            padding: 0.7rem 0.8rem;
             transition: all 0.2s ease;
             cursor: pointer;
             position: relative;
-            text-align: center;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            white-space: nowrap;
-            flex: 1;
-            min-width: 0;
-            max-width: calc(33.333% - 0.5rem);
+            text-align: left;
+            display: block;
+            width: 100%;
         }
 
         .compact-completed-item::before {
@@ -1457,7 +1473,7 @@
         .compact-completed-item:hover {
             border-color: var(--accent-red);
             background: rgba(255, 255, 255, 0.05);
-            transform: translateY(-1px);
+            transform: translateX(2px);
         }
 
         .compact-completed-item:hover::before {
@@ -1465,19 +1481,34 @@
         }
 
         .compact-completed-name {
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            font-size: 0.75rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            white-space: normal;
+            overflow: visible;
+            text-overflow: unset;
+            word-break: break-word;
+            overflow-wrap: break-word;
+            line-height: 1.3;
+            display: flex;
+            align-items: center;
+            gap: 4px;
         }
 
         /* Verified Badge для верифицированных демонов */
         .verified-badge {
-            display: inline-block;
-            margin-left: 0.3rem;
-            color: var(--accent-green);
-            font-size: 0.7rem;
-            vertical-align: super;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 16px;
+            height: 16px;
+            background: var(--accent-green);
+            color: white;
+            border-radius: 50%;
+            font-size: 10px;
+            font-weight: 800;
+            flex-shrink: 0;
+            margin-left: 2px;
         }
 
         /* No Player Selected */
@@ -1599,10 +1630,6 @@
             .details-widget {
                 order: 2;
             }
-            
-            .compact-completed-item {
-                max-width: calc(50% - 0.5rem);
-            }
         }
 
         @media (max-width: 768px) {
@@ -1712,12 +1739,11 @@
             }
 
             .compact-completed-item {
-                padding: 0.3rem 0.5rem;
-                font-size: 0.75rem;
+                padding: 0.6rem 0.7rem;
             }
 
             .compact-completed-name {
-                font-size: 0.7rem;
+                font-size: 0.8rem;
             }
         }
 
@@ -1813,14 +1839,8 @@
                 font-size: 0.7rem;
             }
 
-            .compact-completed-item {
-                padding: 0.2rem 0.4rem;
-                font-size: 0.7rem;
-                max-width: calc(50% - 0.4rem);
-            }
-
             .compact-completed-name {
-                font-size: 0.65rem;
+                font-size: 0.75rem;
             }
 
             .hardest-demon-name {
@@ -1830,13 +1850,6 @@
             .footer-content {
                 grid-template-columns: 1fr;
                 gap: 1rem;
-            }
-        }
-
-        @media (max-width: 360px) {
-            .compact-completed-item {
-                max-width: 100%;
-                min-width: 100%;
             }
         }
     </style>
@@ -2505,12 +2518,27 @@
                 const demonsResponse = await fetch('data/demons.json');
                 if (!demonsResponse.ok) throw new Error('Файл demons.json не найден');
                 const demonsData = await demonsResponse.json();
-                demons = demonsData.demons || [];
+                
+                // Проверяем структуру JSON
+                console.log('Структура demons.json:', demonsData);
+                
+                // Поддерживаем оба формата: массив демонов или объект с полем demons
+                if (Array.isArray(demonsData)) {
+                    demons = demonsData;
+                } else if (demonsData.demons && Array.isArray(demonsData.demons)) {
+                    demons = demonsData.demons;
+                } else {
+                    throw new Error('Неверный формат demons.json');
+                }
+                
+                console.log('✅ Загружено демонов:', demons.length);
                 
                 // Загружаем игроков
                 const playersResponse = await fetch('data/players.json');
                 if (!playersResponse.ok) throw new Error('Файл players.json не найден');
                 const playersData = await playersResponse.json();
+                
+                console.log('Структура players.json:', playersData);
                 
                 if (playersData.players && Array.isArray(playersData.players)) {
                     // Рассчитываем очки для каждого игрока
