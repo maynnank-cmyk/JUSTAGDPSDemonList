@@ -795,7 +795,7 @@ header {
 }
 
 .search-container {
-    max-width: 600px;
+    max-width: 1200px;
     margin: 0 auto;
     position: relative;
 }
@@ -970,7 +970,7 @@ header {
     background: var(--bg-tertiary);
 }
 
-/* ПОИСК ПО ТЕГАМ */
+/* ПОИСК ПО ТЕГАМ - РАСТЯНУТЫЙ */
 .tags-search-container {
     display: none;
 }
@@ -979,12 +979,14 @@ header {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    width: 100%;
 }
 
 .tags-search-row {
     display: flex;
     gap: 1rem;
     align-items: center;
+    width: 100%;
 }
 
 .tags-search-input {
@@ -997,6 +999,7 @@ header {
     color: var(--text-primary);
     font-weight: 500;
     transition: all 0.3s ease;
+    width: 100%;
 }
 
 .tags-search-input:focus {
@@ -1016,6 +1019,7 @@ header {
     font-size: 0.95rem;
     transition: all 0.3s ease;
     white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .clear-tags-btn:hover {
@@ -1024,49 +1028,101 @@ header {
     transform: translateY(-2px);
 }
 
-.tags-list {
+/* КРАСИВЫЙ СЛАЙДЕР ТЕГОВ */
+.tags-list-container {
+    width: 100%;
+    max-height: 180px;
+    overflow: hidden;
+    position: relative;
+}
+
+.tags-slider {
     display: flex;
-    flex-wrap: wrap;
+    overflow-x: auto;
     gap: 0.6rem;
-    max-height: 120px;
-    overflow-y: auto;
     padding: 1rem;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    width: 100%;
+    max-height: 120px;
     background: var(--bg-secondary);
     border: 2px solid var(--border-color);
     border-radius: 12px;
 }
 
-.tag-item {
+.tags-slider::-webkit-scrollbar {
+    display: none;
+}
+
+.tag-slider-item {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
     display: flex;
     align-items: center;
     gap: 0.3rem;
-    padding: 0.5rem 0.9rem;
+    padding: 0.6rem 1rem;
     background: var(--bg-tertiary);
     border: 2px solid var(--border-color);
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
     transition: all 0.2s ease;
     font-size: 0.9rem;
     font-weight: 600;
     color: var(--text-secondary);
+    min-width: 120px;
+    justify-content: center;
 }
 
-.tag-item:hover {
+.tag-slider-item:hover {
     border-color: var(--accent-purple);
     color: var(--accent-purple);
-    transform: translateY(-1px);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 4px 12px rgba(138, 107, 255, 0.2);
 }
 
-.tag-item.active {
+.tag-slider-item.active {
     background: var(--accent-purple);
     border-color: var(--accent-purple);
     color: white;
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(138, 107, 255, 0.3);
 }
 
 .tag-count {
     font-size: 0.75rem;
     opacity: 0.8;
     margin-left: 0.2rem;
+}
+
+/* Кнопки навигации слайдера */
+.slider-nav {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.slider-btn {
+    background: var(--bg-tertiary);
+    border: 2px solid var(--border-color);
+    color: var(--text-secondary);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.slider-btn:hover {
+    border-color: var(--accent-purple);
+    color: var(--accent-purple);
+    transform: scale(1.1);
 }
 
 .filter-stats {
@@ -1077,6 +1133,7 @@ header {
     font-size: 0.9rem;
     color: var(--text-secondary);
     text-align: center;
+    width: 100%;
 }
 
 .stat-highlight {
@@ -1378,25 +1435,52 @@ header {
     transform: translateY(-1px);
 }
 
+/* ОЧКИ БЕЗ ПЛАШКИ - просто текст */
 .demon-points {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     font-weight: 800;
     color: var(--accent-green);
-    min-width: 80px;
+    min-width: 100px;
     text-align: right;
     flex-shrink: 0;
-    background: rgba(46, 213, 115, 0.1);
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
     transition: all 0.3s ease;
-    border: 2px solid rgba(46, 213, 115, 0.2);
+    padding: 0;
+    background: transparent !important;
+    border: none !important;
+    position: relative;
+}
+
+.demon-points::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2px;
+    height: 60%;
+    background: var(--border-color);
+    opacity: 0.5;
+    transition: all 0.3s ease;
 }
 
 .demon-row:hover .demon-points {
-    background: var(--accent-green);
-    color: white;
+    color: var(--accent-green);
     transform: scale(1.05);
-    border-color: var(--accent-green);
+}
+
+.demon-row:hover .demon-points::before {
+    background: var(--accent-green);
+    opacity: 1;
+    height: 80%;
+}
+
+/* Для светлой темы */
+[data-theme="light"] .demon-points {
+    color: var(--accent-green);
+}
+
+[data-theme="light"] .demon-row:hover .demon-points {
+    color: var(--accent-green);
 }
 
 .refresh-btn {
@@ -1591,9 +1675,8 @@ footer {
     }
     
     .demon-points {
-        font-size: 1.2rem !important;
-        min-width: 90px !important;
-        padding: 0.6rem 1.2rem !important;
+        font-size: 1.4rem !important;
+        min-width: 120px !important;
     }
 }
 
@@ -1625,6 +1708,11 @@ footer {
     
     .demon-name {
         font-size: 1rem;
+    }
+    
+    .demon-points {
+        font-size: 1.1rem;
+        min-width: 80px;
     }
 }
 
@@ -1710,6 +1798,12 @@ footer {
     .clear-tags-btn {
         width: 100%;
     }
+    
+    .tag-slider-item {
+        min-width: 100px;
+        padding: 0.5rem 0.8rem;
+        font-size: 0.85rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1763,9 +1857,13 @@ footer {
     }
     
     .demon-points {
-        font-size: 0.9rem;
+        font-size: 1rem;
         min-width: 70px;
-        padding: 0.4rem 0.8rem;
+        text-align: center;
+    }
+    
+    .demon-points::before {
+        display: none;
     }
     
     .footer-content {
@@ -1817,6 +1915,18 @@ footer {
         padding: 0.8rem 1rem;
         font-size: 0.9rem;
     }
+    
+    .tag-slider-item {
+        min-width: 80px;
+        padding: 0.4rem 0.6rem;
+        font-size: 0.8rem;
+    }
+    
+    .slider-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
+    }
 }
 
 @media (max-width: 360px) {
@@ -1839,6 +1949,11 @@ footer {
     .cube-icon {
         width: 24px;
         height: 24px;
+    }
+    
+    .demon-points {
+        font-size: 0.9rem;
+        min-width: 60px;
     }
 }
 
@@ -2147,9 +2262,18 @@ html {
                                 <span data-lang="en" style="display: none;">Clear tags</span>
                             </button>
                         </div>
-                        <div class="tags-list" id="tagsList">
-                            <!-- Теги будут загружены динамически -->
+                        
+                        <!-- КРАСИВЫЙ СЛАЙДЕР ТЕГОВ -->
+                        <div class="tags-list-container">
+                            <div class="tags-slider" id="tagsSlider">
+                                <!-- Теги будут добавлены динамически -->
+                            </div>
+                            <div class="slider-nav">
+                                <button class="slider-btn" onclick="scrollTagsLeft()">‹</button>
+                                <button class="slider-btn" onclick="scrollTagsRight()">›</button>
+                            </div>
                         </div>
+                        
                         <div id="activeFilters" class="filter-stats">
                             <span data-lang="ru">Выбрано тегов: </span>
                             <span data-lang="en" style="display: none;">Selected tags: </span>
@@ -2625,6 +2749,90 @@ html {
             return Math.max(Math.round(points), 1);
         }
 
+        // ========== СЛАЙДЕР ТЕГОВ ==========
+        function renderTagsList() {
+            const tagsSlider = document.getElementById('tagsSlider');
+            
+            if (!tagsSlider) return;
+            
+            tagsSlider.innerHTML = '';
+            
+            const sortedTags = Array.from(allTags).sort((a, b) => {
+                // Сначала популярные теги
+                const countDiff = tagStats[b] - tagStats[a];
+                if (countDiff !== 0) return countDiff;
+                // Затем по алфавиту
+                return a.localeCompare(b);
+            });
+            
+            // Рендерим в слайдер
+            sortedTags.forEach(tag => {
+                const tagElement = document.createElement('div');
+                tagElement.className = 'tag-slider-item';
+                tagElement.innerHTML = `
+                    ${tag} <span class="tag-count">(${tagStats[tag]})</span>
+                `;
+                
+                tagElement.addEventListener('click', () => {
+                    toggleTagFilter(tag);
+                });
+                
+                tagsSlider.appendChild(tagElement);
+            });
+            
+            updateActiveTagsDisplay();
+        }
+
+        function toggleTagFilter(tag) {
+            if (activeTags.has(tag)) {
+                activeTags.delete(tag);
+            } else {
+                activeTags.add(tag);
+            }
+            
+            updateActiveTagsDisplay();
+            updateFilteredDemons();
+            updateFilterStats();
+        }
+
+        function updateActiveTagsDisplay() {
+            // Обновляем слайдер
+            document.querySelectorAll('.tag-slider-item').forEach(item => {
+                const tagName = item.textContent.split(' (')[0].trim();
+                if (activeTags.has(tagName)) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+        }
+
+        function scrollTagsLeft() {
+            const slider = document.getElementById('tagsSlider');
+            if (slider) {
+                slider.scrollBy({ left: -200, behavior: 'smooth' });
+            }
+        }
+
+        function scrollTagsRight() {
+            const slider = document.getElementById('tagsSlider');
+            if (slider) {
+                slider.scrollBy({ left: 200, behavior: 'smooth' });
+            }
+        }
+
+        function clearAllTags() {
+            activeTags.clear();
+            updateActiveTagsDisplay();
+            updateFilteredDemons();
+            updateFilterStats();
+            
+            // Очищаем поле поиска тегов
+            const tagsSearch = document.getElementById('tagsSearch');
+            tagsSearch.value = '';
+            tagsSearch.dispatchEvent(new Event('input'));
+        }
+
         function initializeSearch() {
             const searchInput = document.getElementById('searchInput');
             const searchResults = document.getElementById('searchResults');
@@ -2660,9 +2868,9 @@ html {
             // Поиск в фильтрах тегов
             tagsSearch.addEventListener('input', function() {
                 const searchTerm = this.value.toLowerCase().trim();
-                const tagItems = document.querySelectorAll('.tag-item');
                 
-                tagItems.forEach(item => {
+                // Фильтрация в слайдере
+                document.querySelectorAll('.tag-slider-item').forEach(item => {
                     const tagName = item.textContent.toLowerCase().split(' (')[0];
                     if (tagName.includes(searchTerm) || searchTerm === '') {
                         item.style.display = 'flex';
@@ -2852,72 +3060,6 @@ html {
             }
         }
 
-        function renderTagsList() {
-            const tagsList = document.getElementById('tagsList');
-            if (!tagsList) return;
-            
-            tagsList.innerHTML = '';
-            
-            const sortedTags = Array.from(allTags).sort((a, b) => {
-                // Сначала популярные теги
-                const countDiff = tagStats[b] - tagStats[a];
-                if (countDiff !== 0) return countDiff;
-                // Затем по алфавиту
-                return a.localeCompare(b);
-            });
-            
-            sortedTags.forEach(tag => {
-                const tagElement = document.createElement('div');
-                tagElement.className = 'tag-item';
-                tagElement.innerHTML = `
-                    ${tag} <span class="tag-count">(${tagStats[tag]})</span>
-                `;
-                
-                tagElement.addEventListener('click', () => {
-                    toggleTagFilter(tag);
-                });
-                
-                tagsList.appendChild(tagElement);
-            });
-            
-            updateActiveTagsDisplay();
-        }
-
-        function toggleTagFilter(tag) {
-            if (activeTags.has(tag)) {
-                activeTags.delete(tag);
-            } else {
-                activeTags.add(tag);
-            }
-            
-            updateActiveTagsDisplay();
-            updateFilteredDemons();
-            updateFilterStats();
-        }
-
-        function updateActiveTagsDisplay() {
-            document.querySelectorAll('.tag-item').forEach(item => {
-                const tagName = item.textContent.split(' (')[0].trim();
-                if (activeTags.has(tagName)) {
-                    item.classList.add('active');
-                } else {
-                    item.classList.remove('active');
-                }
-            });
-        }
-
-        function clearAllTags() {
-            activeTags.clear();
-            updateActiveTagsDisplay();
-            updateFilteredDemons();
-            updateFilterStats();
-            
-            // Очищаем поле поиска тегов
-            const tagsSearch = document.getElementById('tagsSearch');
-            tagsSearch.value = '';
-            tagsSearch.dispatchEvent(new Event('input'));
-        }
-
         function updateFilteredDemons() {
             const searchInput = document.getElementById('searchInput');
             const searchTerm = searchInput.value.toLowerCase().trim();
@@ -2944,6 +3086,7 @@ html {
             
             filteredDemons = filtered;
             renderDemons();
+            updateFilterStats();
         }
 
         function updateFilterStats() {
@@ -3026,7 +3169,7 @@ html {
                                 ).join('')}</div>` : ''
                             }
                         </div>
-                        <div class="demon-points">${points} pts</div>
+                        <div class="demon-points">${points}</div>
                     </div>
                 `;
                 fragment.appendChild(demonRow);
@@ -3108,6 +3251,8 @@ html {
         window.clearAllTags = clearAllTags;
         window.toggleSearchTypeMenu = toggleSearchTypeMenu;
         window.changeSearchType = changeSearchType;
+        window.scrollTagsLeft = scrollTagsLeft;
+        window.scrollTagsRight = scrollTagsRight;
 
         document.addEventListener('DOMContentLoaded', function() {
             initializeData();
