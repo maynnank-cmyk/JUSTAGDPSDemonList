@@ -23,11 +23,12 @@
       "id": "naz0rro",
       "name": "Naz0rro",
       "avatar": "N",
-      "completedDemons": ["heliorobot", "bloodinthesnow", "unmaded"],
+      "completedDemons": ["heliorobot", "bloodinthesnow", "unmaded", "terraesperafinale"],
       "progress": {
         "heliorobot": 100,
         "bloodinthesnow": 100,
-        "unmaded": 100
+        "unmaded": 100,
+        "terraesperafinale": 100
       },
           "verifiedDemons": ["unmaded"]
     },
