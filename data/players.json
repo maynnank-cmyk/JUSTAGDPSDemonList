@@ -29,7 +29,8 @@
         "bloodinthesnow": 100,
         "unmaded": 100,
         "terraesperafinale": 100,
-        "cure": 100
+        "cure": 100,
+        "nameless": 75
       },
           "verifiedDemons": ["unmaded"]
     },
@@ -111,7 +112,8 @@
         "insomnia": 100,
         "anathema": 100,
         "atomiccannonmkiii": 100,
-        "bloodinthesnow": 100
+        "bloodinthesnow": 100,
+        "sashamingvortex": 75
       },
        "verifiedDemons": ["insomnia", "badabum", "sigareta2", "turnthelightsoff"]
     },
