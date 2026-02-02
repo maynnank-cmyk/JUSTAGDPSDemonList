@@ -4,6 +4,7 @@
       "id": "femboycircles67",
       "name": "Femboy Circles 67",
       "creator": "weztT",
+       "tags": ["NC", "Medium", "StarRate", "ExtremeDemon"],
       "videoUrl": "https://youtu.be/NMvwmMV1uvQ",
       "image": "images/femboycircles67.png",
       "description": ""
@@ -12,6 +13,7 @@
       "id": "staru",
       "name": "Star U",
       "creator": "VladGDMJ",
+      "tags": ["OnlyOneGameMode", "Medium", "Epic", "ExtremeDemon"],
       "videoUrl": "https://youtu.be/yCUikSdgj_0",
       "image": "images/staru.png",
       "description": ""
@@ -20,6 +22,7 @@
       "id": "nameless",
       "name": "nameless",
       "creator": "WeztT",
+      "tags": ["HighCPS", "Medium", "StarRate", "ExtremeDemon"],
       "videoUrl": ".https://www.youtube.com/watch?v=7Spnke3cNLE",
       "image": "images/nameless.png",
       "description": ""
@@ -28,6 +31,7 @@
       "id": "bullet",
       "name": "Bullet",
       "creator": "VladGDMJ",
+       "tags": ["NC", "Medium", "StarRate", "ExtremeDemon"],
       "videoUrl": "https://youtu.be/hQ_jJGBMxfY",
       "image": "images/bullet.png",
       "description": "disbalance."
@@ -36,6 +40,7 @@
       "id": "leyckhemuya",
       "name": "Leyckhemuya",
       "creator": "VoiDamage",
+      "tags": ["Memory", "Medium", "Epic", "ExtremeDemon"],
       "videoUrl": "https://youtu.be/8TpacQwDI0U?si=MFZth813EDAIrwlO",
       "image": "images/leyckhemuya.png",
       "description": ""
@@ -44,6 +49,7 @@
       "id": "noviolence",
       "name": "No Violence",
       "creator": "Dodjeman55",
+      "tags": ["Long", "Mythic", "ExtremeDemon"],
       "videoUrl": "https://youtu.be/WBM2NoYwEa8?si=kUiMaXhBR3qJNvKg",
       "image": "images/noviolence.png",
       "description": "rainbow cognition"
@@ -52,6 +58,7 @@
       "id": "gypers",
       "name": "Gypers",
       "creator": "WeztT",
+      "tags": ["NC", "Medium", "StarRate", "ExtremeDemon"],
       "videoUrl": "https://youtu.be/-ZsZh7wsbjA",
       "image": "images/gypers.png",
       "description": "Бывший топ 1."
@@ -60,6 +67,7 @@
       "id": "sapphireglow",
       "name": "Sapphire Glow",
       "creator": "wWanderer",
+        "tags": ["NC", "Long", "Epic", "ExtremeDemon", "Unbalaced"],
       "videoUrl": "https://youtu.be/D1K5v6kKAag",
       "image": "images/sapphireglow.png",
       "description": ""
@@ -68,6 +76,7 @@
       "id": "unforcedvortrex",
       "name": "Unforced Vortrex",
       "creator": "TheRealMraz",
+        "tags": ["NC", "Medium", "Featured", "InsaneDemon", "WithoutSong"],
       "videoUrl": "https://youtu.be/ltyXcJFSnrI",
       "image": "images/file_0000000069887209901acf71436c8fc9.png",
       "description": "1 of first rated demons."
@@ -76,6 +85,7 @@
       "id": "insomnia",
       "name": "Insomnia",
       "creator": "VladGDMJ",
+      "tags": ["Medium", "Featured", "ExtremeDemon"],
       "videoUrl": "https://youtu.be/s_HhFXHf-vs",
       "image": "images/insomnia.png",
       "description": ""
@@ -84,6 +94,7 @@
       "id": "unmaded",
       "name": "Unmaded",
       "creator": "Naz0rro",
+        "tags": ["Memory", "Long", "Epic", "ExtremeDemon"],
       "videoUrl": "https://youtu.be/EqH-2yR9TVE?si=SpE9vOmdwwKkJ40e",
       "image": "images/unmaded.png",
       "description": "Баллистик вистфулли."
@@ -92,6 +103,7 @@
       "id": "terraesperafinale",
       "name": "TerraEsperaFinale",
       "creator": "Terraria",
+        "tags": ["1.0", "XL", "Featured", "InsaneDemon"],
       "videoUrl": "https://youtu.be/g3mWWY0OpsI?si=0KgS8SU8ja8RE8bd",
       "image": "images/terraesperafinale.png",
       "description": ""
@@ -100,6 +112,7 @@
       "id": "uauafactorial",
       "name": "UaUa Factorial",
       "creator": "Dodjeman55",
+      "tags": ["NC", "Medium", "Featured", "ExtremeDemon"],
       "videoUrl": "https://youtu.be/eDEqMyWErmg",
       "image": "images/uauafactorial.png",
       "description": "NK демон."
@@ -108,6 +121,7 @@
       "id": "terraespera",
       "name": "Terra Espera",
       "creator": "Terraria",
+        "tags": ["1.0", "XL", "Featured", "InsaneDemon"],
       "videoUrl": "https://youtu.be/dCSyOdTh3SU?si=Qj6xUI5h4uvI1H0k",
       "image": "images/terraespera.png",
       "description": "kakashka"
@@ -116,6 +130,7 @@
       "id": "lowdeathiii",
       "name": "Low Death III",
       "creator": "Terraria",
+        "tags": ["Medium", "StarRate", "InsaneDemon"],
       "videoUrl": "https://youtu.be/ABGLVISmq08?si=eqUUzoPX7HWKVj5w&t=11",
       "image": "images/lowdeathiii.png",
       "description": ""
@@ -124,6 +139,7 @@
       "id": "cure",
       "name": "Cure",
       "creator": "ppsha",
+       "tags": ["Medium", "Featured", "ExtremeDemon"],
       "videoUrl": "https://youtu.be/NbscfKll1Tg?si=uFeFx23x3MXAolQ-",
       "image": "images/cure.png",
       "description": ""
@@ -132,6 +148,7 @@
       "id": "poocubed",
       "name": "Poocubed",
       "creator": "Terraria",
+        "tags": ["Medium", "StarRate", "HardDemon"],
       "videoUrl": " https://youtu.be/juXTK2PTTxI?si=RV657nwKVz6uRJOQ&t=204",
       "image": "images/poocubed.png",
       "description": ""
@@ -140,6 +157,7 @@
       "id": "silentcycles",
       "name": "Silent Cycles",
       "creator": "Terraria",
+        "tags": ["1.0", "Long", "StarRate", "InsaneDemon"],
       "videoUrl": "https://youtu.be/-8CEjsVDbIg?si=X6XWpPJ9_BACKQhW",
       "image": "images/silentcycles.png",
       "description": ""
@@ -148,6 +166,7 @@
       "id": "ccopakpectob",
       "name": "CCOPA KPECTOB",
       "creator": "Vossozdatel",
+      "tags": ["Wave", "Medium", "Featured", "InsaneDemon"],
       "videoUrl": "https://youtu.be/juTCnRq9qHU",
       "image": "images/ccopakpectob.png",
       "description": ""
@@ -156,6 +175,7 @@
       "id": "badabum",
       "name": "Badabum",
       "creator": "Vladgdmj & Ruslanych",
+      "tags": ["Clicksync", "Medium", "Epic", "HardDemon", "Collab"],
       "videoUrl": "https://youtu.be/hudemBe61Jc",
       "image": "images/badabum.png",
       "description": ""
@@ -164,6 +184,7 @@
       "id": "bloodinthesnow",
       "name": "Blood In The Snow",
       "creator": "ESC",
+       "tags": ["Unbalanced", "Long", "Featured", "HardDemon"],
       "videoUrl": "https://youtu.be/jLpDyPZwgqU",
       "image": "images/bloodinthesnow.png",
       "description": ""
@@ -172,6 +193,7 @@
       "id": "jag",
       "name": "JaG",
       "creator": "M4I",
+      "tags": ["Collab", "XL", "Mythic", "HardDemon"],
       "videoUrl": "https://youtu.be/2-kCGEZq96k?si=Gi_13KYYYqJG5qhx",
       "image": "",
       "description": ""
@@ -180,6 +202,7 @@
       "id": "terraprocessing",
       "name": "Terra Processing",
       "creator": "terraria",
+      "tags": ["Medium", "StarRate", "HardDemon"],
       "videoUrl": "https://youtu.be/-VSUVd3OAMQ?si=gHtHfJVSLzQPz-n3&t=10",
       "image": "images/terraprocessing.png",
       "description": ""
