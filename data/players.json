@@ -47,7 +47,7 @@
       "name": "wezt",
       "avatar": "W",
       "icon": "assets/gold-icon.png",
-      "completedDemons": ["unmaded", "nameless", "gypers", "selfharm", "cure", "uauafactorial", "sapphireglow", "insomnia", "sigareta2", "turnthelightsoff", "bloodinthesnow", "bullet", "staru", "femboycircles67"],
+      "completedDemons": ["unmaded", "nameless", "gypers", "selfharm", "cure", "uauafactorial", "sapphireglow", "insomnia", "sigareta2", "turnthelightsoff", "bloodinthesnow", "bullet", "staru", "femboycircles67", "noviolence", "leyckhemuya", "terraesperafinale"],
       "progress": {
         "unmaded": 100,
         "nameless": 100,
@@ -62,7 +62,10 @@
         "bloodinthesnow": 100,
         "bullet": 100,
         "staru": 100,
-        "femboycircles67": 100
+        "femboycircles67": 100,
+        "noviolence": 100,
+        "leyckhemuya": 100,
+        "terraesperafinale": 100
       },
             "verifiedDemons": ["nameless", "femboycircles67", "staru", "bullet", "gypers"]
     },
