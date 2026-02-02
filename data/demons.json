@@ -67,7 +67,7 @@
       "id": "sapphireglow",
       "name": "Sapphire Glow",
       "creator": "wWanderer",
-        "tags": ["NC", "Long", "Epic", "ExtremeDemon", "Unbalaced"],
+        "tags": ["NC", "Long", "Epic", "ExtremeDemon", "Unbalanced"],
       "videoUrl": "https://youtu.be/D1K5v6kKAag",
       "image": "images/sapphireglow.png",
       "description": ""
@@ -202,7 +202,7 @@
       "id": "terraprocessing",
       "name": "Terra Processing",
       "creator": "terraria",
-      "tags": ["Medium", "StarRate", "HardDemon"],
+      "tags": ["Medium", "Featured", "HardDemon"],
       "videoUrl": "https://youtu.be/-VSUVd3OAMQ?si=gHtHfJVSLzQPz-n3&t=10",
       "image": "images/terraprocessing.png",
       "description": ""
@@ -211,6 +211,7 @@
       "id": "oldamethyst",
       "name": "Old Amethyst",
       "creator": "To4nowhy",
+      "tags": ["1.0", "Medium", "StarRate", "HardDemon"],
       "videoUrl": "https://youtu.be/DIMXbHunj-4",
       "image": "images/oldamethyst.png",
       "description": ""
@@ -219,6 +220,7 @@
       "id": "heliorobot",
       "name": "HelioRobot",
       "creator": "Sayori",
+      "tags": ["OnlyOneGameMode", "Medium", "StarRate", "HardDemon"],
       "videoUrl": "https://youtu.be/tiDeKxbGxlM?si=L92j5SPaR2W75e-7",
       "image": "images/heliorobot.png",
       "description": ""
@@ -227,6 +229,7 @@
       "id": "hellmachine",
       "name": "Hell Machine",
       "creator": "VXMNC",
+       "tags": ["Medium", "Featured", "InsaneDemon"],
       "videoUrl": "https://youtu.be/qNGwDHdGhTE",
       "image": "images/hellmachine.png",
       "description": ""
@@ -235,6 +238,7 @@
       "id": "jag67",
       "name": "JaG 67",
       "creator": "Terraria",
+        "tags": ["XL", "Featured", "HardDemon"],
       "videoUrl": "https://youtu.be/bWKB0E5S7Eo?si=zIz1kQ6OQ5nt2ws5",
       "image": "",
       "description": ""
@@ -243,6 +247,7 @@
       "id": "atomiccannonmkiii",
       "name": "Atomic Cannon Mk III",
       "creator": "Terraria",
+        "tags": ["Medium", "StarRate", "HardDemon"],
       "videoUrl": "https://youtu.be/EIQKkJ9qoaA?si=IyoVeeDUIEE_qbw-",
       "image": "images/atomiccannonmkiii.png",
       "description": ""
@@ -251,6 +256,7 @@
       "id": "anathema",
       "name": "Anathema",
       "creator": "Terraria",
+        "tags": ["Medium", "StarRate", "HardDemon"],
       "videoUrl": "https://youtu.be/iyMbRr_tFaM?si=8xyZ99sSaw3Ye7yT",
       "image": "images/atomiccannonmkiii.png",
       "description": ""
@@ -259,6 +265,7 @@
       "id": "fracture",
       "name": "Fracture",
       "creator": "Terraria",
+        "tags": ["Medium", "StarRate", "HardDemon"],
       "videoUrl": "https://youtu.be/CVv2Es7OGQU?si=QdNxIzl6q9ltI_Zf&t=10",
       "image": "",
       "description": ""
@@ -267,6 +274,7 @@
       "id": "sashamingvortex",
       "name": "sashaming vortex",
       "creator": "terraria",
+        "tags": ["OnlyOneGameMode", "Wave", "Medium", "StarRate", "HardDemon"],
       "videoUrl": "https://youtu.be/z9pTGM51Frs?si=C1-GhxhWoS_8dqrQ",
       "image": "images/sashamingvortex.png",
       "description": "govno"
@@ -275,6 +283,7 @@
       "id": "mango",
       "name": "Mango",
       "creator": "makaron4iki",
+        "tags": ["Long", "Featured", "HardDemon", "Collab"],
       "videoUrl": "https://youtu.be/Sf54edyabmc",
       "image": "images/mango.png",
       "description": "ufo 72% impossible"
@@ -283,6 +292,7 @@
       "id": "orbsuicide",
       "name": "Orb Suicide",
       "creator": "makaron4iki",
+         "tags": ["Medium", "StarRate", "HardDemon"],
       "videoUrl": "https://youtu.be/2-kCGEZq96k?si=Gi_13KYYYqJG5qhx",
       "image": "images/orbsuicide.png",
       "description": ""
@@ -291,6 +301,7 @@
       "id": "selfharm",
       "name": "Selfharm",
       "creator": "ppsha",
+      "tags": ["Medium", "StarRate", "HardDemon", "WithoutSong"],
       "videoUrl": "https://www.youtube.com/watch?v=xFKaflRbZJ8",
       "image": "images/selfharm.png",
       "description": ""
@@ -299,6 +310,7 @@
       "id": "xrebirth",
       "name": "X Rebirth",
       "creator": "Nzcir2",
+       "tags": ["Medium", "StarRate", "MediumDemon"],
       "videoUrl": "https://youtu.be/tyAMskoB6Tc?si=InMp3Ctpm1CdqczC",
       "image": "images/xrebirth.png",
       "description": ""
@@ -307,6 +319,7 @@
       "id": "invisible",
       "name": "Invisible",
       "creator": "preh",
+       "tags": ["Long", "StarRate", "HardDemon"],
       "videoUrl": "https://youtu.be/rK65zUh5lqM?si=gu4YVEmT1GByb62D",
       "image": "images/invisible.png",
       "description": ""
@@ -315,6 +328,7 @@
       "id": "sigareta2",
       "name": "Sigareta",
       "creator": "Vladgdmj",
+      "tags": ["Medium", "Epic", "EasyDemon"],
       "videoUrl": "https://youtu.be/6UbV9tNb-y0",
       "image": "images/sigareta2.png",
       "description": ""
@@ -323,6 +337,7 @@
       "id": "turnthelightsoff",
       "name": "Turn The Lights Off",
       "creator": "Terraria",
+      "tags": ["Medium", "StarRate", "MediumDemon"],
       "videoUrl": "https://youtu.be/O1VSmNZZR8s",
       "image": "images/turnthelightsoff.png",
       "description": "verified by vladgdmj."
@@ -331,6 +346,7 @@
       "id": "easycorridor",
       "name": "easy corridor",
       "creator": "TheRealMraz",
+      "tags": ["Medium", "StarRate", "EasyDemon"],
       "videoUrl": "https://youtu.be/ppG03GK15qM",
       "image": "images/.easycorridor.JPG",
       "description": ""
