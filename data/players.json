@@ -130,7 +130,7 @@
       "id": "terraria",
       "name": "Terraria",
       "avatar": "T",
-      "completedDemons": ["nocircles", "fuzeii", "anathema", "atomiccannonmkiii", "lowdeathiii", "silentcycles", "sashamingvortex", "terraprocessing", "fracture", "terraespera", "terraesperafinale", "cure", "poocubed", "xrebrth"],
+      "completedDemons": ["nocircles", "fuzeii", "anathema", "atomiccannonmkiii", "lowdeathiii", "silentcycles", "sashamingvortex", "terraprocessing", "fracture", "terraespera", "terraesperafinale", "cure", "poocubed", "xrebrth", "space", "cherry", "terraadventureii"],
       "progress": {
         "nocircles": 100,
         "fuzeii": 100,
@@ -145,9 +145,12 @@
         "terraprocessing": 100,
         "poocubed": 100,
         "jag67": 100,
-        "xrebirth": 100
+        "xrebirth": 100,
+        "cherry": 100,
+        "space": 100,
+        "terraadventureii": 100
       },
-          "verifiedDemons": ["fuzeii", "anathema", "atomiccannonmkiii", "silentcycles", "sashamingvortex", "fracture", "terraespera", "terraesperafinale", "poocubed", "lowdeathiii", "terraprocessing"]
+          "verifiedDemons": ["fuzeii", "anathema", "atomiccannonmkiii", "silentcycles", "sashamingvortex", "fracture", "terraespera", "terraesperafinale", "poocubed", "lowdeathiii", "terraprocessing", "space", "cherry", "terraadventureii"]
       },
        {
       "id": "vxmnc",
