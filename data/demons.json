@@ -238,7 +238,7 @@
       "id": "space",
       "name": "Space",
       "creator": "Terraria",
-      "tags": ["Robot", "OnlyOneGameMode", "Medium", "StarRate", "HardDemon", "New"],
+      "tags": ["Medium", "StarRate", "HardDemon", "New"],
       "videoUrl": "https://youtu.be/m-jdeiW_7nA?si=3jzLXf5cQF970F7x",
       "image": "images/space.png",
       "description": ""
