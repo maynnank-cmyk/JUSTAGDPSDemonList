@@ -363,7 +363,7 @@ function calculatePointsByRank(rank) {
     return Math.max(Math.round(points), 1);
 }
 
-// ========== СЛАЙДЕР ТЕГОВ ==========
+// ========== СЕТКА ТЕГОВ ==========
 function renderTagsList() {
     const tagsSlider = document.getElementById('tagsSlider');
     
@@ -379,7 +379,7 @@ function renderTagsList() {
         return a.localeCompare(b);
     });
     
-    // Рендерим в слайдер
+    // Рендерим в сетку
     sortedTags.forEach(tag => {
         const tagElement = document.createElement('div');
         tagElement.className = 'tag-slider-item';
@@ -410,7 +410,7 @@ function toggleTagFilter(tag) {
 }
 
 function updateActiveTagsDisplay() {
-    // Обновляем слайдер
+    // Обновляем сетку тегов
     document.querySelectorAll('.tag-slider-item').forEach(item => {
         const tagName = item.textContent.split(' (')[0].trim();
         if (activeTags.has(tagName)) {
@@ -419,20 +419,6 @@ function updateActiveTagsDisplay() {
             item.classList.remove('active');
         }
     });
-}
-
-function scrollTagsLeft() {
-    const slider = document.getElementById('tagsSlider');
-    if (slider) {
-        slider.scrollBy({ left: -200, behavior: 'smooth' });
-    }
-}
-
-function scrollTagsRight() {
-    const slider = document.getElementById('tagsSlider');
-    if (slider) {
-        slider.scrollBy({ left: 200, behavior: 'smooth' });
-    }
 }
 
 function clearAllTags() {
@@ -483,7 +469,7 @@ function initializeSearch() {
     tagsSearch.addEventListener('input', function() {
         const searchTerm = this.value.toLowerCase().trim();
         
-        // Фильтрация в слайдере
+        // Фильтрация в сетке тегов
         document.querySelectorAll('.tag-slider-item').forEach(item => {
             const tagName = item.textContent.toLowerCase().split(' (')[0];
             if (tagName.includes(searchTerm) || searchTerm === '') {
@@ -849,9 +835,6 @@ async function initializeData() {
     document.querySelector('.mobile-close').addEventListener('click', closeMobileMenu);
     document.querySelector('.refresh-btn').addEventListener('click', refreshData);
     document.querySelector('.clear-tags-btn').addEventListener('click', clearAllTags);
-    document.querySelectorAll('.slider-btn').forEach((btn, index) => {
-        btn.addEventListener('click', index === 0 ? scrollTagsLeft : scrollTagsRight);
-    });
     
     document.querySelectorAll('.search-type-option').forEach(option => {
         option.addEventListener('click', function() {
@@ -895,8 +878,6 @@ window.toggleTagFilter = toggleTagFilter;
 window.clearAllTags = clearAllTags;
 window.toggleSearchTypeMenu = toggleSearchTypeMenu;
 window.changeSearchType = changeSearchType;
-window.scrollTagsLeft = scrollTagsLeft;
-window.scrollTagsRight = scrollTagsRight;
 
 document.addEventListener('DOMContentLoaded', function() {
     initializeData();
