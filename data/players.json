@@ -130,7 +130,7 @@
       "id": "terraria",
       "name": "Terraria",
       "avatar": "T",
-      "completedDemons": ["nocircles", "fuzeii", "anathema", "atomiccannonmkiii", "lowdeathiii", "silentcycles", "sashamingvortex", "terraprocessing", "fracture", "terraespera", "terraesperafinale", "cure", "poocubed", "xrebrth", "space", "cherry", "terraadventureii"],
+      "completedDemons": ["nocircles", "fuzeii", "anathema", "atomiccannonmkiii", "lowdeathiii", "silentcycles", "sashamingvortex", "terraprocessing", "fracture", "terraespera", "terraesperafinale", "cure", "poocubed", "xrebrth", "space", "cherry", "terraadventureii", "epstein", "infected", "bestdrop", "lowdeathii", "fuzeii"],
       "progress": {
         "nocircles": 100,
         "fuzeii": 100,
@@ -148,9 +148,14 @@
         "xrebirth": 100,
         "cherry": 100,
         "space": 100,
-        "terraadventureii": 100
+        "terraadventureii": 100,
+        "epstein": 100,
+        "bestdrop": 100,
+        "infected": 100,
+        "lowdeathii": 100,
+        "fuzeii": 100
       },
-          "verifiedDemons": ["fuzeii", "anathema", "atomiccannonmkiii", "silentcycles", "sashamingvortex", "fracture", "terraespera", "terraesperafinale", "poocubed", "lowdeathiii", "terraprocessing", "space", "cherry", "terraadventureii"]
+          "verifiedDemons": ["fuzeii", "anathema", "atomiccannonmkiii", "silentcycles", "sashamingvortex", "fracture", "terraespera", "terraesperafinale", "poocubed", "lowdeathiii", "terraprocessing", "space", "cherry", "terraadventureii", "epstein", "infected", "bestdrop", "lowdeathii", "fuzeii"]
       },
        {
       "id": "vxmnc",
