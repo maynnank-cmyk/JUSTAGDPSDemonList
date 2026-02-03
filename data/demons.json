@@ -297,6 +297,15 @@
       "image": "images/fracture.png",
       "description": ""
        },
+    {
+      "id": "epstein",
+      "name": "Epstein",
+      "creator": "terraria",
+        "tags": ["Ship", "Wave", "Medium", "StarRate", "InsaneDemon"],
+      "videoUrl": "https://youtu.be/z9pTGM51Frs?si=C1-GhxhWoS_8dqrQ",
+      "image": "images/epstein.png",
+      "description": ""
+      },
       {
       "id": "sashamingvortex",
       "name": "sashaming vortex",
@@ -305,6 +314,24 @@
       "videoUrl": "https://youtu.be/z9pTGM51Frs?si=C1-GhxhWoS_8dqrQ",
       "image": "images/sashamingvortex.png",
       "description": "govno"
+      },
+     {
+      "id": "infected",
+      "name": "Infected",
+      "creator": "terraria",
+        "tags": ["Ship", "Wave", "Medium", "StarRate", "HardDemon"],
+      "videoUrl": "https://youtu.be/z9pTGM51Frs?si=C1-GhxhWoS_8dqrQ",
+      "image": "images/infected.png",
+      "description": ""
+      },
+    {
+      "id": "bestdrop",
+      "name": "Best Drop",
+      "creator": "terraria",
+        "tags": ["Ship", "Wave", "Medium", "StarRate", "HardDemon"],
+      "videoUrl": "https://youtu.be/z9pTGM51Frs?si=C1-GhxhWoS_8dqrQ",
+      "image": "images/bestdrop.png",
+      "description": ""
       },
       {
       "id": "mango",
@@ -324,6 +351,15 @@
       "image": "images/orbsuicide.png",
       "description": ""
     },
+      {
+      "id": "fuzeii",
+      "name": "Fuze II",
+      "creator": "makaron4iki",
+         "tags": ["Medium", "Featured", "HardDemon"],
+      "videoUrl": "https://youtu.be/2-kCGEZq96k?si=Gi_13KYYYqJG5qhx",
+      "image": "images/fuzeii.png",
+      "description": ""
+    },
     {
       "id": "selfharm",
       "name": "Selfharm",
@@ -331,6 +367,15 @@
       "tags": ["Medium", "StarRate", "HardDemon", "WithoutSong"],
       "videoUrl": "https://www.youtube.com/watch?v=xFKaflRbZJ8",
       "image": "images/selfharm.png",
+      "description": ""
+    },
+    {
+      "id": "lowdeathii",
+      "name": "Low Death II",
+      "creator": "Terraria",
+      "tags": ["Medium", "StarRate", "InsaneDemon"],
+      "videoUrl": "https://www.youtube.com/watch?v=xFKaflRbZJ8",
+      "image": "images/lowdeathii.png",
       "description": ""
     },
      {
