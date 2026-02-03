@@ -878,7 +878,6 @@
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
-            /* Исправление для dark/light тем */
             filter: brightness(0) invert(1);
         }
 
@@ -927,6 +926,62 @@
             font-size: 3rem;
             margin-bottom: 1rem;
             opacity: 0.5;
+        }
+
+        /* ТЕГИ ПОД ВИДЕО */
+        .demon-tags-container {
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .tags-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tags-label::before {
+            content: '';
+            width: 16px;
+            height: 16px;
+            background-image: url('assets/tag.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            filter: brightness(0) invert(1);
+        }
+
+        [data-theme="light"] .tags-label::before {
+            filter: none;
+        }
+
+        .demon-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .demon-tag {
+            font-size: 0.8rem;
+            padding: 0.4rem 0.8rem;
+            background: rgba(138, 107, 255, 0.1);
+            border: 1px solid rgba(138, 107, 255, 0.3);
+            border-radius: 6px;
+            color: var(--accent-purple);
+            font-weight: 600;
+            transition: all 0.2s ease;
+            cursor: default;
+        }
+
+        .demon-tag:hover {
+            background: rgba(138, 107, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 2px 8px rgba(138, 107, 255, 0.2);
         }
 
         .video-info {
@@ -982,27 +1037,31 @@
             background-position: center;
         }
 
-        .completions-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
+        .completions-list-container {
             max-height: 500px;
             overflow-y: auto;
             padding: 0.5rem;
+            margin-bottom: 1rem;
         }
 
-        .completions-list::-webkit-scrollbar {
+        .completions-list-container::-webkit-scrollbar {
             width: 6px;
         }
 
-        .completions-list::-webkit-scrollbar-track {
+        .completions-list-container::-webkit-scrollbar-track {
             background: var(--bg-secondary);
             border-radius: 3px;
         }
 
-        .completions-list::-webkit-scrollbar-thumb {
+        .completions-list-container::-webkit-scrollbar-thumb {
             background: var(--accent-red);
             border-radius: 3px;
+        }
+
+        .completions-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
         }
 
         .completion-item {
@@ -1151,6 +1210,58 @@
             font-size: 4rem;
             margin-bottom: 1rem;
             opacity: 0.3;
+        }
+
+        /* ПАГИНАЦИЯ */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .page-btn {
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-color);
+            color: var(--text-secondary);
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .page-btn:hover:not(:disabled) {
+            border-color: var(--accent-red);
+            color: var(--accent-red);
+            transform: translateY(-2px);
+        }
+
+        .page-btn.active {
+            background: var(--accent-red);
+            border-color: var(--accent-red);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .page-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .page-info {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+            margin: 0 0.5rem;
         }
 
         /* Refresh Button */
@@ -1469,6 +1580,17 @@
                 width: 36px;
                 height: 36px;
             }
+            
+            .page-btn {
+                width: 32px;
+                height: 32px;
+                font-size: 0.8rem;
+            }
+            
+            .demon-tag {
+                font-size: 0.7rem;
+                padding: 0.3rem 0.6rem;
+            }
         }
 
         @media (max-width: 360px) {
@@ -1494,6 +1616,17 @@
             .cube-icon {
                 width: 24px;
                 height: 24px;
+            }
+            
+            .pagination {
+                flex-wrap: wrap;
+                gap: 0.3rem;
+            }
+            
+            .page-btn {
+                width: 30px;
+                height: 30px;
+                font-size: 0.75rem;
             }
         }
 
@@ -1986,6 +2119,8 @@
         }
 
         // ========== DEMON PAGE FUNCTIONALITY ==========
+        let currentPage = 1;
+        const completionsPerPage = 4;
 
         function getDemonIdFromURL() {
             const urlParams = new URLSearchParams(window.location.search);
@@ -2047,6 +2182,88 @@
             return sortedDemons.findIndex(d => d.id === demonId) + 1;
         }
 
+        // Функция для рендера тегов
+        function renderTags(tags) {
+            if (!tags || tags.length === 0) {
+                return '';
+            }
+            
+            return `
+                <div class="demon-tags-container">
+                    <div class="tags-label">
+                        <span data-lang="ru">Теги:</span>
+                        <span data-lang="en" style="display: none;">Tags:</span>
+                    </div>
+                    <div class="demon-tags">
+                        ${tags.map(tag => `<span class="demon-tag">${tag}</span>`).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Функция для рендера пагинации
+        function renderPagination(totalItems, currentPage) {
+            const totalPages = Math.ceil(totalItems / completionsPerPage);
+            
+            if (totalPages <= 1) {
+                return '';
+            }
+            
+            const currentLang = localStorage.getItem('language') || 'ru';
+            const pageText = currentLang === 'ru' ? 'Страница' : 'Page';
+            
+            let paginationHTML = `
+                <div class="pagination">
+                    <button class="page-btn" onclick="changePage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}>
+                        ←
+                    </button>
+            `;
+            
+            // Показываем только 5 страниц вокруг текущей
+            const startPage = Math.max(1, currentPage - 2);
+            const endPage = Math.min(totalPages, startPage + 4);
+            
+            for (let i = startPage; i <= endPage; i++) {
+                paginationHTML += `
+                    <button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="changePage(${i})">
+                        ${i}
+                    </button>
+                `;
+            }
+            
+            paginationHTML += `
+                    <button class="page-btn" onclick="changePage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}>
+                        →
+                    </button>
+                    <span class="page-info">
+                        ${pageText} ${currentPage} / ${totalPages}
+                    </span>
+                </div>
+            `;
+            
+            return paginationHTML;
+        }
+
+        // Функция для изменения страницы
+        function changePage(page) {
+            currentPage = page;
+            const demonId = getDemonIdFromURL();
+            if (demonId) {
+                renderDemonPageFromCache(demonId);
+            }
+        }
+
+        // Кэш для данных демона
+        let cachedDemonData = null;
+        let cachedPlayers = null;
+        let cachedAllDemons = null;
+
+        function renderDemonPageFromCache(demonId) {
+            if (cachedDemonData && cachedPlayers && cachedAllDemons) {
+                renderDemonPage(cachedDemonData, cachedPlayers, cachedAllDemons, currentPage);
+            }
+        }
+
         async function loadDemonData() {
             const demonId = getDemonIdFromURL();
             
@@ -2077,7 +2294,13 @@
                 }
 
                 console.log('🎯 Найден демон:', demon.name);
-                renderDemonPage(demon, playersData.players, demonsData.demons);
+                
+                // Сохраняем данные в кэш
+                cachedDemonData = demon;
+                cachedPlayers = playersData.players;
+                cachedAllDemons = demonsData.demons;
+                
+                renderDemonPage(demon, playersData.players, demonsData.demons, currentPage);
                 
             } catch (error) {
                 console.error('❌ Ошибка загрузки:', error);
@@ -2085,7 +2308,7 @@
             }
         }
 
-        function renderDemonPage(demon, players, allDemons) {
+        function renderDemonPage(demon, players, allDemons, page = 1) {
             const playersWithProgress = players.filter(player => {
                 if (!player.completedDemons || !player.completedDemons.includes(demon.id)) {
                     return false;
@@ -2106,6 +2329,13 @@
 
             const demonRank = calculateDemonRank(demon.id, allDemons);
             const points = calculatePointsByRank(demonRank);
+            
+            // Пагинация
+            const totalCompletions = playersWithProgress.length;
+            const totalPages = Math.ceil(totalCompletions / completionsPerPage);
+            const startIndex = (page - 1) * completionsPerPage;
+            const endIndex = Math.min(startIndex + completionsPerPage, totalCompletions);
+            const currentPageCompletions = playersWithProgress.slice(startIndex, endIndex);
             
             const currentLang = localStorage.getItem('language') || 'ru';
             const noPlayersText = currentLang === 'ru' ? 'Пока никто не прошел этого демона' : 'No one has passed this demon yet';
@@ -2173,6 +2403,8 @@
                                     `}
                                 </div>
                                 
+                                ${renderTags(demon.tags)}
+                                
                                 ${demon.videoUrl ? `
                                     <div class="video-info">
                                         <strong>ℹ️ ${officialVerificationText}</strong>
@@ -2187,37 +2419,41 @@
                             <div class="completions-section">
                                 <h2>${playersWithProgressText}</h2>
                                 
-                                <div class="completions-list" id="completionsList">
-                                    ${playersWithProgress.length > 0 ? 
-                                        playersWithProgress.map(player => {
-                                            const progress = player.progress ? player.progress[demon.id] || 100 : 100;
-                                            const progressClass = progress === 100 ? 'progress-100' : 'progress-partial';
-                                            const progressText = progress === 100 ? '100%' : `${progress}%`;
-                                            const earnedPoints = calculatePointsWithProgress(demonRank, progress);
-                                            
-                                            return `
-                                                <div class="completion-item" onclick="openPlayerProfile('${player.id}')">
-                                                    <div class="player-avatar">${player.avatar}</div>
-                                                    <div class="player-info">
-                                                        <div class="player-name">${player.name}</div>
-                                                        <div class="progress-container">
-                                                            <div class="progress-bar">
-                                                                <div class="progress-fill ${progressClass}" style="width: ${progress}%"></div>
+                                <div class="completions-list-container">
+                                    <div class="completions-list" id="completionsList">
+                                        ${currentPageCompletions.length > 0 ? 
+                                            currentPageCompletions.map(player => {
+                                                const progress = player.progress ? player.progress[demon.id] || 100 : 100;
+                                                const progressClass = progress === 100 ? 'progress-100' : 'progress-partial';
+                                                const progressText = progress === 100 ? '100%' : `${progress}%`;
+                                                const earnedPoints = calculatePointsWithProgress(demonRank, progress);
+                                                
+                                                return `
+                                                    <div class="completion-item" onclick="openPlayerProfile('${player.id}')">
+                                                        <div class="player-avatar">${player.avatar}</div>
+                                                        <div class="player-info">
+                                                            <div class="player-name">${player.name}</div>
+                                                            <div class="progress-container">
+                                                                <div class="progress-bar">
+                                                                    <div class="progress-fill ${progressClass}" style="width: ${progress}%"></div>
+                                                                </div>
+                                                                <div class="progress-text">${progressText}</div>
                                                             </div>
-                                                            <div class="progress-text">${progressText}</div>
                                                         </div>
+                                                        <div class="points-badge">${earnedPoints} pts</div>
                                                     </div>
-                                                    <div class="points-badge">${earnedPoints} pts</div>
-                                                </div>
-                                            `;
-                                        }).join('') :
-                                        `<div class="no-completions">
-                                            <div class="icon">😔</div>
-                                            <div style="font-size: 1rem; margin-bottom: 0.3rem; font-weight: 700;">${noPlayersText}</div>
-                                            <div style="font-weight: 600; font-size: 0.9rem;">${beFirstText}</div>
-                                        </div>`
-                                    }
+                                                `;
+                                            }).join('') :
+                                            `<div class="no-completions">
+                                                <div class="icon">😔</div>
+                                                <div style="font-size: 1rem; margin-bottom: 0.3rem; font-weight: 700;">${noPlayersText}</div>
+                                                <div style="font-weight: 600; font-size: 0.9rem;">${beFirstText}</div>
+                                            </div>`
+                                        }
+                                    </div>
                                 </div>
+                                
+                                ${renderPagination(totalCompletions, page)}
                             </div>
                         </div>
                     </div>
@@ -2233,6 +2469,7 @@
 
         function refreshData() {
             console.log('🔄 Обновление данных демона...');
+            currentPage = 1;
             loadDemonData();
         }
 
@@ -2246,6 +2483,7 @@
         // Экспорт функций в глобальную область видимости
         window.openPlayerProfile = openPlayerProfile;
         window.refreshData = refreshData;
+        window.changePage = changePage;
         window.extractYouTubeId = extractYouTubeId;
         window.calculatePointsByRank = calculatePointsByRank;
         window.calculatePointsWithProgress = calculatePointsWithProgress;
