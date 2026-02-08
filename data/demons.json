@@ -309,11 +309,19 @@
       {
       "id": "sashamingvortex",
       "name": "sashaming vortex",
-      "creator": "terraria",
         "tags": ["OnlyOneGameMode", "Wave", "Medium", "StarRate", "HardDemon"],
       "videoUrl": "https://youtu.be/z9pTGM51Frs?si=C1-GhxhWoS_8dqrQ",
       "image": "images/sashamingvortex.png",
       "description": "govno"
+      },
+     {
+      "id": "theflyingrocks",
+      "name": "The Flying Rocks",
+      "creator": "TheTemmiex",
+        "tags": ["Medium", "StarRate", "HardDemon"],
+      "videoUrl": "https://youtu.be/oMuE0KOD86g?si=AwJDGxrqkqtEsqo0",
+      "image": "images/theflyingrocks.png",
+      "description": ""
       },
      {
       "id": "infected",
