@@ -312,6 +312,16 @@
         "anathema": 100
       }
     },
+     {
+      "id": "thetemmiex",
+      "name": "TheTemmiex",
+      "avatar": "TT",
+      "completedDemons": ["theflyongrocks"],
+      "progress": {
+        "theflyingrocks": 100
+      }
+              "verifiedDemons": ["theflyongrocks"]
+     },
       {
       "id": "ilyakarabas",
       "name": "Ilya karabas",
