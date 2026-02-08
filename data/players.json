@@ -104,7 +104,7 @@
       "id": "vladgdmj",
       "name": "Vladgdmj",
       "avatar": "V",
-      "completedDemons": ["badabum", "sigareta2", "turnthelightsoff", "insomnia", "anathema", "atomiccannonmkiii", "bloodinthesnow"],
+      "completedDemons": ["badabum", "sigareta2", "turnthelightsoff", "insomnia", "anathema", "atomiccannonmkiii", "bloodinthesnow", "theflyingrocks"],
       "progress": {
         "badabum": 100,
         "sigareta2": 100,
@@ -113,7 +113,8 @@
         "anathema": 100,
         "atomiccannonmkiii": 100,
         "bloodinthesnow": 100,
-        "sashamingvortex": 75
+        "sashamingvortex": 75,
+        "theflyingrocks": 100
       },
        "verifiedDemons": ["insomnia", "badabum", "sigareta2", "turnthelightsoff"]
     },
@@ -130,7 +131,7 @@
       "id": "terraria",
       "name": "Terraria",
       "avatar": "T",
-      "completedDemons": ["nocircles", "anathema", "atomiccannonmkiii", "lowdeathiii", "silentcycles", "sashamingvortex", "terraprocessing", "fracture", "terraespera", "terraesperafinale", "cure", "poocubed", "xrebrth", "space", "cherry", "terraadventureii", "epstein", "infected", "bestdrop", "lowdeathii", "fuzeii"],
+      "completedDemons": ["nocircles", "anathema", "atomiccannonmkiii", "lowdeathiii", "silentcycles", "sashamingvortex", "terraprocessing", "fracture", "terraespera", "terraesperafinale", "cure", "poocubed", "xrebrth", "space", "cherry", "terraadventureii", "epstein", "infected", "bestdrop", "lowdeathii", "fuzeii", "theflyingrocks"],
       "progress": {
         "nocircles": 100,
         "fuzeii": 100,
@@ -153,7 +154,8 @@
         "bestdrop": 100,
         "infected": 100,
         "lowdeathii": 100,
-        "fuzeii": 100
+        "fuzeii": 100,
+        "theflyingrocks": 100
       },
           "verifiedDemons": ["anathema", "atomiccannonmkiii", "silentcycles", "sashamingvortex", "fracture", "terraespera", "terraesperafinale", "poocubed", "lowdeathiii", "terraprocessing", "space", "cherry", "terraadventureii", "epstein", "infected", "bestdrop", "lowdeathii", "fuzeii"]
       },
