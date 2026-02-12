@@ -1,0 +1,2765 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Топ игроков - Challenge List - Just a GDPS</title>
+    <style>
+        :root {
+            --bg-primary: #1a150d;
+            --bg-secondary: #2a2315;
+            --bg-tertiary: #3a321d;
+            --text-primary: #f8f5e8;
+            --text-secondary: #d9d9a3;
+            --accent-challenge: #cc6666;
+            --accent-challenge-secondary: #cc8844;
+            --accent-blue: #6699cc;
+            --accent-yellow: #ccaa44;
+            --accent-orange: #cc8844;
+            --accent-gold: #ffcc44;
+            --accent-green: #6b8e4c;
+            --border-color: #4a422a;
+            --card-shadow: 0 8px 32px rgba(0,0,0,0.4);
+            --header-gradient: linear-gradient(135deg, #cc6666 0%, #cc8844 100%);
+            --dropdown-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            --gradient-bg: linear-gradient(135deg, #1a150d 0%, #2a2315 50%, #3a321d 100%);
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f8f8f0;
+            --bg-secondary: #f0f0e0;
+            --bg-tertiary: #e8e8d0;
+            --text-primary: #3a321d;
+            --text-secondary: #7a7a5a;
+            --accent-challenge: #cc6666;
+            --accent-challenge-secondary: #cc8844;
+            --accent-blue: #6699cc;
+            --accent-yellow: #bb9922;
+            --accent-orange: #aa7722;
+            --accent-gold: #ddbb33;
+            --accent-green: #5a7a3a;
+            --border-color: #c9c9a3;
+            --card-shadow: 0 8px 32px rgba(0,0,0,0.15);
+            --header-gradient: linear-gradient(135deg, #cc6666 0%, #cc8844 100%);
+            --dropdown-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            --gradient-bg: linear-gradient(135deg, #f8f8f0 0%, #f0f0e0 50%, #e8e8d0 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+        }
+
+        body {
+            background: var(--gradient-bg);
+            color: var(--text-primary);
+            line-height: 1.7;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 500;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(204, 102, 102, 0.08) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(204, 136, 68, 0.08) 0%, transparent 20%),
+                radial-gradient(circle at 50% 50%, rgba(204, 136, 68, 0.05) 0%, transparent 30%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header - стили как в challengelist.html */
+        header {
+            background: var(--header-gradient);
+            border-bottom: none;
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.4);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 0;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
+        }
+
+        .cube-icon {
+            width: 32px;
+            height: 32px;
+            filter: brightness(0) invert(1);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-5px) rotate(5deg); }
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .language-toggle {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            font-weight: 700;
+            color: white;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .language-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1) rotate(15deg);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+        }
+
+        .theme-toggle {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1) rotate(15deg);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+        }
+
+        .theme-toggle img {
+            width: 22px;
+            height: 22px;
+            filter: brightness(0) invert(1);
+            transition: all 0.3s ease;
+        }
+
+        .header-controls nav ul {
+            display: flex;
+            list-style: none;
+            gap: 0.8rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header-controls nav ul li {
+            position: relative;
+        }
+
+        .header-controls nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            padding: 0.7rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            height: auto;
+            min-height: unset;
+            line-height: normal;
+        }
+
+        .header-controls nav ul li a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .header-controls nav ul li a:hover::before {
+            left: 100%;
+        }
+
+        .header-controls nav ul li a:hover,
+        .header-controls nav ul li a.active {
+            background: rgba(255, 255, 255, 0.25);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .header-controls nav ul li a.active {
+            color: var(--text-primary) !important;
+        }
+
+        .header-controls nav ul li a .dropdown-arrow {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            filter: brightness(0) invert(1);
+        }
+
+        .header-controls nav ul li a.active .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            min-width: 220px;
+            box-shadow: var(--dropdown-shadow);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-15px) scale(0.95);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            overflow: hidden;
+            backdrop-filter: blur(20px);
+            background: rgba(26, 21, 13, 0.95);
+        }
+
+        [data-theme="light"] .dropdown-menu {
+            background: rgba(248, 248, 240, 0.95);
+        }
+
+        .dropdown-menu::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 20px;
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 8px solid var(--bg-primary);
+        }
+
+        [data-theme="light"] .dropdown-menu::before {
+            border-bottom-color: var(--bg-primary);
+        }
+
+        .dropdown-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        .dropdown-menu a {
+            color: var(--text-primary) !important;
+            padding: 1rem 1.5rem !important;
+            display: flex !important;
+            align-items: center;
+            gap: 0.8rem;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-bottom: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dropdown-menu a::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: var(--accent-challenge);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown-menu a:hover::before {
+            transform: scaleY(1);
+        }
+
+        .dropdown-menu a:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-menu a:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--accent-challenge) !important;
+            padding-left: 2rem !important;
+        }
+
+        .dropdown-menu a.active {
+            background: rgba(255, 255, 255, 0.08) !important;
+            color: var(--text-primary) !important;
+            border-left: 4px solid var(--accent-challenge);
+        }
+
+        [data-theme="light"] .dropdown-menu a.active {
+            background: rgba(0, 0, 0, 0.08) !important;
+        }
+
+        .dropdown-menu-icon {
+            width: 18px;
+            height: 18px;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+            filter: brightness(0) invert(1);
+        }
+
+        [data-theme="light"] .dropdown-menu-icon {
+            filter: none;
+        }
+
+        .dropdown-menu a:hover .dropdown-menu-icon {
+            opacity: 1;
+            transform: scale(1.1) rotate(10deg);
+        }
+
+        .social-buttons {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-left: auto;
+        }
+
+        .social-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 8px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .social-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+        }
+
+        .social-btn img {
+            width: 22px;
+            height: 22px;
+            filter: brightness(0) invert(1) !important;
+        }
+
+        .dropdown-request-btn {
+            background: linear-gradient(135deg, var(--accent-challenge), var(--accent-challenge-secondary)) !important;
+            color: white !important;
+            border: none !important;
+            border-radius: 8px !important;
+            margin: 0.8rem !important;
+            padding: 1rem 1.5rem !important;
+            font-weight: 700 !important;
+            box-shadow: 0 4px 15px rgba(204, 102, 102, 0.3);
+            transition: all 0.3s ease !important;
+            animation: pulse 2s infinite;
+        }
+
+        .dropdown-request-btn:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 6px 20px rgba(204, 102, 102, 0.4) !important;
+            animation: none;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 4px 15px rgba(204, 102, 102, 0.3); }
+            50% { box-shadow: 0 4px 25px rgba(204, 102, 102, 0.4); }
+        }
+
+        .btn-icon {
+            width: 16px;
+            height: 16px;
+        }
+
+        .players-dropdown-menu {
+            min-width: 220px;
+        }
+
+        .others-dropdown-menu {
+            min-width: 200px;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 44px;
+            height: 44px;
+            position: relative;
+            z-index: 1001;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .menu-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+        }
+
+        .menu-toggle span {
+            display: block;
+            height: 2px;
+            width: 20px;
+            background-color: white;
+            border-radius: 1px;
+            margin: 2.5px 0;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 320px;
+            height: 100%;
+            background: var(--bg-primary);
+            z-index: 999;
+            flex-direction: column;
+            box-shadow: -5px 0 30px rgba(0, 0, 0, 0.4);
+            transition: right 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border-left: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            backdrop-filter: blur(20px);
+            background: rgba(26, 21, 13, 0.95);
+        }
+
+        [data-theme="light"] .mobile-menu {
+            background: rgba(248, 248, 240, 0.95);
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-header {
+            background: var(--header-gradient);
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .mobile-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .mobile-logo {
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        .mobile-cube-icon {
+            width: 28px;
+            height: 28px;
+            filter: brightness(0) invert(1);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .mobile-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .mobile-close:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: rotate(90deg);
+        }
+
+        .mobile-menu nav {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem 0;
+        }
+
+        .mobile-menu nav ul {
+            flex-direction: column;
+            gap: 0;
+            padding: 0;
+        }
+
+        .mobile-menu nav ul li {
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .mobile-menu nav ul li:last-child {
+            border-bottom: none;
+        }
+
+        .mobile-menu nav ul li a {
+            font-size: 1.1rem;
+            padding: 1.2rem 1.5rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .mobile-menu nav ul li a:hover,
+        .mobile-menu nav ul li a.active {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--accent-challenge);
+            padding-left: 2rem;
+        }
+
+        [data-theme="light"] .mobile-menu nav ul li a:hover,
+        [data-theme="light"] .mobile-menu nav ul li a.active {
+            background: rgba(0, 0, 0, 0.08);
+        }
+
+        .mobile-menu nav ul li a.active {
+            color: var(--text-primary) !important;
+            border-left: 4px solid var(--accent-challenge);
+        }
+
+        .mobile-dropdown {
+            display: none;
+            background: rgba(255, 255, 255, 0.05);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        [data-theme="light"] .mobile-dropdown {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .mobile-dropdown.active {
+            display: block;
+            animation: slideDown 0.4s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .mobile-dropdown a {
+            padding-left: 2.5rem !important;
+            font-size: 1rem !important;
+            color: var(--text-secondary) !important;
+            display: flex !important;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .mobile-dropdown a:hover {
+            color: var(--accent-challenge) !important;
+            background: rgba(255, 255, 255, 0.08) !important;
+        }
+
+        [data-theme="light"] .mobile-dropdown a:hover {
+            background: rgba(0, 0, 0, 0.08) !important;
+        }
+
+        .mobile-dropdown a.active {
+            color: var(--text-primary) !important;
+            background: rgba(255, 255, 255, 0.08) !important;
+            border-left: 4px solid var(--accent-challenge);
+        }
+
+        [data-theme="light"] .mobile-dropdown a.active {
+            background: rgba(0, 0, 0, 0.08) !important;
+        }
+
+        .mobile-menu nav ul li a .dropdown-arrow {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.4s ease;
+            filter: brightness(0) invert(1);
+        }
+
+        [data-theme="light"] .mobile-menu nav ul li a .dropdown-arrow {
+            filter: brightness(0) saturate(100%) invert(90%) sepia(9%) saturate(1500%) hue-rotate(90deg) brightness(102%) contrast(95%);
+        }
+
+        .mobile-menu nav ul li a.active .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(4px);
+        }
+
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-social-buttons {
+            display: none;
+        }
+
+        .mobile-social-btn img {
+            filter: brightness(0) invert(1) !important;
+        }
+
+        /* Challenge Players Hero Section */
+        .challenge-players-hero {
+            margin: 1.5rem 0 1rem;
+            padding: 1.5rem;
+            background: rgba(26, 21, 13, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            border: 1px solid rgba(204, 102, 102, 0.2);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        [data-theme="light"] .challenge-players-hero {
+            background: rgba(248, 248, 240, 0.7);
+            border: 1px solid rgba(204, 102, 102, 0.3);
+        }
+
+        .challenge-players-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                rgba(204, 102, 102, 0.1) 0%, 
+                rgba(204, 136, 68, 0.1) 50%, 
+                rgba(107, 142, 76, 0.1) 100%);
+            z-index: -1;
+        }
+
+        .challenge-players-hero h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(90deg, var(--accent-challenge), var(--accent-challenge-secondary), var(--accent-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .challenge-players-hero p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.4;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 0.5rem 0;
+            min-height: calc(100vh - 140px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Widget Layout */
+        .widget-container {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 1.2rem;
+            flex: 1;
+            max-height: none;
+            height: auto;
+            min-height: 600px;
+            align-items: start;
+        }
+
+        @media (max-width: 992px) {
+            .widget-container {
+                grid-template-columns: 1fr;
+                max-height: none;
+                gap: 1rem;
+            }
+        }
+
+        /* Left Panel - Challenge Players List */
+        .challenge-players-widget {
+            background: rgba(26, 21, 13, 0.9);
+            backdrop-filter: blur(15px);
+            border-radius: 16px;
+            border: 1px solid rgba(204, 102, 102, 0.2);
+            padding: 1rem;
+            box-shadow: 
+                0 8px 25px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            max-height: 680px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .challenge-players-widget::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-challenge), var(--accent-challenge-secondary), var(--accent-yellow));
+            border-radius: 16px 16px 0 0;
+        }
+
+        [data-theme="light"] .challenge-players-widget {
+            background: rgba(248, 248, 240, 0.9);
+            border: 1px solid rgba(204, 102, 102, 0.3);
+            box-shadow: 
+                0 8px 25px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+        }
+
+        .widget-header {
+            margin-bottom: 1rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .widget-header h2 {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .widget-header h2::before {
+            content: '';
+            width: 20px;
+            height: 20px;
+            background-image: url('assets/challenge-icon.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            display: inline-block;
+            filter: brightness(0) invert(1);
+        }
+
+        [data-theme="light"] .widget-header h2::before {
+            filter: none;
+        }
+
+        .players-count {
+            position: absolute;
+            right: 0;
+            top: 0;
+            background: var(--accent-challenge);
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .search-container {
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.6rem 0.8rem 0.6rem 2.5rem;
+            font-size: 0.85rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--text-primary);
+            font-weight: 500;
+            transition: all 0.2s ease;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent-challenge);
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 
+                inset 0 1px 2px rgba(0, 0, 0, 0.1),
+                0 0 0 2px rgba(204, 102, 102, 0.2);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 0.8rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            filter: brightness(0) invert(1);
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        [data-theme="light"] .search-icon {
+            filter: brightness(0) saturate(100%) invert(90%) sepia(9%) saturate(1500%) hue-rotate(90deg) brightness(102%) contrast(95%);
+        }
+
+        .compact-players-list {
+            flex: 1;
+            overflow-y: auto;
+            padding-right: 0.3rem;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-challenge) transparent;
+        }
+
+        .compact-players-list::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .compact-players-list::-webkit-scrollbar-track {
+            background: transparent;
+            border-radius: 3px;
+        }
+
+        .compact-players-list::-webkit-scrollbar-thumb {
+            background: var(--accent-challenge);
+            border-radius: 3px;
+        }
+
+        .compact-players-list::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-challenge-secondary);
+        }
+
+        /* Стили для строк игроков challenge */
+        .compact-player-row {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(204, 102, 102, 0.15);
+            border-radius: 8px;
+            padding: 0.6rem 0.8rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            min-height: 50px;
+            position: relative;
+        }
+
+        .compact-player-row::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--accent-challenge), var(--accent-challenge-secondary));
+            transform: scaleY(0);
+            transition: transform 0.2s ease;
+        }
+
+        .compact-player-row:hover {
+            border-color: var(--accent-challenge);
+            transform: translateX(2px);
+            background: rgba(255, 255, 255, 0.06);
+            box-shadow: 0 2px 8px rgba(204, 102, 102, 0.15);
+        }
+
+        .compact-player-row:hover::before {
+            transform: scaleY(1);
+        }
+
+        .compact-player-row.active {
+            border-color: var(--accent-green);
+            background: rgba(107, 142, 76, 0.12);
+            box-shadow: 0 2px 8px rgba(107, 142, 76, 0.15);
+        }
+
+        .compact-player-row.active::before {
+            background: linear-gradient(to bottom, var(--accent-green), #5a7a3a);
+            transform: scaleY(1);
+        }
+
+        .compact-rank {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 800;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            flex-shrink: 0;
+            transition: all 0.2s ease;
+        }
+
+        .compact-player-row:hover .compact-rank {
+            transform: scale(1.05);
+        }
+
+        .rank-1 {
+            background: linear-gradient(135deg, #cc6666, #b35c5c);
+            color: white;
+            border-color: #cc6666;
+        }
+
+        .rank-2 {
+            background: linear-gradient(135deg, #cc8844, #b3783c);
+            color: white;
+            border-color: #cc8844;
+        }
+
+        .rank-3 {
+            background: linear-gradient(135deg, #ccaa44, #b3943c);
+            color: white;
+            border-color: #ccaa44;
+        }
+
+        .compact-player-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.04);
+            transition: all 0.2s ease;
+            padding: 3px;
+        }
+
+        .compact-player-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: all 0.2s ease;
+        }
+
+        .compact-player-row:hover .compact-player-icon {
+            border-color: var(--accent-challenge);
+            transform: scale(1.05);
+        }
+
+        .compact-player-row:not(.rank-1):not(.rank-2):not(.rank-3) .compact-player-icon {
+            display: none !important;
+        }
+
+        .compact-player-row.rank-1 .compact-player-icon,
+        .compact-player-row.rank-2 .compact-player-icon,
+        .compact-player-row.rank-3 .compact-player-icon {
+            display: flex !important;
+        }
+
+        .compact-player-info {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .compact-player-name {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            flex: 1;
+        }
+
+        .compact-player-points {
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: var(--accent-gold);
+            text-align: right;
+            min-width: 40px;
+            padding: 0.2rem 0.4rem;
+            background: rgba(255, 204, 68, 0.12);
+            border-radius: 6px;
+            border: 1px solid rgba(255, 204, 68, 0.2);
+            transition: all 0.2s ease;
+        }
+
+        .compact-player-row:hover .compact-player-points {
+            background: var(--accent-gold);
+            color: white;
+        }
+
+        /* Right Panel - Challenge Player Details Widget */
+        .challenge-details-widget {
+            background: rgba(26, 21, 13, 0.9);
+            backdrop-filter: blur(15px);
+            border-radius: 16px;
+            border: 1px solid rgba(204, 102, 102, 0.2);
+            box-shadow: 
+                0 8px 25px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            max-height: 680px;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateX(20px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .challenge-details-widget.loaded {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .challenge-details-widget::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-green), var(--accent-yellow), var(--accent-challenge));
+            border-radius: 16px 16px 0 0;
+        }
+
+        [data-theme="light"] .challenge-details-widget {
+            background: rgba(248, 248, 240, 0.9);
+            border: 1px solid rgba(204, 102, 102, 0.3);
+            box-shadow: 
+                0 8px 25px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+        }
+
+        .player-profile-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1.2rem;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-green) transparent;
+        }
+
+        .player-profile-container::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .player-profile-container::-webkit-scrollbar-track {
+            background: transparent;
+            border-radius: 3px;
+        }
+
+        .player-profile-container::-webkit-scrollbar-thumb {
+            background: var(--accent-green);
+            border-radius: 3px;
+        }
+
+        .player-profile-container::-webkit-scrollbar-thumb:hover {
+            background: #5a7a3a;
+        }
+
+        .player-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid var(--border-color);
+            width: 100%;
+        }
+
+        .player-avatar {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-challenge), var(--accent-challenge-secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: white;
+            border: 2px solid var(--border-color);
+            flex-shrink: 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .player-avatar-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .player-title {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        .player-title h2 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 0.2rem;
+            text-align: center;
+        }
+
+        .player-stats-row {
+            display: flex;
+            justify-content: center;
+            gap: 0.6rem;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        .stat-badge {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            padding: 0.4rem 0.6rem;
+            min-width: 130px;
+            transition: all 0.2s ease;
+            flex: 1;
+            max-width: 180px;
+            height: 55px;
+        }
+
+        .stat-badge.rank {
+            background: rgba(204, 102, 102, 0.15);
+            border: 1px solid rgba(204, 102, 102, 0.3);
+        }
+
+        .stat-badge.points {
+            background: rgba(255, 204, 68, 0.15);
+            border: 1px solid rgba(255, 204, 68, 0.3);
+        }
+
+        .stat-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .stat-badge.rank:hover {
+            border-color: var(--accent-challenge);
+            box-shadow: 0 4px 12px rgba(204, 102, 102, 0.2);
+        }
+
+        .stat-badge.points:hover {
+            border-color: var(--accent-gold);
+            box-shadow: 0 4px 12px rgba(255, 204, 68, 0.2);
+        }
+
+        .stat-badge .value {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 0.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.3rem;
+            height: 28px;
+        }
+
+        .stat-badge.rank .value {
+            color: var(--accent-challenge);
+        }
+
+        .stat-badge.points .value {
+            color: var(--accent-gold);
+        }
+
+        .stat-badge .label {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .demons-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0.5rem;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 1200px) {
+            .demons-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .demons-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .demons-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .demons-grid {
+                grid-template-columns: repeat(1, 1fr);
+            }
+        }
+
+        .compact-demon-item {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 0.6rem 0.5rem;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 55px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .compact-demon-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: var(--accent-challenge);
+            transform: scaleY(0);
+            transition: transform 0.2s ease;
+        }
+
+        .compact-demon-item:hover {
+            border-color: var(--accent-challenge);
+            background: rgba(255, 255, 255, 0.06);
+            transform: translateY(-2px);
+        }
+
+        .compact-demon-item:hover::before {
+            transform: scaleY(1);
+        }
+
+        .verified-demon {
+            border-color: var(--accent-green) !important;
+            background: rgba(107, 142, 76, 0.08) !important;
+        }
+
+        .verified-demon:hover {
+            border-color: var(--accent-green) !important;
+            background: rgba(107, 142, 76, 0.12) !important;
+        }
+
+        .compact-demon-name {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            white-space: normal;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            line-height: 1.2;
+            max-height: 2.4rem;
+            text-align: center;
+            width: 100%;
+        }
+
+        .demons-section {
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        .demons-section h3 {
+            font-size: 0.9rem;
+            margin-bottom: 0.7rem;
+            color: var(--text-primary);
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            justify-content: flex-start;
+        }
+
+        .section-icon {
+            width: 18px;
+            height: 18px;
+            display: inline-block;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            filter: brightness(0) invert(1);
+        }
+
+        [data-theme="light"] .section-icon {
+            filter: none;
+        }
+
+        .hardest-demon-card {
+            width: 100%;
+            margin-bottom: 1rem;
+            padding: 0.8rem;
+            background: rgba(204, 102, 102, 0.15);
+            border: 1px solid rgba(204, 102, 102, 0.3);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .hardest-demon-card:hover {
+            border-color: var(--accent-challenge);
+            background: rgba(204, 102, 102, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(204, 102, 102, 0.15);
+        }
+
+        .hardest-demon-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hardest-demon-header h3 {
+            font-size: 0.9rem;
+            color: var(--accent-challenge);
+            font-weight: 800;
+            margin: 0;
+        }
+
+        .hardest-demon-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.3rem;
+        }
+
+        .hardest-demon-name {
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: var(--accent-challenge);
+            text-align: left;
+            word-break: break-word;
+            overflow-wrap: break-word;
+            white-space: normal;
+            line-height: 1.2;
+        }
+
+        .hardest-demon-rank {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        .verified-demons-section {
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        .completed-demons-section {
+            width: 100%;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .no-player {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-secondary);
+            width: 100%;
+        }
+
+        .no-player-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .no-player h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.6rem;
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        .no-player p {
+            font-size: 0.85rem;
+            max-width: 250px;
+            line-height: 1.4;
+        }
+
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 2.5rem 0 1.5rem;
+            margin-top: 3rem;
+            background: linear-gradient(135deg, rgba(42, 35, 21, 0.95) 0%, rgba(58, 50, 29, 0.95) 100%);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background: var(--accent-challenge);
+            border-radius: 1px;
+        }
+
+        .footer-section p, .footer-section a {
+            color: var(--text-secondary);
+            margin-bottom: 0.8rem;
+            display: block;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-challenge);
+            padding-left: 0.5rem;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            margin-top: 1.5rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 1.5rem;
+            color: var(--text-secondary);
+        }
+
+        .loading-spinner {
+            border: 2px solid var(--bg-tertiary);
+            border-top: 2px solid var(--accent-challenge);
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 0.8rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 992px) {
+            .widget-container {
+                grid-template-columns: 1fr;
+                max-height: none;
+                gap: 1rem;
+            }
+
+            .challenge-players-widget, .challenge-details-widget {
+                max-height: 450px;
+            }
+
+            .challenge-players-widget {
+                order: 1;
+            }
+
+            .challenge-details-widget {
+                order: 2;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .header-controls nav {
+                display: none;
+            }
+
+            .header-controls .social-buttons {
+                display: none;
+            }
+
+            .mobile-social-buttons {
+                display: flex;
+                justify-content: center;
+                gap: 1rem;
+                padding: 1rem 1.5rem;
+                border-top: 1px solid var(--border-color);
+                margin-top: auto;
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+
+            .challenge-players-hero {
+                padding: 1.2rem;
+                margin: 1rem 0 1rem;
+            }
+
+            .challenge-players-hero h1 {
+                font-size: 1.6rem;
+            }
+
+            .widget-container {
+                gap: 1rem;
+            }
+
+            .challenge-players-widget, .challenge-details-widget {
+                padding: 0.8rem;
+                max-height: 400px;
+            }
+
+            .player-avatar {
+                width: 55px;
+                height: 55px;
+                font-size: 1.4rem;
+            }
+
+            .player-title h2 {
+                font-size: 1.3rem;
+            }
+
+            .player-stats-row {
+                gap: 0.5rem;
+            }
+
+            .stat-badge {
+                min-width: 110px;
+                height: 50px;
+            }
+
+            .stat-badge .value {
+                font-size: 1.3rem;
+                height: 25px;
+            }
+
+            .demons-grid {
+                gap: 0.4rem;
+            }
+
+            .compact-demon-item {
+                padding: 0.5rem 0.4rem;
+                min-height: 50px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 12px;
+            }
+
+            .challenge-players-hero {
+                padding: 1rem;
+            }
+
+            .challenge-players-hero h1 {
+                font-size: 1.4rem;
+            }
+
+            .challenge-players-widget, .challenge-details-widget {
+                padding: 0.8rem;
+            }
+
+            .compact-player-row {
+                padding: 0.4rem;
+                gap: 0.4rem;
+            }
+
+            .compact-player-name {
+                font-size: 0.8rem;
+            }
+
+            .compact-player-points {
+                font-size: 0.7rem;
+                min-width: 35px;
+            }
+
+            .player-avatar {
+                width: 50px;
+                height: 50px;
+                font-size: 1.3rem;
+            }
+
+            .player-title h2 {
+                font-size: 1.2rem;
+            }
+
+            .stat-badge {
+                min-width: 100px;
+                height: 45px;
+            }
+
+            .stat-badge .value {
+                font-size: 1.2rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        [data-theme="light"] .social-btn {
+            background: rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.2);
+        }
+
+        [data-theme="light"] .social-btn:hover {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        [data-theme="light"] .header-controls nav ul li a.active {
+            color: var(--text-primary) !important;
+            background: rgba(0, 0, 0, 0.1) !important;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-container">
+                    <img src="assets/cube.png" alt="Cube" class="cube-icon">
+                    <a href="index.html" class="logo">Just a GDPS</a>
+                </div>
+                <div class="header-controls">
+                    <nav>
+                        <ul>
+                            <li class="dropdown">
+                                <a href="index.html" class="dropdown-toggle" onclick="toggleDropdown(event)">
+                                    <span data-lang="ru">Классический</span>
+                                    <span data-lang="en" style="display: none;">Classic</span>
+                                    <img src="assets/arrow.png" alt="▼" class="dropdown-arrow">
+                                </a>
+                                <div class="dropdown-menu">
+                                    <a href="index.html">
+                                        <img src="assets/classic-icon.png" alt="📜" class="dropdown-menu-icon">
+                                        <span data-lang="ru">Классический</span>
+                                        <span data-lang="en" style="display: none;">Classic</span>
+                                    </a>
+                                    <a href="impossible.html">
+                                        <img src="assets/impossible-icon.png" alt="🔥" class="dropdown-menu-icon">
+                                        <span data-lang="ru">Невозможный</span>
+                                        <span data-lang="en" style="display: none;">Impossible</span>
+                                    </a>
+                                    <a href="challengelist.html">
+                                        <img src="assets/challenge-icon.png" alt="⚡" class="dropdown-menu-icon">
+                                        <span data-lang="ru">ЧелленджЛист</span>
+                                        <span data-lang="en" style="display: none;">ChallengeList</span>
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="dropdown">
+                                <a href="challengeplayers.html" class="active dropdown-toggle" onclick="toggleDropdown(event)">
+                                    <span data-lang="ru">Лидерборды</span>
+                                    <span data-lang="en" style="display: none;">Leaderboards</span>
+                                    <img src="assets/arrow.png" alt="▼" class="dropdown-arrow">
+                                </a>
+                                <div class="dropdown-menu players-dropdown-menu">
+                                    <a href="challengeplayers.html" class="active">
+                                        <img src="assets/challenge-icon.png" alt="⚡" class="dropdown-menu-icon">
+                                        <span data-lang="ru">Топ игроков</span>
+                                        <span data-lang="en" style="display: none;">Top Players</span>
+                                    </a>
+                                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSceFzm37tUw0B5t6h3L3U5alQJ5P41F1uZEeC3DaVdDXbNmrQ/viewform?usp=dialog" 
+                                       class="dropdown-request-btn">
+                                        <img src="assets/request-icon.png" alt="📝" class="btn-icon">
+                                        <span data-lang="ru">Отправить реквест</span>
+                                        <span data-lang="en" style="display: none;">Submit Request</span>
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" onclick="toggleDropdown(event)">
+                                    <span data-lang="ru">Прочее</span>
+                                    <span data-lang="en" style="display: none;">Other</span>
+                                    <img src="assets/arrow.png" alt="▼" class="dropdown-arrow">
+                                </a>
+                                <div class="dropdown-menu others-dropdown-menu">
+                                    <a href="news.html">
+                                        <img src="assets/news-icon.png" alt="📰" class="dropdown-menu-icon">
+                                        <span data-lang="ru">Новости</span>
+                                        <span data-lang="en" style="display: none;">News</span>
+                                    </a>
+                                    <a href="contacts.html">
+                                        <img src="assets/contacts-icon.png" alt="📞" class="dropdown-menu-icon">
+                                        <span data-lang="ru">Контакты</span>
+                                        <span data-lang="en" style="display: none;">Contacts</span>
+                                    </a>
+                                    <a href="rules.html">
+                                        <img src="assets/rules-icon.png" alt="📜" class="dropdown-menu-icon">
+                                        <span data-lang="ru">Правила</span>
+                                        <span data-lang="en" style="display: none;">Rules</span>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                    
+                    <div class="social-buttons">
+                        <a href="#" class="social-btn" title="Discord">
+                            <img src="assets/discord.png" alt="Discord">
+                        </a>
+                        <a href="#" class="social-btn" title="YouTube">
+                            <img src="assets/youtube.png" alt="YouTube">
+                        </a>
+                    </div>
+                    
+                    <button class="language-toggle" onclick="toggleLanguage()" id="languageToggle">
+                        EN
+                    </button>
+                    <button class="theme-toggle" onclick="toggleTheme()">
+                        <img src="assets/day-and-night.png" alt="Сменить тему" id="theme-icon">
+                    </button>
+                    <button class="menu-toggle" onclick="toggleMobileMenu()">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Мобильное меню -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-header">
+            <div class="mobile-logo-container">
+                <img src="assets/cube.png" alt="Cube" class="mobile-cube-icon">
+                <a href="index.html" class="mobile-logo">Just a GDPS</a>
+            </div>
+            <button class="mobile-close" onclick="toggleMobileMenu()">×</button>
+        </div>
+        <nav>
+            <ul>
+                <li>
+                    <a href="index.html" class="dropdown-toggle" onclick="toggleMobileDropdown(event, 'main')">
+                        <span data-lang="ru">Классический</span>
+                        <span data-lang="en" style="display: none;">Classic</span>
+                        <img src="assets/arrow.png" alt="▼" class="dropdown-arrow">
+                    </a>
+                    <div class="mobile-dropdown" id="mobileDropdownMain">
+                        <a href="index.html" onclick="closeMobileMenu()">
+                            <img src="assets/classic-icon.png" alt="📜" class="dropdown-menu-icon">
+                            <span data-lang="ru">Классический</span>
+                            <span data-lang="en" style="display: none;">Classic</span>
+                        </a>
+                        <a href="impossible.html" onclick="closeMobileMenu()">
+                            <img src="assets/impossible-icon.png" alt="🔥" class="dropdown-menu-icon">
+                            <span data-lang="ru">Невозможный</span>
+                            <span data-lang="en" style="display: none;">Impossible</span>
+                        </a>
+                        <a href="challengelist.html" onclick="closeMobileMenu()">
+                            <img src="assets/challenge-icon.png" alt="⚡" class="dropdown-menu-icon">
+                            <span data-lang="ru">ЧелленджЛист</span>
+                            <span data-lang="en" style="display: none;">ChallengeList</span>
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <a href="challengeplayers.html" class="active dropdown-toggle" onclick="toggleMobileDropdown(event, 'players')">
+                        <span data-lang="ru">Лидерборды</span>
+                        <span data-lang="en" style="display: none;">Leaderboards</span>
+                        <img src="assets/arrow.png" alt="▼" class="dropdown-arrow">
+                    </a>
+                    <div class="mobile-dropdown" id="mobileDropdownPlayers">
+                        <a href="challengeplayers.html" class="active" onclick="closeMobileMenu()">
+                            <img src="assets/challenge-icon.png" alt="⚡" class="dropdown-menu-icon">
+                            <span data-lang="ru">Топ игроков</span>
+                            <span data-lang="en" style="display: none;">Top Players</span>
+                        </a>
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSceFzm37tUw0B5t6h3L3U5alQJ5P41F1uZEeC3DaVdDXbNmrQ/viewform?usp=dialog" 
+                           onclick="closeMobileMenu()" style="background: linear-gradient(135deg, var(--accent-challenge), var(--accent-challenge-secondary)) !important; color: white !important;">
+                            <img src="assets/request-icon.png" alt="📝" class="dropdown-menu-icon">
+                            <span data-lang="ru">Отправить реквест</span>
+                            <span data-lang="en" style="display: none;">Submit Request</span>
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <a href="#" class="dropdown-toggle" onclick="toggleMobileDropdown(event, 'others')">
+                        <span data-lang="ru">Прочее</span>
+                        <span data-lang="en" style="display: none;">Other</span>
+                        <img src="assets/arrow.png" alt="▼" class="dropdown-arrow">
+                    </a>
+                    <div class="mobile-dropdown" id="mobileDropdownOthers">
+                        <a href="news.html" onclick="closeMobileMenu()">
+                            <img src="assets/news-icon.png" alt="📰" class="dropdown-menu-icon">
+                            <span data-lang="ru">Новости</span>
+                            <span data-lang="en" style="display: none;">News</span>
+                        </a>
+                        <a href="contacts.html" onclick="closeMobileMenu()">
+                            <img src="assets/contacts-icon.png" alt="📞" class="dropdown-menu-icon">
+                            <span data-lang="ru">Контакты</span>
+                            <span data-lang="en" style="display: none;">Contacts</span>
+                        </a>
+                        <a href="rules.html" onclick="closeMobileMenu()">
+                            <img src="assets/rules-icon.png" alt="📜" class="dropdown-menu-icon">
+                            <span data-lang="ru">Правила</span>
+                            <span data-lang="en" style="display: none;">Rules</span>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+            <div class="mobile-social-buttons">
+                <a href="#" class="mobile-social-btn" title="Discord">
+                    <img src="assets/discord.png" alt="Discord">
+                </a>
+                <a href="#" class="mobile-social-btn" title="YouTube">
+                    <img src="assets/youtube.png" alt="YouTube">
+                </a>
+            </div>
+        </nav>
+    </div>
+    <div class="menu-overlay" id="menuOverlay" onclick="closeMobileMenu()"></div>
+
+    <!-- Основной контент -->
+    <div class="container">
+        <!-- Challenge Players Hero Section -->
+        <section class="challenge-players-hero">
+            <h1>
+                <span data-lang="ru">Топ игроков - ЧелленджЛист</span>
+                <span data-lang="en" style="display: none;">Top Players - ChallengeList</span>
+            </h1>
+            <p>
+                <span data-lang="ru">Рейтинг игроков, проходящих самые сложные челлендж демоны. Уникальные механики, фрейм-перфект тайминг и высочайшая сложность!</span>
+                <span data-lang="en" style="display: none;">Ranking of players completing the most difficult challenge demons. Unique mechanics, frame-perfect timing and highest difficulty!</span>
+            </p>
+        </section>
+        
+        <div class="main-content">
+            <div class="widget-container">
+                <!-- Left Widget - Challenge Players List -->
+                <div class="challenge-players-widget">
+                    <div class="widget-header">
+                        <h2 data-lang="ru">Челлендж игроки</h2>
+                        <h2 data-lang="en" style="display: none;">Challenge Players</h2>
+                        <div class="players-count" id="playersCount">
+                            <span data-lang="ru">0 игроков</span>
+                            <span data-lang="en" style="display: none;">0 players</span>
+                        </div>
+                    </div>
+                    
+                    <div class="search-container">
+                        <img src="assets/search.png" alt="🔍" class="search-icon">
+                        <input type="text" id="searchInput" class="search-input" 
+                               data-placeholder-ru="Поиск игроков..."
+                               data-placeholder-en="Search players..."
+                               placeholder="Поиск игроков...">
+                    </div>
+                    
+                    <div class="compact-players-list" id="playersList">
+                        <div class="loading">
+                            <div class="loading-spinner"></div>
+                            <p data-lang="ru">Загрузка игроков...</p>
+                            <p data-lang="en" style="display: none;">Loading players...</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Widget - Challenge Player Details -->
+                <div class="challenge-details-widget" id="playerDetails">
+                    <div class="no-player">
+                        <div class="no-player-icon">⚡</div>
+                        <h3 data-lang="ru">Выберите игрока</h3>
+                        <h3 data-lang="en" style="display: none;">Select a player</h3>
+                        <p data-lang="ru">Нажмите на игрока в списке слева, чтобы увидеть его достижения в челлендж демонах</p>
+                        <p data-lang="en" style="display: none;">Click on a player in the list on the left to see their challenge demon achievements</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Geometry Dash Challenge List</h3>
+                    <p data-lang="ru">Специальный рейтинг челлендж уровней в Geometry Dash. Для любителей уникальных механик.</p>
+                    <p data-lang="en" style="display: none;">Special rating of challenge levels in Geometry Dash. For fans of unique mechanics.</p>
+                </div>
+                <div class="footer-section">
+                    <h3 data-lang="ru">Списки</h3>
+                    <h3 data-lang="en" style="display: none;">Lists</h3>
+                    <a href="index.html">
+                        <span data-lang="ru">Классический список</span>
+                        <span data-lang="en" style="display: none;">Classic List</span>
+                    </a>
+                    <a href="impossible.html">
+                        <span data-lang="ru">Невозможный список</span>
+                        <span data-lang="en" style="display: none;">Impossible List</span>
+                    </a>
+                    <a href="challengelist.html">
+                        <span data-lang="ru">ЧелленджЛист</span>
+                        <span data-lang="en" style="display: none;">ChallengeList</span>
+                    </a>
+                </div>
+                <div class="footer-section">
+                    <h3 data-lang="ru">Информация</h3>
+                    <h3 data-lang="en" style="display: none;">Information</h3>
+                    <a href="rules.html">
+                        <span data-lang="ru">Правила списка</span>
+                        <span data-lang="en" style="display: none;">List Rules</span>
+                    </a>
+                    <a href="news.html">
+                        <span data-lang="ru">Новости и обновления</span>
+                        <span data-lang="en" style="display: none;">News & Updates</span>
+                    </a>
+                    <a href="contacts.html">
+                        <span data-lang="ru">Контакты</span>
+                        <span data-lang="en" style="display: none;">Contacts</span>
+                    </a>
+                </div>
+                <div class="footer-section">
+                    <h3 data-lang="ru">Сообщество</h3>
+                    <h3 data-lang="en" style="display: none;">Community</h3>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSceFzm37tUw0B5t6h3L3U5alQJ5P41F1uZEeC3DaVdDXbNmrQ/viewform?usp=dialog">
+                        <span data-lang="ru">Отправить реквест</span>
+                        <span data-lang="en" style="display: none;">Submit Request</span>
+                    </a>
+                    <a href="#">
+                        <span data-lang="ru">Discord сервер</span>
+                        <span data-lang="en" style="display: none;">Discord Server</span>
+                    </a>
+                    <a href="#">
+                        <span data-lang="ru">Группа VK</span>
+                        <span data-lang="en" style="display: none;">VK Group</span>
+                    </a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Geometry Dash Challenge List. 
+                   <span data-lang="ru">Неофициальный фанатский проект. Все права на Geometry Dash принадлежат RobTop Games.</span>
+                   <span data-lang="en" style="display: none;">Unofficial fan project. All rights to Geometry Dash belong to RobTop Games.</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ========== ПЕРЕКЛЮЧЕНИЕ ЯЗЫКА ==========
+        function toggleLanguage() {
+            const currentLang = localStorage.getItem('language') || 'ru';
+            const newLang = currentLang === 'ru' ? 'en' : 'ru';
+            
+            localStorage.setItem('language', newLang);
+            updateLanguage(newLang);
+            
+            const langButton = document.getElementById('languageToggle');
+            langButton.textContent = newLang === 'ru' ? 'EN' : 'RU';
+        }
+        
+        function loadLanguage() {
+            const savedLang = localStorage.getItem('language') || 'ru';
+            updateLanguage(savedLang);
+            
+            const langButton = document.getElementById('languageToggle');
+            langButton.textContent = savedLang === 'ru' ? 'EN' : 'RU';
+        }
+        
+        function updateLanguage(lang) {
+            document.querySelectorAll('[data-lang]').forEach(element => {
+                if (element.getAttribute('data-lang') === lang) {
+                    element.style.display = '';
+                } else {
+                    element.style.display = 'none';
+                }
+            });
+            
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.placeholder = searchInput.getAttribute(`data-placeholder-${lang}`);
+            }
+            
+            updateIconColors(document.documentElement.getAttribute('data-theme') || 'dark');
+        }
+
+        // ========== ВЫПАДАЮЩИЕ МЕНЮ ==========
+        function toggleDropdown(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            
+            const dropdown = event.currentTarget.parentElement;
+            const dropdownMenu = dropdown.querySelector('.dropdown-menu');
+            const isActive = dropdownMenu.classList.contains('active');
+            
+            document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                menu.classList.remove('active');
+            });
+            document.querySelectorAll('.dropdown-toggle').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            if (!isActive) {
+                dropdownMenu.classList.add('active');
+                event.currentTarget.classList.add('active');
+            }
+        }
+
+        function toggleMobileDropdown(event, type) {
+            event.preventDefault();
+            event.stopPropagation();
+            
+            const mobileDropdown = document.getElementById(`mobileDropdown${type.charAt(0).toUpperCase() + type.slice(1)}`);
+            const isActive = mobileDropdown.classList.contains('active');
+            const arrow = event.currentTarget.querySelector('.dropdown-arrow');
+            
+            document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
+                if (dropdown.id !== mobileDropdown.id) {
+                    dropdown.classList.remove('active');
+                }
+            });
+            
+            document.querySelectorAll('.mobile-menu .dropdown-toggle').forEach(btn => {
+                if (btn !== event.currentTarget) {
+                    btn.classList.remove('active');
+                    const otherArrow = btn.querySelector('.dropdown-arrow');
+                    if (otherArrow) otherArrow.style.transform = 'rotate(0deg)';
+                }
+            });
+            
+            if (!isActive) {
+                mobileDropdown.classList.add('active');
+                arrow.style.transform = 'rotate(180deg)';
+                event.currentTarget.classList.add('active');
+            } else {
+                mobileDropdown.classList.remove('active');
+                arrow.style.transform = 'rotate(0deg)';
+                event.currentTarget.classList.remove('active');
+            }
+        }
+
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.dropdown')) {
+                document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                    menu.classList.remove('active');
+                });
+                document.querySelectorAll('.dropdown-toggle').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+            }
+            
+            if (!event.target.closest('.mobile-menu nav ul li')) {
+                document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                });
+                document.querySelectorAll('.mobile-menu .dropdown-toggle').forEach(btn => {
+                    btn.classList.remove('active');
+                    const arrow = btn.querySelector('.dropdown-arrow');
+                    if (arrow) arrow.style.transform = 'rotate(0deg)';
+                });
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                    menu.classList.remove('active');
+                });
+                document.querySelectorAll('.dropdown-toggle').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                });
+                document.querySelectorAll('.mobile-menu .dropdown-toggle').forEach(btn => {
+                    btn.classList.remove('active');
+                    const arrow = btn.querySelector('.dropdown-arrow');
+                    if (arrow) arrow.style.transform = 'rotate(0deg)';
+                });
+            }
+        });
+
+        // ========== МОБИЛЬНОЕ МЕНЮ ==========
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuOverlay = document.getElementById('menuOverlay');
+            
+            mobileMenu.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuOverlay = document.getElementById('menuOverlay');
+            
+            mobileMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+            
+            document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
+                dropdown.classList.remove('active');
+            });
+            document.querySelectorAll('.mobile-menu .dropdown-toggle').forEach(btn => {
+                btn.classList.remove('active');
+                const arrow = btn.querySelector('.dropdown-arrow');
+                if (arrow) arrow.style.transform = 'rotate(0deg)';
+            });
+        }
+
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            if (!link.classList.contains('dropdown-toggle')) {
+                link.addEventListener('click', closeMobileMenu);
+            }
+        });
+        
+        // ========== СМЕНА ТЕМЫ ==========
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            const themeIcon = document.getElementById('theme-icon');
+            themeIcon.style.transform = newTheme === 'dark' ? 'rotate(180deg)' : 'rotate(0deg)';
+            
+            updateIconColors(newTheme);
+        }
+        
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            
+            const themeIcon = document.getElementById('theme-icon');
+            themeIcon.style.transition = 'transform 0.5s ease';
+            themeIcon.style.transform = savedTheme === 'dark' ? 'rotate(180deg)' : 'rotate(0deg)';
+            
+            updateIconColors(savedTheme);
+        }
+        
+        function updateIconColors(theme) {
+            const searchIcons = document.querySelectorAll('.search-icon');
+            searchIcons.forEach(icon => {
+                if (theme === 'dark') {
+                    icon.style.filter = 'brightness(0) invert(1)';
+                } else {
+                    icon.style.filter = 'brightness(0) saturate(100%) invert(90%) sepia(9%) saturate(1500%) hue-rotate(90deg) brightness(102%) contrast(95%)';
+                }
+            });
+        }
+
+        // ========== ДАННЫЕ ЧЕЛЛЕНДЖ ИГРОКОВ ==========
+        let challengePlayers = [];
+        let filteredChallengePlayers = [];
+        let challengeDemons = [];
+        let selectedPlayerId = null;
+
+        // Система очков для челлендж демонов
+        function calculateChallengePointsByRank(rank) {
+            const basePoints = 1000;
+            if (rank === 1) return basePoints;
+            
+            const reduction = 0.06;
+            const points = basePoints * Math.pow(1 - reduction, rank - 1);
+            
+            return Math.max(Math.round(points), 1);
+        }
+
+        function calculateChallengePointsWithProgress(demonRank, progress) {
+            const basePoints = calculateChallengePointsByRank(demonRank);
+            
+            if (progress === 100) {
+                return basePoints;
+            } else if (progress >= 51) {
+                return Math.floor(basePoints / 4);
+            } else {
+                return 0;
+            }
+        }
+
+        function getPlayerAvatar(player) {
+            if (player.avatar && player.avatar.startsWith('http')) {
+                return player.avatar;
+            } else if (player.avatar && player.avatar.includes('.')) {
+                return `assets/avatars/challenge/${player.avatar}`;
+            } else {
+                return player.avatar || player.name.charAt(0);
+            }
+        }
+
+        function getPlayerIcon(rank) {
+            if (rank > 3) return null;
+            
+            if (rank === 1) return 'assets/gold-icon.png';
+            if (rank === 2) return 'assets/silver-icon.png';
+            if (rank === 3) return 'assets/bronze.png';
+            return null;
+        }
+
+        function initializeSearch() {
+            const searchInput = document.getElementById('searchInput');
+            
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase().trim();
+                
+                if (searchTerm.length === 0) {
+                    filteredChallengePlayers = [...challengePlayers];
+                    renderPlayersList();
+                    updatePlayersCount();
+                    return;
+                }
+                
+                filteredChallengePlayers = challengePlayers.filter(player => 
+                    player.name.toLowerCase().includes(searchTerm)
+                );
+                
+                renderPlayersList();
+                updatePlayersCount();
+            });
+        }
+
+        function updatePlayersCount() {
+            const playersCount = document.getElementById('playersCount');
+            const total = filteredChallengePlayers.length;
+            const currentLang = localStorage.getItem('language') || 'ru';
+            
+            if (currentLang === 'ru') {
+                playersCount.innerHTML = `${total} ${getPluralForm(total, 'игрок', 'игрока', 'игроков')}`;
+            } else {
+                playersCount.innerHTML = `${total} ${total === 1 ? 'player' : 'players'}`;
+            }
+        }
+
+        function getPluralForm(number, one, few, many) {
+            if (number % 10 === 1 && number % 100 !== 11) return one;
+            if (number % 10 >= 2 && number % 10 <= 4 && (number % 100 < 10 || number % 100 >= 20)) return few;
+            return many;
+        }
+
+        async function loadData() {
+            try {
+                console.log('📥 Загрузка челлендж данных...');
+                
+                // Загружаем челлендж демонов
+                const demonsResponse = await fetch('data/challenge.json');
+                if (!demonsResponse.ok) throw new Error('Файл challenge.json не найден');
+                const demonsData = await demonsResponse.json();
+                
+                if (demonsData.challengeDemons && Array.isArray(demonsData.challengeDemons)) {
+                    challengeDemons = demonsData.challengeDemons;
+                } else {
+                    console.error('Неверный формат challenge.json:', demonsData);
+                    challengeDemons = [];
+                }
+                
+                console.log('✅ Загружено челлендж демонов:', challengeDemons.length);
+                
+                // Загружаем челлендж игроков
+                const playersResponse = await fetch('data/challenge-players.json');
+                if (!playersResponse.ok) throw new Error('Файл challenge-players.json не найден');
+                const playersData = await playersResponse.json();
+                
+                console.log('Челлендж игроки из JSON:', playersData);
+                
+                if (playersData.challengePlayers && Array.isArray(playersData.challengePlayers)) {
+                    // Рассчитываем очки для каждого игрока
+                    challengePlayers = playersData.challengePlayers.map(player => {
+                        const totalPoints = calculateChallengePlayerTotalPoints(player, challengeDemons);
+                        const completedCount = player.completedDemons ? player.completedDemons.length : 0;
+                        
+                        return {
+                            ...player,
+                            totalPoints,
+                            completedCount,
+                            rank: 0
+                        };
+                    }).filter(player => player.completedCount > 0);
+                    
+                    // Сортируем по очкам
+                    challengePlayers.sort((a, b) => b.totalPoints - a.totalPoints);
+                    
+                    // Добавляем ранги
+                    challengePlayers.forEach((player, index) => {
+                        player.rank = index + 1;
+                    });
+                    
+                    filteredChallengePlayers = [...challengePlayers];
+                    
+                    console.log('✅ Загружено челлендж игроков:', challengePlayers.length);
+                    
+                    renderPlayersList();
+                    updatePlayersCount();
+                    
+                    // Выбираем первого игрока по умолчанию
+                    if (challengePlayers.length > 0) {
+                        selectPlayer(challengePlayers[0].id);
+                    }
+                    
+                } else {
+                    console.error('Неверный формат challenge-players.json:', playersData);
+                    throw new Error('Неверный формат challenge-players.json');
+                }
+                
+            } catch (error) {
+                console.error('❌ Ошибка загрузки:', error);
+                showError('Ошибка загрузки данных: ' + error.message);
+            }
+        }
+
+        function calculateChallengePlayerTotalPoints(player, allDemons) {
+            if (!player.completedDemons || player.completedDemons.length === 0) return 0;
+            
+            return player.completedDemons.reduce((total, demonId) => {
+                const demonRank = calculateChallengeDemonRank(demonId, allDemons);
+                const progress = player.progress ? player.progress[demonId] || 100 : 100;
+                return total + calculateChallengePointsWithProgress(demonRank, progress);
+            }, 0);
+        }
+
+        function calculateChallengeDemonRank(demonId, allDemons) {
+            const demonIndex = allDemons.findIndex(d => d.id === demonId);
+            return demonIndex !== -1 ? demonIndex + 1 : allDemons.length + 1;
+        }
+
+        function renderPlayersList() {
+            const playersList = document.getElementById('playersList');
+            
+            if (!playersList) return;
+            
+            const fragment = document.createDocumentFragment();
+            
+            if (filteredChallengePlayers.length === 0) {
+                playersList.innerHTML = `
+                    <div style="text-align: center; padding: 2rem; color: var(--text-secondary);">
+                        <div style="font-size: 1.8rem; margin-bottom: 0.6rem;">🔍</div>
+                        <div style="font-size: 0.9rem; font-weight: 700; margin-bottom: 0.3rem;">
+                            <span data-lang="ru">Игроки не найдены</span>
+                            <span data-lang="en" style="display: none;">Players not found</span>
+                        </div>
+                        <div style="font-size: 0.8rem;">
+                            <span data-lang="ru">Попробуйте изменить поисковый запрос</span>
+                            <span data-lang="en" style="display: none;">Try changing your search query</span>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+            
+            filteredChallengePlayers.forEach((player) => {
+                const playerRow = document.createElement('div');
+                playerRow.className = `compact-player-row ${selectedPlayerId === player.id ? 'active' : ''}`;
+                playerRow.setAttribute('data-player-id', player.id);
+                playerRow.onclick = () => selectPlayer(player.id);
+                
+                const rankClass = player.rank === 1 ? 'rank-1' : 
+                                player.rank === 2 ? 'rank-2' : 
+                                player.rank === 3 ? 'rank-3' : '';
+                
+                const playerIcon = getPlayerIcon(player.rank);
+                const showIcon = playerIcon !== null;
+                
+                playerRow.innerHTML = `
+                    <div class="compact-rank ${rankClass}">${player.rank}</div>
+                    ${showIcon ? `
+                        <div class="compact-player-icon">
+                            <img src="${playerIcon}" alt="${player.name}" 
+                                 onerror="this.onerror=null; this.style.display='none'">
+                        </div>
+                    ` : ''}
+                    <div class="compact-player-info">
+                        <div class="compact-player-name">${player.name}</div>
+                        <div class="compact-player-points">${player.totalPoints}</div>
+                    </div>
+                `;
+                fragment.appendChild(playerRow);
+            });
+            
+            playersList.innerHTML = '';
+            playersList.appendChild(fragment);
+        }
+
+        function selectPlayer(playerId) {
+            selectedPlayerId = playerId;
+            const player = challengePlayers.find(p => p.id === playerId);
+            
+            if (player) {
+                renderPlayerDetails(player);
+                updateSelectedPlayerInList();
+            }
+        }
+
+        function updateSelectedPlayerInList() {
+            document.querySelectorAll('.compact-player-row').forEach(row => {
+                const playerId = row.getAttribute('data-player-id');
+                if (playerId === selectedPlayerId) {
+                    row.classList.add('active');
+                } else {
+                    row.classList.remove('active');
+                }
+            });
+        }
+
+        function renderPlayerDetails(player) {
+            const playerDetails = document.getElementById('playerDetails');
+            const playerStats = calculateChallengePlayerStats(player, challengePlayers, challengeDemons);
+            const playerAvatar = getPlayerAvatar(player);
+            
+            const createDemonsGridHTML = (demonsList, isVerified = false) => {
+                if (!demonsList || demonsList.length === 0) return '';
+                
+                return `
+                    <div class="demons-grid">
+                        ${demonsList.map(demon => {
+                            return `
+                                <div class="compact-demon-item ${isVerified ? 'verified-demon' : ''}" 
+                                     onclick="openDemonPage('${demon.id}')">
+                                    <div class="compact-demon-name">
+                                        ${demon.name}
+                                    </div>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                `;
+            };
+            
+            playerDetails.innerHTML = `
+                <div class="player-profile-container">
+                    <div class="player-header">
+                        <div class="player-avatar">
+                            ${playerAvatar.includes('http') || playerAvatar.includes('.') ? 
+                                `<img src="${playerAvatar}" alt="${player.name}" class="player-avatar-img" 
+                                     onerror="this.style.display='none'; this.parentElement.textContent='${player.name.charAt(0)}';">` : 
+                                playerAvatar}
+                        </div>
+                        <div class="player-title">
+                            <h2>${player.name}</h2>
+                        </div>
+                    </div>
+                    
+                    <div class="player-stats-row">
+                        <div class="stat-badge rank">
+                            <div class="value">#${playerStats.rank}</div>
+                            <div class="label">
+                                <span data-lang="ru">Место</span>
+                                <span data-lang="en" style="display: none;">Rank</span>
+                            </div>
+                        </div>
+                        <div class="stat-badge points">
+                            <div class="value">${playerStats.totalPoints}</div>
+                            <div class="label">
+                                <span data-lang="ru">Очки</span>
+                                <span data-lang="en" style="display: none;">Points</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    ${playerStats.hardestDemon ? `
+                    <div class="hardest-demon-card" onclick="openDemonPage('${playerStats.hardestDemon.id}')">
+                        <div class="hardest-demon-header">
+                            <span class="section-icon" style="background-image: url('assets/gold-icon.png')"></span>
+                            <h3>
+                                <span data-lang="ru">Сложнейший челлендж</span>
+                                <span data-lang="en" style="display: none;">Hardest Challenge</span>
+                            </h3>
+                        </div>
+                        <div class="hardest-demon-info">
+                            <div class="hardest-demon-name">
+                                ${playerStats.hardestDemon.name}
+                            </div>
+                            <div class="hardest-demon-rank">
+                                <span data-lang="ru">Место в списке: #${playerStats.hardestDemon.rank}</span>
+                                <span data-lang="en" style="display: none;">List position: #${playerStats.hardestDemon.rank}</span>
+                            </div>
+                        </div>
+                    </div>
+                    ` : ''}
+                    
+                    ${playerStats.verifiedDemons && playerStats.verifiedDemons.length > 0 ? `
+                    <div class="demons-section verified-demons-section">
+                        <h3>
+                            <span class="section-icon" style="background-image: url('assets/verified-icon.png')"></span>
+                            <span data-lang="ru">Верифицированные челленджи</span>
+                            <span data-lang="en" style="display: none;">Verified Challenges</span>
+                        </h3>
+                        ${createDemonsGridHTML(playerStats.verifiedDemons, true)}
+                    </div>
+                    ` : ''}
+                    
+                    <div class="demons-section completed-demons-section">
+                        <h3>
+                            <span class="section-icon" style="background-image: url('assets/complete-icon.png')"></span>
+                            <span data-lang="ru">Пройденные челленджи</span>
+                            <span data-lang="en" style="display: none;">Completed Challenges</span>
+                        </h3>
+                        ${playerStats.completedDemons.length > 0 ? 
+                            createDemonsGridHTML(playerStats.completedDemons.map(c => c.demon)) :
+                            `<div style="text-align: center; padding: 1.5rem; color: var(--text-secondary);">
+                                <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">⚡</div>
+                                <div style="font-size: 0.9rem; font-weight: 700; margin-bottom: 0.3rem;">
+                                    <span data-lang="ru">Нет пройденных челленджей</span>
+                                    <span data-lang="en" style="display: none;">No completed challenges</span>
+                                </div>
+                                <div style="font-size: 0.8rem;">
+                                    <span data-lang="ru">Этот игрок еще не прошел ни одного челлендж демона</span>
+                                    <span data-lang="en" style="display: none;">This player hasn't completed any challenge demons yet</span>
+                                </div>
+                            </div>`
+                        }
+                    </div>
+                </div>
+            `;
+            
+            setTimeout(() => {
+                playerDetails.classList.add('loaded');
+            }, 10);
+        }
+
+        function calculateChallengePlayerStats(player, allPlayers, allDemons) {
+            const stats = {
+                totalPoints: 0,
+                completedDemons: [],
+                verifiedDemons: [],
+                hardestDemon: null,
+                rank: 1
+            };
+            
+            const playerRankIndex = allPlayers.findIndex(p => p.id === player.id);
+            stats.rank = playerRankIndex !== -1 ? playerRankIndex + 1 : allPlayers.length + 1;
+            
+            if (player.completedDemons && player.completedDemons.length > 0) {
+                stats.completedDemons = player.completedDemons.map(demonId => {
+                    const demon = allDemons.find(d => d.id === demonId);
+                    if (demon) {
+                        const demonRank = calculateChallengeDemonRank(demon.id, allDemons);
+                        const progress = player.progress ? player.progress[demonId] || 100 : 100;
+                        const points = calculateChallengePointsWithProgress(demonRank, progress);
+                        
+                        return {
+                            demon: demon,
+                            rank: demonRank,
+                            points: points,
+                            progress: progress
+                        };
+                    }
+                    return null;
+                }).filter(Boolean);
+                
+                stats.completedDemons.sort((a, b) => b.points - a.points);
+                stats.totalPoints = stats.completedDemons.reduce((sum, comp) => sum + comp.points, 0);
+                
+                if (stats.completedDemons.length > 0) {
+                    const hardest = stats.completedDemons[0];
+                    stats.hardestDemon = {
+                        ...hardest.demon,
+                        rank: hardest.rank,
+                        points: hardest.points
+                    };
+                }
+            }
+            
+            if (player.verifiedDemons && Array.isArray(player.verifiedDemons)) {
+                stats.verifiedDemons = player.verifiedDemons.map(demonId => {
+                    const demon = allDemons.find(d => d.id === demonId);
+                    if (demon) {
+                        return demon;
+                    }
+                    return null;
+                }).filter(Boolean);
+            }
+            
+            return stats;
+        }
+
+        function openDemonPage(demonId) {
+            window.open(`challengedemon.html?id=${demonId}`, '_blank');
+        }
+
+        function showError(message) {
+            const playersList = document.getElementById('playersList');
+            if (playersList) {
+                playersList.innerHTML = `
+                    <div style="text-align: center; padding: 1rem; color: var(--accent-challenge);">
+                        <div style="font-size: 0.9rem; margin-bottom: 0.4rem; font-weight: 700;">❌ 
+                            <span data-lang="ru">Ошибка</span>
+                            <span data-lang="en" style="display: none;">Error</span>
+                        </div>
+                        <div style="font-size: 0.8rem;">${message}</div>
+                    </div>
+                `;
+            }
+        }
+
+        async function initialize() {
+            loadTheme();
+            loadLanguage();
+            initializeSearch();
+            await loadData();
+        }
+
+        window.toggleTheme = toggleTheme;
+        window.toggleLanguage = toggleLanguage;
+        window.toggleDropdown = toggleDropdown;
+        window.toggleMobileDropdown = toggleMobileDropdown;
+        window.toggleMobileMenu = toggleMobileMenu;
+        window.closeMobileMenu = closeMobileMenu;
+        window.openDemonPage = openDemonPage;
+
+        document.addEventListener('DOMContentLoaded', initialize);
+    </script>
+</body>
+</html>
