@@ -16,6 +16,7 @@
     --accent-green: #44aa66;
     --accent-lime: #88cc44;
     --accent-cyan: #44cccc;
+    --accent-purple: #aa88cc;
     --border-color: #2a4a2a;
     --card-shadow: 0 8px 32px rgba(0,0,0,0.4);
     --header-gradient: linear-gradient(135deg, #44aa66 0%, #44cccc 100%);
@@ -34,6 +35,7 @@
     --accent-green: #338844;
     --accent-lime: #77aa33;
     --accent-cyan: #33aaaa;
+    --accent-purple: #8866aa;
     --border-color: #a3c9a3;
     --card-shadow: 0 8px 32px rgba(0,0,0,0.15);
     --header-gradient: linear-gradient(135deg, #338844 0%, #33aaaa 100%);
@@ -775,8 +777,138 @@ header {
 }
 
 .search-container {
-    max-width: 600px;
+    max-width: 1200px;
     margin: 0 auto;
+    position: relative;
+}
+
+/* ВЫПАДАЮЩЕЕ МЕНЮ ДЛЯ ВЫБОРА ТИПА ПОИСКА */
+.search-type-selector {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.search-type-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--bg-secondary);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1rem 1.2rem;
+    width: 100%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text-primary);
+}
+
+.search-type-toggle:hover {
+    border-color: var(--accent-purple);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(136, 136, 204, 0.2);
+}
+
+.search-type-toggle .current-option {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.search-type-icon {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) invert(1);
+}
+
+[data-theme="light"] .search-type-icon {
+    filter: none;
+}
+
+.search-type-toggle .dropdown-arrow {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s ease;
+    filter: brightness(0) invert(1);
+}
+
+[data-theme="light"] .search-type-toggle .dropdown-arrow {
+    filter: brightness(0) saturate(100%) invert(24%) sepia(9%) saturate(1200%) hue-rotate(170deg) brightness(92%) contrast(87%);
+}
+
+.search-type-toggle.active .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+.search-type-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: var(--dropdown-shadow);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    overflow: hidden;
+    backdrop-filter: blur(20px);
+    background: rgba(13, 30, 13, 0.95);
+}
+
+.search-type-menu.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.search-type-menu::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 20px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid var(--bg-primary);
+}
+
+.search-type-option {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1rem 1.2rem;
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-bottom: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.search-type-option:last-child {
+    border-bottom: none;
+}
+
+.search-type-option:hover {
+    background: rgba(255, 255, 255, 0.08);
+    padding-left: 1.5rem;
+}
+
+.search-type-option.active {
+    background: rgba(68, 170, 102, 0.15);
+    color: var(--accent-green);
+}
+
+/* ОБЫЧНЫЙ ПОИСК */
+.normal-search-container {
+    display: block;
     position: relative;
 }
 
@@ -818,6 +950,139 @@ header {
     box-shadow: 0 0 0 3px rgba(68, 170, 102, 0.3);
     transform: translateY(-1px);
     background: var(--bg-tertiary);
+}
+
+/* ПОИСК ПО ТЕГАМ */
+.tags-search-container {
+    display: none;
+}
+
+.tags-filter-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+}
+
+.tags-search-row {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    width: 100%;
+}
+
+.tags-search-input {
+    flex: 1;
+    padding: 1rem 1.2rem;
+    font-size: 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    font-weight: 500;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.tags-search-input:focus {
+    outline: none;
+    border-color: var(--accent-purple);
+    box-shadow: 0 0 0 3px rgba(136, 136, 204, 0.25);
+}
+
+.clear-tags-btn {
+    background: var(--bg-tertiary);
+    border: 2px solid var(--border-color);
+    color: var(--text-secondary);
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.clear-tags-btn:hover {
+    border-color: var(--accent-green);
+    color: var(--accent-green);
+    transform: translateY(-2px);
+}
+
+.tags-list-container {
+    width: 100%;
+    position: relative;
+}
+
+.tags-slider {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    padding: 1rem;
+    width: 100%;
+    background: var(--bg-secondary);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    overflow-y: auto;
+    max-height: 300px;
+    min-height: 80px;
+}
+
+.tag-slider-item {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.6rem 1rem;
+    background: var(--bg-tertiary);
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    min-width: 120px;
+    justify-content: center;
+    height: fit-content;
+}
+
+.tag-slider-item:hover {
+    border-color: var(--accent-purple);
+    color: var(--accent-purple);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 4px 12px rgba(136, 136, 204, 0.2);
+}
+
+.tag-slider-item.active {
+    background: var(--accent-purple);
+    border-color: var(--accent-purple);
+    color: white;
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(136, 136, 204, 0.3);
+}
+
+.tag-count {
+    font-size: 0.75rem;
+    opacity: 0.8;
+    margin-left: 0.2rem;
+}
+
+.filter-stats {
+    padding: 0.8rem 1rem;
+    background: var(--bg-secondary);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    text-align: center;
+    width: 100%;
+}
+
+.stat-highlight {
+    color: var(--accent-green);
+    font-weight: 700;
 }
 
 .search-results {
@@ -1087,6 +1352,31 @@ header {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+/* ТЕГИ ДЕМОНА */
+.demon-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.4rem;
+}
+
+.demon-tag {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.5rem;
+    background: rgba(136, 136, 204, 0.15);
+    border: 1px solid rgba(136, 136, 204, 0.3);
+    border-radius: 4px;
+    color: var(--accent-purple);
+    font-weight: 600;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.demon-tag:hover {
+    background: rgba(136, 136, 204, 0.25);
+    transform: translateY(-1px);
 }
 
 .demon-points {
@@ -1411,6 +1701,20 @@ footer {
         width: 18px;
         height: 18px;
     }
+    
+    .tags-search-row {
+        flex-direction: column;
+    }
+    
+    .clear-tags-btn {
+        width: 100%;
+    }
+    
+    .tag-slider-item {
+        min-width: 100px;
+        padding: 0.5rem 0.8rem;
+        font-size: 0.85rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1503,6 +1807,26 @@ footer {
     .language-toggle, .theme-toggle {
         width: 36px;
         height: 36px;
+    }
+    
+    .search-type-toggle {
+        padding: 0.8rem 1rem;
+        font-size: 0.95rem;
+    }
+    
+    .tags-search-input {
+        padding: 0.8rem 1rem;
+    }
+    
+    .clear-tags-btn {
+        padding: 0.8rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .tag-slider-item {
+        min-width: 80px;
+        padding: 0.4rem 0.6rem;
+        font-size: 0.8rem;
     }
 }
 
@@ -1598,8 +1922,8 @@ html {
                                         <img src="assets/impossible-icon.png" alt="🔥" class="dropdown-menu-icon">
                                         <span data-lang="ru">Невозможный</span>
                                         <span data-lang="en" style="display: none;">Impossible</span>
-					</a>
-				<a href="challengelist.html">
+                                    </a>
+                                    <a href="challengelist.html">
                                         <img src="assets/classic-icon.png" alt="📜" class="dropdown-menu-icon">
                                         <span data-lang="ru">ЧелленджЛист</span>
                                         <span data-lang="en" style="display: none;">ChallengeList</span>
@@ -1764,19 +2088,75 @@ html {
     </div>
     <div class="menu-overlay" id="menuOverlay" onclick="closeMobileMenu()"></div>
     
-   
-    
     <section class="search-section">
         <div class="container">
             <div class="search-container">
-                <div class="search-input-container">
-                    <img src="assets/search.png" alt="🔍" class="search-icon">
-                    <input type="text" id="searchInput" class="search-input" 
-                           data-placeholder-ru="Поиск невозможных демонов по названию или создателю..."
-                           data-placeholder-en="Search impossible demons by name or creator..."
-                           placeholder="Поиск невозможных демонов по названию или создателю...">
+                <!-- ВЫПАДАЮЩЕЕ МЕНЮ ДЛЯ ВЫБОРА ТИПА ПОИСКА -->
+                <div class="search-type-selector">
+                    <button class="search-type-toggle" id="searchTypeToggle" onclick="toggleSearchTypeMenu()">
+                        <div class="current-option">
+                            <img src="assets/search.png" alt="🔍" class="search-type-icon" id="currentSearchIcon">
+                            <span id="currentSearchText" data-lang="ru">Обычный поиск</span>
+                            <span id="currentSearchTextEn" data-lang="en" style="display: none;">Normal Search</span>
+                        </div>
+                        <img src="assets/arrow.png" alt="▼" class="dropdown-arrow">
+                    </button>
+                    <div class="search-type-menu" id="searchTypeMenu">
+                        <div class="search-type-option active" data-search-type="normal" onclick="changeSearchType('normal')">
+                            <img src="assets/search.png" alt="🔍" class="search-type-icon">
+                            <span data-lang="ru">Обычный поиск</span>
+                            <span data-lang="en" style="display: none;">Normal Search</span>
+                        </div>
+                        <div class="search-type-option" data-search-type="tags" onclick="changeSearchType('tags')">
+                            <img src="assets/tag.png" alt="🏷️" class="search-type-icon">
+                            <span data-lang="ru">Поиск по тегам</span>
+                            <span data-lang="en" style="display: none;">Search by Tags</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="search-results" id="searchResults"></div>
+                
+                <!-- ОБЫЧНЫЙ ПОИСК -->
+                <div class="normal-search-container" id="normalSearchContainer">
+                    <div class="search-input-container">
+                        <img src="assets/search.png" alt="🔍" class="search-icon">
+                        <input type="text" id="searchInput" class="search-input" 
+                               data-placeholder-ru="Поиск невозможных демонов по названию или создателю..."
+                               data-placeholder-en="Search impossible demons by name or creator..."
+                               placeholder="Поиск невозможных демонов по названию или создателю...">
+                    </div>
+                    <div class="search-results" id="searchResults"></div>
+                </div>
+                
+                <!-- ПОИСК ПО ТЕГАМ -->
+                <div class="tags-search-container" id="tagsSearchContainer">
+                    <div class="tags-filter-container">
+                        <div class="tags-search-row">
+                            <input type="text" id="tagsSearch" class="tags-search-input" 
+                                   data-placeholder-ru="Поиск тегов..."
+                                   data-placeholder-en="Search tags..."
+                                   placeholder="Поиск тегов...">
+                            <button class="clear-tags-btn" onclick="clearAllTags()">
+                                <span data-lang="ru">Очистить теги</span>
+                                <span data-lang="en" style="display: none;">Clear tags</span>
+                            </button>
+                        </div>
+                        
+                        <div class="tags-list-container">
+                            <div class="tags-slider" id="tagsSlider"></div>
+                        </div>
+                        
+                        <div id="activeFilters" class="filter-stats">
+                            <span data-lang="ru">Выбрано тегов: </span>
+                            <span data-lang="en" style="display: none;">Selected tags: </span>
+                            <span id="filterCount" class="stat-highlight">0</span>
+                            <span data-lang="ru"> | Показано демонов: </span>
+                            <span data-lang="en" style="display: none;"> | Showing demons: </span>
+                            <span id="showingCount" class="stat-highlight">0</span>
+                            <span> из </span>
+                            <span id="totalCount" class="stat-highlight">0</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1803,8 +2183,7 @@ html {
 
             <div id="errorContainer"></div>
             
-            <div class="list-container" id="demonList">
-            </div>
+            <div class="list-container" id="demonList"></div>
         </div>
     </section>
     
@@ -1909,7 +2288,103 @@ html {
                 searchInput.placeholder = searchInput.getAttribute(`data-placeholder-${lang}`);
             }
             
+            const tagsSearch = document.getElementById('tagsSearch');
+            if (tagsSearch) {
+                tagsSearch.placeholder = tagsSearch.getAttribute(`data-placeholder-${lang}`);
+            }
+            
+            updateCurrentSearchTypeText();
             updateIconColors(document.documentElement.getAttribute('data-theme') || 'dark');
+        }
+
+        // ========== ВЫБОР ТИПА ПОИСКА ==========
+        let currentSearchType = localStorage.getItem('impossibleSearchType') || 'normal';
+
+        function toggleSearchTypeMenu() {
+            const searchTypeMenu = document.getElementById('searchTypeMenu');
+            const searchTypeToggle = document.getElementById('searchTypeToggle');
+            
+            const isActive = searchTypeMenu.classList.contains('active');
+            
+            if (!isActive) {
+                searchTypeMenu.classList.add('active');
+                searchTypeToggle.classList.add('active');
+            } else {
+                searchTypeMenu.classList.remove('active');
+                searchTypeToggle.classList.remove('active');
+            }
+        }
+
+        function changeSearchType(type) {
+            currentSearchType = type;
+            localStorage.setItem('impossibleSearchType', type);
+            
+            document.querySelectorAll('.search-type-option').forEach(option => {
+                if (option.dataset.searchType === type) {
+                    option.classList.add('active');
+                } else {
+                    option.classList.remove('active');
+                }
+            });
+            
+            updateSearchTypeDisplay();
+            updateCurrentSearchTypeText();
+            
+            const searchTypeMenu = document.getElementById('searchTypeMenu');
+            const searchTypeToggle = document.getElementById('searchTypeToggle');
+            searchTypeMenu.classList.remove('active');
+            searchTypeToggle.classList.remove('active');
+            
+            updateFilteredImpossibleDemons();
+        }
+
+        function updateSearchTypeDisplay() {
+            const normalSearchContainer = document.getElementById('normalSearchContainer');
+            const tagsSearchContainer = document.getElementById('tagsSearchContainer');
+            const currentSearchIcon = document.getElementById('currentSearchIcon');
+            
+            if (currentSearchType === 'normal') {
+                normalSearchContainer.style.display = 'block';
+                tagsSearchContainer.style.display = 'none';
+                currentSearchIcon.src = 'assets/search.png';
+            } else if (currentSearchType === 'tags') {
+                normalSearchContainer.style.display = 'none';
+                tagsSearchContainer.style.display = 'block';
+                currentSearchIcon.src = 'assets/tag.png';
+            }
+        }
+
+        function updateCurrentSearchTypeText() {
+            const currentLang = localStorage.getItem('language') || 'ru';
+            const currentSearchText = document.getElementById('currentSearchText');
+            const currentSearchTextEn = document.getElementById('currentSearchTextEn');
+            
+            if (currentSearchType === 'normal') {
+                if (currentLang === 'ru') {
+                    currentSearchText.textContent = 'Обычный поиск';
+                    currentSearchText.style.display = '';
+                    currentSearchTextEn.style.display = 'none';
+                } else {
+                    currentSearchTextEn.textContent = 'Normal Search';
+                    currentSearchText.style.display = 'none';
+                    currentSearchTextEn.style.display = '';
+                }
+            } else if (currentSearchType === 'tags') {
+                if (currentLang === 'ru') {
+                    currentSearchText.textContent = 'Поиск по тегам';
+                    currentSearchText.style.display = '';
+                    currentSearchTextEn.style.display = 'none';
+                } else {
+                    currentSearchTextEn.textContent = 'Search by Tags';
+                    currentSearchText.style.display = 'none';
+                    currentSearchTextEn.style.display = '';
+                }
+            }
+        }
+
+        function loadSearchType() {
+            const savedType = localStorage.getItem('impossibleSearchType') || 'normal';
+            changeSearchType(savedType);
         }
 
         // ========== ВЫПАДАЮЩИЕ МЕНЮ (ТОЛЬКО ПО КЛИКУ) ==========
@@ -1923,7 +2398,6 @@ html {
             const dropdownMenu = dropdown.querySelector('.dropdown-menu');
             const isActive = dropdownMenu.classList.contains('active');
             
-            // Закрываем все другие dropdown
             document.querySelectorAll('.dropdown-menu').forEach(menu => {
                 if (menu !== dropdownMenu) {
                     menu.classList.remove('active');
@@ -1936,7 +2410,6 @@ html {
                 }
             });
             
-            // Переключаем текущий dropdown
             if (!isActive) {
                 dropdownMenu.classList.add('active');
                 event.currentTarget.classList.add('active');
@@ -1956,7 +2429,6 @@ html {
             const isActive = mobileDropdown.classList.contains('active');
             const arrow = event.currentTarget.querySelector('.dropdown-arrow');
             
-            // Закрываем другие dropdown в мобильном меню
             document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
                 if (dropdown.id !== mobileDropdown.id) {
                     dropdown.classList.remove('active');
@@ -1971,7 +2443,6 @@ html {
                 }
             });
             
-            // Переключаем текущий dropdown
             if (!isActive) {
                 mobileDropdown.classList.add('active');
                 arrow.style.transform = 'rotate(180deg)';
@@ -1983,9 +2454,7 @@ html {
             }
         }
 
-        // Закрытие dropdown при клике вне
         document.addEventListener('click', function(event) {
-            // Для десктопных dropdown
             const isDropdownClick = event.target.closest('.dropdown');
             const isDropdownToggle = event.target.closest('.dropdown-toggle');
             
@@ -1999,7 +2468,6 @@ html {
                 activeDropdown = null;
             }
             
-            // Для мобильных dropdown
             const isMobileDropdownClick = event.target.closest('.mobile-menu nav ul li');
             
             if (!isMobileDropdownClick) {
@@ -2013,7 +2481,13 @@ html {
                 });
             }
             
-            // Закрытие при клике на пункт меню
+            const searchTypeMenu = document.getElementById('searchTypeMenu');
+            const searchTypeToggle = document.getElementById('searchTypeToggle');
+            if (!searchTypeToggle.contains(event.target) && !searchTypeMenu.contains(event.target)) {
+                searchTypeMenu.classList.remove('active');
+                searchTypeToggle.classList.remove('active');
+            }
+            
             if (event.target.closest('.dropdown-menu a') || event.target.closest('.mobile-dropdown a')) {
                 setTimeout(() => {
                     document.querySelectorAll('.dropdown-menu').forEach(menu => {
@@ -2052,6 +2526,12 @@ html {
                     const arrow = btn.querySelector('.dropdown-arrow');
                     if (arrow) arrow.style.transform = 'rotate(0deg)';
                 });
+                
+                const searchTypeMenu = document.getElementById('searchTypeMenu');
+                const searchTypeToggle = document.getElementById('searchTypeToggle');
+                searchTypeMenu.classList.remove('active');
+                searchTypeToggle.classList.remove('active');
+                
                 activeDropdown = null;
             }
         });
@@ -2065,7 +2545,6 @@ html {
             menuOverlay.classList.toggle('active');
             document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
             
-            // Закрываем все dropdown при открытии/закрытии мобильного меню
             if (!mobileMenu.classList.contains('active')) {
                 document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
                     dropdown.classList.remove('active');
@@ -2128,7 +2607,7 @@ html {
         }
         
         function updateIconColors(theme) {
-            const searchIcons = document.querySelectorAll('.search-icon');
+            const searchIcons = document.querySelectorAll('.search-icon, .search-type-icon');
             searchIcons.forEach(icon => {
                 if (theme === 'dark') {
                     icon.style.filter = 'brightness(0) invert(1)';
@@ -2141,6 +2620,9 @@ html {
         // ========== ДАННЫЕ НЕВОЗМОЖНЫХ ДЕМОНОВ ==========
         let impossibleDemons = [];
         let filteredImpossibleDemons = [];
+        let allTags = new Set();
+        let activeTags = new Set();
+        let tagStats = {};
         let imageCache = new Map();
 
         function calculateImpossiblePointsByRank(rank) {
@@ -2153,17 +2635,82 @@ html {
             return Math.max(Math.round(points), 1);
         }
 
+        // ========== СЕТКА ТЕГОВ ==========
+        function renderTagsList() {
+            const tagsSlider = document.getElementById('tagsSlider');
+            
+            if (!tagsSlider) return;
+            
+            tagsSlider.innerHTML = '';
+            
+            const sortedTags = Array.from(allTags).sort((a, b) => {
+                const countDiff = tagStats[b] - tagStats[a];
+                if (countDiff !== 0) return countDiff;
+                return a.localeCompare(b);
+            });
+            
+            sortedTags.forEach(tag => {
+                const tagElement = document.createElement('div');
+                tagElement.className = 'tag-slider-item';
+                tagElement.innerHTML = `
+                    ${tag} <span class="tag-count">(${tagStats[tag]})</span>
+                `;
+                
+                tagElement.addEventListener('click', () => {
+                    toggleTagFilter(tag);
+                });
+                
+                tagsSlider.appendChild(tagElement);
+            });
+            
+            updateActiveTagsDisplay();
+        }
+
+        function toggleTagFilter(tag) {
+            if (activeTags.has(tag)) {
+                activeTags.delete(tag);
+            } else {
+                activeTags.add(tag);
+            }
+            
+            updateActiveTagsDisplay();
+            updateFilteredImpossibleDemons();
+            updateFilterStats();
+        }
+
+        function updateActiveTagsDisplay() {
+            document.querySelectorAll('.tag-slider-item').forEach(item => {
+                const tagName = item.textContent.split(' (')[0].trim();
+                if (activeTags.has(tagName)) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+        }
+
+        function clearAllTags() {
+            activeTags.clear();
+            updateActiveTagsDisplay();
+            updateFilteredImpossibleDemons();
+            updateFilterStats();
+            
+            const tagsSearch = document.getElementById('tagsSearch');
+            tagsSearch.value = '';
+            tagsSearch.dispatchEvent(new Event('input'));
+        }
+
         function initializeSearch() {
             const searchInput = document.getElementById('searchInput');
             const searchResults = document.getElementById('searchResults');
+            const tagsSearch = document.getElementById('tagsSearch');
             
             searchInput.addEventListener('input', function() {
                 const searchTerm = this.value.toLowerCase().trim();
                 
                 if (searchTerm.length === 0) {
                     searchResults.style.display = 'none';
-                    filteredImpossibleDemons = [...impossibleDemons];
-                    renderImpossibleDemons();
+                    updateFilteredImpossibleDemons();
                     return;
                 }
                 
@@ -2173,8 +2720,27 @@ html {
                 );
                 
                 displaySearchResults(results);
-                filteredImpossibleDemons = results;
-                renderImpossibleDemons();
+                updateFilteredImpossibleDemons();
+            });
+            
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    updateFilteredImpossibleDemons();
+                    searchResults.style.display = 'none';
+                }
+            });
+            
+            tagsSearch.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase().trim();
+                
+                document.querySelectorAll('.tag-slider-item').forEach(item => {
+                    const tagName = item.textContent.toLowerCase().split(' (')[0];
+                    if (tagName.includes(searchTerm) || searchTerm === '') {
+                        item.style.display = 'flex';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
             });
             
             document.addEventListener('click', function(e) {
@@ -2203,6 +2769,7 @@ html {
                 resultItem.innerHTML = `
                     <div class="search-result-name">${demon.name}</div>
                     <div class="search-result-creator">by ${demon.creator}</div>
+                    ${demon.tags ? `<div style="font-size:0.8rem;color:var(--accent-purple);margin-top:0.2rem;">${demon.tags.slice(0, 3).join(', ')}</div>` : ''}
                 `;
                 resultItem.addEventListener('click', function() {
                     openDemonPage(demon.id);
@@ -2228,7 +2795,6 @@ html {
                 return imageCache.get(demonId);
             }
 
-            // Пробуем разные форматы изображений
             const imageFormats = ['jpg', 'png', 'webp'];
             
             for (const format of imageFormats) {
@@ -2245,7 +2811,6 @@ html {
                 }
             }
             
-            // Если изображение не найдено
             imageCache.set(demonId, null);
             return null;
         }
@@ -2261,27 +2826,46 @@ html {
                 
                 if (data.impossibleDemons && Array.isArray(data.impossibleDemons)) {
                     impossibleDemons = [];
+                    allTags.clear();
+                    tagStats = {};
                     
-                    // Обрабатываем демонов в указанном формате
-                    impossibleDemons = data.impossibleDemons.map((demon, index) => ({
-                        id: demon.id || `demon${index + 1}`,
-                        name: demon.name || `Unnamed Demon ${index + 1}`,
-                        creator: demon.creator || "Unknown",
-                        videoUrl: demon.videoUrl || "",
-                        image: demon.image || "", // Может быть пустой строкой
-                        description: demon.description || "",
-                        rank: index + 1
-                    }));
+                    impossibleDemons = data.impossibleDemons.map((demon, index) => {
+                        const demonObj = {
+                            id: demon.id || `demon${index + 1}`,
+                            name: demon.name || `Unnamed Demon ${index + 1}`,
+                            creator: demon.creator || "Unknown",
+                            videoUrl: demon.videoUrl || "",
+                            image: demon.image || "",
+                            description: demon.description || "",
+                            rank: index + 1,
+                            tags: demon.tags || []
+                        };
+                        
+                        if (demon.tags && Array.isArray(demon.tags)) {
+                            demon.tags.forEach(tag => {
+                                allTags.add(tag);
+                                if (!tagStats[tag]) {
+                                    tagStats[tag] = 0;
+                                }
+                                tagStats[tag]++;
+                            });
+                        }
+                        
+                        return demonObj;
+                    });
                     
                     filteredImpossibleDemons = [...impossibleDemons];
                     
                     console.log('✅ Невозможные демоны загружены:', impossibleDemons.length);
+                    console.log('🏷️  Найдено тегов:', allTags.size);
                     
                     const currentLang = localStorage.getItem('language') || 'ru';
                     const statusText = currentLang === 'ru' ? 'Список невозможных демонов загружен' : 'Impossible demon list loaded';
                     updateSyncStatus(statusText);
                     
                     renderImpossibleDemons();
+                    renderTagsList();
+                    updateFilterStats();
                     loadImagesAsync();
                     
                     return true;
@@ -2313,9 +2897,7 @@ html {
                 
                 await Promise.all(
                     batch.map(async (demon) => {
-                        // Если изображение указано в JSON, используем его
                         if (demon.image && demon.image.trim() !== '') {
-                            // Уже есть изображение, проверяем доступность
                             try {
                                 const response = await fetch(demon.image, { method: 'HEAD' });
                                 if (!response.ok) {
@@ -2326,7 +2908,6 @@ html {
                             }
                         }
                         
-                        // Если изображение не указано или недоступно, пытаемся найти по ID
                         if (!demon.image || demon.image.trim() === '') {
                             const imageUrl = await getAvailableImage(demon.id);
                             if (imageUrl) {
@@ -2334,7 +2915,6 @@ html {
                             }
                         }
                         
-                        // Обновляем DOM если изображение найдено
                         if (demon.image && demon.image.trim() !== '') {
                             const demonElement = document.querySelector(`[data-demon-id="${demon.id}"]`);
                             if (demonElement) {
@@ -2368,6 +2948,45 @@ html {
             }
         }
 
+        function updateFilteredImpossibleDemons() {
+            const searchInput = document.getElementById('searchInput');
+            const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : '';
+            
+            let filtered = impossibleDemons;
+            
+            if (currentSearchType === 'normal') {
+                if (searchTerm.length > 0) {
+                    filtered = impossibleDemons.filter(demon => 
+                        demon.name.toLowerCase().includes(searchTerm) || 
+                        demon.creator.toLowerCase().includes(searchTerm)
+                    );
+                }
+            } else if (currentSearchType === 'tags') {
+                if (activeTags.size > 0) {
+                    filtered = impossibleDemons.filter(demon => 
+                        demon.tags && activeTags.size > 0 && 
+                        Array.from(activeTags).every(tag => demon.tags.includes(tag))
+                    );
+                }
+            }
+            
+            filteredImpossibleDemons = filtered;
+            renderImpossibleDemons();
+            updateFilterStats();
+        }
+
+        function updateFilterStats() {
+            const filterCount = document.getElementById('filterCount');
+            const showingCount = document.getElementById('showingCount');
+            const totalCount = document.getElementById('totalCount');
+            
+            if (filterCount && showingCount && totalCount) {
+                filterCount.textContent = activeTags.size;
+                showingCount.textContent = filteredImpossibleDemons.length;
+                totalCount.textContent = impossibleDemons.length;
+            }
+        }
+
         function renderImpossibleDemons() {
             const demonList = document.getElementById('demonList');
             const currentLang = localStorage.getItem('language') || 'ru';
@@ -2378,13 +2997,26 @@ html {
             
             if (filteredImpossibleDemons.length === 0) {
                 const noResultsTitle = currentLang === 'ru' ? 'Невозможные демоны не найдены' : 'Impossible demons not found';
-                const noResultsDesc = currentLang === 'ru' ? 'Попробуйте изменить поисковый запрос' : 'Try changing your search query';
+                let noResultsDesc = '';
+                
+                if (currentSearchType === 'normal') {
+                    noResultsDesc = currentLang === 'ru' ? 'Попробуйте изменить поисковый запрос' : 'Try changing your search query';
+                } else if (currentSearchType === 'tags') {
+                    noResultsDesc = currentLang === 'ru' ? 'Попробуйте изменить фильтры тегов' : 'Try changing tag filters';
+                }
                 
                 demonList.innerHTML = `
                     <div style="text-align: center; padding: 3rem; color: var(--text-secondary);">
                         <div style="font-size: 2.5rem; margin-bottom: 1rem;">🔍</div>
                         <div style="font-size: 1.2rem; margin-bottom: 0.8rem; font-weight: 700;">${noResultsTitle}</div>
                         <div style="font-weight: 500; font-size: 1rem;">${noResultsDesc}</div>
+                        ${(currentSearchType === 'tags' && activeTags.size > 0) ? 
+                            `<div style="margin-top: 1rem;">
+                                <button onclick="clearAllTags()" style="background: var(--accent-green); color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer;">
+                                    ${currentLang === 'ru' ? 'Очистить теги' : 'Clear tags'}
+                                </button>
+                            </div>` : ''
+                        }
                     </div>
                 `;
                 return;
@@ -2403,6 +3035,13 @@ html {
                 
                 const hasImage = demon.image && demon.image.trim() !== '';
                 
+                let tagsHTML = '';
+                if (demon.tags && demon.tags.length > 0) {
+                    tagsHTML = `<div class="demon-tags">${demon.tags.slice(0, 3).map(tag => 
+                        `<span class="demon-tag" onclick="event.stopPropagation(); toggleTagFilter('${tag}')">${tag}</span>`
+                    ).join('')}</div>`;
+                }
+                
                 demonRow.innerHTML = `
                     <div class="demon-rank ${rankClass}">${demon.rank}</div>
                     <div class="demon-image">
@@ -2417,6 +3056,7 @@ html {
                         <div class="demon-details">
                             <div class="demon-name">${demon.name}</div>
                             <div class="demon-creator">by ${demon.creator}</div>
+                            ${tagsHTML}
                         </div>
                         <div class="demon-points">${points} pts</div>
                     </div>
@@ -2440,6 +3080,9 @@ html {
         async function refreshData() {
             console.log('🔄 Обновление данных невозможных демонов...');
             imageCache.clear();
+            allTags.clear();
+            activeTags.clear();
+            tagStats = {};
             impossibleDemons = [];
             filteredImpossibleDemons = [];
             
@@ -2461,6 +3104,32 @@ html {
         async function initializeData() {
             loadTheme();
             loadLanguage();
+            loadSearchType();
+            
+            document.querySelectorAll('.dropdown-toggle').forEach(btn => {
+                btn.addEventListener('click', toggleDropdown);
+            });
+            
+            document.querySelectorAll('.mobile-menu .dropdown-toggle').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    const type = this.parentElement.querySelector('.mobile-dropdown').id.replace('mobileDropdown', '').toLowerCase();
+                    toggleMobileDropdown(e, type);
+                });
+            });
+            
+            document.getElementById('languageToggle').addEventListener('click', toggleLanguage);
+            document.querySelector('.theme-toggle').addEventListener('click', toggleTheme);
+            document.querySelector('.menu-toggle').addEventListener('click', toggleMobileMenu);
+            document.querySelector('.mobile-close').addEventListener('click', closeMobileMenu);
+            document.querySelector('.clear-tags-btn').addEventListener('click', clearAllTags);
+            
+            document.querySelectorAll('.search-type-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    changeSearchType(this.dataset.searchType);
+                });
+            });
+            
+            document.getElementById('searchTypeToggle').addEventListener('click', toggleSearchTypeMenu);
             
             const dataPromise = loadDataFromJSON();
             
@@ -2491,12 +3160,14 @@ html {
         window.handleImageError = handleImageError;
         window.toggleDropdown = toggleDropdown;
         window.toggleMobileDropdown = toggleMobileDropdown;
+        window.toggleTagFilter = toggleTagFilter;
+        window.clearAllTags = clearAllTags;
+        window.toggleSearchTypeMenu = toggleSearchTypeMenu;
+        window.changeSearchType = changeSearchType;
 
         document.addEventListener('DOMContentLoaded', function() {
             initializeData();
         });
     </script>
-</body>
-</html>
 </body>
 </html>
