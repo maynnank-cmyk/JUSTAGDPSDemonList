@@ -1,0 +1,18 @@
+{
+  "challengePlayers": [
+    {
+      "id": "zoink",
+      "name": "Zoink",
+      "avatar": "zoink.png",
+      "country": "US",
+      "completedDemons": [
+        "challenge"
+      ],
+      "verifiedDemons": [
+        "challenge"
+      ],
+      "progress": {
+      }
+    }
+  ]
+}
