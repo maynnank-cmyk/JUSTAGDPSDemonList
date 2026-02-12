@@ -1907,7 +1907,7 @@ html {
                     <nav>
                         <ul>
                             <li class="dropdown">
-                                <a href="index.html" class="dropdown-toggle" onclick="toggleDropdown(event)">
+                                <a href="index.html" class="dropdown-toggle" id="classicDropdownToggle">
                                     <span data-lang="ru">Классический</span>
                                     <span data-lang="en" style="display: none;">Classic</span>
                                     <img src="assets/arrow.png" alt="▼" class="dropdown-arrow">
@@ -1931,7 +1931,7 @@ html {
                                 </div>
                             </li>
                             <li class="dropdown">
-                                <a href="impossiblerecords.html" class="dropdown-toggle" onclick="toggleDropdown(event)">
+                                <a href="impossiblerecords.html" class="dropdown-toggle" id="recordsDropdownToggle">
                                     <span data-lang="ru">Лидерборды</span>
                                     <span data-lang="en" style="display: none;">Leaderboards</span>
                                     <img src="assets/arrow.png" alt="▼" class="dropdown-arrow">
@@ -1951,7 +1951,7 @@ html {
                                 </div>
                             </li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" onclick="toggleDropdown(event)">
+                                <a href="#" class="dropdown-toggle" id="otherDropdownToggle">
                                     <span data-lang="ru">Прочее</span>
                                     <span data-lang="en" style="display: none;">Other</span>
                                     <img src="assets/arrow.png" alt="▼" class="dropdown-arrow">
@@ -1986,13 +1986,13 @@ html {
                         </a>
                     </div>
                     
-                    <button class="language-toggle" onclick="toggleLanguage()" id="languageToggle">
+                    <button class="language-toggle" id="languageToggle">
                         EN
                     </button>
-                    <button class="theme-toggle" onclick="toggleTheme()">
+                    <button class="theme-toggle" id="themeToggle">
                         <img src="assets/day-and-night.png" alt="Сменить тему" id="theme-icon">
                     </button>
-                    <button class="menu-toggle" onclick="toggleMobileMenu()">
+                    <button class="menu-toggle" id="menuToggle">
                         <span></span>
                         <span></span>
                         <span></span>
@@ -2008,23 +2008,23 @@ html {
                 <img src="assets/cube.png" alt="Cube" class="mobile-cube-icon">
                 <a href="index.html" class="mobile-logo">Just a GDPS</a>
             </div>
-            <button class="mobile-close" onclick="toggleMobileMenu()">×</button>
+            <button class="mobile-close" id="mobileClose">×</button>
         </div>
         <nav>
             <ul>
                 <li>
-                    <a href="index.html" class="dropdown-toggle" onclick="toggleMobileDropdown(event, 'main')">
+                    <a href="#" class="dropdown-toggle" id="mobileMainToggle">
                         <span data-lang="ru">Классический</span>
                         <span data-lang="en" style="display: none;">Classic</span>
                         <img src="assets/arrow.png" alt="▼" class="dropdown-arrow">
                     </a>
                     <div class="mobile-dropdown" id="mobileDropdownMain">
-                        <a href="index.html" onclick="closeMobileMenu()">
+                        <a href="index.html">
                             <img src="assets/classic-icon.png" alt="📜" class="dropdown-menu-icon">
                             <span data-lang="ru">Классический</span>
                             <span data-lang="en" style="display: none;">Classic</span>
                         </a>
-                        <a href="impossible.html" class="active" onclick="closeMobileMenu()">
+                        <a href="impossible.html" class="active">
                             <img src="assets/impossible-icon.png" alt="🔥" class="dropdown-menu-icon">
                             <span data-lang="ru">Невозможный</span>
                             <span data-lang="en" style="display: none;">Impossible</span>
@@ -2032,19 +2032,19 @@ html {
                     </div>
                 </li>
                 <li>
-                    <a href="impossiblerecords.html" class="dropdown-toggle" onclick="toggleMobileDropdown(event, 'records')">
+                    <a href="#" class="dropdown-toggle" id="mobileRecordsToggle">
                         <span data-lang="ru">Лидерборды</span>
                         <span data-lang="en" style="display: none;">Leaderboards</span>
                         <img src="assets/arrow.png" alt="▼" class="dropdown-arrow">
                     </a>
                     <div class="mobile-dropdown" id="mobileDropdownRecords">
-                        <a href="impossiblerecords.html" onclick="closeMobileMenu()">
+                        <a href="impossiblerecords.html">
                             <img src="assets/records-icon.png" alt="🏆" class="dropdown-menu-icon">
                             <span data-lang="ru">Топ рекордов</span>
                             <span data-lang="en" style="display: none;">Top Records</span>
                         </a>
                         <a href="https://docs.google.com/forms/d/e/1FAIpQLSceFzm37tUw0B5t6h3L3U5alQJ5P41F1uZEeC3DaVdDXbNmrQ/viewform?usp=dialog" 
-                           onclick="closeMobileMenu()" style="background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan)) !important; color: white !important;">
+                           style="background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan)) !important; color: white !important;">
                             <img src="assets/request-icon.png" alt="📝" class="dropdown-menu-icon">
                             <span data-lang="ru">Отправить реквест</span>
                             <span data-lang="en" style="display: none;">Submit Request</span>
@@ -2052,23 +2052,23 @@ html {
                     </div>
                 </li>
                 <li>
-                    <a href="#" class="dropdown-toggle" onclick="toggleMobileDropdown(event, 'others')">
+                    <a href="#" class="dropdown-toggle" id="mobileOtherToggle">
                         <span data-lang="ru">Прочее</span>
                         <span data-lang="en" style="display: none;">Other</span>
                         <img src="assets/arrow.png" alt="▼" class="dropdown-arrow">
                     </a>
                     <div class="mobile-dropdown" id="mobileDropdownOthers">
-                        <a href="news.html" onclick="closeMobileMenu()">
+                        <a href="news.html">
                             <img src="assets/news-icon.png" alt="📰" class="dropdown-menu-icon">
                             <span data-lang="ru">Новости</span>
                             <span data-lang="en" style="display: none;">News</span>
                         </a>
-                        <a href="contacts.html" onclick="closeMobileMenu()">
+                        <a href="contacts.html">
                             <img src="assets/contacts-icon.png" alt="📞" class="dropdown-menu-icon">
                             <span data-lang="ru">Контакты</span>
                             <span data-lang="en" style="display: none;">Contacts</span>
                         </a>
-                        <a href="rules.html" onclick="closeMobileMenu()">
+                        <a href="rules.html">
                             <img src="assets/rules-icon.png" alt="📜" class="dropdown-menu-icon">
                             <span data-lang="ru">Правила</span>
                             <span data-lang="en" style="display: none;">Rules</span>
@@ -2086,14 +2086,14 @@ html {
             </div>
         </nav>
     </div>
-    <div class="menu-overlay" id="menuOverlay" onclick="closeMobileMenu()"></div>
+    <div class="menu-overlay" id="menuOverlay"></div>
     
     <section class="search-section">
         <div class="container">
             <div class="search-container">
                 <!-- ВЫПАДАЮЩЕЕ МЕНЮ ДЛЯ ВЫБОРА ТИПА ПОИСКА -->
                 <div class="search-type-selector">
-                    <button class="search-type-toggle" id="searchTypeToggle" onclick="toggleSearchTypeMenu()">
+                    <button class="search-type-toggle" id="searchTypeToggle">
                         <div class="current-option">
                             <img src="assets/search.png" alt="🔍" class="search-type-icon" id="currentSearchIcon">
                             <span id="currentSearchText" data-lang="ru">Обычный поиск</span>
@@ -2102,12 +2102,12 @@ html {
                         <img src="assets/arrow.png" alt="▼" class="dropdown-arrow">
                     </button>
                     <div class="search-type-menu" id="searchTypeMenu">
-                        <div class="search-type-option active" data-search-type="normal" onclick="changeSearchType('normal')">
+                        <div class="search-type-option active" data-search-type="normal">
                             <img src="assets/search.png" alt="🔍" class="search-type-icon">
                             <span data-lang="ru">Обычный поиск</span>
                             <span data-lang="en" style="display: none;">Normal Search</span>
                         </div>
-                        <div class="search-type-option" data-search-type="tags" onclick="changeSearchType('tags')">
+                        <div class="search-type-option" data-search-type="tags">
                             <img src="assets/tag.png" alt="🏷️" class="search-type-icon">
                             <span data-lang="ru">Поиск по тегам</span>
                             <span data-lang="en" style="display: none;">Search by Tags</span>
@@ -2135,7 +2135,7 @@ html {
                                    data-placeholder-ru="Поиск тегов..."
                                    data-placeholder-en="Search tags..."
                                    placeholder="Поиск тегов...">
-                            <button class="clear-tags-btn" onclick="clearAllTags()">
+                            <button class="clear-tags-btn" id="clearTagsBtn">
                                 <span data-lang="ru">Очистить теги</span>
                                 <span data-lang="en" style="display: none;">Clear tags</span>
                             </button>
@@ -2170,7 +2170,7 @@ html {
                 <p data-lang="en" style="display: none;">Levels considered nearly impossible to complete. Click on a demon for detailed information.</p>
             </div>
 
-            <button class="refresh-btn" onclick="refreshData()">
+            <button class="refresh-btn" id="refreshBtn">
                 <img src="assets/update.png" alt="🔄">
                 <span data-lang="ru">Обновить список</span>
                 <span data-lang="en" style="display: none;">Refresh List</span>
@@ -2300,7 +2300,8 @@ html {
         // ========== ВЫБОР ТИПА ПОИСКА ==========
         let currentSearchType = localStorage.getItem('impossibleSearchType') || 'normal';
 
-        function toggleSearchTypeMenu() {
+        function toggleSearchTypeMenu(event) {
+            event.stopPropagation();
             const searchTypeMenu = document.getElementById('searchTypeMenu');
             const searchTypeToggle = document.getElementById('searchTypeToggle');
             
@@ -2327,7 +2328,20 @@ html {
                 }
             });
             
-            updateSearchTypeDisplay();
+            const normalSearchContainer = document.getElementById('normalSearchContainer');
+            const tagsSearchContainer = document.getElementById('tagsSearchContainer');
+            const currentSearchIcon = document.getElementById('currentSearchIcon');
+            
+            if (type === 'normal') {
+                normalSearchContainer.style.display = 'block';
+                tagsSearchContainer.style.display = 'none';
+                currentSearchIcon.src = 'assets/search.png';
+            } else {
+                normalSearchContainer.style.display = 'none';
+                tagsSearchContainer.style.display = 'block';
+                currentSearchIcon.src = 'assets/tag.png';
+            }
+            
             updateCurrentSearchTypeText();
             
             const searchTypeMenu = document.getElementById('searchTypeMenu');
@@ -2336,22 +2350,6 @@ html {
             searchTypeToggle.classList.remove('active');
             
             updateFilteredImpossibleDemons();
-        }
-
-        function updateSearchTypeDisplay() {
-            const normalSearchContainer = document.getElementById('normalSearchContainer');
-            const tagsSearchContainer = document.getElementById('tagsSearchContainer');
-            const currentSearchIcon = document.getElementById('currentSearchIcon');
-            
-            if (currentSearchType === 'normal') {
-                normalSearchContainer.style.display = 'block';
-                tagsSearchContainer.style.display = 'none';
-                currentSearchIcon.src = 'assets/search.png';
-            } else if (currentSearchType === 'tags') {
-                normalSearchContainer.style.display = 'none';
-                tagsSearchContainer.style.display = 'block';
-                currentSearchIcon.src = 'assets/tag.png';
-            }
         }
 
         function updateCurrentSearchTypeText() {
@@ -2369,7 +2367,7 @@ html {
                     currentSearchText.style.display = 'none';
                     currentSearchTextEn.style.display = '';
                 }
-            } else if (currentSearchType === 'tags') {
+            } else {
                 if (currentLang === 'ru') {
                     currentSearchText.textContent = 'Поиск по тегам';
                     currentSearchText.style.display = '';
@@ -2387,37 +2385,33 @@ html {
             changeSearchType(savedType);
         }
 
-        // ========== ВЫПАДАЮЩИЕ МЕНЮ (ТОЛЬКО ПО КЛИКУ) ==========
-        let activeDropdown = null;
-
+        // ========== ВЫПАДАЮЩИЕ МЕНЮ ==========
         function toggleDropdown(event) {
             event.preventDefault();
             event.stopPropagation();
             
-            const dropdown = event.currentTarget.parentElement;
-            const dropdownMenu = dropdown.querySelector('.dropdown-menu');
+            const dropdownToggle = event.currentTarget;
+            const dropdownMenu = dropdownToggle.parentElement.querySelector('.dropdown-menu');
+            
+            if (!dropdownMenu) return;
+            
             const isActive = dropdownMenu.classList.contains('active');
             
             document.querySelectorAll('.dropdown-menu').forEach(menu => {
-                if (menu !== dropdownMenu) {
-                    menu.classList.remove('active');
-                }
+                menu.classList.remove('active');
             });
             
             document.querySelectorAll('.dropdown-toggle').forEach(btn => {
-                if (btn !== event.currentTarget) {
-                    btn.classList.remove('active');
-                }
+                btn.classList.remove('active');
+                const arrow = btn.querySelector('.dropdown-arrow');
+                if (arrow) arrow.style.transform = 'rotate(0deg)';
             });
             
             if (!isActive) {
                 dropdownMenu.classList.add('active');
-                event.currentTarget.classList.add('active');
-                activeDropdown = dropdown;
-            } else {
-                dropdownMenu.classList.remove('active');
-                event.currentTarget.classList.remove('active');
-                activeDropdown = null;
+                dropdownToggle.classList.add('active');
+                const arrow = dropdownToggle.querySelector('.dropdown-arrow');
+                if (arrow) arrow.style.transform = 'rotate(180deg)';
             }
         }
 
@@ -2425,116 +2419,30 @@ html {
             event.preventDefault();
             event.stopPropagation();
             
+            const toggle = event.currentTarget;
             const mobileDropdown = document.getElementById(`mobileDropdown${type.charAt(0).toUpperCase() + type.slice(1)}`);
+            
+            if (!mobileDropdown) return;
+            
             const isActive = mobileDropdown.classList.contains('active');
-            const arrow = event.currentTarget.querySelector('.dropdown-arrow');
+            const arrow = toggle.querySelector('.dropdown-arrow');
             
             document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
-                if (dropdown.id !== mobileDropdown.id) {
-                    dropdown.classList.remove('active');
-                }
+                dropdown.classList.remove('active');
             });
             
             document.querySelectorAll('.mobile-menu .dropdown-toggle').forEach(btn => {
-                if (btn !== event.currentTarget) {
-                    btn.classList.remove('active');
-                    const otherArrow = btn.querySelector('.dropdown-arrow');
-                    if (otherArrow) otherArrow.style.transform = 'rotate(0deg)';
-                }
+                btn.classList.remove('active');
+                const otherArrow = btn.querySelector('.dropdown-arrow');
+                if (otherArrow) otherArrow.style.transform = 'rotate(0deg)';
             });
             
             if (!isActive) {
                 mobileDropdown.classList.add('active');
-                arrow.style.transform = 'rotate(180deg)';
-                event.currentTarget.classList.add('active');
-            } else {
-                mobileDropdown.classList.remove('active');
-                arrow.style.transform = 'rotate(0deg)';
-                event.currentTarget.classList.remove('active');
+                toggle.classList.add('active');
+                if (arrow) arrow.style.transform = 'rotate(180deg)';
             }
         }
-
-        document.addEventListener('click', function(event) {
-            const isDropdownClick = event.target.closest('.dropdown');
-            const isDropdownToggle = event.target.closest('.dropdown-toggle');
-            
-            if (!isDropdownClick && activeDropdown) {
-                document.querySelectorAll('.dropdown-menu').forEach(menu => {
-                    menu.classList.remove('active');
-                });
-                document.querySelectorAll('.dropdown-toggle').forEach(btn => {
-                    btn.classList.remove('active');
-                });
-                activeDropdown = null;
-            }
-            
-            const isMobileDropdownClick = event.target.closest('.mobile-menu nav ul li');
-            
-            if (!isMobileDropdownClick) {
-                document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
-                    dropdown.classList.remove('active');
-                });
-                document.querySelectorAll('.mobile-menu .dropdown-toggle').forEach(btn => {
-                    btn.classList.remove('active');
-                    const arrow = btn.querySelector('.dropdown-arrow');
-                    if (arrow) arrow.style.transform = 'rotate(0deg)';
-                });
-            }
-            
-            const searchTypeMenu = document.getElementById('searchTypeMenu');
-            const searchTypeToggle = document.getElementById('searchTypeToggle');
-            if (!searchTypeToggle.contains(event.target) && !searchTypeMenu.contains(event.target)) {
-                searchTypeMenu.classList.remove('active');
-                searchTypeToggle.classList.remove('active');
-            }
-            
-            if (event.target.closest('.dropdown-menu a') || event.target.closest('.mobile-dropdown a')) {
-                setTimeout(() => {
-                    document.querySelectorAll('.dropdown-menu').forEach(menu => {
-                        menu.classList.remove('active');
-                    });
-                    document.querySelectorAll('.dropdown-toggle').forEach(btn => {
-                        btn.classList.remove('active');
-                    });
-                    document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
-                        dropdown.classList.remove('active');
-                    });
-                    document.querySelectorAll('.mobile-menu .dropdown-toggle').forEach(btn => {
-                        btn.classList.remove('active');
-                        const arrow = btn.querySelector('.dropdown-arrow');
-                        if (arrow) arrow.style.transform = 'rotate(0deg)';
-                    });
-                    activeDropdown = null;
-                }, 100);
-            }
-        });
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                document.querySelectorAll('.dropdown-menu').forEach(menu => {
-                    menu.classList.remove('active');
-                });
-                document.querySelectorAll('.dropdown-toggle').forEach(btn => {
-                    btn.classList.remove('active');
-                });
-                
-                document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
-                    dropdown.classList.remove('active');
-                });
-                document.querySelectorAll('.mobile-menu .dropdown-toggle').forEach(btn => {
-                    btn.classList.remove('active');
-                    const arrow = btn.querySelector('.dropdown-arrow');
-                    if (arrow) arrow.style.transform = 'rotate(0deg)';
-                });
-                
-                const searchTypeMenu = document.getElementById('searchTypeMenu');
-                const searchTypeToggle = document.getElementById('searchTypeToggle');
-                searchTypeMenu.classList.remove('active');
-                searchTypeToggle.classList.remove('active');
-                
-                activeDropdown = null;
-            }
-        });
 
         // ========== МОБИЛЬНОЕ МЕНЮ ==========
         function toggleMobileMenu() {
@@ -2544,17 +2452,6 @@ html {
             mobileMenu.classList.toggle('active');
             menuOverlay.classList.toggle('active');
             document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
-            
-            if (!mobileMenu.classList.contains('active')) {
-                document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
-                    dropdown.classList.remove('active');
-                });
-                document.querySelectorAll('.mobile-menu .dropdown-toggle').forEach(btn => {
-                    btn.classList.remove('active');
-                    const arrow = btn.querySelector('.dropdown-arrow');
-                    if (arrow) arrow.style.transform = 'rotate(0deg)';
-                });
-            }
         }
 
         function closeMobileMenu() {
@@ -2574,12 +2471,6 @@ html {
                 if (arrow) arrow.style.transform = 'rotate(0deg)';
             });
         }
-
-        document.querySelectorAll('.mobile-menu a').forEach(link => {
-            if (!link.classList.contains('dropdown-toggle')) {
-                link.addEventListener('click', closeMobileMenu);
-            }
-        });
         
         // ========== СМЕНА ТЕМЫ ==========
         function toggleTheme() {
@@ -2643,8 +2534,19 @@ html {
             
             tagsSlider.innerHTML = '';
             
+            if (allTags.size === 0) {
+                const noTags = document.createElement('div');
+                noTags.className = 'tag-slider-item';
+                noTags.style.minWidth = '200px';
+                noTags.style.opacity = '0.7';
+                noTags.style.cursor = 'default';
+                noTags.innerHTML = 'Нет тегов';
+                tagsSlider.appendChild(noTags);
+                return;
+            }
+            
             const sortedTags = Array.from(allTags).sort((a, b) => {
-                const countDiff = tagStats[b] - tagStats[a];
+                const countDiff = (tagStats[b] || 0) - (tagStats[a] || 0);
                 if (countDiff !== 0) return countDiff;
                 return a.localeCompare(b);
             });
@@ -2653,17 +2555,20 @@ html {
                 const tagElement = document.createElement('div');
                 tagElement.className = 'tag-slider-item';
                 tagElement.innerHTML = `
-                    ${tag} <span class="tag-count">(${tagStats[tag]})</span>
+                    ${tag} <span class="tag-count">(${tagStats[tag] || 0})</span>
                 `;
                 
-                tagElement.addEventListener('click', () => {
+                tagElement.addEventListener('click', function(e) {
+                    e.stopPropagation();
                     toggleTagFilter(tag);
                 });
                 
+                if (activeTags.has(tag)) {
+                    tagElement.classList.add('active');
+                }
+                
                 tagsSlider.appendChild(tagElement);
             });
-            
-            updateActiveTagsDisplay();
         }
 
         function toggleTagFilter(tag) {
@@ -2696,8 +2601,21 @@ html {
             updateFilterStats();
             
             const tagsSearch = document.getElementById('tagsSearch');
-            tagsSearch.value = '';
-            tagsSearch.dispatchEvent(new Event('input'));
+            if (tagsSearch) {
+                tagsSearch.value = '';
+                filterTagsBySearch('');
+            }
+        }
+
+        function filterTagsBySearch(searchTerm) {
+            document.querySelectorAll('.tag-slider-item').forEach(item => {
+                const tagName = item.textContent.toLowerCase().split(' (')[0];
+                if (tagName.includes(searchTerm.toLowerCase()) || searchTerm === '') {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
         }
 
         function initializeSearch() {
@@ -2705,47 +2623,44 @@ html {
             const searchResults = document.getElementById('searchResults');
             const tagsSearch = document.getElementById('tagsSearch');
             
-            searchInput.addEventListener('input', function() {
-                const searchTerm = this.value.toLowerCase().trim();
-                
-                if (searchTerm.length === 0) {
-                    searchResults.style.display = 'none';
+            if (searchInput) {
+                searchInput.addEventListener('input', function() {
+                    const searchTerm = this.value.toLowerCase().trim();
+                    
+                    if (searchTerm.length === 0) {
+                        searchResults.style.display = 'none';
+                        updateFilteredImpossibleDemons();
+                        return;
+                    }
+                    
+                    const results = impossibleDemons.filter(demon => 
+                        demon.name.toLowerCase().includes(searchTerm) || 
+                        demon.creator.toLowerCase().includes(searchTerm)
+                    );
+                    
+                    displaySearchResults(results);
                     updateFilteredImpossibleDemons();
-                    return;
-                }
+                });
                 
-                const results = impossibleDemons.filter(demon => 
-                    demon.name.toLowerCase().includes(searchTerm) || 
-                    demon.creator.toLowerCase().includes(searchTerm)
-                );
-                
-                displaySearchResults(results);
-                updateFilteredImpossibleDemons();
-            });
-            
-            searchInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    updateFilteredImpossibleDemons();
-                    searchResults.style.display = 'none';
-                }
-            });
-            
-            tagsSearch.addEventListener('input', function() {
-                const searchTerm = this.value.toLowerCase().trim();
-                
-                document.querySelectorAll('.tag-slider-item').forEach(item => {
-                    const tagName = item.textContent.toLowerCase().split(' (')[0];
-                    if (tagName.includes(searchTerm) || searchTerm === '') {
-                        item.style.display = 'flex';
-                    } else {
-                        item.style.display = 'none';
+                searchInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        updateFilteredImpossibleDemons();
+                        searchResults.style.display = 'none';
                     }
                 });
-            });
+            }
+            
+            if (tagsSearch) {
+                tagsSearch.addEventListener('input', function() {
+                    filterTagsBySearch(this.value);
+                });
+            }
             
             document.addEventListener('click', function(e) {
-                if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
-                    searchResults.style.display = 'none';
+                if (searchInput && searchResults) {
+                    if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+                        searchResults.style.display = 'none';
+                    }
                 }
             });
         }
@@ -2754,6 +2669,8 @@ html {
             const searchResults = document.getElementById('searchResults');
             const currentLang = localStorage.getItem('language') || 'ru';
             const noResultsText = currentLang === 'ru' ? 'Невозможные демоны не найдены' : 'Impossible demons not found';
+            
+            if (!searchResults) return;
             
             if (results.length === 0) {
                 searchResults.innerHTML = `<div class="no-results">${noResultsText}</div>`;
@@ -2769,7 +2686,7 @@ html {
                 resultItem.innerHTML = `
                     <div class="search-result-name">${demon.name}</div>
                     <div class="search-result-creator">by ${demon.creator}</div>
-                    ${demon.tags ? `<div style="font-size:0.8rem;color:var(--accent-purple);margin-top:0.2rem;">${demon.tags.slice(0, 3).join(', ')}</div>` : ''}
+                    ${demon.tags && demon.tags.length > 0 ? `<div style="font-size:0.8rem;color:var(--accent-purple);margin-top:0.2rem;">${demon.tags.slice(0, 3).join(', ')}</div>` : ''}
                 `;
                 resultItem.addEventListener('click', function() {
                     openDemonPage(demon.id);
@@ -2783,11 +2700,13 @@ html {
 
         function showError(message) {
             const errorContainer = document.getElementById('errorContainer');
-            errorContainer.innerHTML = `
-                <div class="error-message">
-                    <strong>Ошибка:</strong> ${message}
-                </div>
-            `;
+            if (errorContainer) {
+                errorContainer.innerHTML = `
+                    <div class="error-message">
+                        <strong>Ошибка:</strong> ${message}
+                    </div>
+                `;
+            }
         }
 
         async function getAvailableImage(demonId) {
@@ -2843,11 +2762,14 @@ html {
                         
                         if (demon.tags && Array.isArray(demon.tags)) {
                             demon.tags.forEach(tag => {
-                                allTags.add(tag);
-                                if (!tagStats[tag]) {
-                                    tagStats[tag] = 0;
+                                if (tag && tag.trim()) {
+                                    const cleanTag = tag.trim();
+                                    allTags.add(cleanTag);
+                                    if (!tagStats[cleanTag]) {
+                                        tagStats[cleanTag] = 0;
+                                    }
+                                    tagStats[cleanTag]++;
                                 }
-                                tagStats[tag]++;
                             });
                         }
                         
@@ -2858,6 +2780,7 @@ html {
                     
                     console.log('✅ Невозможные демоны загружены:', impossibleDemons.length);
                     console.log('🏷️  Найдено тегов:', allTags.size);
+                    console.log('📊 Статистика тегов:', tagStats);
                     
                     const currentLang = localStorage.getItem('language') || 'ru';
                     const statusText = currentLang === 'ru' ? 'Список невозможных демонов загружен' : 'Impossible demon list loaded';
@@ -2964,7 +2887,7 @@ html {
             } else if (currentSearchType === 'tags') {
                 if (activeTags.size > 0) {
                     filtered = impossibleDemons.filter(demon => 
-                        demon.tags && activeTags.size > 0 && 
+                        demon.tags && demon.tags.length > 0 && 
                         Array.from(activeTags).every(tag => demon.tags.includes(tag))
                     );
                 }
@@ -3005,18 +2928,21 @@ html {
                     noResultsDesc = currentLang === 'ru' ? 'Попробуйте изменить фильтры тегов' : 'Try changing tag filters';
                 }
                 
+                let clearButton = '';
+                if (currentSearchType === 'tags' && activeTags.size > 0) {
+                    clearButton = `<div style="margin-top: 1rem;">
+                        <button onclick="clearAllTags()" style="background: var(--accent-green); color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer;">
+                            ${currentLang === 'ru' ? 'Очистить теги' : 'Clear tags'}
+                        </button>
+                    </div>`;
+                }
+                
                 demonList.innerHTML = `
                     <div style="text-align: center; padding: 3rem; color: var(--text-secondary);">
                         <div style="font-size: 2.5rem; margin-bottom: 1rem;">🔍</div>
                         <div style="font-size: 1.2rem; margin-bottom: 0.8rem; font-weight: 700;">${noResultsTitle}</div>
                         <div style="font-weight: 500; font-size: 1rem;">${noResultsDesc}</div>
-                        ${(currentSearchType === 'tags' && activeTags.size > 0) ? 
-                            `<div style="margin-top: 1rem;">
-                                <button onclick="clearAllTags()" style="background: var(--accent-green); color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer;">
-                                    ${currentLang === 'ru' ? 'Очистить теги' : 'Clear tags'}
-                                </button>
-                            </div>` : ''
-                        }
+                        ${clearButton}
                     </div>
                 `;
                 return;
@@ -3031,15 +2957,19 @@ html {
                 const demonRow = document.createElement('div');
                 demonRow.className = 'demon-row';
                 demonRow.setAttribute('data-demon-id', demon.id);
-                demonRow.onclick = () => openDemonPage(demon.id);
+                demonRow.addEventListener('click', function() {
+                    openDemonPage(demon.id);
+                });
                 
                 const hasImage = demon.image && demon.image.trim() !== '';
                 
                 let tagsHTML = '';
                 if (demon.tags && demon.tags.length > 0) {
-                    tagsHTML = `<div class="demon-tags">${demon.tags.slice(0, 3).map(tag => 
-                        `<span class="demon-tag" onclick="event.stopPropagation(); toggleTagFilter('${tag}')">${tag}</span>`
-                    ).join('')}</div>`;
+                    tagsHTML = '<div class="demon-tags">';
+                    demon.tags.slice(0, 3).forEach(tag => {
+                        tagsHTML += `<span class="demon-tag" onclick="event.stopPropagation(); toggleTagFilter('${tag}')">${tag}</span>`;
+                    });
+                    tagsHTML += '</div>';
                 }
                 
                 demonRow.innerHTML = `
@@ -3048,7 +2978,7 @@ html {
                         ${hasImage ? 
                             `<img src="${demon.image}" alt="${demon.name}" 
                                   loading="lazy"
-                                  onerror="handleImageError(this, '${demon.name}')">` :
+                                  onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'image-placeholder\'>${demon.name.charAt(0)}</div>';">` :
                             `<div class="image-placeholder">${demon.name.charAt(0)}</div>`
                         }
                     </div>
@@ -3066,11 +2996,6 @@ html {
             
             demonList.innerHTML = '';
             demonList.appendChild(fragment);
-        }
-
-        function handleImageError(img, demonName) {
-            const parent = img.parentNode;
-            parent.innerHTML = `<div class="image-placeholder">${demonName.charAt(0)}</div>`;
         }
 
         function openDemonPage(demonId) {
@@ -3101,35 +3026,161 @@ html {
         }
 
         // ========== ИНИЦИАЛИЗАЦИЯ ==========
+        function initializeEventListeners() {
+            // Переключатель типа поиска
+            const searchTypeToggle = document.getElementById('searchTypeToggle');
+            if (searchTypeToggle) {
+                searchTypeToggle.addEventListener('click', toggleSearchTypeMenu);
+            }
+            
+            // Опции типа поиска
+            document.querySelectorAll('.search-type-option').forEach(option => {
+                option.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    changeSearchType(this.dataset.searchType);
+                });
+            });
+            
+            // Кнопки меню
+            document.querySelectorAll('.dropdown-toggle').forEach(btn => {
+                btn.addEventListener('click', toggleDropdown);
+            });
+            
+            // Мобильные кнопки
+            const mobileMainToggle = document.getElementById('mobileMainToggle');
+            if (mobileMainToggle) {
+                mobileMainToggle.addEventListener('click', (e) => toggleMobileDropdown(e, 'main'));
+            }
+            
+            const mobileRecordsToggle = document.getElementById('mobileRecordsToggle');
+            if (mobileRecordsToggle) {
+                mobileRecordsToggle.addEventListener('click', (e) => toggleMobileDropdown(e, 'records'));
+            }
+            
+            const mobileOtherToggle = document.getElementById('mobileOtherToggle');
+            if (mobileOtherToggle) {
+                mobileOtherToggle.addEventListener('click', (e) => toggleMobileDropdown(e, 'others'));
+            }
+            
+            // Язык
+            const languageToggle = document.getElementById('languageToggle');
+            if (languageToggle) {
+                languageToggle.addEventListener('click', toggleLanguage);
+            }
+            
+            // Тема
+            const themeToggle = document.getElementById('themeToggle');
+            if (themeToggle) {
+                themeToggle.addEventListener('click', toggleTheme);
+            }
+            
+            // Мобильное меню
+            const menuToggle = document.getElementById('menuToggle');
+            if (menuToggle) {
+                menuToggle.addEventListener('click', toggleMobileMenu);
+            }
+            
+            const mobileClose = document.getElementById('mobileClose');
+            if (mobileClose) {
+                mobileClose.addEventListener('click', closeMobileMenu);
+            }
+            
+            const menuOverlay = document.getElementById('menuOverlay');
+            if (menuOverlay) {
+                menuOverlay.addEventListener('click', closeMobileMenu);
+            }
+            
+            // Кнопка обновления
+            const refreshBtn = document.getElementById('refreshBtn');
+            if (refreshBtn) {
+                refreshBtn.addEventListener('click', refreshData);
+            }
+            
+            // Кнопка очистки тегов
+            const clearTagsBtn = document.getElementById('clearTagsBtn');
+            if (clearTagsBtn) {
+                clearTagsBtn.addEventListener('click', clearAllTags);
+            }
+            
+            // Закрытие меню при клике вне
+            document.addEventListener('click', function(event) {
+                const searchTypeMenu = document.getElementById('searchTypeMenu');
+                const searchTypeToggle = document.getElementById('searchTypeToggle');
+                
+                if (searchTypeMenu && searchTypeToggle) {
+                    if (!searchTypeToggle.contains(event.target) && !searchTypeMenu.contains(event.target)) {
+                        searchTypeMenu.classList.remove('active');
+                        searchTypeToggle.classList.remove('active');
+                    }
+                }
+                
+                if (!event.target.closest('.dropdown')) {
+                    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                        menu.classList.remove('active');
+                    });
+                    document.querySelectorAll('.dropdown-toggle').forEach(btn => {
+                        btn.classList.remove('active');
+                        const arrow = btn.querySelector('.dropdown-arrow');
+                        if (arrow) arrow.style.transform = 'rotate(0deg)';
+                    });
+                }
+                
+                if (!event.target.closest('.mobile-menu nav ul li')) {
+                    document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
+                        dropdown.classList.remove('active');
+                    });
+                    document.querySelectorAll('.mobile-menu .dropdown-toggle').forEach(btn => {
+                        btn.classList.remove('active');
+                        const arrow = btn.querySelector('.dropdown-arrow');
+                        if (arrow) arrow.style.transform = 'rotate(0deg)';
+                    });
+                }
+            });
+            
+            // Закрытие по Escape
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                        menu.classList.remove('active');
+                    });
+                    document.querySelectorAll('.dropdown-toggle').forEach(btn => {
+                        btn.classList.remove('active');
+                        const arrow = btn.querySelector('.dropdown-arrow');
+                        if (arrow) arrow.style.transform = 'rotate(0deg)';
+                    });
+                    
+                    document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
+                        dropdown.classList.remove('active');
+                    });
+                    document.querySelectorAll('.mobile-menu .dropdown-toggle').forEach(btn => {
+                        btn.classList.remove('active');
+                        const arrow = btn.querySelector('.dropdown-arrow');
+                        if (arrow) arrow.style.transform = 'rotate(0deg)';
+                    });
+                    
+                    const searchTypeMenu = document.getElementById('searchTypeMenu');
+                    const searchTypeToggle = document.getElementById('searchTypeToggle');
+                    if (searchTypeMenu && searchTypeToggle) {
+                        searchTypeMenu.classList.remove('active');
+                        searchTypeToggle.classList.remove('active');
+                    }
+                    
+                    closeMobileMenu();
+                }
+            });
+            
+            // Закрытие мобильного меню при клике на ссылки
+            document.querySelectorAll('.mobile-menu a:not(.dropdown-toggle)').forEach(link => {
+                link.addEventListener('click', closeMobileMenu);
+            });
+        }
+
         async function initializeData() {
             loadTheme();
             loadLanguage();
             loadSearchType();
             
-            document.querySelectorAll('.dropdown-toggle').forEach(btn => {
-                btn.addEventListener('click', toggleDropdown);
-            });
-            
-            document.querySelectorAll('.mobile-menu .dropdown-toggle').forEach(btn => {
-                btn.addEventListener('click', function(e) {
-                    const type = this.parentElement.querySelector('.mobile-dropdown').id.replace('mobileDropdown', '').toLowerCase();
-                    toggleMobileDropdown(e, type);
-                });
-            });
-            
-            document.getElementById('languageToggle').addEventListener('click', toggleLanguage);
-            document.querySelector('.theme-toggle').addEventListener('click', toggleTheme);
-            document.querySelector('.menu-toggle').addEventListener('click', toggleMobileMenu);
-            document.querySelector('.mobile-close').addEventListener('click', closeMobileMenu);
-            document.querySelector('.clear-tags-btn').addEventListener('click', clearAllTags);
-            
-            document.querySelectorAll('.search-type-option').forEach(option => {
-                option.addEventListener('click', function() {
-                    changeSearchType(this.dataset.searchType);
-                });
-            });
-            
-            document.getElementById('searchTypeToggle').addEventListener('click', toggleSearchTypeMenu);
+            initializeEventListeners();
             
             const dataPromise = loadDataFromJSON();
             
@@ -3151,20 +3202,21 @@ html {
             await dataPromise;
         }
 
-        window.refreshData = refreshData;
-        window.openDemonPage = openDemonPage;
-        window.toggleTheme = toggleTheme;
-        window.toggleLanguage = toggleLanguage;
-        window.toggleMobileMenu = toggleMobileMenu;
-        window.closeMobileMenu = closeMobileMenu;
-        window.handleImageError = handleImageError;
-        window.toggleDropdown = toggleDropdown;
-        window.toggleMobileDropdown = toggleMobileDropdown;
+        // Глобальные функции
         window.toggleTagFilter = toggleTagFilter;
         window.clearAllTags = clearAllTags;
+        window.openDemonPage = openDemonPage;
         window.toggleSearchTypeMenu = toggleSearchTypeMenu;
         window.changeSearchType = changeSearchType;
+        window.toggleLanguage = toggleLanguage;
+        window.toggleTheme = toggleTheme;
+        window.toggleMobileMenu = toggleMobileMenu;
+        window.closeMobileMenu = closeMobileMenu;
+        window.toggleDropdown = toggleDropdown;
+        window.toggleMobileDropdown = toggleMobileDropdown;
+        window.refreshData = refreshData;
 
+        // Запуск
         document.addEventListener('DOMContentLoaded', function() {
             initializeData();
         });
