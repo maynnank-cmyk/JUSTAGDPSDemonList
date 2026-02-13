@@ -189,15 +189,6 @@
       "image": "images/bloodinthesnow.png",
       "description": ""
     },
-    {
-      "id": "jag",
-      "name": "JaG",
-      "creator": "M4I",
-      "tags": ["MultiGamemode", "Collab", "XL", "Mythic", "HardDemon"],
-      "videoUrl": "https://youtu.be/2-kCGEZq96k?si=Gi_13KYYYqJG5qhx",
-      "image": "images/jag.png",
-      "description": ""
-    },
      {
       "id": "terraadventureii",
       "name": "TerraAdventure II",
