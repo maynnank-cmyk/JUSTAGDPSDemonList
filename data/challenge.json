@@ -1,12 +1,21 @@
 {
   "challengeDemons": [
     {
-      "id": "challenge",
-      "name": "Challenge",
-      "creator": "Iphone",
-      "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-      "image": "images/challenge.jpg",
-      "tags": ["wave", "circle", "timing", "fast-paced"],
+      "id": "namelesschallenge6",
+      "name": "nameless challenge 6",
+      "creator": "Taleesman",
+      "videoUrl": "https://youtu.be/K78rFH_VZns",
+      "image": "",
+      "tags": ["Spider", "Consistency"],
+      "description": ""
+    },
+     {
+      "id": "supersuperhatemeworl",
+      "name": "Supersuperhatemeworl",
+      "creator": "Nazorro",
+      "videoUrl": "https://youtu.be/U9PDzxn3lNQ?si=6zLgDo7FZ6Ix1EEf",
+      "image": "",
+      "tags": ["Ship", "Tiny"],
       "description": ""
     }
   ]
