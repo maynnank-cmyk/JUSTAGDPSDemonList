@@ -72,15 +72,6 @@
       "image": "images/sapphireglow.png",
       "description": ""
     },
-      {
-      "id": "unforcedvortrex",
-      "name": "Unforced Vortrex",
-      "creator": "TheRealMraz",
-        "tags": ["Wave", "NC", "Medium", "Featured", "InsaneDemon", "WithoutSong"],
-      "videoUrl": "https://youtu.be/ltyXcJFSnrI",
-      "image": "images/file_0000000069887209901acf71436c8fc9.png",
-      "description": "1 of first rated demons."
-    },
     {
       "id": "insomnia",
       "name": "Insomnia",
@@ -116,6 +107,15 @@
       "videoUrl": "https://youtu.be/eDEqMyWErmg",
       "image": "images/uauafactorial.png",
       "description": "NK демон."
+    },
+     {
+      "id": "unforcedvortrex",
+      "name": "Unforced Vortrex",
+      "creator": "TheRealMraz",
+        "tags": ["Wave", "NC", "Medium", "Featured", "InsaneDemon", "WithoutSong"],
+      "videoUrl": "https://youtu.be/ltyXcJFSnrI",
+      "image": "images/file_0000000069887209901acf71436c8fc9.png",
+      "description": "1 of first rated demons."
     },
       {
       "id": "terraespera",
