@@ -1,15 +1,29 @@
 {
   "challengePlayers": [
     {
-      "id": "zoink",
-      "name": "Zoink",
-      "avatar": "zoink.png",
-      "country": "US",
+      "id": "Taleesman",
+      "name": "Taleesman",
+      "avatar": "T",
+      "country": "",
       "completedDemons": [
-        "challenge"
+        "namelesschallenge6"
       ],
       "verifiedDemons": [
-        "challenge"
+        "namelesschallenge6"
+      ],
+      "progress": {
+      }
+    },
+    {
+      "id": "Nazorro",
+      "name": "Nazorro",
+      "avatar": "N",
+      "country": "",
+      "completedDemons": [
+        "supersuperhatemeworl"
+      ],
+      "verifiedDemons": [
+        "supersuperhatemeworl"
       ],
       "progress": {
       }
