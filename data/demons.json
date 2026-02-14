@@ -27,6 +27,15 @@
       "image": "images/nameless.png",
       "description": ""
     },
+      {
+      "id": "samsungs215g",
+      "name": "Samsung S21 5G",
+      "creator": "VladGDMJ",
+       "tags": ["Wave", "NC", "Medium", "StarRate", "ExtremeDemon"],
+      "videoUrl": "https://youtu.be/hQ_jJGBMxfY",
+      "image": "images/samsungs215g.jpg",
+      "description": "telefon."
+    },
      {
       "id": "bullet",
       "name": "Bullet",
