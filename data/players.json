@@ -312,12 +312,13 @@
       "id": "taleesman",
       "name": "Taleesman",
       "avatar": "TM",
-      "completedDemons": ["uauafactorial", "noviolence"],
+      "completedDemons": ["uauafactorial", "noviolence", "samsungs215g"],
       "progress": {
         "uauafactorial": 100,
-        "noviolence": 100
+        "noviolence": 100,
+        "samsungs215g": 100
       },
-        "verifiedDemons": ["uauafactorial", "noviolence"]
+        "verifiedDemons": ["uauafactorial", "noviolence", "samsungs215g"]
     },
      {
       "id": "mwzqgd",
@@ -347,7 +348,16 @@
       "progress": {
         "theflyingrocks": 100
       },
-              "verifiedDemons": ["theflyongrocks"]
+              "verifiedDemons": ["theflyingrocks"]
+     },
+     {
+      "id": "danikcopper",
+      "name": "DanikCopper",
+      "avatar": "DC",
+      "completedDemons": ["nameless"],
+      "progress": {
+        "nameless": 100
+      }
      },
       {
       "id": "ilyakarabas",
