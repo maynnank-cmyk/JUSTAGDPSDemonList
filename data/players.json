@@ -217,7 +217,7 @@
       "id": "likerrr",
       "name": "Likerrr",
       "avatar": "LR",
-      "completedDemons": ["sigareta2", "insomnia", "nocircles", "selfharm", "anathema", "oldamethyst", "bloodinthesnow", "turnthelightsoff", "invisible", "bullet", "easycorridor", "lowdeathii", "sashamingvortex", "bestdrop", "infected", "fracture", "epstein", "jag67", "cherry", "hellmachine", "space", "terraprocessing", "theflyingrocks", "mango", "terraadventureii", "jag", "badabum", "poocubed", "cure", "lowdeathiii", "ccopakpectob", "unmaded", "fuzeii", "sapphireglow", "noviolence"],
+      "completedDemons": ["sigareta2", "insomnia", "nocircles", "selfharm", "anathema", "oldamethyst", "bloodinthesnow", "turnthelightsoff", "invisible", "bullet", "easycorridor", "lowdeathii", "sashamingvortex", "bestdrop", "infected", "fracture", "epstein", "jag67", "cherry", "hellmachine", "space", "terraprocessing", "theflyingrocks", "mango", "terraadventureii", "jag", "badabum", "poocubed", "cure", "lowdeathiii", "ccopakpectob", "unmaded", "fuzeii", "sapphireglow", "noviolence", "element29cu"],
       "progress": {
         "sigareta2": 100,
         "insomnia": 100,
@@ -253,8 +253,10 @@
         "unmaded": 100,
         "fuzeii": 100,
         "sapphireglow": 100,
-        "noviolence": 100
-        }
+        "noviolence": 100,
+        "element29cu": 100
+        },
+                   "verifiedDemons": ["element29cu"]
       },
        {
       "id": "vossozdatel",
