@@ -126,6 +126,15 @@
       "image": "images/file_0000000069887209901acf71436c8fc9.png",
       "description": "1 of first rated demons."
     },
+    {
+      "id": "element29cu",
+      "name": "Element 29 Cu",
+      "creator": "VladGDMJ",
+      "tags": ["Cube", "Medium", "StarRate", "InsaneDemon"],
+      "videoUrl": "https://youtu.be/0dOohopsdwc",
+      "image": "images/element29cu.png",
+      "description": ""
+    },
      {
       "id": "heliorobot",
       "name": "HelioRobot",
