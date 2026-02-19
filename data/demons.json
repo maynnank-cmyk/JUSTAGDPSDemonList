@@ -126,6 +126,15 @@
       "image": "images/file_0000000069887209901acf71436c8fc9.png",
       "description": "1 of first rated demons."
     },
+     {
+      "id": "heliorobot",
+      "name": "HelioRobot",
+      "creator": "Sayori",
+      "tags": ["Robot", "OnlyOneGameMode", "Medium", "StarRate", "HardDemon"],
+      "videoUrl": "https://youtu.be/tiDeKxbGxlM?si=L92j5SPaR2W75e-7",
+      "image": "images/heliorobot.png",
+      "description": ""
+    },
       {
       "id": "terraespera",
       "name": "Terra Espera",
@@ -223,15 +232,6 @@
       "tags": ["Cube", "1.0", "Medium", "StarRate", "HardDemon"],
       "videoUrl": "https://youtu.be/DIMXbHunj-4",
       "image": "images/oldamethyst.png",
-      "description": ""
-    },
-    {
-      "id": "heliorobot",
-      "name": "HelioRobot",
-      "creator": "Sayori",
-      "tags": ["Robot", "OnlyOneGameMode", "Medium", "StarRate", "HardDemon"],
-      "videoUrl": "https://youtu.be/tiDeKxbGxlM?si=L92j5SPaR2W75e-7",
-      "image": "images/heliorobot.png",
       "description": ""
     },
     {
