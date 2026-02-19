@@ -25,6 +25,18 @@
       "progress": {
       }
     },
+     {
+      "id": "likerr",
+      "name": "Likerr",
+      "avatar": "L",
+      "country": "",
+      "completedDemons": [
+        "namelesschallenge6",
+         "supersuperhatemeworl"
+      ],
+      "progress": {
+      }
+    },
     {
       "id": "Nazorro",
       "name": "Nazorro",
