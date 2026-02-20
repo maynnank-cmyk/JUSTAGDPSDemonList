@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Простой тест Supabase</title>
+</head>
+<body>
+    <h3>Проверка ключа</h3>
+    <div id="result"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        // ВСТАВЬТЕ ДАННЫЕ ЗДЕСЬ
+        const SUPABASE_URL = 'https://xmtstpmlsdxtkyhkysdx.supabase.co';
+        const SUPABASE_ANON_KEY = 'вставьте_ключ_сюда'; // Вставьте ключ
+
+        const result = document.getElementById('result');
+        
+        try {
+            // Проверяем ключ на недопустимые символы
+            const hasInvalid = /[^\x20-\x7E]/.test(SUPABASE_ANON_KEY);
+            result.innerHTML += `<p>🔍 Есть недопустимые символы: ${hasInvalid ? 'ДА' : 'НЕТ'}</p>`;
+            
+            if (hasInvalid) {
+                result.innerHTML += '<p>❌ Ключ содержит недопустимые символы!</p>';
+                result.innerHTML += '<p>Скопируйте ключ заново через кнопку "Copy" в Supabase</p>';
+            } else {
+                result.innerHTML += '<p>✅ Ключ выглядит нормально, пробуем подключиться...</p>';
+                
+                const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+                
+                supabase.from('demons').select('count', { count: 'exact', head: true })
+                    .then(({ error }) => {
+                        if (error) {
+                            result.innerHTML += `<p>❌ Ошибка: ${error.message}</p>`;
+                        } else {
+                            result.innerHTML += '<p>✅ Подключение успешно!</p>';
+                        }
+                    });
+            }
+        } catch (e) {
+            result.innerHTML += `<p>❌ Ошибка: ${e.message}</p>`;
+        }
+    </script>
+</body>
+</html>
