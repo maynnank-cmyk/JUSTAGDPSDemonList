@@ -16,43 +16,69 @@
             border-radius: 5px;
             cursor: pointer;
             margin: 5px;
+            font-weight: bold;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255,71,87,0.3);
         }
         input {
             background: #1a1a2e;
             border: 2px solid #2d2d4d;
             color: white;
-            padding: 8px;
+            padding: 8px 12px;
             border-radius: 5px;
             margin: 5px;
             width: 250px;
         }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .card {
+            background: #111122;
+            border: 2px solid #2d2d4d;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
     </style>
 </head>
 <body>
-    <h1>🔐 Тест авторизации Supabase</h1>
-    
-    <div style="margin: 20px 0;">
-        <h3>📝 Тестовая регистрация</h3>
-        <input type="email" id="regEmail" placeholder="Email" value="test@example.com">
-        <input type="password" id="regPassword" placeholder="Пароль" value="test123456">
-        <input type="text" id="regUsername" placeholder="Username" value="testuser">
-        <button onclick="testRegister()">Зарегистрироваться</button>
+    <div class="container">
+        <h1>🔐 Тест авторизации Supabase</h1>
+        
+        <div class="card">
+            <h3>🔌 Проверка подключения</h3>
+            <button onclick="window.testConnection()">Проверить подключение</button>
+        </div>
+        
+        <div class="card">
+            <h3>📝 Регистрация</h3>
+            <input type="email" id="regEmail" placeholder="Email" value="test@example.com">
+            <input type="password" id="regPassword" placeholder="Пароль" value="test123456">
+            <input type="text" id="regUsername" placeholder="Username" value="testuser">
+            <button onclick="window.testRegister()">Зарегистрироваться</button>
+        </div>
+        
+        <div class="card">
+            <h3>🔑 Вход</h3>
+            <input type="email" id="loginEmail" placeholder="Email" value="test@example.com">
+            <input type="password" id="loginPassword" placeholder="Пароль" value="test123456">
+            <button onclick="window.testLogin()">Войти</button>
+        </div>
+        
+        <div class="card">
+            <h3>👤 Пользователь</h3>
+            <button onclick="window.checkUser()">Проверить пользователя</button>
+            <button onclick="window.logout()">Выйти</button>
+        </div>
+        
+        <div class="card">
+            <h3>📋 Результаты:</h3>
+            <div id="result" style="background: #1a1a2e; padding: 15px; border-radius: 5px; min-height: 100px;"></div>
+        </div>
     </div>
-    
-    <div style="margin: 20px 0;">
-        <h3>🔑 Тестовый вход</h3>
-        <input type="email" id="loginEmail" placeholder="Email" value="test@example.com">
-        <input type="password" id="loginPassword" placeholder="Пароль" value="test123456">
-        <button onclick="testLogin()">Войти</button>
-    </div>
-    
-    <div style="margin: 20px 0;">
-        <button onclick="testConnection()">🔌 Проверить подключение</button>
-        <button onclick="checkUser()">👤 Проверить пользователя</button>
-        <button onclick="logout()">🚪 Выйти</button>
-    </div>
-    
-    <div id="result" style="margin-top: 20px;"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
@@ -68,14 +94,17 @@
         function log(message, type = 'info') {
             const color = type === 'success' ? '#2ed573' : 
                          type === 'error' ? '#ff4757' : '#4a6fa5';
-            resultDiv.innerHTML += `<p style="color: ${color}">${message}</p>`;
+            resultDiv.innerHTML += `<p style="color: ${color}; margin: 5px 0;">${message}</p>`;
+            // Автоскролл вниз
+            resultDiv.scrollTop = resultDiv.scrollHeight;
         }
 
         function clearLog() {
             resultDiv.innerHTML = '';
         }
 
-        async function testConnection() {
+        // Делаем функции глобальными, привязывая к window
+        window.testConnection = async function() {
             clearLog();
             log('🔄 Проверка подключения...');
             
@@ -86,15 +115,16 @@
                 
                 if (error) {
                     log(`❌ Ошибка: ${error.message}`, 'error');
+                    log(`🔍 Детали: ${JSON.stringify(error)}`, 'error');
                 } else {
                     log('✅ Подключение к Supabase работает!', 'success');
                 }
             } catch (err) {
                 log(`❌ Ошибка: ${err.message}`, 'error');
             }
-        }
+        };
 
-        async function testRegister() {
+        window.testRegister = async function() {
             clearLog();
             const email = document.getElementById('regEmail').value;
             const password = document.getElementById('regPassword').value;
@@ -103,6 +133,7 @@
             log(`🔄 Регистрация: ${email}`);
             
             try {
+                // 1. Регистрация в Auth
                 const { data, error } = await supabase.auth.signUp({
                     email: email,
                     password: password,
@@ -115,38 +146,42 @@
                 
                 if (error) {
                     log(`❌ Ошибка регистрации: ${error.message}`, 'error');
-                } else {
-                    log('✅ Регистрация успешна!', 'success');
-                    log(`👤 Пользователь: ${data.user.email}`, 'info');
+                    return;
+                }
+                
+                log('✅ Регистрация в Auth успешна!', 'success');
+                log(`👤 Пользователь ID: ${data.user.id}`, 'info');
+                
+                // 2. Создание профиля в таблице users
+                if (data.user) {
+                    log('🔄 Создание профиля в таблице users...');
                     
-                    // Создаем запись в таблице users
-                    if (data.user) {
-                        const { error: insertError } = await supabase
-                            .from('users')
-                            .insert([
-                                {
-                                    id: data.user.id,
-                                    username: username,
-                                    email: email,
-                                    points: 0,
-                                    rank: 'Новичок',
-                                    completed_demons: []
-                                }
-                            ]);
-                        
-                        if (insertError) {
-                            log(`⚠️ Ошибка создания профиля: ${insertError.message}`, 'error');
-                        } else {
-                            log('✅ Профиль создан в таблице users', 'success');
-                        }
+                    const { error: insertError } = await supabase
+                        .from('users')
+                        .insert([
+                            {
+                                id: data.user.id,
+                                username: username,
+                                email: email,
+                                points: 0,
+                                rank: 'Новичок',
+                                completed_demons: []
+                            }
+                        ]);
+                    
+                    if (insertError) {
+                        log(`❌ Ошибка создания профиля: ${insertError.message}`, 'error');
+                        log(`🔍 Детали: ${JSON.stringify(insertError)}`, 'error');
+                    } else {
+                        log('✅ Профиль создан в таблице users', 'success');
                     }
                 }
             } catch (err) {
                 log(`❌ Ошибка: ${err.message}`, 'error');
             }
-        }
+        };
 
-        async function testLogin() {
+        window.testLogin = async function() {
             clearLog();
             const email = document.getElementById('loginEmail').value;
             const password = document.getElementById('loginPassword').value;
@@ -161,29 +196,33 @@
                 
                 if (error) {
                     log(`❌ Ошибка входа: ${error.message}`, 'error');
+                    return;
+                }
+                
+                log('✅ Вход выполнен успешно!', 'success');
+                log(`👤 Email: ${data.user.email}`, 'info');
+                log(`🆔 ID: ${data.user.id}`, 'info');
+                
+                // Получаем данные из таблицы users
+                const { data: userData, error: userError } = await supabase
+                    .from('users')
+                    .select('*')
+                    .eq('id', data.user.id)
+                    .single();
+                
+                if (userError) {
+                    log(`⚠️ Профиль не найден в таблице users: ${userError.message}`, 'error');
                 } else {
-                    log('✅ Вход выполнен успешно!', 'success');
-                    log(`👤 Пользователь: ${data.user.email}`, 'info');
-                    
-                    // Получаем данные из таблицы users
-                    const { data: userData, error: userError } = await supabase
-                        .from('users')
-                        .select('*')
-                        .eq('id', data.user.id)
-                        .single();
-                    
-                    if (userError) {
-                        log(`⚠️ Ошибка получения профиля: ${userError.message}`, 'error');
-                    } else {
-                        log(`📊 Статистика: ${userData.points} очков, ранг: ${userData.rank}`, 'info');
-                    }
+                    log(`📊 Статистика: ${userData.points} очков, ранг: ${userData.rank}`, 'success');
+                    log(`👤 Имя: ${userData.username}`, 'info');
+                    log(`✅ Пройдено демонов: ${userData.completed_demons.length}`, 'info');
                 }
             } catch (err) {
                 log(`❌ Ошибка: ${err.message}`, 'error');
             }
-        }
+        };
 
-        async function checkUser() {
+        window.checkUser = async function() {
             clearLog();
             
             try {
@@ -204,9 +243,9 @@
                         .single();
                     
                     if (userError) {
-                        log(`⚠️ Нет профиля в таблице users: ${userError.message}`, 'error');
+                        log(`⚠️ Профиль не найден: ${userError.message}`, 'error');
                     } else {
-                        log(`📊 Данные из таблицы users:`, 'success');
+                        log('📊 Данные из таблицы users:', 'success');
                         log(`Имя: ${userData.username}`, 'info');
                         log(`Очки: ${userData.points}`, 'info');
                         log(`Ранг: ${userData.rank}`, 'info');
@@ -218,9 +257,9 @@
             } catch (err) {
                 log(`❌ Ошибка: ${err.message}`, 'error');
             }
-        }
+        };
 
-        async function logout() {
+        window.logout = async function() {
             clearLog();
             
             try {
@@ -234,7 +273,10 @@
             } catch (err) {
                 log(`❌ Ошибка: ${err.message}`, 'error');
             }
-        }
+        };
+
+        // Автоматическая проверка при загрузке
+        window.testConnection();
     </script>
 </body>
 </html>
