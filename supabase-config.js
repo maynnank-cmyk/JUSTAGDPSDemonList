@@ -1,237 +1,76 @@
 // supabase-config.js
-import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm'
+// ВАЖНО: вставьте СВОИ данные из Supabase!
 
-const SUPABASE_URL = 'https://kegcpzeulrbarwyglcsq.supabase.co'
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtlZ2NwemV1bHJiYXJ3eWdsY3NxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE1OTMzMTEsImV4cCI6MjA4NzE2OTMxMX0.sAQzdqQ1cFhPITd7yC6pDHIj_vIYxX6CLxQ-UPPxm4g'
+const SUPABASE_URL = 'https://your-project-id.supabase.co'; // ← ВСТАВЬТЕ СВОЙ URL
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'; // ← ВСТАВЬТЕ СВОЙ КЛЮЧ
 
-export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+// Проверяем, что библиотека загружена
+if (typeof window.supabase === 'undefined') {
+    console.error('❌ Supabase библиотека не загружена! Подключаем...');
+    // Если не загружена, загружаем динамически
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+    script.onload = () => {
+        console.log('✅ Supabase библиотека загружена');
+        initializeSupabase();
+    };
+    document.head.appendChild(script);
+} else {
+    initializeSupabase();
+}
 
-// Класс для работы с БД
-class Database {
-    // ===== ПОЛЬЗОВАТЕЛИ =====
-    async getUsers() {
-        const { data, error } = await supabase
-            .from('users')
-            .select('*')
-            .order('points', { ascending: false })
+function initializeSupabase() {
+    // Создаем клиент
+    window.supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    console.log('✅ Supabase клиент создан');
+
+    // Тестируем подключение
+    testConnection();
+}
+
+async function testConnection() {
+    try {
+        console.log('🔄 Тестируем подключение к Supabase...');
         
-        if (error) throw error
-        return data
-    }
-
-    async getUserById(id) {
-        const { data, error } = await supabase
-            .from('users')
-            .select('*')
-            .eq('id', id)
-            .single()
+        const { data, error } = await window.supabaseClient
+            .from('demons')
+            .select('count', { count: 'exact', head: true });
         
-        if (error) throw error
-        return data
-    }
-
-    async updateUserPoints(userId, points) {
-        const { data, error } = await supabase
-            .from('users')
-            .update({ points: points })
-            .eq('id', userId)
-        
-        if (error) throw error
-        return data
-    }
-
-    async addCompletedDemon(userId, demonId) {
-        // Сначала получаем текущего пользователя
-        const user = await this.getUserById(userId)
-        
-        // Добавляем демона, если его еще нет
-        if (!user.completed_demons.includes(demonId)) {
-            const newDemons = [...user.completed_demons, demonId]
-            
-            const { data, error } = await supabase
-                .from('users')
-                .update({ completed_demons: newDemons })
-                .eq('id', userId)
-            
-            if (error) throw error
-            return data
+        if (error) {
+            console.error('❌ Ошибка подключения:', error.message);
+            showConnectionError(error);
+            return false;
         }
-        return null
-    }
-
-    // ===== ДЕМОНЫ =====
-    async getDemons() {
-        const { data, error } = await supabase
-            .from('demons')
-            .select('*')
-            .order('position', { ascending: true })
         
-        if (error) throw error
-        return data
-    }
-
-    async getDemonById(id) {
-        const { data, error } = await supabase
-            .from('demons')
-            .select('*')
-            .eq('id', id)
-            .single()
+        console.log('✅ Подключение к Supabase успешно!');
+        return true;
         
-        if (error) throw error
-        return data
-    }
-
-    async searchDemons(searchTerm) {
-        const { data, error } = await supabase
-            .from('demons')
-            .select('*')
-            .or(`name.ilike.%${searchTerm}%,creator.ilike.%${searchTerm}%`)
-            .order('position', { ascending: true })
-        
-        if (error) throw error
-        return data
-    }
-
-    async getDemonsByTags(tags) {
-        const { data, error } = await supabase
-            .from('demons')
-            .select('*')
-            .contains('tags', tags)
-            .order('position', { ascending: true })
-        
-        if (error) throw error
-        return data
-    }
-
-    // ===== АВТОРИЗАЦИЯ =====
-    async register(email, password, username) {
-        // Регистрация в Supabase Auth
-        const { data: authData, error: authError } = await supabase.auth.signUp({
-            email: email,
-            password: password,
-            options: {
-                data: {
-                    username: username
-                }
-            }
-        })
-
-        if (authError) throw authError
-
-        // Создаем запись в таблице users
-        if (authData.user) {
-            const { error: dbError } = await supabase
-                .from('users')
-                .insert([
-                    {
-                        id: authData.user.id,
-                        username: username,
-                        email: email,
-                        points: 0,
-                        rank: 'Новичок',
-                        completed_demons: []
-                    }
-                ])
-
-            if (dbError) throw dbError
-        }
-
-        return authData
-    }
-
-    async login(email, password) {
-        const { data, error } = await supabase.auth.signInWithPassword({
-            email: email,
-            password: password
-        })
-
-        if (error) throw error
-        return data
-    }
-
-    async logout() {
-        const { error } = await supabase.auth.signOut()
-        if (error) throw error
-    }
-
-    async getCurrentUser() {
-        const { data: { user } } = await supabase.auth.getUser()
-        if (user) {
-            // Получаем дополнительные данные из таблицы users
-            const userData = await this.getUserById(user.id)
-            return { ...user, ...userData }
-        }
-        return null
-    }
-
-    // ===== ЛИДЕРБОРД =====
-    async getLeaderboard(limit = 100) {
-        const { data, error } = await supabase
-            .from('users')
-            .select('username, points, rank, completed_demons')
-            .order('points', { ascending: false })
-            .limit(limit)
-        
-        if (error) throw error
-        return data
-    }
-
-    // ===== СТАТИСТИКА =====
-    async getDemonStats() {
-        const { data: demons, error } = await supabase
-            .from('demons')
-            .select('tags')
-        
-        if (error) throw error
-
-        // Собираем статистику по тегам
-        const tagStats = {}
-        demons.forEach(demon => {
-            demon.tags.forEach(tag => {
-                tagStats[tag] = (tagStats[tag] || 0) + 1
-            })
-        })
-
-        return {
-            totalDemons: demons.length,
-            tagStats: tagStats
-        }
-    }
-
-    // ===== REALTIME ПОДПИСКИ =====
-    subscribeToLeaderboard(callback) {
-        return supabase
-            .channel('leaderboard-changes')
-            .on(
-                'postgres_changes',
-                {
-                    event: '*',
-                    schema: 'public',
-                    table: 'users'
-                },
-                (payload) => {
-                    callback(payload)
-                }
-            )
-            .subscribe()
-    }
-
-    subscribeToDemons(callback) {
-        return supabase
-            .channel('demon-changes')
-            .on(
-                'postgres_changes',
-                {
-                    event: '*',
-                    schema: 'public',
-                    table: 'demons'
-                },
-                (payload) => {
-                    callback(payload)
-                }
-            )
-            .subscribe()
+    } catch (err) {
+        console.error('❌ Критическая ошибка:', err);
+        return false;
     }
 }
 
-export const db = new Database()
+function showConnectionError(error) {
+    const errorDiv = document.createElement('div');
+    errorDiv.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: #ff4757;
+        color: white;
+        padding: 15px 20px;
+        border-radius: 10px;
+        font-weight: bold;
+        z-index: 9999;
+        box-shadow: 0 4px 20px rgba(255,71,87,0.3);
+    `;
+    errorDiv.innerHTML = `
+        ❌ Ошибка подключения к БД:<br>
+        ${error.message}<br>
+        <small>Проверьте URL и anon key в supabase-config.js</small>
+    `;
+    document.body.appendChild(errorDiv);
+    
+    setTimeout(() => errorDiv.remove(), 5000);
+}
