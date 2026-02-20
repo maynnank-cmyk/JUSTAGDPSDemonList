@@ -1,20 +1,20 @@
 {
   "impossibleDemons": [
     {
-      "id": "mindless",
-      "name": "MINDLESS",
-      "creator": "VXMNC",
-      "videoUrl": "https://youtu.be/JtJa9tCkzj8",
-      "tags": ["Epic Decorations", "15+ CPS", "Memory", "Humanly impossible", "Ship", "Cube", "Spam"],
-      "image": "",
-      "description": ""
-    },
-     {
       "id": "kokuten",
       "name": "KOKUTEN",
       "creator": "wWanderer",
       "videoUrl": "https://youtu.be/xGgfdmhOZ4A?si=fh9pEfi_3vP_elsG",
       "tags": ["Featured Decorations", "15+ CPS", "Humanly impossible", "Ship", "Cube", "Spam"],
+      "image": "",
+      "description": ""
+    },
+    {
+      "id": "mindless",
+      "name": "MINDLESS",
+      "creator": "VXMNC",
+      "videoUrl": "https://youtu.be/JtJa9tCkzj8",
+      "tags": ["Epic Decorations", "15+ CPS", "Memory", "Humanly impossible", "Ship", "Cube", "Spam"],
       "image": "",
       "description": ""
     },
