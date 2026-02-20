@@ -1,8 +1,8 @@
 // supabase-config.js
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm'
 
-const SUPABASE_URL = 'https://ваш-проект.supabase.co'
-const SUPABASE_ANON_KEY = 'ваш-anon-ключ'
+const SUPABASE_URL = 'https://kegcpzeulrbarwyglcsq.supabase.co'
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtlZ2NwemV1bHJiYXJ3eWdsY3NxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE1OTMzMTEsImV4cCI6MjA4NzE2OTMxMX0.sAQzdqQ1cFhPITd7yC6pDHIj_vIYxX6CLxQ-UPPxm4g'
 
 export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
 
