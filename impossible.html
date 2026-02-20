@@ -2508,6 +2508,32 @@ html {
             });
         }
 
+        // ========== НОВАЯ ФУНКЦИЯ ДЛЯ ПОЛУЧЕНИЯ ID ИЗ YOUTUBE URL ==========
+        function getYouTubeVideoId(url) {
+            if (!url) return null;
+            
+            const patterns = [
+                /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&?/]+)/,
+                /youtube\.com\/watch\?.*v=([^&]+)/,
+                /youtu\.be\/([^?]+)/
+            ];
+            
+            for (const pattern of patterns) {
+                const match = url.match(pattern);
+                if (match && match[1]) {
+                    return match[1];
+                }
+            }
+            
+            return null;
+        }
+
+        // ========== НОВАЯ ФУНКЦИЯ ДЛЯ ПОЛУЧЕНИЯ ПРЕВЬЮ ИЗ YOUTUBE ==========
+        function getYouTubeThumbnail(videoId) {
+            if (!videoId) return null;
+            return `https://img.youtube.com/vi/${videoId}/mqdefault.jpg`; // mqdefault (320x180) - хороший размер для превью
+        }
+
         // ========== ДАННЫЕ НЕВОЗМОЖНЫХ ДЕМОНОВ ==========
         let impossibleDemons = [];
         let filteredImpossibleDemons = [];
@@ -2709,20 +2735,33 @@ html {
             }
         }
 
-        async function getAvailableImage(demonId) {
-            if (imageCache.has(demonId)) {
-                return imageCache.get(demonId);
+        // ========== ОБНОВЛЕННАЯ ФУНКЦИЯ ЗАГРУЗКИ ИЗОБРАЖЕНИЙ ==========
+        async function getAvailableImage(demon) {
+            // Проверяем кэш
+            if (imageCache.has(demon.id)) {
+                return imageCache.get(demon.id);
             }
 
+            // Сначала проверяем, есть ли YouTube ссылка
+            if (demon.videoUrl) {
+                const videoId = getYouTubeVideoId(demon.videoUrl);
+                if (videoId) {
+                    const youtubeThumb = getYouTubeThumbnail(videoId);
+                    imageCache.set(demon.id, youtubeThumb);
+                    return youtubeThumb;
+                }
+            }
+
+            // Если нет YouTube, проверяем локальные файлы
             const imageFormats = ['jpg', 'png', 'webp'];
             
             for (const format of imageFormats) {
-                const imageUrl = `images/impossible/${demonId}.${format}`;
+                const imageUrl = `images/impossible/${demon.id}.${format}`;
                 
                 try {
                     const response = await fetch(imageUrl, { method: 'HEAD' });
                     if (response.ok) {
-                        imageCache.set(demonId, imageUrl);
+                        imageCache.set(demon.id, imageUrl);
                         return imageUrl;
                     }
                 } catch (error) {
@@ -2730,7 +2769,7 @@ html {
                 }
             }
             
-            imageCache.set(demonId, null);
+            imageCache.set(demon.id, null);
             return null;
         }
 
@@ -2808,6 +2847,7 @@ html {
             }
         }
 
+        // ========== ОБНОВЛЕННАЯ ФУНКЦИЯ АСИНХРОННОЙ ЗАГРУЗКИ ИЗОБРАЖЕНИЙ ==========
         async function loadImagesAsync() {
             if (impossibleDemons.length === 0) return;
             
@@ -2820,35 +2860,38 @@ html {
                 
                 await Promise.all(
                     batch.map(async (demon) => {
-                        if (demon.image && demon.image.trim() !== '') {
-                            try {
-                                const response = await fetch(demon.image, { method: 'HEAD' });
-                                if (!response.ok) {
-                                    demon.image = '';
-                                }
-                            } catch (error) {
-                                demon.image = '';
-                            }
-                        }
+                        // Получаем изображение (из YouTube или локальное)
+                        const imageUrl = await getAvailableImage(demon);
                         
-                        if (!demon.image || demon.image.trim() === '') {
-                            const imageUrl = await getAvailableImage(demon.id);
-                            if (imageUrl) {
-                                demon.image = imageUrl;
-                            }
-                        }
-                        
-                        if (demon.image && demon.image.trim() !== '') {
+                        if (imageUrl) {
+                            demon.image = imageUrl;
+                            
+                            // Обновляем изображение в DOM, если элемент существует
                             const demonElement = document.querySelector(`[data-demon-id="${demon.id}"]`);
                             if (demonElement) {
                                 const imgElement = demonElement.querySelector('.demon-image img');
                                 if (imgElement) {
-                                    imgElement.src = demon.image;
+                                    imgElement.src = imageUrl;
                                     imgElement.style.opacity = '0';
                                     setTimeout(() => {
                                         imgElement.style.opacity = '1';
                                         imgElement.style.transition = 'opacity 0.5s ease';
                                     }, 10);
+                                } else {
+                                    // Если нет img элемента, пересоздаем его
+                                    const imageContainer = demonElement.querySelector('.demon-image');
+                                    if (imageContainer) {
+                                        imageContainer.innerHTML = `<img src="${imageUrl}" alt="${demon.name}" loading="lazy" style="opacity:0; transition:opacity 0.5s ease;" onload="this.style.opacity=1">`;
+                                    }
+                                }
+                            }
+                        } else {
+                            // Если нет изображения, показываем плейсхолдер
+                            const demonElement = document.querySelector(`[data-demon-id="${demon.id}"]`);
+                            if (demonElement) {
+                                const imageContainer = demonElement.querySelector('.demon-image');
+                                if (imageContainer && !imageContainer.querySelector('img')) {
+                                    imageContainer.innerHTML = `<div class="image-placeholder">${demon.name.charAt(0)}</div>`;
                                 }
                             }
                         }
@@ -2910,6 +2953,7 @@ html {
             }
         }
 
+        // ========== ОБНОВЛЕННАЯ ФУНКЦИЯ ОТОБРАЖЕНИЯ ДЕМОНОВ ==========
         function renderImpossibleDemons() {
             const demonList = document.getElementById('demonList');
             const currentLang = localStorage.getItem('language') || 'ru';
@@ -2961,6 +3005,7 @@ html {
                     openDemonPage(demon.id);
                 });
                 
+                // Проверяем, есть ли YouTube превью или локальное изображение
                 const hasImage = demon.image && demon.image.trim() !== '';
                 
                 let tagsHTML = '';
@@ -2978,6 +3023,8 @@ html {
                         ${hasImage ? 
                             `<img src="${demon.image}" alt="${demon.name}" 
                                   loading="lazy"
+                                  style="opacity:0; transition:opacity 0.5s ease;"
+                                  onload="this.style.opacity=1"
                                   onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'image-placeholder\'>${demon.name.charAt(0)}</div>';">` :
                             `<div class="image-placeholder">${demon.name.charAt(0)}</div>`
                         }
