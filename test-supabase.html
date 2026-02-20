@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Тест Supabase</title>
+    <style>
+        body { background: #0a0a0f; color: white; font-family: monospace; padding: 20px; }
+        .success { color: #2ed573; }
+        .error { color: #ff4757; }
+        pre { background: #1a1a2e; padding: 10px; border-radius: 5px; }
+        button { 
+            background: linear-gradient(135deg, #ff4757, #8a6bff);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔌 Диагностика Supabase</h1>
+    
+    <button onclick="runTests()">Запустить тесты</button>
+    <button onclick="clearLog()">Очистить</button>
+    
+    <div id="log"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const logDiv = document.getElementById('log');
+        
+        function addLog(message, type = 'info') {
+            const color = type === 'success' ? '#2ed573' : 
+                         type === 'error' ? '#ff4757' : '#4a6fa5';
+            logDiv.innerHTML += `<p style="color: ${color}">${message}</p>`;
+        }
+
+        async function runTests() {
+            logDiv.innerHTML = '';
+            
+            // Тест 1: Проверка библиотеки
+            addLog('🔄 Тест 1: Проверка Supabase библиотеки...');
+            if (typeof window.supabase !== 'undefined') {
+                addLog('✅ Supabase библиотека загружена', 'success');
+            } else {
+                addLog('❌ Supabase библиотека НЕ загружена', 'error');
+                return;
+            }
+
+            // Тест 2: Вставьте свои данные
+            const SUPABASE_URL = 'https://ваш-проект.supabase.co'; // ← ВСТАВЬТЕ
+            const SUPABASE_ANON_KEY = 'ваш-anon-ключ'; // ← ВСТАВЬТЕ
+            
+            addLog(`🔄 URL: ${SUPABASE_URL}`);
+            addLog(`🔄 Key: ${SUPABASE_ANON_KEY.substring(0, 20)}...`);
+
+            // Тест 3: Создание клиента
+            try {
+                const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+                addLog('✅ Клиент создан', 'success');
+                
+                // Тест 4: Проверка подключения
+                addLog('🔄 Проверка подключения к таблице demons...');
+                const { data, error } = await supabaseClient
+                    .from('demons')
+                    .select('count', { count: 'exact', head: true });
+                
+                if (error) {
+                    addLog(`❌ Ошибка: ${error.message}`, 'error');
+                    addLog(`<pre>${JSON.stringify(error, null, 2)}</pre>`);
+                } else {
+                    addLog('✅ Подключение успешно!', 'success');
+                    
+                    // Тест 5: Получение данных
+                    const { data: demons, error: demonsError } = await supabaseClient
+                        .from('demons')
+                        .select('*')
+                        .limit(3);
+                    
+                    if (!demonsError && demons) {
+                        addLog(`✅ Найдено демонов: ${demons.length}`, 'success');
+                        addLog('<pre>' + JSON.stringify(demons, null, 2) + '</pre>');
+                    }
+                }
+                
+            } catch (err) {
+                addLog(`❌ Ошибка: ${err.message}`, 'error');
+            }
+        }
+
+        function clearLog() {
+            logDiv.innerHTML = '';
+        }
+    </script>
+</body>
+</html>
