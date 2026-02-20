@@ -1,44 +1,239 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Простой тест Supabase</title>
+    <title>Тест авторизации Supabase</title>
+    <style>
+        body { background: #0a0a0f; color: white; font-family: monospace; padding: 20px; }
+        .success { color: #2ed573; }
+        .error { color: #ff4757; }
+        .info { color: #4a6fa5; }
+        pre { background: #1a1a2e; padding: 10px; border-radius: 5px; }
+        button { 
+            background: linear-gradient(135deg, #ff4757, #8a6bff);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        input {
+            background: #1a1a2e;
+            border: 2px solid #2d2d4d;
+            color: white;
+            padding: 8px;
+            border-radius: 5px;
+            margin: 5px;
+            width: 250px;
+        }
+    </style>
 </head>
 <body>
-    <h3>Проверка ключа</h3>
-    <div id="result"></div>
+    <h1>🔐 Тест авторизации Supabase</h1>
+    
+    <div style="margin: 20px 0;">
+        <h3>📝 Тестовая регистрация</h3>
+        <input type="email" id="regEmail" placeholder="Email" value="test@example.com">
+        <input type="password" id="regPassword" placeholder="Пароль" value="test123456">
+        <input type="text" id="regUsername" placeholder="Username" value="testuser">
+        <button onclick="testRegister()">Зарегистрироваться</button>
+    </div>
+    
+    <div style="margin: 20px 0;">
+        <h3>🔑 Тестовый вход</h3>
+        <input type="email" id="loginEmail" placeholder="Email" value="test@example.com">
+        <input type="password" id="loginPassword" placeholder="Пароль" value="test123456">
+        <button onclick="testLogin()">Войти</button>
+    </div>
+    
+    <div style="margin: 20px 0;">
+        <button onclick="testConnection()">🔌 Проверить подключение</button>
+        <button onclick="checkUser()">👤 Проверить пользователя</button>
+        <button onclick="logout()">🚪 Выйти</button>
+    </div>
+    
+    <div id="result" style="margin-top: 20px;"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
-        // ВСТАВЬТЕ ДАННЫЕ ЗДЕСЬ
-        const SUPABASE_URL = 'https://xmtstpmlsdxtkyhkysdx.supabase.co';
-        const SUPABASE_ANON_KEY = 'вставьте_ключ_сюда'; // Вставьте ключ
-
-        const result = document.getElementById('result');
+        // Конфигурация Supabase
+        const SUPABASE_URL = 'https://kegcpzeulrbarwyglcsq.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtlZ2NwemV1bHJiYXJ3eWdsY3NxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE1OTMzMTEsImV4cCI6MjA4NzE2OTMxMX0.sAQzdqQ1cFhPITd7yC6pDHIj_vIYxX6CLxQ-UPPxm4g';
         
-        try {
-            // Проверяем ключ на недопустимые символы
-            const hasInvalid = /[^\x20-\x7E]/.test(SUPABASE_ANON_KEY);
-            result.innerHTML += `<p>🔍 Есть недопустимые символы: ${hasInvalid ? 'ДА' : 'НЕТ'}</p>`;
+        // Создаем клиент
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        
+        const resultDiv = document.getElementById('result');
+
+        function log(message, type = 'info') {
+            const color = type === 'success' ? '#2ed573' : 
+                         type === 'error' ? '#ff4757' : '#4a6fa5';
+            resultDiv.innerHTML += `<p style="color: ${color}">${message}</p>`;
+        }
+
+        function clearLog() {
+            resultDiv.innerHTML = '';
+        }
+
+        async function testConnection() {
+            clearLog();
+            log('🔄 Проверка подключения...');
             
-            if (hasInvalid) {
-                result.innerHTML += '<p>❌ Ключ содержит недопустимые символы!</p>';
-                result.innerHTML += '<p>Скопируйте ключ заново через кнопку "Copy" в Supabase</p>';
-            } else {
-                result.innerHTML += '<p>✅ Ключ выглядит нормально, пробуем подключиться...</p>';
+            try {
+                const { data, error } = await supabase
+                    .from('demons')
+                    .select('count', { count: 'exact', head: true });
                 
-                const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-                
-                supabase.from('demons').select('count', { count: 'exact', head: true })
-                    .then(({ error }) => {
-                        if (error) {
-                            result.innerHTML += `<p>❌ Ошибка: ${error.message}</p>`;
-                        } else {
-                            result.innerHTML += '<p>✅ Подключение успешно!</p>';
-                        }
-                    });
+                if (error) {
+                    log(`❌ Ошибка: ${error.message}`, 'error');
+                } else {
+                    log('✅ Подключение к Supabase работает!', 'success');
+                }
+            } catch (err) {
+                log(`❌ Ошибка: ${err.message}`, 'error');
             }
-        } catch (e) {
-            result.innerHTML += `<p>❌ Ошибка: ${e.message}</p>`;
+        }
+
+        async function testRegister() {
+            clearLog();
+            const email = document.getElementById('regEmail').value;
+            const password = document.getElementById('regPassword').value;
+            const username = document.getElementById('regUsername').value;
+            
+            log(`🔄 Регистрация: ${email}`);
+            
+            try {
+                const { data, error } = await supabase.auth.signUp({
+                    email: email,
+                    password: password,
+                    options: {
+                        data: {
+                            username: username
+                        }
+                    }
+                });
+                
+                if (error) {
+                    log(`❌ Ошибка регистрации: ${error.message}`, 'error');
+                } else {
+                    log('✅ Регистрация успешна!', 'success');
+                    log(`👤 Пользователь: ${data.user.email}`, 'info');
+                    
+                    // Создаем запись в таблице users
+                    if (data.user) {
+                        const { error: insertError } = await supabase
+                            .from('users')
+                            .insert([
+                                {
+                                    id: data.user.id,
+                                    username: username,
+                                    email: email,
+                                    points: 0,
+                                    rank: 'Новичок',
+                                    completed_demons: []
+                                }
+                            ]);
+                        
+                        if (insertError) {
+                            log(`⚠️ Ошибка создания профиля: ${insertError.message}`, 'error');
+                        } else {
+                            log('✅ Профиль создан в таблице users', 'success');
+                        }
+                    }
+                }
+            } catch (err) {
+                log(`❌ Ошибка: ${err.message}`, 'error');
+            }
+        }
+
+        async function testLogin() {
+            clearLog();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            log(`🔄 Вход: ${email}`);
+            
+            try {
+                const { data, error } = await supabase.auth.signInWithPassword({
+                    email: email,
+                    password: password
+                });
+                
+                if (error) {
+                    log(`❌ Ошибка входа: ${error.message}`, 'error');
+                } else {
+                    log('✅ Вход выполнен успешно!', 'success');
+                    log(`👤 Пользователь: ${data.user.email}`, 'info');
+                    
+                    // Получаем данные из таблицы users
+                    const { data: userData, error: userError } = await supabase
+                        .from('users')
+                        .select('*')
+                        .eq('id', data.user.id)
+                        .single();
+                    
+                    if (userError) {
+                        log(`⚠️ Ошибка получения профиля: ${userError.message}`, 'error');
+                    } else {
+                        log(`📊 Статистика: ${userData.points} очков, ранг: ${userData.rank}`, 'info');
+                    }
+                }
+            } catch (err) {
+                log(`❌ Ошибка: ${err.message}`, 'error');
+            }
+        }
+
+        async function checkUser() {
+            clearLog();
+            
+            try {
+                const { data: { user }, error } = await supabase.auth.getUser();
+                
+                if (error) {
+                    log(`❌ Ошибка: ${error.message}`, 'error');
+                } else if (user) {
+                    log('✅ Текущий пользователь:', 'success');
+                    log(`👤 Email: ${user.email}`, 'info');
+                    log(`🆔 ID: ${user.id}`, 'info');
+                    
+                    // Получаем данные из таблицы users
+                    const { data: userData, error: userError } = await supabase
+                        .from('users')
+                        .select('*')
+                        .eq('id', user.id)
+                        .single();
+                    
+                    if (userError) {
+                        log(`⚠️ Нет профиля в таблице users: ${userError.message}`, 'error');
+                    } else {
+                        log(`📊 Данные из таблицы users:`, 'success');
+                        log(`Имя: ${userData.username}`, 'info');
+                        log(`Очки: ${userData.points}`, 'info');
+                        log(`Ранг: ${userData.rank}`, 'info');
+                        log(`Пройдено демонов: ${userData.completed_demons.length}`, 'info');
+                    }
+                } else {
+                    log('👤 Нет активной сессии', 'info');
+                }
+            } catch (err) {
+                log(`❌ Ошибка: ${err.message}`, 'error');
+            }
+        }
+
+        async function logout() {
+            clearLog();
+            
+            try {
+                const { error } = await supabase.auth.signOut();
+                
+                if (error) {
+                    log(`❌ Ошибка выхода: ${error.message}`, 'error');
+                } else {
+                    log('✅ Выход выполнен успешно', 'success');
+                }
+            } catch (err) {
+                log(`❌ Ошибка: ${err.message}`, 'error');
+            }
         }
     </script>
 </body>
