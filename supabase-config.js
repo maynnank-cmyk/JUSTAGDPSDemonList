@@ -1,8 +1,8 @@
 // supabase-config.js
 // ВАЖНО: вставьте СВОИ данные из Supabase!
 
-const SUPABASE_URL = 'https://your-project-id.supabase.co'; // ← ВСТАВЬТЕ СВОЙ URL
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'; // ← ВСТАВЬТЕ СВОЙ КЛЮЧ
+const SUPABASE_URL = 'https://kegcpzeulrbarwyglcsq.supabase.co'; // ← ВСТАВЬТЕ СВОЙ URL
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtlZ2NwemV1bHJiYXJ3eWdsY3NxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE1OTMzMTEsImV4cCI6MjA4NzE2OTMxMX0.sAQzdqQ1cFhPITd7yC6pDHIj_vIYxX6CLxQ-UPPxm4g'; // ← ВСТАВЬТЕ СВОЙ КЛЮЧ
 
 // Проверяем, что библиотека загружена
 if (typeof window.supabase === 'undefined') {
