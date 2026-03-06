@@ -39,6 +39,17 @@
       }
     },
     {
+      "id": "justjoke",
+      "name": "justjoke",
+      "avatar": "jj",
+      "country": "",
+      "completedDemons": [
+        "12secwithkowareta"
+      ],
+      "progress": {
+      }
+    },
+    {
       "id": "Nazorro",
       "name": "Nazorro",
       "avatar": "N",
