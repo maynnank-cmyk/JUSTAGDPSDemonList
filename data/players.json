@@ -22,16 +22,17 @@
       "id": "naz0rro",
       "name": "Naz0rro",
       "avatar": "N",
-      "completedDemons": ["heliorobot", "bloodinthesnow", "unmaded", "terraesperafinale", "cure"],
+      "completedDemons": ["heliorobot", "bloodinthesnow", "unmaded", "terraesperafinale", "cure", "everyedige"],
       "progress": {
         "heliorobot": 100,
         "bloodinthesnow": 100,
         "unmaded": 100,
         "terraesperafinale": 100,
         "cure": 100,
-        "nameless": 75
+        "nameless": 75,
+        "everyedige": 100
       },
-          "verifiedDemons": ["unmaded"]
+          "verifiedDemons": ["unmaded", "everyedige"]
     },
         {
       "id": "yoyka",
@@ -142,7 +143,7 @@
       "id": "terraria",
       "name": "Terraria",
       "avatar": "T",
-      "completedDemons": ["nocircles", "anathema", "atomiccannonmkiii", "lowdeathiii", "silentcycles", "sashamingvortex", "terraprocessing", "fracture", "terraespera", "terraesperafinale", "cure", "poocubed", "xrebrth", "space", "cherry", "terraadventureii", "epstein", "infected", "bestdrop", "lowdeathii", "fuzeii", "theflyingrocks", "nameless"],
+      "completedDemons": ["nocircles", "anathema", "atomiccannonmkiii", "lowdeathiii", "silentcycles", "sashamingvortex", "terraprocessing", "fracture", "terraespera", "terraesperafinale", "cure", "poocubed", "xrebrth", "space", "cherry", "terraadventureii", "epstein", "infected", "bestdrop", "lowdeathii", "fuzeii", "theflyingrocks", "nameless", "fuzescapes"],
       "progress": {
         "nocircles": 100,
         "fuzeii": 100,
@@ -167,9 +168,10 @@
         "lowdeathii": 100,
         "fuzeii": 100,
         "theflyingrocks": 100,
-        "nameless": 61
+        "nameless": 61,
+        "fuzescapes": 100
       },
-          "verifiedDemons": ["anathema", "atomiccannonmkiii", "silentcycles", "sashamingvortex", "fracture", "terraespera", "terraesperafinale", "poocubed", "lowdeathiii", "terraprocessing", "space", "cherry", "terraadventureii", "epstein", "infected", "bestdrop", "lowdeathii", "fuzeii"]
+          "verifiedDemons": ["anathema", "atomiccannonmkiii", "silentcycles", "sashamingvortex", "fracture", "terraespera", "terraesperafinale", "poocubed", "lowdeathiii", "terraprocessing", "space", "cherry", "terraadventureii", "epstein", "infected", "bestdrop", "lowdeathii", "fuzeii", "fuzescapes"]
       },
        {
       "id": "vxmnc",
@@ -214,7 +216,7 @@
       "id": "vidiourok",
       "name": "vidiourok",
       "avatar": "VU",
-      "completedDemons": ["sigareta2", "insomnia", "nocircles", "selfharm", "anathema", "oldamethyst", "bloodinthesnow"],
+      "completedDemons": ["sigareta2", "insomnia", "nocircles", "selfharm", "anathema", "oldamethyst", "bloodinthesnow", "nocircles"],
       "progress": {
         "sigareta2": 100,
         "insomnia": 100,
@@ -222,8 +224,10 @@
         "selfharm": 100,
         "anathema": 100,
         "oldamethyst": 100,
-        "bloodinthesnow": 100
-        }
+        "bloodinthesnow": 100,
+        "nocircles": 100
+        },
+                "verifiedDemons": ["nocirles"]
       },
         {
       "id": "likerrr",
