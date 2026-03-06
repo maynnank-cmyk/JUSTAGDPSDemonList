@@ -217,7 +217,7 @@
       "id": "likerrr",
       "name": "Likerrr",
       "avatar": "LR",
-      "completedDemons": ["sigareta2", "insomnia", "nocircles", "selfharm", "anathema", "oldamethyst", "bloodinthesnow", "turnthelightsoff", "invisible", "bullet", "easycorridor", "lowdeathii", "sashamingvortex", "bestdrop", "infected", "fracture", "epstein", "jag67", "cherry", "hellmachine", "space", "terraprocessing", "theflyingrocks", "mango", "terraadventureii", "jag", "badabum", "poocubed", "cure", "lowdeathiii", "ccopakpectob", "unmaded", "fuzeii", "sapphireglow", "noviolence", "element29cu", "nameless"],
+      "completedDemons": ["sigareta2", "insomnia", "nocircles", "selfharm", "anathema", "oldamethyst", "bloodinthesnow", "turnthelightsoff", "invisible", "bullet", "easycorridor", "lowdeathii", "sashamingvortex", "bestdrop", "infected", "fracture", "epstein", "jag67", "cherry", "hellmachine", "space", "terraprocessing", "theflyingrocks", "mango", "terraadventureii", "jag", "badabum", "poocubed", "cure", "lowdeathiii", "ccopakpectob", "unmaded", "fuzeii", "sapphireglow", "noviolence", "element29cu", "nameless", "cognition"],
       "progress": {
         "sigareta2": 100,
         "insomnia": 100,
@@ -255,7 +255,8 @@
         "sapphireglow": 100,
         "noviolence": 100,
         "element29cu": 100,
-        "nameless": 100
+        "nameless": 100,
+        "cognition": 100
         },
                    "verifiedDemons": ["element29cu"]
       },
@@ -352,6 +353,16 @@
         "theflyingrocks": 100
       },
               "verifiedDemons": ["theflyingrocks"]
+     },
+      {
+      "id": "solewhy",
+      "name": "Solewhy",
+      "avatar": "SH",
+      "completedDemons": ["thebronze"],
+      "progress": {
+        "thebronze": 100
+      },
+              "verifiedDemons": ["thebronze"]
      },
      {
       "id": "danikcopper",
