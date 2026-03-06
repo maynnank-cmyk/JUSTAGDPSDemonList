@@ -72,6 +72,15 @@
       "image": "images/gypers.png",
       "description": "Бывший топ 1."
     },
+     {
+      "id": "cognition",
+      "name": "Cognition",
+      "creator": "Likerr",
+      "tags": ["Medium", "Featured", "InsaneDemon"],
+      "videoUrl": "https://youtu.be/-ZsZh7wsbjA",
+      "image": "images/cognition.png",
+      "description": ""
+    },
       {
       "id": "sapphireglow",
       "name": "Sapphire Glow",
@@ -160,6 +169,15 @@
         "tags": ["Ship", "Medium", "StarRate", "InsaneDemon"],
       "videoUrl": "https://youtu.be/ABGLVISmq08?si=eqUUzoPX7HWKVj5w&t=11",
       "image": "images/lowdeathiii.png",
+      "description": ""
+    },
+      {
+      "id": "thebronze",
+      "name": "The Bronze",
+      "creator": "solewhy",
+        "tags": ["Long", "Featured", "InsaneDemon"],
+      "videoUrl": "https://youtu.be/bWGKKrtMUA0",
+      "image": "images/thebronze.png",
       "description": ""
     },
      {
