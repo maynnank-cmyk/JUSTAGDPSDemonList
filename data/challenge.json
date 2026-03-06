@@ -1,5 +1,14 @@
 {
   "challengeDemons": [
+     {
+      "id": "12secwithkowareta",
+      "name": "12 sec with kowareta",
+      "creator": "justjoke",
+      "videoUrl": "https://youtu.be/rNWZQMxbkak",
+      "image": "",
+      "tags": ["Wave", "Consistency"],
+      "description": ""
+    },
     {
       "id": "namelesschallenge6",
       "name": "nameless challenge 6",
