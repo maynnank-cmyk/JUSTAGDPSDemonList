@@ -114,7 +114,7 @@
       "id": "vladgdmj",
       "name": "Vladgdmj",
       "avatar": "V",
-      "completedDemons": ["badabum", "sigareta2", "turnthelightsoff", "insomnia", "anathema", "atomiccannonmkiii", "bloodinthesnow", "theflyingrocks"],
+      "completedDemons": ["badabum", "sigareta2", "turnthelightsoff", "insomnia", "anathema", "atomiccannonmkiii", "bloodinthesnow", "theflyingrocks", "piskascapes"],
       "progress": {
         "badabum": 100,
         "sigareta2": 100,
@@ -124,9 +124,10 @@
         "atomiccannonmkiii": 100,
         "bloodinthesnow": 100,
         "sashamingvortex": 75,
-        "theflyingrocks": 100
+        "theflyingrocks": 100,
+        "piskascapes": 100
       },
-       "verifiedDemons": ["insomnia", "badabum", "sigareta2", "turnthelightsoff"]
+       "verifiedDemons": ["insomnia", "badabum", "sigareta2", "turnthelightsoff", "piskascapes"]
     },
      {
       "id": "nizelix",
