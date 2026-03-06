@@ -175,7 +175,7 @@
       "id": "thebronze",
       "name": "The Bronze",
       "creator": "solewhy",
-        "tags": ["Long", "Featured", "InsaneDemon"],
+        "tags": ["Ufo", "Wave", "Long", "Featured", "InsaneDemon"],
       "videoUrl": "https://youtu.be/bWGKKrtMUA0",
       "image": "images/thebronze.png",
       "description": ""
@@ -334,6 +334,15 @@
       "description": ""
       },
       {
+      "id": "everyedige",
+      "name": "Every Edige",
+      "creator": "Nazzoro",
+        "tags": ["Cube", "OnlyOneGameMode", "Medium", "StarRate", "HardDemon"],
+      "videoUrl": "https://www.youtube.com/watch?v=uk1kUjrZobc",
+      "image": "images/everyedige.png",
+      "description": ""
+      },
+      {
       "id": "sashamingvortex",
       "name": "sashaming vortex",
         "tags": ["OnlyOneGameMode", "Wave", "Medium", "StarRate", "HardDemon"],
@@ -348,6 +357,15 @@
         "tags": ["Medium", "StarRate", "HardDemon"],
       "videoUrl": "https://youtu.be/oMuE0KOD86g?si=AwJDGxrqkqtEsqo0",
       "image": "images/theflyingrocks.png",
+      "description": ""
+      },
+     {
+      "id": "nocircles",
+      "name": "No Circles",
+      "creator": "vidiourok",
+        "tags": ["NC", "Wave", "Medium", "StarRate", "HardDemon"],
+      "videoUrl": "https://www.youtube.com/watch?v=51q-4dcDjUA",
+      "image": "images/nocircles.png",
       "description": ""
       },
      {
@@ -417,9 +435,18 @@
       "id": "piskacapes",
       "name": "PiskaScapes",
       "creator": "vladslay",
-      "tags": ["Medium", "StarRate", "HardDemon"],
+      "tags": ["Robot", "OnlyOneGameMode", "Medium", "StarRate", "HardDemon"],
       "videoUrl": "https://youtu.be/mWkuhCHo_60",
       "image": "images/piskascapes.png",
+      "description": ""
+    },
+      {
+      "id": "fuzecapes",
+      "name": "FuzeScapes",
+      "creator": "Terraria",
+      "tags": ["Robot", "OnlyOneGameMode", "Medium", "StarRate", "HardDemon"],
+      "videoUrl": "https://youtu.be/mWkuhCHo_60",
+      "image": "images/fuzescapes.png",
       "description": ""
     },
      {
