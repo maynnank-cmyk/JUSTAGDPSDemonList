@@ -19,6 +19,7 @@
             --card-shadow: 0 8px 32px rgba(0,0,0,0.3);
             --header-gradient: linear-gradient(135deg, #ff4757 0%, #8a6bff 100%);
             --dropdown-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            --gradient-bg: linear-gradient(135deg, #0a0a0f 0%, #111122 50%, #1a1a2e 100%);
         }
 
         [data-theme="light"] {
@@ -35,6 +36,7 @@
             --card-shadow: 0 8px 32px rgba(0,0,0,0.1);
             --header-gradient: linear-gradient(135deg, #ff6b6b 0%, #6d5acf 100%);
             --dropdown-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            --gradient-bg: linear-gradient(135deg, #f8f9ff 0%, #eef2ff 50%, #e0e5ff 100%);
         }
 
         * {
@@ -45,12 +47,29 @@
         }
 
         body {
-            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--bg-tertiary) 100%);
+            background: var(--gradient-bg);
             color: var(--text-primary);
             line-height: 1.7;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             font-weight: 500;
             min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(138, 107, 255, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(255, 71, 87, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 50% 50%, rgba(74, 111, 165, 0.05) 0%, transparent 30%);
+            pointer-events: none;
+            z-index: -1;
         }
 
         .container {
@@ -59,9 +78,11 @@
             padding: 0 20px;
         }
 
-        /* Header */
+        /* Header - такой же как в index.html */
         header {
             background: var(--header-gradient);
+            border-bottom: none;
+            padding: 0;
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -93,14 +114,15 @@
             gap: 0.5rem;
             padding: 0.5rem;
             border-radius: 8px;
+            transition: all 0.3s ease;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
         }
 
         .logo:hover {
             background: rgba(255, 255, 255, 0.2);
             transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
         }
 
         .cube-icon {
@@ -121,7 +143,31 @@
             gap: 1rem;
         }
 
-        .language-toggle, .theme-toggle {
+        .language-toggle {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            font-weight: 700;
+            color: white;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .language-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1) rotate(15deg);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+        }
+
+        .theme-toggle {
             background: rgba(255, 255, 255, 0.2);
             border: none;
             width: 40px;
@@ -136,27 +182,29 @@
             border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
-        .language-toggle {
-            font-weight: 700;
-            color: white;
-            font-size: 0.9rem;
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1) rotate(15deg);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
         }
 
         .theme-toggle img {
             width: 22px;
             height: 22px;
             filter: brightness(0) invert(1);
-        }
-
-        .language-toggle:hover, .theme-toggle:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: scale(1.1);
+            transition: all 0.3s ease;
         }
 
         .header-controls nav ul {
             display: flex;
             list-style: none;
             gap: 0.8rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header-controls nav ul li {
+            position: relative;
         }
 
         .header-controls nav ul li a {
@@ -166,25 +214,57 @@
             font-weight: 600;
             padding: 0.7rem 1rem;
             border-radius: 8px;
+            transition: all 0.3s ease;
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            position: relative;
+            overflow: hidden;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
+            height: auto;
+            min-height: unset;
+            line-height: normal;
         }
 
-        .header-controls nav ul li a:hover {
+        .header-controls nav ul li a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .header-controls nav ul li a:hover::before {
+            left: 100%;
+        }
+
+        .header-controls nav ul li a:hover,
+        .header-controls nav ul li a.active {
             background: rgba(255, 255, 255, 0.2);
+            color: white;
             transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
         }
 
-        .dropdown-arrow {
+        .header-controls nav ul li a.active {
+            color: var(--text-primary) !important;
+        }
+
+        .header-controls nav ul li a .dropdown-arrow {
             width: 16px;
             height: 16px;
-            transition: transform 0.4s ease;
+            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             filter: brightness(0) invert(1);
+        }
+
+        .header-controls nav ul li a.active .dropdown-arrow {
+            transform: rotate(180deg);
         }
 
         .dropdown-menu {
@@ -210,6 +290,22 @@
             background: rgba(248, 249, 255, 0.95);
         }
 
+        .dropdown-menu::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 20px;
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 8px solid var(--bg-primary);
+        }
+
+        [data-theme="light"] .dropdown-menu::before {
+            border-bottom-color: var(--bg-primary);
+        }
+
         .dropdown-menu.active {
             opacity: 1;
             visibility: visible;
@@ -217,9 +313,9 @@
         }
 
         .dropdown-menu a {
-            color: var(--text-primary);
-            padding: 1rem 1.5rem;
-            display: flex;
+            color: var(--text-primary) !important;
+            padding: 1rem 1.5rem !important;
+            display: flex !important;
             align-items: center;
             gap: 0.8rem;
             text-decoration: none;
@@ -227,6 +323,24 @@
             font-weight: 600;
             border-bottom: 1px solid var(--border-color);
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dropdown-menu a::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: var(--accent-red);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown-menu a:hover::before {
+            transform: scaleY(1);
         }
 
         .dropdown-menu a:last-child {
@@ -235,13 +349,42 @@
 
         .dropdown-menu a:hover {
             background: rgba(255, 255, 255, 0.05);
-            color: var(--accent-red);
+            color: var(--accent-red) !important;
+            padding-left: 2rem !important;
+        }
+
+        .dropdown-menu a.active {
+            background: rgba(255, 255, 255, 0.05) !important;
+            color: var(--text-primary) !important;
+            border-left: 4px solid var(--accent-red);
+        }
+
+        [data-theme="light"] .dropdown-menu a.active {
+            background: rgba(0, 0, 0, 0.05) !important;
+        }
+
+        .dropdown-menu a.active:hover {
+            background: rgba(255, 255, 255, 0.1) !important;
+            color: var(--accent-red) !important;
+        }
+
+        [data-theme="light"] .dropdown-menu a.active:hover {
+            background: rgba(0, 0, 0, 0.1) !important;
+        }
+
+        .dropdown-menu a.active .dropdown-menu-icon {
+            filter: none !important;
+            opacity: 1;
         }
 
         .dropdown-menu-icon {
             width: 18px;
             height: 18px;
             opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-menu-icon {
             filter: brightness(0) invert(1);
         }
 
@@ -249,25 +392,9 @@
             filter: none;
         }
 
-        .dropdown-request-btn {
-            background: linear-gradient(135deg, var(--accent-red), var(--accent-purple)) !important;
-            color: white !important;
-            border: none !important;
-            border-radius: 8px !important;
-            margin: 0.8rem !important;
-            padding: 1rem 1.5rem !important;
-            font-weight: 700 !important;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 4px 15px rgba(255, 71, 87, 0.3); }
-            50% { box-shadow: 0 4px 25px rgba(255, 71, 87, 0.5); }
-        }
-
-        .btn-icon {
-            width: 16px;
-            height: 16px;
+        .dropdown-menu a:hover .dropdown-menu-icon {
+            opacity: 1;
+            transform: scale(1.1) rotate(10deg);
         }
 
         /* Социальные кнопки */
@@ -275,6 +402,7 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            margin-left: auto;
         }
 
         .social-btn {
@@ -287,17 +415,57 @@
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
         }
 
         .social-btn:hover {
             background: rgba(255, 255, 255, 0.2);
             transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.15);
         }
 
         .social-btn img {
             width: 22px;
             height: 22px;
             filter: brightness(0) invert(1) !important;
+        }
+
+        /* Кнопка Отправить реквест в выпадающем меню */
+        .dropdown-request-btn {
+            background: linear-gradient(135deg, var(--accent-red), var(--accent-purple)) !important;
+            color: white !important;
+            border: none !important;
+            border-radius: 8px !important;
+            margin: 0.8rem !important;
+            padding: 1rem 1.5rem !important;
+            font-weight: 700 !important;
+            box-shadow: 0 4px 15px rgba(255, 71, 87, 0.3);
+            transition: all 0.3s ease !important;
+            animation: pulse 2s infinite;
+        }
+
+        .dropdown-request-btn:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 6px 20px rgba(255, 71, 87, 0.4) !important;
+            animation: none;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 4px 15px rgba(255, 71, 87, 0.3); }
+            50% { box-shadow: 0 4px 25px rgba(255, 71, 87, 0.5); }
+        }
+
+        .btn-icon {
+            width: 16px;
+            height: 16px;
+        }
+
+        .players-dropdown-menu {
+            min-width: 220px;
+        }
+
+        .others-dropdown-menu {
+            min-width: 200px;
         }
 
         /* Мобильное меню */
@@ -312,8 +480,17 @@
             align-items: center;
             width: 44px;
             height: 44px;
+            position: relative;
+            z-index: 1001;
             border-radius: 8px;
+            transition: all 0.3s ease;
             border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .menu-toggle:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
         }
 
         .menu-toggle span {
@@ -339,6 +516,7 @@
             transition: right 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             border-left: 1px solid var(--border-color);
             display: flex;
+            flex-direction: column;
             backdrop-filter: blur(20px);
             background: rgba(26, 26, 46, 0.95);
         }
@@ -373,8 +551,15 @@
             text-decoration: none;
         }
 
+        .mobile-cube-icon {
+            width: 28px;
+            height: 28px;
+            filter: brightness(0) invert(1);
+            animation: float 3s ease-in-out infinite;
+        }
+
         .mobile-close {
-            background: rgba(255, 255, 255, 0.1);
+            background: none;
             border: none;
             color: white;
             font-size: 2rem;
@@ -385,10 +570,33 @@
             align-items: center;
             justify-content: center;
             border-radius: 8px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(90deg);
+        }
+
+        .mobile-menu nav {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem 0;
         }
 
         .mobile-menu nav ul {
-            list-style: none;
+            flex-direction: column;
+            gap: 0;
+            padding: 0;
+        }
+
+        .mobile-menu nav ul li {
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .mobile-menu nav ul li:last-child {
+            border-bottom: none;
         }
 
         .mobile-menu nav ul li a {
@@ -399,16 +607,52 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border-bottom: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .mobile-menu nav ul li a:hover,
+        .mobile-menu nav ul li a.active {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--accent-red);
+            padding-left: 2rem;
+        }
+
+        [data-theme="light"] .mobile-menu nav ul li a:hover,
+        [data-theme="light"] .mobile-menu nav ul li a.active {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .mobile-menu nav ul li a.active {
+            color: var(--text-primary) !important;
+            border-left: 4px solid var(--accent-red);
         }
 
         .mobile-dropdown {
             display: none;
             background: rgba(255, 255, 255, 0.03);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        [data-theme="light"] .mobile-dropdown {
+            background: rgba(0, 0, 0, 0.03);
         }
 
         .mobile-dropdown.active {
             display: block;
+            animation: slideDown 0.4s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .mobile-dropdown a {
@@ -420,30 +664,38 @@
             gap: 0.8rem;
         }
 
-        .mobile-social-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            padding: 1rem 1.5rem;
-            border-top: 1px solid var(--border-color);
-            margin-top: auto;
+        .mobile-dropdown a:hover {
+            color: var(--accent-red) !important;
+            background: rgba(255, 255, 255, 0.05) !important;
         }
 
-        .mobile-social-btn {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
-            width: 44px;
-            height: 44px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        [data-theme="light"] .mobile-dropdown a:hover {
+            background: rgba(0, 0, 0, 0.05) !important;
         }
 
-        .mobile-social-btn img {
-            width: 22px;
-            height: 22px;
-            filter: brightness(0) invert(1) !important;
+        .mobile-dropdown a.active {
+            color: var(--text-primary) !important;
+            background: rgba(255, 255, 255, 0.05) !important;
+            border-left: 4px solid var(--accent-red);
+        }
+
+        [data-theme="light"] .mobile-dropdown a.active {
+            background: rgba(0, 0, 0, 0.05) !important;
+        }
+
+        .mobile-menu nav ul li a .dropdown-arrow {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.4s ease;
+            filter: brightness(0) invert(1);
+        }
+
+        [data-theme="light"] .mobile-menu nav ul li a .dropdown-arrow {
+            filter: brightness(0) saturate(100%) invert(24%) sepia(9%) saturate(1200%) hue-rotate(170deg) brightness(92%) contrast(87%);
+        }
+
+        .mobile-menu nav ul li a.active .dropdown-arrow {
+            transform: rotate(180deg);
         }
 
         .menu-overlay {
@@ -469,13 +721,16 @@
         .breadcrumb {
             padding: 1.5rem 0;
             color: var(--text-secondary);
+            font-size: 0.95rem;
             border-bottom: 1px solid var(--border-color);
             background: var(--bg-secondary);
+            font-weight: 600;
         }
 
         .breadcrumb a {
             color: var(--text-secondary);
             text-decoration: none;
+            transition: color 0.3s;
         }
 
         .breadcrumb a:hover {
@@ -513,11 +768,14 @@
         .demon-name {
             font-size: 2.5rem;
             margin-bottom: 1rem;
+            color: var(--text-primary);
             font-weight: 800;
             background: linear-gradient(135deg, var(--accent-red), var(--accent-purple), var(--accent-blue));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            background-size: 200% 200%;
+            animation: gradient 3s ease infinite;
         }
 
         .demon-description {
@@ -525,6 +783,8 @@
             color: var(--text-secondary);
             max-width: 700px;
             margin: 0 auto 2rem;
+            font-weight: 500;
+            line-height: 1.8;
         }
 
         .demon-meta {
@@ -541,6 +801,7 @@
             padding: 1.2rem 1.5rem;
             border-radius: 12px;
             border: 2px solid var(--border-color);
+            box-shadow: var(--card-shadow);
             min-width: 150px;
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
@@ -549,6 +810,7 @@
         .meta-item:hover {
             border-color: var(--accent-red);
             transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 71, 87, 0.2);
         }
 
         .meta-value {
@@ -561,77 +823,7 @@
         .meta-label {
             font-size: 0.9rem;
             color: var(--text-secondary);
-        }
-
-        /* Demon Info Grid (новая секция) */
-        .demon-info-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1rem;
-            margin: 2rem 0;
-            padding: 1.5rem;
-            background: var(--bg-tertiary);
-            border-radius: 16px;
-            border: 2px solid var(--border-color);
-        }
-
-        .info-card {
-            text-align: center;
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-        }
-
-        .info-label {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.3rem;
-        }
-
-        .info-value {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-
-        .copyable {
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(138, 107, 255, 0.1);
-            padding: 0.3rem 0.8rem;
-            border-radius: 8px;
-            border: 1px solid rgba(138, 107, 255, 0.3);
-            transition: all 0.2s ease;
-        }
-
-        .copyable:hover {
-            background: rgba(138, 107, 255, 0.2);
-            transform: scale(1.05);
-        }
-
-        .copyable.copied {
-            background: var(--accent-green);
-            color: white;
-            border-color: var(--accent-green);
-        }
-
-        .music-link {
-            color: var(--accent-purple);
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .music-link:hover {
-            text-decoration: underline;
+            font-weight: 600;
         }
 
         /* Demon Content */
@@ -652,15 +844,45 @@
             border: 2px solid var(--border-color);
             border-radius: 16px;
             padding: 1.5rem;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .video-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-red), var(--accent-purple));
+            border-radius: 2px 2px 0 0;
         }
 
         .video-section h2 {
             margin-bottom: 1.5rem;
+            color: var(--text-primary);
             font-size: 1.3rem;
             font-weight: 800;
             display: flex;
             align-items: center;
             gap: 0.8rem;
+        }
+
+        .video-section h2::before {
+            content: '';
+            width: 24px;
+            height: 24px;
+            background-image: url('assets/video-icon.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            filter: brightness(0) invert(1);
+        }
+
+        [data-theme="light"] .video-section h2::before {
+            filter: none;
         }
 
         .video-container {
@@ -670,6 +892,7 @@
             padding-bottom: 56.25%;
             border-radius: 12px;
             overflow: hidden;
+            margin: 0 auto;
             background: var(--bg-secondary);
             border: 2px solid var(--border-color);
         }
@@ -705,7 +928,7 @@
             opacity: 0.5;
         }
 
-        /* Теги */
+        /* ТЕГИ ПОД ВИДЕО */
         .demon-tags-container {
             margin-top: 1.5rem;
             padding-top: 1rem;
@@ -716,9 +939,25 @@
             font-size: 0.9rem;
             color: var(--text-secondary);
             margin-bottom: 0.8rem;
+            font-weight: 600;
             display: flex;
             align-items: center;
             gap: 0.5rem;
+        }
+
+        .tags-label::before {
+            content: '';
+            width: 16px;
+            height: 16px;
+            background-image: url('assets/tag.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            filter: brightness(0) invert(1);
+        }
+
+        [data-theme="light"] .tags-label::before {
+            filter: none;
         }
 
         .demon-tags {
@@ -735,6 +974,25 @@
             border-radius: 6px;
             color: var(--accent-purple);
             font-weight: 600;
+            transition: all 0.2s ease;
+            cursor: default;
+        }
+
+        .demon-tag:hover {
+            background: rgba(138, 107, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 2px 8px rgba(138, 107, 255, 0.2);
+        }
+
+        .video-info {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(46, 213, 115, 0.1);
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-green);
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--accent-green);
         }
 
         /* Completions Section */
@@ -743,10 +1001,25 @@
             border: 2px solid var(--border-color);
             border-radius: 16px;
             padding: 1.5rem;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .completions-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-green), #2ed573);
+            border-radius: 2px 2px 0 0;
         }
 
         .completions-section h2 {
             margin-bottom: 1.5rem;
+            color: var(--text-primary);
             font-size: 1.3rem;
             font-weight: 800;
             display: flex;
@@ -754,11 +1027,35 @@
             gap: 0.8rem;
         }
 
+        .completions-section h2::before {
+            content: '';
+            width: 24px;
+            height: 24px;
+            background-image: url('assets/gold-icon.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
         .completions-list-container {
             max-height: 500px;
             overflow-y: auto;
             padding: 0.5rem;
             margin-bottom: 1rem;
+        }
+
+        .completions-list-container::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .completions-list-container::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+            border-radius: 3px;
+        }
+
+        .completions-list-container::-webkit-scrollbar-thumb {
+            background: var(--accent-red);
+            border-radius: 3px;
         }
 
         .completions-list {
@@ -777,11 +1074,30 @@
             border: 2px solid var(--border-color);
             transition: all 0.3s ease;
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .completion-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: var(--accent-red);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .completion-item:hover::before {
+            transform: scaleY(1);
         }
 
         .completion-item:hover {
             border-color: var(--accent-red);
             transform: translateX(5px);
+            box-shadow: 0 4px 15px rgba(255, 71, 87, 0.2);
             background: rgba(255, 255, 255, 0.05);
         }
 
@@ -798,6 +1114,12 @@
             font-size: 1.2rem;
             flex-shrink: 0;
             border: 3px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .completion-item:hover .player-avatar {
+            border-color: var(--accent-red);
+            transform: scale(1.1);
         }
 
         .player-info {
@@ -809,8 +1131,15 @@
             font-weight: 800;
             margin-bottom: 0.5rem;
             font-size: 1rem;
+            color: var(--text-primary);
+            transition: color 0.3s;
         }
 
+        .completion-item:hover .player-name {
+            color: var(--accent-red);
+        }
+
+        /* Progress Styles */
         .progress-container {
             display: flex;
             align-items: center;
@@ -846,6 +1175,7 @@
             color: var(--text-secondary);
             min-width: 40px;
             text-align: right;
+            font-weight: 700;
         }
 
         .points-badge {
@@ -858,15 +1188,31 @@
             padding: 0.5rem 0.8rem;
             border-radius: 8px;
             border: 2px solid rgba(46, 213, 115, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .completion-item:hover .points-badge {
+            background: var(--accent-green);
+            color: white;
+            border-color: var(--accent-green);
         }
 
         .no-completions {
             text-align: center;
             padding: 3rem 1.5rem;
             color: var(--text-secondary);
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            border: 2px dashed var(--border-color);
         }
 
-        /* Пагинация */
+        .no-completions .icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.3;
+        }
+
+        /* ПАГИНАЦИЯ */
         .pagination {
             display: flex;
             justify-content: center;
@@ -889,18 +1235,21 @@
             justify-content: center;
             cursor: pointer;
             font-weight: 600;
+            font-size: 0.9rem;
             transition: all 0.3s ease;
         }
 
         .page-btn:hover:not(:disabled) {
             border-color: var(--accent-red);
             color: var(--accent-red);
+            transform: translateY(-2px);
         }
 
         .page-btn.active {
             background: var(--accent-red);
             border-color: var(--accent-red);
             color: white;
+            transform: scale(1.1);
         }
 
         .page-btn:disabled {
@@ -911,6 +1260,7 @@
         .page-info {
             font-size: 0.85rem;
             color: var(--text-secondary);
+            font-weight: 600;
             margin: 0 0.5rem;
         }
 
@@ -926,9 +1276,37 @@
             cursor: pointer;
             font-size: 1rem;
             font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(255, 71, 87, 0.3);
             position: relative;
             overflow: hidden;
             border: 2px solid rgba(255, 255, 255, 0.2);
+            animation: pulse 2s infinite;
+        }
+
+        .refresh-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .refresh-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(255, 71, 87, 0.4);
+            animation: none;
+        }
+
+        .refresh-btn:hover::before {
+            left: 100%;
+        }
+
+        .refresh-btn:active {
+            transform: translateY(0);
         }
 
         .refresh-btn img {
@@ -939,6 +1317,25 @@
             width: 20px;
             height: 20px;
             filter: brightness(0) invert(1);
+            transition: transform 0.3s ease;
+        }
+
+        .refresh-btn:hover img {
+            transform: translateY(-50%) rotate(180deg);
+        }
+
+        /* Error Container */
+        .error-container {
+            text-align: center;
+            padding: 3rem 1.5rem;
+            color: var(--text-secondary);
+        }
+
+        .error-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--accent-red);
+            font-weight: 800;
         }
 
         /* Footer */
@@ -947,6 +1344,7 @@
             border-top: 1px solid var(--border-color);
             padding: 2.5rem 0 1.5rem;
             margin-top: 3rem;
+            background: linear-gradient(135deg, rgba(17, 17, 34, 0.9) 0%, rgba(26, 26, 46, 0.9) 100%);
         }
 
         .footer-content {
@@ -959,6 +1357,8 @@
         .footer-section h3 {
             font-size: 1.1rem;
             margin-bottom: 1rem;
+            color: var(--text-primary);
+            font-weight: 700;
             position: relative;
             display: inline-block;
         }
@@ -971,14 +1371,18 @@
             width: 30px;
             height: 2px;
             background: var(--accent-red);
+            border-radius: 1px;
         }
 
-        .footer-section a {
+        .footer-section p, .footer-section a {
             color: var(--text-secondary);
             margin-bottom: 0.8rem;
             display: block;
             text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
             font-size: 0.9rem;
+            line-height: 1.6;
         }
 
         .footer-section a:hover {
@@ -991,13 +1395,28 @@
             padding-top: 1.5rem;
             border-top: 1px solid var(--border-color);
             color: var(--text-secondary);
+            margin-top: 1.5rem;
             font-size: 0.8rem;
+            font-weight: 500;
         }
 
         /* Адаптивность */
         @media (max-width: 1024px) {
-            .demon-info-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .content-grid {
+                gap: 1.5rem;
+            }
+            
+            .demon-name {
+                font-size: 2.2rem;
+            }
+            
+            .meta-item {
+                min-width: 130px;
+                padding: 1rem 1.2rem;
+            }
+            
+            .meta-value {
+                font-size: 1.3rem;
             }
         }
 
@@ -1006,25 +1425,115 @@
                 display: flex;
             }
 
-            .header-controls nav,
+            .header-controls nav {
+                display: none;
+            }
+
             .header-controls .social-buttons {
                 display: none;
             }
 
-            .content-grid {
-                grid-template-columns: 1fr;
+            .header-content {
+                flex-wrap: nowrap;
             }
 
-            .demon-info-grid {
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            /* Социальные кнопки в мобильном меню */
+            .mobile-social-buttons {
+                display: flex;
+                justify-content: center;
+                gap: 1rem;
+                padding: 1rem 1.5rem;
+                border-top: 1px solid var(--border-color);
+                margin-top: auto;
+            }
+
+            .mobile-social-btn {
+                background: rgba(255, 255, 255, 0.1);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                border-radius: 8px;
+                width: 44px;
+                height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.3s ease;
+            }
+
+            .mobile-social-btn:hover {
+                background: rgba(255, 255, 255, 0.2);
+                transform: translateY(-2px);
+            }
+
+            .mobile-social-btn img {
+                width: 22px;
+                height: 22px;
+                filter: brightness(0) invert(1) !important;
+            }
+
+            .content-grid {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .demon-header {
+                padding: 2rem 0;
             }
 
             .demon-name {
                 font-size: 2rem;
             }
+
+            .demon-meta {
+                gap: 1rem;
+            }
+
+            .meta-item {
+                min-width: 120px;
+                padding: 1rem;
+            }
+
+            .refresh-btn {
+                padding: 0.8rem 1.5rem 0.8rem 2.5rem;
+            }
+
+            .refresh-btn img {
+                width: 18px;
+                height: 18px;
+                left: 0.8rem;
+            }
         }
 
         @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .header-content {
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+            
+            .logo {
+                font-size: 1.1rem;
+            }
+            
+            .cube-icon {
+                width: 28px;
+                height: 28px;
+            }
+            
+            .demon-name {
+                font-size: 1.8rem;
+            }
+            
+            .demon-description {
+                font-size: 1rem;
+            }
+            
             .demon-meta {
                 flex-direction: column;
                 align-items: center;
@@ -1035,9 +1544,107 @@
                 max-width: 200px;
             }
             
-            .mobile-menu {
-                width: 280px;
+            .completion-item {
+                padding: 0.8rem;
+                gap: 0.8rem;
             }
+            
+            .player-avatar {
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .mobile-menu nav ul li a {
+                font-size: 1rem;
+                padding: 1rem 1.2rem;
+            }
+
+            .refresh-btn {
+                padding: 0.7rem 1.2rem 0.7rem 2rem;
+                font-size: 0.9rem;
+            }
+
+            .refresh-btn img {
+                width: 16px;
+                height: 16px;
+                left: 0.7rem;
+            }
+
+            .language-toggle, .theme-toggle {
+                width: 36px;
+                height: 36px;
+            }
+            
+            .page-btn {
+                width: 32px;
+                height: 32px;
+                font-size: 0.8rem;
+            }
+            
+            .demon-tag {
+                font-size: 0.7rem;
+                padding: 0.3rem 0.6rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .demon-name {
+                font-size: 1.6rem;
+            }
+            
+            .meta-item {
+                padding: 0.8rem;
+            }
+            
+            .video-section,
+            .completions-section {
+                padding: 1rem;
+            }
+            
+            .player-avatar {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+            
+            .cube-icon {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .pagination {
+                flex-wrap: wrap;
+                gap: 0.3rem;
+            }
+            
+            .page-btn {
+                width: 30px;
+                height: 30px;
+                font-size: 0.75rem;
+            }
+        }
+
+        @media (hover: none) {
+            .completion-item:hover {
+                transform: none;
+                border-color: var(--border-color);
+            }
+            
+            .completion-item:active {
+                border-color: var(--accent-red);
+                transform: scale(0.98);
+            }
+        }
+
+        html {
+            -webkit-text-size-adjust: 100%;
+            text-size-adjust: 100%;
         }
     </style>
 </head>
@@ -1118,6 +1725,7 @@
                         </ul>
                     </nav>
                     
+                    <!-- Социальные кнопки перенесены вправо -->
                     <div class="social-buttons">
                         <a href="#" class="social-btn" title="Discord">
                             <img src="assets/discord.png" alt="Discord">
@@ -1218,6 +1826,7 @@
                     </div>
                 </li>
             </ul>
+            <!-- Социальные кнопки в мобильном меню -->
             <div class="mobile-social-buttons">
                 <a href="#" class="mobile-social-btn" title="Discord">
                     <img src="assets/discord.png" alt="Discord">
@@ -1518,6 +2127,7 @@
             return urlParams.get('id');
         }
 
+        // Измененная функция: открываем страницу players.html с параметром player
         function openPlayerProfile(playerId) {
             window.location.href = `players.html?player=${playerId}`;
         }
@@ -1572,23 +2182,7 @@
             return sortedDemons.findIndex(d => d.id === demonId) + 1;
         }
 
-        // Функция для копирования ID уровня
-        function copyLevelId(levelId) {
-            navigator.clipboard.writeText(levelId).then(() => {
-                const copyElement = document.querySelector('.copyable');
-                if (copyElement) {
-                    const originalText = copyElement.innerHTML;
-                    copyElement.classList.add('copied');
-                    copyElement.innerHTML = '✓ ' + levelId;
-                    
-                    setTimeout(() => {
-                        copyElement.classList.remove('copied');
-                        copyElement.innerHTML = originalText;
-                    }, 2000);
-                }
-            });
-        }
-
+        // Функция для рендера тегов
         function renderTags(tags) {
             if (!tags || tags.length === 0) {
                 return '';
@@ -1607,6 +2201,7 @@
             `;
         }
 
+        // Функция для рендера пагинации
         function renderPagination(totalItems, currentPage) {
             const totalPages = Math.ceil(totalItems / completionsPerPage);
             
@@ -1624,6 +2219,7 @@
                     </button>
             `;
             
+            // Показываем только 5 страниц вокруг текущей
             const startPage = Math.max(1, currentPage - 2);
             const endPage = Math.min(totalPages, startPage + 4);
             
@@ -1648,6 +2244,7 @@
             return paginationHTML;
         }
 
+        // Функция для изменения страницы
         function changePage(page) {
             currentPage = page;
             const demonId = getDemonIdFromURL();
@@ -1656,6 +2253,7 @@
             }
         }
 
+        // Кэш для данных демона
         let cachedDemonData = null;
         let cachedPlayers = null;
         let cachedAllDemons = null;
@@ -1697,6 +2295,7 @@
 
                 console.log('🎯 Найден демон:', demon.name);
                 
+                // Сохраняем данные в кэш
                 cachedDemonData = demon;
                 cachedPlayers = playersData.players;
                 cachedAllDemons = demonsData.demons;
@@ -1731,6 +2330,7 @@
             const demonRank = calculateDemonRank(demon.id, allDemons);
             const points = calculatePointsByRank(demonRank);
             
+            // Пагинация
             const totalCompletions = playersWithProgress.length;
             const totalPages = Math.ceil(totalCompletions / completionsPerPage);
             const startIndex = (page - 1) * completionsPerPage;
@@ -1745,17 +2345,12 @@
             const playersText = currentLang === 'ru' ? 'Игроков с прогрессом' : 'Players with progress';
             const videoVerificationText = currentLang === 'ru' ? 'Видео верификация' : 'Video Verification';
             const playersWithProgressText = currentLang === 'ru' ? 'Игроки с прогрессом' : 'Players with Progress';
+            const officialVerificationText = currentLang === 'ru' ? 'Официальная верификация' : 'Official Verification';
+            const verificationDescText = currentLang === 'ru' ? 'Это официальное видео подтверждение прохождения демона' : 'This is the official video verification of demon completion';
             const refreshDataText = currentLang === 'ru' ? 'Обновить данные демона' : 'Refresh Demon Data';
             const noVideoText = currentLang === 'ru' ? 'Видео верификация отсутствует' : 'Video verification not available';
+            const noVideoDescText = currentLang === 'ru' ? 'Для этого демона нет видео подтверждения' : 'No video verification available for this demon';
             const descriptionText = demon.description || (currentLang === 'ru' ? 'Сложный демон уровня в Geometry Dash' : 'Difficult demon level in Geometry Dash');
-            
-            // Новая информация
-            const levelIdText = currentLang === 'ru' ? 'ID уровня' : 'Level ID';
-            const musicText = currentLang === 'ru' ? 'Музыка' : 'Music';
-            const copyText = currentLang === 'ru' ? 'Копировать' : 'Copy';
-            const copiedText = currentLang === 'ru' ? 'Скопировано!' : 'Copied!';
-            const noMusicText = currentLang === 'ru' ? 'Не указана' : 'Not specified';
-            const openInNewTabText = currentLang === 'ru' ? 'Открыть в новой вкладке' : 'Open in new tab';
 
             const content = document.getElementById('content');
             content.innerHTML = `
@@ -1777,37 +2372,6 @@
                                 <div class="meta-item">
                                     <div class="meta-value">${playersWithProgress.length}</div>
                                     <div class="meta-label">${playersText}</div>
-                                </div>
-                            </div>
-
-                            <!-- Новая секция с информацией об уровне и музыке -->
-                            <div class="demon-info-grid">
-                                <div class="info-card">
-                                    <div class="info-label">📋 ${levelIdText}</div>
-                                    <div class="info-value">
-                                        <span class="copyable" onclick="copyLevelId('${demon.levelId || demon.id}')">
-                                            ${demon.levelId || demon.id} 📋
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="info-card">
-                                    <div class="info-label">🎵 ${musicText}</div>
-                                    <div class="info-value">
-                                        ${demon.music ? 
-                                            `<a href="${demon.music}" target="_blank" class="music-link" title="${openInNewTabText}">
-                                                ${demon.musicName || 'YouTube'} 🔗
-                                            </a>` : 
-                                            `<span style="color: var(--text-secondary);">${noMusicText}</span>`
-                                        }
-                                    </div>
-                                </div>
-                                <div class="info-card">
-                                    <div class="info-label">📊 Ранг</div>
-                                    <div class="info-value">#${demonRank}</div>
-                                </div>
-                                <div class="info-card">
-                                    <div class="info-label">🏆 Очки</div>
-                                    <div class="info-value">${points}</div>
                                 </div>
                             </div>
                         </div>
@@ -1834,11 +2398,21 @@
                                         <div class="video-placeholder">
                                             <div class="icon">📹</div>
                                             <div>${noVideoText}</div>
+                                            <div style="font-size: 0.7rem; margin-top: 0.3rem;">${noVideoDescText}</div>
                                         </div>
                                     `}
                                 </div>
                                 
                                 ${renderTags(demon.tags)}
+                                
+                                ${demon.videoUrl ? `
+                                    <div class="video-info">
+                                        <strong>ℹ️ ${officialVerificationText}</strong>
+                                        <div style="margin-top: 0.3rem; font-size: 0.7rem; color: var(--text-secondary);">
+                                            ${verificationDescText}
+                                        </div>
+                                    </div>
+                                ` : ''}
                             </div>
 
                             <!-- Секция игроков -->
@@ -1910,7 +2484,6 @@
         window.openPlayerProfile = openPlayerProfile;
         window.refreshData = refreshData;
         window.changePage = changePage;
-        window.copyLevelId = copyLevelId;
         window.extractYouTubeId = extractYouTubeId;
         window.calculatePointsByRank = calculatePointsByRank;
         window.calculatePointsWithProgress = calculatePointsWithProgress;
@@ -1928,3 +2501,4 @@
     </script>
 </body>
 </html>
+сделай чтобы была информация об демонах (id уровня которое можно скопировать, музыка из уровня) которую можно изменять через demons.json, оптимизируй стиль убери лишние неиспользуемые стили
