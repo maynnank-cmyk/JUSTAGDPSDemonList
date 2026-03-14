@@ -13,8 +13,11 @@
       "id": "staru",
       "name": "Star U",
       "creator": "VladGDMJ",
+      "levelId": "1109",
       "tags": ["Robot", "OnlyOneGameMode", "Medium", "Epic", "ExtremeDemon"],
       "videoUrl": "https://youtu.be/yCUikSdgj_0",
+      "music": "https://youtu.be/...",
+      "musicName": "At the Speed of Light",
       "image": "images/staru.png",
       "description": ""
     },
