@@ -308,7 +308,7 @@
       "id": "piglen7",
       "name": "Piglen7",
       "avatar": "P7",
-      "completedDemons": ["easycorridor", "gypers", "unforcedvortrex", "fracture", "terraprocessing", "sashamingvortex", "uauafactorial" ],
+      "completedDemons": ["sapphireglow", "easycorridor", "gypers", "unforcedvortrex", "fracture", "terraprocessing", "sashamingvortex", "uauafactorial" ],
       "progress": {
         "easycorridor": 100,
         "gypers": 100,
@@ -316,7 +316,8 @@
         "fracture": 100,
         "terraprocessing": 100,
         "sashamingvortex": 100,
-        "uauafactorial": 100
+        "uauafactorial": 100,
+        "sapphireglow": 100
       },
        "verifiedDemons": ["easycorridor", "unforcedvortrex"]
     },
