@@ -143,7 +143,7 @@
       "id": "terraria",
       "name": "Terraria",
       "avatar": "T",
-      "completedDemons": ["nocircles", "anathema", "atomiccannonmkiii", "lowdeathiii", "silentcycles", "sashamingvortex", "terraprocessing", "fracture", "terraespera", "terraesperafinale", "cure", "poocubed", "xrebrth", "space", "cherry", "terraadventureii", "epstein", "infected", "bestdrop", "lowdeathii", "fuzeii", "theflyingrocks", "nameless", "fuzescapes"],
+      "completedDemons": ["nocircles", "anathema", "atomiccannonmkiii", "lowdeathiii", "silentcycles", "sashamingvortex", "terraprocessing", "fracture", "terraespera", "terraesperafinale", "cure", "poocubed", "xrebrth", "space", "cherry", "terraadventureii", "epstein", "infected", "bestdrop", "lowdeathii", "fuzeii", "theflyingrocks", "nameless", "fuzescapes", "unmaded"],
       "progress": {
         "nocircles": 100,
         "fuzeii": 100,
@@ -169,7 +169,8 @@
         "fuzeii": 100,
         "theflyingrocks": 100,
         "nameless": 61,
-        "fuzescapes": 100
+        "fuzescapes": 100,
+        "unmaded": 100
       },
           "verifiedDemons": ["anathema", "atomiccannonmkiii", "silentcycles", "sashamingvortex", "fracture", "terraespera", "terraesperafinale", "poocubed", "lowdeathiii", "terraprocessing", "space", "cherry", "terraadventureii", "epstein", "infected", "bestdrop", "lowdeathii", "fuzeii", "fuzescapes"]
       },
@@ -290,9 +291,10 @@
       "id": "asyouknow",
       "name": "AsYouKnow",
       "avatar": "AYK",
-      "completedDemons": ["sigareta2"],
+      "completedDemons": ["sigareta2", "sapphireglow"],
       "progress": {
-        "sigareta2": 100
+        "sigareta2": 100,
+        "sapphireglow": 100
       }
     },
      {
@@ -334,13 +336,14 @@
       "id": "taleesman",
       "name": "Taleesman",
       "avatar": "TM",
-      "completedDemons": ["uauafactorial", "noviolence", "samsungs215g"],
+      "completedDemons": ["uauafactorial", "noviolence", "samsungs215g", "experiment"],
       "progress": {
         "uauafactorial": 100,
         "noviolence": 100,
-        "samsungs215g": 100
+        "samsungs215g": 100,
+        "experiment": 100
       },
-        "verifiedDemons": ["uauafactorial", "noviolence"]
+        "verifiedDemons": ["uauafactorial", "noviolence", "experiment"]
     },
      {
       "id": "mwzqgd",
@@ -360,6 +363,15 @@
       "completedDemons": ["anathema"],
       "progress": {
         "anathema": 100
+      }
+    },
+      {
+      "id": "wwanderer",
+      "name": "wWanderer",
+      "avatar": "WW",
+      "completedDemons": ["atomiccannonmkiii"],
+      "progress": {
+        "atomiccannonmkiii": 100
       }
     },
      {
@@ -389,6 +401,15 @@
       "completedDemons": ["nameless"],
       "progress": {
         "nameless": 100
+      }
+     },
+    {
+      "id": "woxkiz",
+      "name": "Woxkiz",
+      "avatar": "WZ",
+      "completedDemons": ["staru"],
+      "progress": {
+        "staru": 100
       }
      },
       {
