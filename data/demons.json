@@ -247,6 +247,15 @@
       "description": ""
     },
      {
+      "id": "experiment",
+      "name": "Experiment",
+      "creator": "Nyashka",
+      "tags": ["Long", "Mythic", "HardDemon"],
+      "videoUrl": "https://youtu.be/gSaf6ePQ_74?si=V3yUCLQjHkZSdmZo",
+      "image": "images/expirement.png",
+      "description": ""
+    },
+     {
       "id": "bloodinthesnow",
       "name": "Blood In The Snow",
       "creator": "ESC",
