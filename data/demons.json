@@ -1,5 +1,14 @@
 {
   "demons": [
+      {
+      "id": "darktriadwave",
+      "name": "Dark Triad Wave",
+      "creator": "yoyka",
+       "tags": ["Wave", "Layout", "Medium", "StarRate", "ExtremeDemon"],
+      "videoUrl": "https://youtu.be/5GYhyi6gsNY",
+      "image": "images/darktriadwave.png",
+      "description": ""
+    },
      {
       "id": "femboycircles67",
       "name": "Femboy Circles 67",
@@ -119,6 +128,15 @@
       "videoUrl": "https://youtu.be/g3mWWY0OpsI?si=0KgS8SU8ja8RE8bd",
       "image": "images/terraesperafinale.png",
       "description": ""
+    },
+    {
+      "id": "kitkatwave",
+      "name": "Kitkat Wave",
+      "creator": "Sary",
+      "tags": ["Wave", "NC", "XL", "Featured", "ExtremeDemon"],
+      "videoUrl": "https://youtu.be/0GDCile8HW8?is=Xfv0yZsupFz_abrr",
+      "image": "images/kitkatwave.png",
+      "description": "kitkat jirniy."
     },
     {
       "id": "uauafactorial",
