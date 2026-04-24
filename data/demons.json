@@ -1,20 +1,21 @@
-    {
-      "id": "staru",
-      "name": "Star U",
-      "creator": "VladGDMJ",
-      "levelId": "1109",
-      "tags": ["Robot", "OnlyOneGameMode", "Medium", "Epic", "ExtremeDemon"],
-      "videoUrl": "https://youtu.be/yCUikSdgj_0",
-      "music": "https://youtu.be/DnO0eMMb5c0?si=HWodSrfob9si0FNC",
-      "musicName": "Graham Kartna - Star U",
-      "image": "images/staru.png",
-      "description": ""
-     },
-       {
-      "id": "nameless",
-      "name": "nameless",
-      "creator": "WeztT",
-      "tags": ["Spider", "HighCPS", "Medium", "StarRate", "ExtremeDemon"],
+[
+  {
+    "id": "staru",
+    "name": "Star U",
+    "creator": "VladGMD",
+    "levelId": "1109",
+    "tags": ["Robot", "OnlyOneGameMode", "Medium", "Epic", "ExtremeDemon"],
+    "videoUrl": "https://youtu.be/yCUikSdgj_0",
+    "music": "https://youtu.be/DnO0eWmB5c0?si=HwodSrfob9si0FNC",
+    "musicName": "Graham Kartna - Star U",
+    "image": "images/staru.png",
+    "description": ""
+  },
+  {
+    "id": "nameless",
+    "name": "nameless",
+    "creator": "WezT",
+    "tags": ["Spider", "HighCPS", "Medium", "StarRate", "ExtremeDemon"],
       "videoUrl": ".https://www.youtube.com/watch?v=7Spnke3cNLE",
       "image": "images/nameless.png",
       "description": ""
