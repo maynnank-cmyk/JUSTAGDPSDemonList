@@ -1,23 +1,5 @@
 {
   "demons": [
-      {
-      "id": "darktriadwave",
-      "name": "Dark Triad Wave",
-      "creator": "yoyka",
-       "tags": ["Wave", "Layout", "Medium", "StarRate", "ExtremeDemon"],
-      "videoUrl": "https://youtu.be/5GYhyi6gsNY",
-      "image": "images/darktriadwave.png",
-      "description": ""
-    },
-     {
-      "id": "femboycircles67",
-      "name": "Femboy Circles 67",
-      "creator": "weztT",
-       "tags": ["Wave", "NC", "Medium", "StarRate", "ExtremeDemon"],
-      "videoUrl": "https://youtu.be/NMvwmMV1uvQ",
-      "image": "images/femboycircles67.png",
-      "description": ""
-    },
     {
       "id": "staru",
       "name": "Star U",
