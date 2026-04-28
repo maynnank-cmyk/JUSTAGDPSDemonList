@@ -1,21 +1,40 @@
-[
-  {
-    "id": "staru",
-    "name": "Star U",
-    "creator": "VladGMD",
-    "levelId": "1109",
-    "tags": ["Robot", "OnlyOneGameMode", "Medium", "Epic", "ExtremeDemon"],
-    "videoUrl": "https://youtu.be/yCUikSdgj_0",
-    "music": "https://youtu.be/DnO0eWmB5c0?si=HwodSrfob9si0FNC",
-    "musicName": "Graham Kartna - Star U",
-    "image": "images/staru.png",
-    "description": ""
-  },
-  {
-    "id": "nameless",
-    "name": "nameless",
-    "creator": "WezT",
-    "tags": ["Spider", "HighCPS", "Medium", "StarRate", "ExtremeDemon"],
+{
+  "demons": [
+      {
+      "id": "darktriadwave",
+      "name": "Dark Triad Wave",
+      "creator": "yoyka",
+       "tags": ["Wave", "Layout", "Medium", "StarRate", "ExtremeDemon"],
+      "videoUrl": "https://youtu.be/5GYhyi6gsNY",
+      "image": "images/darktriadwave.png",
+      "description": ""
+    },
+     {
+      "id": "femboycircles67",
+      "name": "Femboy Circles 67",
+      "creator": "weztT",
+       "tags": ["Wave", "NC", "Medium", "StarRate", "ExtremeDemon"],
+      "videoUrl": "https://youtu.be/NMvwmMV1uvQ",
+      "image": "images/femboycircles67.png",
+      "description": ""
+    },
+    {
+      "id": "staru",
+      "name": "Star U",
+      "creator": "VladGDMJ",
+      "levelId": "1109",
+      "tags": ["Robot", "OnlyOneGameMode", "Medium", "Epic", "ExtremeDemon"],
+      "videoUrl": "https://youtu.be/yCUikSdgj_0",
+      "music": "https://youtu.be/DnO0eMMb5c0?si=HWodSrfob9si0FNC",
+      "musicName": "Graham Kartna - Star U",
+      "image": "images/staru.png",
+      "description": ""
+    },
+    {
+      "id": "nameless",
+      "name": "nameless",
+      "creator": "WeztT",
+      "tags": ["Spider", "HighCPS", "Medium", "StarRate", "ExtremeDemon"],
       "videoUrl": ".https://www.youtube.com/watch?v=7Spnke3cNLE",
       "image": "images/nameless.png",
       "description": ""
@@ -55,6 +74,15 @@
       "videoUrl": "https://youtu.be/WBM2NoYwEa8?si=kUiMaXhBR3qJNvKg",
       "image": "images/noviolence.png",
       "description": "rainbow cognition"
+    },
+      {
+      "id": "gypers",
+      "name": "Gypers",
+      "creator": "WeztT",
+      "tags": ["Wave", "NC", "Medium", "StarRate", "ExtremeDemon"],
+      "videoUrl": "https://youtu.be/-ZsZh7wsbjA",
+      "image": "images/gypers.png",
+      "description": "Бывший топ 1."
     },
      {
       "id": "cognition",
@@ -147,6 +175,15 @@
       "description": "kakashka"
     },
       {
+      "id": "lowdeathiii",
+      "name": "Low Death III",
+      "creator": "Terraria",
+        "tags": ["Ship", "Medium", "StarRate", "InsaneDemon"],
+      "videoUrl": "https://youtu.be/ABGLVISmq08?si=eqUUzoPX7HWKVj5w&t=11",
+      "image": "images/lowdeathiii.png",
+      "description": ""
+    },
+      {
       "id": "thebronze",
       "name": "The Bronze",
       "creator": "solewhy",
@@ -162,6 +199,15 @@
        "tags": ["Wave", "Ship", "Medium", "Featured", "ExtremeDemon"],
       "videoUrl": "https://youtu.be/NbscfKll1Tg?si=uFeFx23x3MXAolQ-",
       "image": "images/cure.png",
+      "description": ""
+    },
+      {
+      "id": "poocubed",
+      "name": "Poocubed",
+      "creator": "Terraria",
+        "tags": ["Ufo", "Spam", "Medium", "StarRate", "HardDemon"],
+      "videoUrl": " https://youtu.be/juXTK2PTTxI?si=RV657nwKVz6uRJOQ&t=204",
+      "image": "images/poocubed.png",
       "description": ""
     },
       {
@@ -219,6 +265,15 @@
       "description": ""
     },
     {
+      "id": "terraprocessing",
+      "name": "Terra Processing",
+      "creator": "terraria",
+      "tags": ["Ship", "Medium", "Featured", "HardDemon"],
+      "videoUrl": "https://youtu.be/-VSUVd3OAMQ?si=gHtHfJVSLzQPz-n3&t=10",
+      "image": "images/terraprocessing.png",
+      "description": ""
+    },
+    {
       "id": "oldamethyst",
       "name": "Old Amethyst",
       "creator": "To4nowhy",
@@ -245,6 +300,15 @@
       "image": "images/hellmachine.png",
       "description": ""
     },
+    {
+      "id": "cherry",
+      "name": "Cherry",
+      "creator": "Terraria",
+       "tags": ["Medium", "StarRate", "HardDemon"],
+      "videoUrl": "https://youtu.be/vx8bRIdSKng?si=THV-03HQ9pgk95GX",
+      "image": "images/cherry.png",
+      "description": ""
+    },
       {
       "id": "jag67",
       "name": "JaG 67",
@@ -261,6 +325,24 @@
         "tags": ["Cube", "Ship", "Medium", "StarRate", "HardDemon"],
       "videoUrl": "https://youtu.be/EIQKkJ9qoaA?si=IyoVeeDUIEE_qbw-",
       "image": "images/atomiccannonmkiii.png",
+      "description": ""
+    },
+      {
+      "id": "anathema",
+      "name": "Anathema",
+      "creator": "Terraria",
+        "tags": ["Cube", "Ship", "Medium", "StarRate", "HardDemon"],
+      "videoUrl": "https://youtu.be/iyMbRr_tFaM?si=8xyZ99sSaw3Ye7yT",
+      "image": "images/anathema.png",
+      "description": ""
+     },
+      {
+      "id": "fracture",
+      "name": "Fracture",
+      "creator": "Terraria",
+        "tags": ["Wave", "Medium", "StarRate", "HardDemon"],
+      "videoUrl": "https://youtu.be/CVv2Es7OGQU?si=QdNxIzl6q9ltI_Zf&t=10",
+      "image": "images/fracture.png",
       "description": ""
        },
     {
@@ -434,3 +516,4 @@
       "description": ""
     }
   ]
+}
