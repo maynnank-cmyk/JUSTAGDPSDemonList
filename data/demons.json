@@ -263,15 +263,6 @@
       "videoUrl": "https://youtu.be/EIQKkJ9qoaA?si=IyoVeeDUIEE_qbw-",
       "image": "images/atomiccannonmkiii.png",
       "description": ""
-    },
-      {
-      "id": "anathema",
-      "name": "Anathema",
-      "creator": "Terraria",
-        "tags": ["Cube", "Ship", "Medium", "StarRate", "HardDemon"],
-      "videoUrl": "https://youtu.be/iyMbRr_tFaM?si=8xyZ99sSaw3Ye7yT",
-      "image": "images/anathema.png",
-      "description": ""
        },
     {
       "id": "epstein",
