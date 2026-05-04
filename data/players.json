@@ -143,7 +143,7 @@
       "id": "terraria",
       "name": "Terraria",
       "avatar": "T",
-      "completedDemons": ["nocircles", "anathema", "atomiccannonmkiii", "lowdeathiii", "silentcycles", "sashamingvortex", "terraprocessing", "fracture", "terraespera", "terraesperafinale", "cure", "poocubed", "xrebrth", "space", "cherry", "terraadventureii", "epstein", "infected", "bestdrop", "lowdeathii", "fuzeii", "theflyingrocks", "nameless", "fuzescapes", "unmaded"],
+      "completedDemons": ["nocircles", "anathema", "atomiccannonmkiii", "lowdeathiii", "silentcycles", "sashamingvortex", "terraprocessing", "fracture", "terraespera", "terraesperafinale", "cure", "poocubed", "xrebrth", "space", "cherry", "terraadventureii", "epstein", "infected", "bestdrop", "lowdeathii", "fuzeii", "theflyingrocks", "nameless", "fuzescapes", "unmaded", "sapphireglow"],
       "progress": {
         "nocircles": 100,
         "fuzeii": 100,
@@ -155,6 +155,7 @@
         "terraesperafinale": 100,
         "fracture": 100,
         "sashamingvortex": 100,
+        "sapphireglow": 100,
         "terraprocessing": 100,
         "poocubed": 100,
         "jag67": 100,
@@ -429,6 +430,23 @@
         "heliorobot": 100,
         "hellmachine": 100
       }
-    }
-  ]
-}
+     },
+      {        
+      "id": "cody",
+      "name": "Cody",
+      "avatar": "C",
+      "completedDemons": ["staru", "heliorobot", "sapphireglow", "bloodinthesnow"],
+      "progress": {
+        "sapphireglow": 100,
+        "heliorobot": 100,
+        "staru": 100
+      }
+     },
+    {
+      "id": "notwortx",
+      "name": "notwortx",
+      "avatar": "NW",
+      "completedDemons": ["staru"],
+      "progress": {
+        "staru": 100        
+
