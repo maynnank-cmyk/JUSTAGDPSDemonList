@@ -61,7 +61,17 @@
         "supersuperhatemeworl"
       ],
       "progress": {
-      }
-    }
-  ]
-}
+              }
+    },
+    {
+      "id": "chai",
+      "name": "CHAI",
+      "avatar": "Ch",
+      "country": "",
+      "completedDemons": [
+        "supersuperhatemeworl"
+      ],
+      "verifiedDemons": [
+        "irongod"
+      ],
+      "progress": {
