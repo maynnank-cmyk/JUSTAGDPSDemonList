@@ -448,5 +448,8 @@
       "avatar": "NW",
       "completedDemons": ["staru"],
       "progress": {
-        "staru": 100        
-
+        "staru": 100
+      }
+    }
+  ]
+}
