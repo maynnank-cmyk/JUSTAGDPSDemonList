@@ -74,6 +74,15 @@
       "videoUrl": "https://youtu.be/D1K5v6kKAag",
       "image": "images/sapphireglow.png",
       "description": ""
+            },
+      {
+      "id": "dxvernam",
+      "name": "dxVernam",
+      "creator": "VoiDamage",
+        "tags": ["Wave", "Medium", "Epic", "ExtremeDemon"],
+      "videoUrl": "https://youtu.be/gVo1N8OgXMg?si=znuzkZXJEVJ8wx4T",
+      "image": "",
+      "description": "GGG"
     },
     {
       "id": "insomnia",
@@ -83,6 +92,15 @@
       "videoUrl": "https://youtu.be/s_HhFXHf-vs",
       "image": "images/insomnia.png",
       "description": ""
+          },
+    {
+      "id": "themolten",
+      "name": "The Molten",
+      "creator": "solewhy",
+      "tags": ["MultiGamemode", "Long", "Featured", "ExtremeDemon"],
+      "videoUrl": "https://www.youtube.com/watch?v=-4gaWSlWc4o",
+      "image": "",
+      "description": "Second lvl from Metal Trilogy! verified by NotWortX, thanks!"
     },
       {
       "id": "unmaded",
@@ -182,6 +200,15 @@
       "videoUrl": "https://youtu.be/juTCnRq9qHU",
       "image": "images/ccopakpectob.png",
       "description": ""
+          },
+    {
+      "id": "jagiii",
+      "name": "JAG III",
+      "creator": "Ilya karabas",
+      "tags": [ "Long", "Featured", "InsaneDemon"],
+      "videoUrl": "https://youtu.be/N-vBRhy83_c",
+      "image": "",
+      "description": "level hosted by sary12, verified by ilyas_karabas"
     },
     {
       "id": "badabum",
@@ -396,6 +423,15 @@
        "tags": ["Medium", "StarRate", "MediumDemon"],
       "videoUrl": "https://youtu.be/tyAMskoB6Tc?si=InMp3Ctpm1CdqczC",
       "image": "images/xrebirth.png",
+      "description": ""
+           },
+     {
+      "id": "myheartwillstopinjoy",
+      "name": "MYHEARTWILLSTOPINJOY",
+      "creator": "Terraria",
+       "tags": ["XL", "StarRate", "EasyDemon"],
+      "videoUrl": "https://youtu.be/z8GD2Layozw?si=pL3fTUNSVaUYyoQ1",
+      "image": "",
       "description": ""
     },
      {
