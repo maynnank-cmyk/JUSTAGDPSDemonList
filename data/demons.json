@@ -1,8 +1,8 @@
 {
   "demons": [
     {
-      "id": "Aura Triad",
-      "name": "auratriad",
+      "id": "auratriad",
+      "name": "Aura Triad",
       "creator": "mario",
       "tags": ["Medium", "Featured", "ExtremeDemon"],
       "videoUrl": "https://youtu.be/Owu__ovHMYU",
