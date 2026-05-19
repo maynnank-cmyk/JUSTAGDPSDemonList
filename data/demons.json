@@ -1,6 +1,14 @@
 {
   "demons": [
-    {
+    },
+      "id": "Aura Triad",
+      "name": "auratriad",
+      "creator": "mario",
+      "tags": ["Medium", "Featured", "ExtremeDemon"],
+      "videoUrl": "https://youtu.be/Owu__ovMHYU",
+      "image": "",
+      "description": ""
+    },
       "id": "staru",
       "name": "Star U",
       "creator": "VladGDMJ",
@@ -11,15 +19,32 @@
       "musicName": "Graham Kartna - Star U",
       "image": "images/staru.png",
       "description": ""
+   {
+      "id": "onomatopoeia",
+      "name": "Onomatopoeia",
+      "creator": "hayni3113",
+      "tags": ["Long", "StarRate", "ExtremeDemon"],
+      "videoUrl": "https://youtu.be/2P9rDtG2N3s?si=JtvynAlt-KfW34Rv",
+      "image": "",
+      "description": "za dva dnya level sdelal"
     },
     {
       "id": "nameless",
       "name": "nameless",
       "creator": "WeztT",
-      "tags": ["Spider", "HighCPS", "Medium", "StarRate", "ExtremeDemon"],
+      "tags": ["Spider", "HighCPS", "Medium", "Featured", "ExtremeDemon"],
       "videoUrl": ".https://www.youtube.com/watch?v=7Spnke3cNLE",
       "image": "images/nameless.png",
       "description": ""
+      },
+      {
+      "id": "Aura Scapes",
+      "name": "aurascapes",
+      "creator": "mario",
+       "tags": ["Robot", "OnlyOneGameMode", "Medium", "Featured", "ExtremeDemon"],
+      "videoUrl": "https://youtu.be/HPyuHh_nmX0",
+      "image": "",
+      "description": "Kalab bai Yoink, hayni and MARIO verifier absolute. VSEM Privit minit"
     },
       {
       "id": "samsungs215g",
