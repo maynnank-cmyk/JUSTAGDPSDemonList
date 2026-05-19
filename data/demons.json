@@ -1,29 +1,30 @@
 {
   "demons": [
-    }
+    {
       "id": "Aura Triad",
       "name": "auratriad",
       "creator": "mario",
       "tags": ["Medium", "Featured", "ExtremeDemon"],
-      "videoUrl": "https://youtu.be/Owu__ovMHYU",
+      "videoUrl": "https://youtu.be/Owu__ovHMYU",
       "image": "",
       "description": ""
-    }
-     {
+    },
+    {
       "id": "staru",
       "name": "Star U",
-      "creator": "VladGDMJ",
+      "creator": "VladGDM",
       "levelId": "1109",
       "tags": ["Robot", "OnlyOneGameMode", "Medium", "Epic", "ExtremeDemon"],
-      "videoUrl": "https://youtu.be/yCUikSdgj_0",
-      "music": "https://youtu.be/DnO0eMMb5c0?si=HWodSrfob9si0FNC",
+      "videoUrl": "https://youtu.be/yCUiKSagj_0",
+      "music": "https://youtu.be/Dn00eWMb5c0?si=HWoDSrfob9si0FNC",
       "musicName": "Graham Kartna - Star U",
       "image": "images/staru.png",
       "description": ""
-   {
+    },
+    {
       "id": "onomatopoeia",
       "name": "Onomatopoeia",
-      "creator": "hayni3113",
+      "creator": "nayni3113",
       "tags": ["Long", "StarRate", "ExtremeDemon"],
       "videoUrl": "https://youtu.be/2P9rDtG2N3s?si=JtvynAlt-KfW34Rv",
       "image": "",
