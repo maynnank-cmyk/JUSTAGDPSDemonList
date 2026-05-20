@@ -102,15 +102,6 @@
       "image": "images/sapphireglow.png",
       "description": ""
             },
-      {
-      "id": "dxvernam",
-      "name": "dxVernam",
-      "creator": "VoiDamage",
-        "tags": ["Wave", "Medium", "Epic", "ExtremeDemon"],
-      "videoUrl": "https://youtu.be/gVo1N8OgXMg?si=znuzkZXJEVJ8wx4T",
-      "image": "images/dxvernam.png",
-      "description": "GGG"
-    },
     {
       "id": "insomnia",
       "name": "Insomnia",
@@ -118,6 +109,15 @@
       "tags": ["MultiGamemode", "Medium", "Featured", "ExtremeDemon"],
       "videoUrl": "https://youtu.be/s_HhFXHf-vs",
       "image": "images/insomnia.png",
+      "description": ""
+          },
+        {
+      "id": "remessasupremacy",
+      "name": "Remessa Supremacy",
+      "creator": "Vossozdatel",
+      "tags": ["Long", "Featured", "ExtremeDemon"],
+      "videoUrl": "https://youtu.be/CEAPjpt-gG0",
+      "image": "images/remessasupremacy.png",
       "description": ""
           },
     {
