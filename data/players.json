@@ -447,10 +447,11 @@
       "name": "notwortx",
       "avatar": "NW",
       "completedDemons": ["staru"],
-      "progress": {
-        "staru": 100
-      }
-        {
+        "progress": {
+    "staru": 100
+  }
+},
+{
       "id": "hayni3113",
       "name": "hayni3113",
       "avatar": "H",
