@@ -205,10 +205,19 @@
       "id": "cure",
       "name": "Cure",
       "creator": "ppsha",
-       "tags": ["Wave", "Ship", "Medium", "Featured", "ExtremeDemon"],
+       "tags": ["Wave", "Ship", "Medium", "Featured", "InsaneDemon"],
       "videoUrl": "https://youtu.be/NbscfKll1Tg?si=uFeFx23x3MXAolQ-",
       "image": "images/cure.png",
       "description": ""
+    },
+         {
+      "id": "beautifuldays",
+      "name": "Beautiful Days",
+      "creator": "sabupe05",
+       "tags": ["Medium", "Featured", "InsaneDemon"],
+      "videoUrl": "https://youtu.be/x2bQMDCBvPE",
+      "image": "images/beautifuldays.png",
+      "description": "It will happen someday"
     },
       {
       "id": "silentcycles",
