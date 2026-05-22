@@ -274,9 +274,10 @@
         "noviolence": 100,
         "element29cu": 100,
         "nameless": 100,
-        "cognition": 100
+        "cognition": 100,
+        "beautifuldays": 100
         },
-                   "verifiedDemons": ["element29cu"]
+                   "verifiedDemons": ["element29cu", "beautifuldays"]
       },
        {
       "id": "vossozdatel",
