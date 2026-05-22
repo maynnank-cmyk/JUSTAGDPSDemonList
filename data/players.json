@@ -456,6 +456,15 @@
   }
 },
 {
+      "id": "treygolnik23",
+      "name": "Treygolnik23",
+      "avatar": "Tr",
+      "completedDemons": ["onomatopoeia"],
+      "progress": {
+        "onomatopoeia": 100
+     }
+},
+ {
       "id": "hayni3113",
       "name": "hayni3113",
       "avatar": "H",
