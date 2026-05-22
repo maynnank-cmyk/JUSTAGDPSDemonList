@@ -456,13 +456,9 @@
       "name": "hayni3113",
       "avatar": "H",
       "completedDemons": ["onomatopoeia", "beautifuldays"],
+      "verifiedDemons": ["onomatopoeia"],
       "progress": {
         "onomatopoeia": 100,
-        "beautifuldays": 100,
-      },
-        "verifiedDemons": ["onomatopoeia"]
-        }
-      ]
+        "beautifuldays": 100
+      }
     }
-  ]
-}
