@@ -275,7 +275,8 @@
         "element29cu": 100,
         "nameless": 100,
         "cognition": 100,
-        "beautifuldays": 100
+        "beautifuldays": 100,
+        "jagiii": 100
         },
                    "verifiedDemons": ["element29cu", "beautifuldays"]
       },
@@ -419,6 +420,7 @@
       "name": "ilyas_karabas",
       "avatar": "IK",
       "completedDemons": ["anathema", "atomiccannonmkiii", "badabum", "bloodinthesnow", "bullet", "ccopakpectob", "cure", "gypers", "heliorobot", "hellmachine"],
+      "verifiedDemons": ["jagiii"],
       "progress": {
         "anathema": 100,
         "atomiccannonmkiii": 100,
@@ -429,7 +431,8 @@
         "cure": 100,
         "gypers": 100,
         "heliorobot": 100,
-        "hellmachine": 100
+        "hellmachine": 100,
+        "jagiii": 100
       }
      },
       {        
