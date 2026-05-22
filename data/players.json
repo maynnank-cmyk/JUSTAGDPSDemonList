@@ -450,6 +450,14 @@
       "progress": {
         "staru": 100
       }
-    }
-  ]
-}
+        {
+      "id": "hayni3113",
+      "name": "hayni3113",
+      "avatar": "H",
+      "completedDemons": ["onomatopoeia", "beautifuldays"],
+      "progress": {
+        "onomatopoeia": 100,
+        "beautifuldays": 100,
+      },
+        "verifiedDemons": ["onomatopoeia"]
+    },
