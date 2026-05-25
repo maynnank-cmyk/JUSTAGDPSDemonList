@@ -42,7 +42,8 @@
       "progress": {
         "uauafactorial": 100,
         "gypers": 100,
-        "selfharm": 100
+        "selfharm": 100,
+        "aurascapes": 100
       }
     },
     {
@@ -473,6 +474,26 @@
       "progress": {
         "onomatopoeia": 100,
         "beautifuldays": 100
+        }
+},
+ {
+      "id": "render",
+      "name": "Render",
+      "avatar": "R",
+      "completedDemons": ["easycorridor", "turnthelightsoff", "sigareta2"],
+      "progress": {
+        "easycorridor": 100,
+        "turnthelightsoff": 100,
+        "sigareta2": 100
+        }
+},
+ {
+      "id": "spacegmd",
+      "name": "spacegmd",
+      "avatar": "S",
+      "completedDemons": ["sigareta2"],
+      "progress": {
+        "sigareta2": 100
         }
       }
     ]
