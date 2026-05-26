@@ -1,6 +1,15 @@
 {
   "challengeDemons": [
      {
+      "id": "popkaklimba",
+      "name": "POPKAKL IMBA",
+      "creator": "syro",
+      "videoUrl": "https://youtu.be/n91k1H1hVRM?si=9GwovCosm6m_W8PY",
+      "image": "",
+      "tags": ["Wave", "Tiny"],
+      "description": ""
+           },
+    {
       "id": "12secwithkowareta",
       "name": "12 sec with kowareta",
       "creator": "justjoke",
