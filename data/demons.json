@@ -487,6 +487,15 @@
       "videoUrl": "https://youtu.be/mWkuhCHo_60",
       "image": "images/fuzescapes.png",
       "description": ""
+            },
+      {
+      "id": "eclipse",
+      "name": "Eclipse",
+      "creator": "KITazaza",
+      "tags": ["MultiGameMode", "Medium", "Featured", "MediumDemon"],
+      "videoUrl": "https://youtu.be/mWkuhCHo_60",
+      "image": "images/fuzescapes.png",
+      "description": ""
     },
      {
       "id": "xrebirth",
