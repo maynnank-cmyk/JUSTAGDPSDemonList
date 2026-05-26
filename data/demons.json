@@ -83,6 +83,15 @@
       "videoUrl": "https://youtu.be/WBM2NoYwEa8?si=kUiMaXhBR3qJNvKg",
       "image": "images/noviolence.png",
       "description": "rainbow cognition"
+                },
+     {
+      "id": "enikibenikicircles",
+      "name": "ENIKIBENIKI CIRCLES",
+      "creator": "CHAI",
+      "tags": ["Medium", "StarRate", "ExtremeDemon", "Wave"],
+      "videoUrl": "https://youtu.be/pQsVH32wsdQ",
+      "image": "images/enikibenikicircles.png",
+      "description": "okak"
     },
      {
       "id": "cognition",
@@ -92,15 +101,6 @@
       "videoUrl": "https://youtu.be/FgIc2iYM-aY?si=GAXYmOSHpCev4kY2",
       "image": "images/cognition.png",
       "description": ""
-        },
-     {
-      "id": "enikibenikicircles",
-      "name": "ENIKIBENIKI CIRCLES",
-      "creator": "CHAI",
-      "tags": ["Medium", "StarRate", "ExtremeDemon", "Wave"],
-      "videoUrl": "https://youtu.be/pQsVH32wsdQ",
-      "image": "images/enikibenikicircles.png",
-      "description": "okak"
     },
       {
       "id": "sapphireglow",
