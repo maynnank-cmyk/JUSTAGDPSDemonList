@@ -50,6 +50,18 @@
       }
     },
     {
+      "id": "render",
+      "name": "Render",
+      "avatar": "R",
+      "country": "",
+      "completedDemons": [
+        "supersuperhatemeworl"
+      ],
+      "progress": {
+      }
+    },
+    {
+
       "id": "Nazorro",
       "name": "Nazorro",
       "avatar": "N",
