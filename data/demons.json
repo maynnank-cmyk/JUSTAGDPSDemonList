@@ -1,6 +1,15 @@
 {
   "demons": [
     {
+      "id": "projectionfailrure",
+      "name": "Projection Failure",
+      "creator": "Technokniight",
+      "tags": ["Medium", "Legendary", "ExtremeDemon"],
+      "videoUrl": "https://youtu.be/HJPTznrUJv8?si=TxCOLgMdwCtNCV9G",
+      "image": "",
+      "description": "My solo level + new top 1"
+       },
+    {
       "id": "auratriad",
       "name": "Aura Triad",
       "creator": "mario",
