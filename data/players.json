@@ -144,7 +144,7 @@
       "id": "terraria",
       "name": "Terraria",
       "avatar": "T",
-      "completedDemons": ["nocircles", "anathema", "atomiccannonmkiii", "lowdeathiii", "silentcycles", "sashamingvortex", "terraprocessing", "fracture", "terraespera", "terraesperafinale", "cure", "poocubed", "xrebrth", "space", "cherry", "terraadventureii", "epstein", "infected", "bestdrop", "lowdeathii", "fuzeii", "theflyingrocks", "nameless", "fuzescapes", "unmaded", "sapphireglow"],
+      "completedDemons": ["nocircles", "anathema", "atomiccannonmkiii", "lowdeathiii", "silentcycles", "sashamingvortex", "terraprocessing", "fracture", "terraespera", "terraesperafinale", "cure", "poocubed", "xrebrth", "space", "cherry", "terraadventureii", "epstein", "infected", "bestdrop", "lowdeathii", "fuzeii", "theflyingrocks", "nameless", "fuzescapes", "unmaded", "sapphireglow", "timeless"],
       "progress": {
         "nocircles": 100,
         "fuzeii": 100,
@@ -172,9 +172,11 @@
         "theflyingrocks": 100,
         "nameless": 61,
         "fuzescapes": 100,
-        "unmaded": 100
+        "unmaded": 100,
+        "sapphireglow": 100,
+        "timeless": 100
       },
-          "verifiedDemons": ["anathema", "atomiccannonmkiii", "silentcycles", "sashamingvortex", "fracture", "terraespera", "terraesperafinale", "poocubed", "lowdeathiii", "terraprocessing", "space", "cherry", "terraadventureii", "epstein", "infected", "bestdrop", "lowdeathii", "fuzeii", "fuzescapes"]
+          "verifiedDemons": ["anathema", "atomiccannonmkiii", "silentcycles", "sashamingvortex", "fracture", "terraespera", "terraesperafinale", "poocubed", "lowdeathiii", "terraprocessing", "space", "cherry", "terraadventureii", "epstein", "infected", "bestdrop", "lowdeathii", "fuzeii", "fuzescapes", "timeless"]
       },
        {
       "id": "vxmnc",
