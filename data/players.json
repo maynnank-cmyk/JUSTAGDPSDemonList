@@ -487,6 +487,22 @@
         "easycorridor": 100,
         "turnthelightsoff": 100,
         "sigareta2": 100
+             }
+},
+ {
+      "id": "yyshkatyan",
+      "name": "YyshkaTyan",
+      "avatar": "YT",
+      "completedDemons": ["space", "nocircles", "theflyingrocks", "fuzescapes", "piskascapes", "terraespera", "terraesperafinale", "timeless"],
+      "progress": {
+        "space": 100,
+        "nocircles": 100,
+        "theflyingrocks": 100,
+        "fuzescapes": 100,
+        "piskascapes": 100,
+        "terraespera": 100,
+        "terraesperafinale": 100,
+        "timeless": 100
         }
 },
  {
