@@ -217,6 +217,7 @@
         }
       },
      {
+       
       "id": "vidiourok",
       "name": "vidiourok",
       "avatar": "VU",
@@ -360,6 +361,15 @@
         "sashamingvortex": 100,
         "poocubed": 100,
         "terraprocessing": 100
+              }
+    },
+     {
+      "id": "windix",
+      "name": "Windix",
+      "avatar": "Wi",
+      "completedDemons": ["sapphireglow"],
+      "progress": {
+        "sapphireglow": 100
       }
     },
          {
