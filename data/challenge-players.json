@@ -76,6 +76,20 @@
               }
     },
     {
+      "id": "hayni3113",
+      "name": "Hayni3113",
+      "avatar": "H",
+      "country": "",
+      "completedDemons": [
+        "ngc1277"
+      ],
+      "verifiedDemons": [
+        "ngc1277"
+      ],
+      "progress": {
+              }
+    },
+    {
       "id": "chai",
       "name": "CHAI",
       "avatar": "Ch",
