@@ -74,6 +74,17 @@
               }
     },
     {
+      "id": "syro",
+      "name": "Syro",
+      "avatar": "S",
+      "country": "",
+      "completedDemons": [
+        "irongod"
+      ],
+      "progress": {
+              }
+    },
+    {
       "id": "yyshkatyan",
       "name": "YyshkaTyan",
       "avatar": "YT",
