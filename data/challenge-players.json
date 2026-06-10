@@ -27,6 +27,17 @@
       }
     },
      {
+      "id": "nyama",
+      "name": "NYAMA",
+      "avatar": "N",
+      "country": "",
+      "completedDemons": [
+       "elements"
+      ],
+      "progress": {
+      }
+    },
+     {
       "id": "likerr",
       "name": "Likerr",
       "avatar": "L",
