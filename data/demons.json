@@ -47,6 +47,15 @@
       "videoUrl": ".https://www.youtube.com/watch?v=7Spnke3cNLE",
       "image": "images/nameless.png",
       "description": ""
+            },
+      {
+      "id": "serenity",
+      "name": "Serenity",
+      "creator": "hayni3113",
+       "tags": ["MultiGamemode", "Medium", "Featured", "ExtremeDemon"],
+      "videoUrl": "https://youtu.be/qht988Z07qY?si=365m5Ssqeuh6fdxZ",
+      "image": "",
+      "description": "17 yuhu"
       },
       {
       "id": "aurascapes",
