@@ -110,8 +110,17 @@
       "videoUrl": "https://youtu.be/FgIc2iYM-aY?si=GAXYmOSHpCev4kY2",
       "image": "images/cognition.png",
       "description": ""
-    },
+            },
       {
+      "id": "godresponse",
+      "name": "God Response",
+      "creator": "hayni3113",
+        "tags": ["Long", "StarRate", "ExtremeDemon",],
+      "videoUrl": "https://youtu.be/EvIYVUDvdOg?si=1MDEykDrpyq8iDNr",
+      "image": "images/godresponse.png",
+      "description": ""
+            },
+    {
       "id": "sapphireglow",
       "name": "Sapphire Glow",
       "creator": "wWanderer",
