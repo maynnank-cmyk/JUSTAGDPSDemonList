@@ -481,14 +481,13 @@
       "id": "hayni3113",
       "name": "hayni3113",
       "avatar": "H",
-      "completedDemons": ["onomatopoeia", "beautifuldays", "enikibenikicircles", "unn4m3dr3dux", "godresponse"],
-      "verifiedDemons": ["onomatopoeia", "godresponse"],
+      "completedDemons": ["onomatopoeia", "beautifuldays", "enikibenikicircles", "unn4m3dr3dux"],
+      "verifiedDemons": ["onomatopoeia"],
       "progress": {
         "onomatopoeia": 100,
         "beautifuldays": 100,
         "enikibenikicircles": 100,
-        "unn4m3dr3dux": 100,
-        "godresponse": 100
+        "unn4m3dr3dux": 100
         }
 },
  {
