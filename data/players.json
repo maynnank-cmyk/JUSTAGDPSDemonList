@@ -238,7 +238,7 @@
       "id": "likerrr",
       "name": "Likerrr",
       "avatar": "LR",
-      "completedDemons": ["sigareta2", "insomnia", "nocircles", "selfharm", "anathema", "oldamethyst", "bloodinthesnow", "turnthelightsoff", "invisible", "bullet", "easycorridor", "lowdeathii", "sashamingvortex", "bestdrop", "infected", "fracture", "epstein", "jag67", "cherry", "hellmachine", "space", "terraprocessing", "theflyingrocks", "mango", "terraadventureii", "jag", "badabum", "poocubed", "cure", "lowdeathiii", "ccopakpectob", "unmaded", "fuzeii", "sapphireglow", "noviolence", "element29cu", "nameless", "cognition", "jagiii", "enikibenikicircles"],
+      "completedDemons": ["sigareta2", "insomnia", "nocircles", "selfharm", "anathema", "oldamethyst", "bloodinthesnow", "turnthelightsoff", "invisible", "bullet", "easycorridor", "lowdeathii", "sashamingvortex", "bestdrop", "infected", "fracture", "epstein", "jag67", "cherry", "hellmachine", "space", "terraprocessing", "theflyingrocks", "mango", "terraadventureii", "jag", "badabum", "poocubed", "cure", "lowdeathiii", "ccopakpectob", "unmaded", "fuzeii", "sapphireglow", "noviolence", "element29cu", "nameless", "cognition", "jagiii", "enikibenikicircles", "warcore"],
       "progress": {
         "sigareta2": 100,
         "insomnia": 100,
@@ -280,9 +280,10 @@
         "cognition": 100,
         "beautifuldays": 100,
         "jagiii": 100,
-        "enikibenikicircles": 100
+        "enikibenikicircles": 100,
+        "warcore": 100
         },
-        "verifiedDemons": ["element29cu", "beautifuldays", "enikibenikicircles"]
+        "verifiedDemons": ["element29cu", "beautifuldays", "enikibenikicircles", "warcore"]
       },
        {
       "id": "vossozdatel",
