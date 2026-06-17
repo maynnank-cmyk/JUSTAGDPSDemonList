@@ -75,15 +75,6 @@
       "image": "images/samsungs215g.jpg",
       "description": "telefon."
     },
-     {
-      "id": "bullet",
-      "name": "Bullet",
-      "creator": "VladGDMJ",
-       "tags": ["Wave", "NC", "Medium", "StarRate", "ExtremeDemon"],
-      "videoUrl": "https://youtu.be/hQ_jJGBMxfY",
-      "image": "images/bullet.png",
-      "description": "disbalance."
-    },
          {
       "id": "leyckhemuya",
       "name": "Leyckemuya",
@@ -136,15 +127,6 @@
         "tags": ["Wave", "NC", "Long", "Epic", "ExtremeDemon", "Unbalanced"],
       "videoUrl": "https://youtu.be/D1K5v6kKAag",
       "image": "images/sapphireglow.png",
-      "description": ""
-            },
-    {
-      "id": "insomnia",
-      "name": "Insomnia",
-      "creator": "VladGDMJ",
-      "tags": ["MultiGamemode", "Medium", "Featured", "ExtremeDemon"],
-      "videoUrl": "https://youtu.be/s_HhFXHf-vs",
-      "image": "images/insomnia.png",
       "description": ""
                 },
         {
