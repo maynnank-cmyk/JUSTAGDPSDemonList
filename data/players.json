@@ -516,7 +516,7 @@
       "id": "yyshkatyan",
       "name": "YyshkaTyan",
       "avatar": "YT",
-      "completedDemons": ["space", "nocircles", "theflyingrocks", "fuzescapes", "piskascapes", "terraespera", "terraesperafinale", "timeless", "easycorridor", "turnthelightsoff", "sigareta2", "myheartwillstopinjoy", "xrebirth", "sashamingvortex", "atomiccannonmkiii", "bestdrop", "epstein", "cure"],
+      "completedDemons": ["space", "nocircles", "theflyingrocks", "fuzescapes", "piskascapes", "terraespera", "terraesperafinale", "timeless", "easycorridor", "turnthelightsoff", "sigareta2", "myheartwillstopinjoy", "xrebirth", "sashamingvortex", "atomiccannonmkiii", "bestdrop", "epstein", "cure", "infected", "jag67", "invisible", "lowdeathii", "terraadventureii"],
       "progress": {
         "space": 100,
         "nocircles": 100,
@@ -535,7 +535,12 @@
         "atomiccannonmkiii": 100,
         "bestdrop" : 100,
         "epstein": 100,
-        "cure": 100
+        "cure": 100,
+        "infected": 100,
+        "jag67": 100,
+        "invisible": 100,
+        "lowdeathii": 100,
+        "terraadventureii": 100
         }
 },
  {
