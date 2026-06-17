@@ -490,7 +490,16 @@
         "enikibenikicircles": 100,
         "unn4m3dr3dux": 100,
         "serenity": 100
-        }
+           }
+},
+ {
+      "id": "domkpat",
+      "name": "DOMKPAT",
+      "avatar": "D",
+      "completedDemons": ["timeless"],
+      "progress": {
+        "timeless": 100
+                }
 },
  {
       "id": "render",
