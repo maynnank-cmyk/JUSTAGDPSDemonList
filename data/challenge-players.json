@@ -122,6 +122,17 @@
               }
     },
     {
+      "id": "soon",
+      "name": "SoOn...",
+      "avatar": "S",
+      "country": "",
+      "completedDemons": [
+        "irongod"
+      ],
+      "progress": {
+              }
+    },
+    {
       "id": "hayni3113",
       "name": "Hayni3113",
       "avatar": "H",
