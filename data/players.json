@@ -493,6 +493,17 @@
            }
 },
  {
+      "id": "mario",
+      "name": "Mario",
+      "avatar": "M",
+      "completedDemons": ["auratriad", "godresponse"],
+      "verifiedDemons": ["auratriad", "godresponse"],
+      "progress": {
+        "auratriad": 100,
+        "godresponse": 100
+                }
+},
+ {
       "id": "domkpat",
       "name": "DOMKPAT",
       "avatar": "D",
