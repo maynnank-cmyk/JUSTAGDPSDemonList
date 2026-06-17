@@ -389,6 +389,15 @@
       "completedDemons": ["atomiccannonmkiii"],
       "progress": {
         "atomiccannonmkiii": 100
+              }
+    },
+         {
+      "id": "darknet123",
+      "name": "darknet123",
+      "avatar": "d",
+      "completedDemons": ["epstein"],
+      "progress": {
+        "epstein": 100
       }
     },
      {
